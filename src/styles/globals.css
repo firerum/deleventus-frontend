@@ -16,3 +16,19 @@
     }
 }
 
+h1 {
+    font-weight: 700;
+}
+
+ul {
+    list-items: none;
+    display: flex;
+}
+
+.colors {
+    background: #161A23;
+    background: #2D2F39;
+    background: #5C5F65;
+
+}
+

@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 import Image from 'next/image';
@@ -19,9 +21,27 @@ const dropDown = [
 ];
 
 const Nav = () => {
+    const [providers, setProviders] = useState(null);
+
+    useEffect(() => {
+        const getAllProviders = async () => {
+            const response = await getProviders();
+            setProviders(response);
+        };
+        getAllProviders();
+    }, []);
+
     return (
         <header>
-            <h1>Deleventus</h1>
+            <div>
+                <Image
+                    src="/images/universal_DP.jpeg"
+                    alt="deleventus logo"
+                    width={30}
+                    height={30}
+                />
+                <h1>Deleventus</h1>
+            </div>
             <nav>
                 <ul>
                     {navigation.map((nav) => (
@@ -33,6 +53,8 @@ const Nav = () => {
                     ))}
                 </ul>
             </nav>
+
+            {/* mobile navigation */}
         </header>
     );
 };

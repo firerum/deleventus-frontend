@@ -1,5 +1,5 @@
 import '@styles/globals.css';
-import { lora, lato, inter } from '@fonts/fonts';
+import { montserrat, nunito } from '@fonts/fonts';
 import Nav from '@layouts/Nav';
 import Footer from '@layouts/Footer';
 import Provider from '@authentication/Provider';
@@ -12,12 +12,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className={inter.className}>
-                <div className="container">
-                    <Nav></Nav>
-                    {children}
-                    <Footer></Footer>
-                </div>
+            <body className={nunito.className}>
+                <Provider>
+                    <div className="container">
+                        <Nav></Nav>
+                        {children}
+                        <Footer></Footer>
+                    </div>
+                </Provider>
             </body>
         </html>
     );
