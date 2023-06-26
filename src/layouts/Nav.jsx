@@ -7,11 +7,8 @@ import Image from 'next/image';
 
 const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Streams', href: '/live' },
-    { name: 'Products', href: '/products' },
-    { name: 'Company', href: '/company' },
-    { name: 'Dashboard', href: '/dashboard' },
-    { name: 'About', href: '/about' },
+    { name: 'Services', href: '#' },
+    { name: 'Contact', href: '#' },
 ];
 
 const dropDown = [
