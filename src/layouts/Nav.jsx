@@ -9,6 +9,7 @@ const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Services', href: '#' },
     { name: 'Contact', href: '#' },
+    { name: 'Pricing', href: '/pricing' },
 ];
 
 const dropDown = [
