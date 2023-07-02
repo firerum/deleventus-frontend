@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { Button } from '@components/Button';
 
 const CreateAccountCard = ({ title, text }) => {
     return (
@@ -25,18 +26,24 @@ const EventCard = ({ title, desc }) => {
 
 export default function Home() {
     return (
-        <div>
-            <section className="hero-section">
-                <h1>Preserve Every Moment, Uncover the Full Story</h1>
-                <p>
+        <div className="px-10 pb-20">
+            <section className="hero-section text-center">
+                <h1>
+                    <span className='text-sm rounded-md bg-gradient-to-r text-secondary-gold'>#1 Award-winning memory curation platform</span>{' '}
+                    <br />
+                    Preserve{' '}
+                    <span className="text-btn-color">Every Moment</span>, <br />{' '}
+                    Uncover the Full Story
+                </h1>
+                <p className="my-4">
                     Capture, curate, and share every detail of your events -
                     from photos and videos to ticket sales and attendee
                     interactions. With Deleventus, create a complete narrative
                     of your memories, bringing your events to life.
                 </p>
-                <div>
-                    <button type="button">Get Started</button>
-                    <button type="button">Watch Demo</button>
+                <div className="flex flex-col">
+                    <Button title="Get Started" />
+                    <Button title="Watch Demo" />
                 </div>
             </section>
             <section className="service-section">
@@ -59,10 +66,10 @@ export default function Home() {
                     />
                 </div>
             </section>
-            <section className="feature-section">
+            <section className="feature-section bg-pry-purple px-10 -mx-10">
                 <div>
                     <h2>Featured Events</h2>
-                    <p>
+                    <p className="text-pry-text-color-2">
                         Explore a curated collection of remarkable gatherings,
                         conferences, parties, fundraisers, and more. Whether
                         you're looking for networking opportunities,

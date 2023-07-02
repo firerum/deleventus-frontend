@@ -14,8 +14,13 @@ body {
     width: 100%;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4 {
     font-weight: 700;
+    color: #140c24;
+    margin-bottom: 1rem;
 }
 
 a:hover {

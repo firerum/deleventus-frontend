@@ -26,6 +26,11 @@ module.exports = {
         colors: {
             'purple-base': '#29194A',
             'pry-purple': '#F9F7FE',
+            'pry-text-color-1': '#807C89',
+            'pry-text-color-2': '#585264',
+            'pry-header-title': '#140C24',
+            'btn-color': '#786995',
+            // 'secondary-gold': '#958457',
         },
     },
     plugins: [],
