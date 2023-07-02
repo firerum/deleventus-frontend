@@ -14,7 +14,7 @@ export default function RootLayout({ children }) {
         <html lang="en">
             <body className={nunito.className}>
                 <Provider>
-                    <div className="container">
+                    <div>
                         <Nav></Nav>
                         {children}
                         <Footer></Footer>

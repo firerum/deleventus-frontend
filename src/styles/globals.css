@@ -10,10 +10,16 @@
     box-sizing: border-box;
 }
 
-
+body {
+    width: 100%;
+}
 
 h1 {
     font-weight: 700;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 ul {
@@ -36,6 +42,4 @@ footer header {
 
 footer section:last-child {
     color: #140c24;
-    margin-inline: -1.25rem;
-    /* padding: 24px 64px 24px 64px; */
 }
