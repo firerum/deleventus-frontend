@@ -3,6 +3,16 @@ import { nunito } from '../../public/fonts/fonts';
 import Nav from '@layouts/Nav';
 import Footer from '@layouts/Footer';
 import Provider from '@authentication/Provider';
+import { ThemeProvider } from 'styled-components';
+
+// global themes for the styled component
+// const theme = {
+//     colors: {
+//         header: '',
+//         body: '',
+//         footer: '',
+//     },
+// };
 
 export const metadata = {
     title: 'Deliciae Eventus - Deleventus',

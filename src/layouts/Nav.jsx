@@ -32,12 +32,12 @@ const Nav = () => {
     return (
         <header>
             <div className="flex justify-between">
-                <Image
+                {/* <Image
                     src="/images/universal_DP.jpeg"
                     alt="deleventus logo"
                     width={30}
                     height={30}
-                />
+                /> */}
                 <h1>Deleventus</h1>
             </div>
             <nav>

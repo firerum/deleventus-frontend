@@ -26,27 +26,33 @@ const EventCard = ({ title, desc }) => {
 
 export default function Home() {
     return (
-        <div className="px-10 pb-20">
-            <section className="hero-section text-center">
-                <h1>
-                    <span className='text-sm rounded-md bg-gradient-to-r text-secondary-gold'>#1 Award-winning memory curation platform</span>{' '}
-                    <br />
-                    Preserve{' '}
-                    <span className="text-btn-color">Every Moment</span>, <br />{' '}
-                    Uncover the Full Story
-                </h1>
-                <p className="my-4">
-                    Capture, curate, and share every detail of your events -
-                    from photos and videos to ticket sales and attendee
-                    interactions. With Deleventus, create a complete narrative
-                    of your memories, bringing your events to life.
-                </p>
-                <div className="flex flex-col">
+        <div className="px-10 pb-20 md:text-xl md:text-center">
+            <section className="text-center">
+                <div>
+                    <h1 className="text-2xl">
+                        <span className="text-xs md:text-base rounded-2xl p-2 mb-4 inline-block bg-pry-purple text-secondary-gold">
+                            #1 Award-winning memory curation platform
+                        </span>{' '}
+                        <br />
+                        Preserve{' '}
+                        <span className="text-btn-color">
+                            Every Moment
+                        </span>, <br /> Uncover the Full Story
+                    </h1>
+                    <p className="my-4">
+                        Capture, curate, and share every detail of your events -
+                        from photos and videos to ticket sales and attendee
+                        interactions. With Deleventus, create a complete
+                        narrative of your memories, bringing your events to
+                        life.
+                    </p>
+                </div>
+                <div className="flex flex-col justify-center md:flex-row">
                     <Button title="Get Started" />
-                    <Button title="Watch Demo" />
+                    <Button outlined={true} title="Watch Demo" />
                 </div>
             </section>
-            <section className="service-section">
+            <section className="">
                 <div>
                     <h2>Getting started with us is easy and free</h2>
                     <p>
@@ -66,7 +72,7 @@ export default function Home() {
                     />
                 </div>
             </section>
-            <section className="feature-section bg-pry-purple px-10 -mx-10">
+            <section className="bg-pry-purple px-10 -mx-10">
                 <div>
                     <h2>Featured Events</h2>
                     <p className="text-pry-text-color-2">
@@ -79,7 +85,7 @@ export default function Home() {
                     <EventCard />
                 </div>
             </section>
-            <section className="testimonial">
+            <section className="">
                 <div>
                     <h2>What Our Clients Say</h2>
                     <p>
@@ -90,7 +96,7 @@ export default function Home() {
                     </p>
                 </div>
             </section>
-            <section className="FAQ">
+            <section className="">
                 <div>
                     <h2>Frequently Asked Questions</h2>
                     <p>
@@ -101,7 +107,7 @@ export default function Home() {
                         assistance.
                     </p>
                 </div>
-                <div>
+                <div className="text-start">
                     <h4>Can I customize the event registration process?</h4>
                     <p>
                         A: Yes, you can customize the event registration process
@@ -111,6 +117,22 @@ export default function Home() {
                         discounts or promotional codes to enhance the
                         registration experience for your attendees.
                     </p>
+                </div>
+            </section>
+            <section className="bg-btn-color">
+                <div>
+                    <h4 className="">
+                        Get started with Deleventus today
+                    </h4>
+                    <p>
+                        Join Deleventus today to curate unforgettable event
+                        memories. Say goodbye to scattered albums and fragmented
+                        documentation.
+                    </p>
+                    <div>
+                        <input type="text" placeholder="Enter Email Address" />
+                        <Button title="Get Started Free" />
+                    </div>
                 </div>
             </section>
         </div>

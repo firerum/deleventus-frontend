@@ -10,10 +10,6 @@
     box-sizing: border-box;
 }
 
-body {
-    width: 100%;
-}
-
 h1,
 h2,
 h3,
@@ -30,6 +26,10 @@ a:hover {
 ul {
     list-items: none;
     display: flex;
+}
+
+section:not(:last-child) {
+    padding-block: 2rem;
 }
 
 header {

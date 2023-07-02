@@ -9,11 +9,6 @@ module.exports = {
     ],
     theme: {
         extend: {
-            // backgroundImage: {
-            //     'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-            //     'gradient-conic':
-            //         'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-            // },
         },
         screens: {
             sm: '360px',
@@ -30,7 +25,7 @@ module.exports = {
             'pry-text-color-2': '#585264',
             'pry-header-title': '#140C24',
             'btn-color': '#786995',
-            // 'secondary-gold': '#958457',
+            'secondary-gold': '#958457',
         },
     },
     plugins: [],
