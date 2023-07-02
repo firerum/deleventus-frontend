@@ -31,7 +31,7 @@ const Nav = () => {
 
     return (
         <header>
-            <div>
+            <div className="flex justify-between">
                 <Image
                     src="/images/universal_DP.jpeg"
                     alt="deleventus logo"

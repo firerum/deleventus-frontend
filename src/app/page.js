@@ -1,3 +1,5 @@
-export default function Home() {
-    return <div className="">Deliciae Eventus</div>;
+import Home from '@sections/landing-page/Home';
+
+export default function LandingPage() {
+    return <Home></Home>;
 }

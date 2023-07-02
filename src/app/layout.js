@@ -1,5 +1,5 @@
 import '@styles/globals.css';
-import { montserrat, nunito } from '@fonts/fonts';
+import { nunito } from '../../public/fonts/fonts';
 import Nav from '@layouts/Nav';
 import Footer from '@layouts/Footer';
 import Provider from '@authentication/Provider';

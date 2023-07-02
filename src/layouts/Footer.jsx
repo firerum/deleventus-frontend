@@ -43,9 +43,9 @@ const navigation = {
 
 const FooterLinks = ({ navigation }) => {
     return (
-        <ul>
+        <ul className="flex flex-col">
             {navigation.map((item) => (
-                <li key={item.name} className="px-5 py-2">
+                <li key={item.name} className="mb-4">
                     <Link href={item?.href}>
                         <span>{item.name}</span>
                     </Link>
@@ -57,11 +57,11 @@ const FooterLinks = ({ navigation }) => {
 
 const Footer = () => {
     return (
-        <footer className='w-full bg-black'>
-            <h1>Deleventus</h1>
-            <section>
+        <footer className="py-6 px-5">
+            <h1 className="text-white">Deleventus</h1>
+            <section className="py-14 text-pry-purple grid grid-cols-2 justify-center gap-16 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
                 <div>
-                    <header>Product</header>
+                    <header className=''>Product</header>
                     <FooterLinks navigation={navigation.product} />
                 </div>
                 <div>
@@ -77,11 +77,10 @@ const Footer = () => {
                     <FooterLinks navigation={navigation.company} />
                 </div>
             </section>
-            <section>
+            <section className="bg-pry-purple text-center">
                 <div>
                     <p>
-                        &copy; {new Date().getFullYear()} A product of
-                        Nerdiphyte, Inc. All rights reserved.
+                        &copy; {new Date().getFullYear()} All rights reserved.
                     </p>
                     {navigation.social.map((item) => (
                         <a key={item.name} href={item.href} className="">
