@@ -27,11 +27,11 @@ const EventCard = ({ title, desc }) => {
 
 export default function Home() {
     return (
-        <div className="px-6 pb-20 md:text-xl md:text-center">
+        <div className="px-6 md:text-xl md:text-center">
             <section className="text-center">
                 <div>
                     <h1>
-                        <span className="text-xs md:text-base rounded-2xl p-2 mb-4 inline-block bg-pry-purple text-secondary-gold">
+                        <span className="text-xs font-semibold md:text-base rounded-3xl py-2 px-6 mb-4 inline-block bg-pry-purple text-secondary-gold">
                             #1 Award-winning memory curation platform
                         </span>
                         <br />
@@ -101,8 +101,8 @@ export default function Home() {
             <section className="">
                 <Faq />
             </section>
-            <section className="text-center bg-btn-color py-8 px-6  rounded-lg">
-                <div>
+            <section className="text-center bg-pry-purple py-12 px-6 -mx-6">
+                <div className="bg-btn-color py-8 px-6 rounded-lg">
                     <h4 className="text-pry-purple">
                         Get started with Deleventus today
                     </h4>
