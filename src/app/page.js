@@ -1,4 +1,4 @@
-import Home from '@sections/landing-page/Home';
+import Home from "@sections/landing-page/Home";
 
 export default function LandingPage() {
     return <Home></Home>;
