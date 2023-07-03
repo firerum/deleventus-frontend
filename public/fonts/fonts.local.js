@@ -43,7 +43,7 @@ export const General = localFont({
             style: 'normal',
         },
         {
-            path: '/general-sans/GeneralSans-SemiBold.woff2',
+            path: '/general-sans/GeneralSans-Semibold.woff2',
             weight: '600',
             style: 'normal',
         },
