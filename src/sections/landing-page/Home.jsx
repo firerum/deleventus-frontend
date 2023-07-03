@@ -30,7 +30,7 @@ export default function Home() {
         <div className="px-6 pb-20 md:text-xl md:text-center">
             <section className="text-center">
                 <div>
-                    <h1 className="text-2xl">
+                    <h1>
                         <span className="text-xs md:text-base rounded-2xl p-2 mb-4 inline-block bg-pry-purple text-secondary-gold">
                             #1 Award-winning memory curation platform
                         </span>

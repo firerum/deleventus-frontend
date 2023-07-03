@@ -9,6 +9,10 @@ module.exports = {
     ],
     theme: {
         extend: {
+            fontFamily: {
+                satoshi: ['var(--font-satoshi)'],
+                general: ['var(--font-general-sans)'],
+            },
         },
         screens: {
             sm: '360px',
