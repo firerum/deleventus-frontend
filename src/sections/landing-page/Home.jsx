@@ -16,7 +16,7 @@ const CreateAccountCard = ({ title, text }) => {
 const EventCard = ({ title, desc }) => {
     return (
         <article>
-            <Image />
+            {/* <Image src="" width={50} height={50} alt="" /> */}
             <div>
                 <h3>{title}</h3>
                 <p>{desc}</p>
@@ -27,25 +27,26 @@ const EventCard = ({ title, desc }) => {
 
 export default function Home() {
     return (
-        <div className="px-8 pb-20 md:text-xl md:text-center">
+        <div className="px-6 pb-20 md:text-xl md:text-center">
             <section className="text-center">
                 <div>
                     <h1 className="text-2xl">
                         <span className="text-xs md:text-base rounded-2xl p-2 mb-4 inline-block bg-pry-purple text-secondary-gold">
                             #1 Award-winning memory curation platform
-                        </span>{' '}
+                        </span>
                         <br />
-                        Preserve{' '}
-                        <span className="text-btn-color">
+                        Preserve
+                        <span className="text-btn-color ml-1">
                             Every Moment
-                        </span>, <br /> Uncover the Full Story
+                        </span>
+                        , <br /> Uncover the Full Story
                     </h1>
                     <p className="my-4">
                         Capture, curate, and share every detail of your events -
                         from photos and videos to ticket sales and attendee
-                        interactions. With Deleventus, create a complete
-                        narrative of your memories, bringing your events to
-                        life.
+                        interactions. With Deleventus, create and document a
+                        complete narrative of your memories, bringing your
+                        events to life.
                     </p>
                 </div>
                 <div className="flex flex-col justify-center md:flex-row">
@@ -54,7 +55,7 @@ export default function Home() {
                 </div>
             </section>
             <section className="">
-                <div>
+                <div className="xl:grid grid-cols-2">
                     <h2>Getting started with us is easy and free</h2>
                     <p>
                         Getting started is a breeze - sign up for free and
@@ -73,8 +74,8 @@ export default function Home() {
                     />
                 </div>
             </section>
-            <section className="bg-pry-purple px-8 -mx-8">
-                <div>
+            <section className="bg-pry-purple px-6 -mx-6">
+                <div className="xl:grid grid-cols-2">
                     <h2>Featured Events</h2>
                     <p className="text-pry-text-color-2">
                         Explore a curated collection of remarkable gatherings,
@@ -87,7 +88,7 @@ export default function Home() {
                 </div>
             </section>
             <section className="">
-                <div>
+                <div className="xl:grid grid-cols-2">
                     <h2>What Our Clients Say</h2>
                     <p>
                         We take pride in providing a seamless event planning
@@ -100,9 +101,11 @@ export default function Home() {
             <section className="">
                 <Faq />
             </section>
-            <section className="text-center bg-btn-color py-8 px-8  rounded-lg">
+            <section className="text-center bg-btn-color py-8 px-6  rounded-lg">
                 <div>
-                    <h4 className="text-pry-purple">Get started with Deleventus today</h4>
+                    <h4 className="text-pry-purple">
+                        Get started with Deleventus today
+                    </h4>
                     <p>
                         Join Deleventus today to curate unforgettable event
                         memories. Say goodbye to scattered albums and fragmented

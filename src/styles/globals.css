@@ -13,10 +13,32 @@
 h1,
 h2,
 h3,
-h4 {
-    font-weight: 700;
+h4,
+h5,
+h6 {
+    font-family: var(--font-general-sans);
     color: #140c24;
     margin-bottom: 1rem;
+    line-height: 32px;
+}
+
+h1,
+h2 {
+    font-weight: 900;
+    font-size: 24px;
+    text-align: center;
+}
+
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+}
+
+p {
+    color: #585264;
+    line-height: 24px;
 }
 
 a:hover {
