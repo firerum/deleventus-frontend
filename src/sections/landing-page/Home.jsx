@@ -27,7 +27,7 @@ const EventCard = ({ title, desc }) => {
 
 export default function Home() {
     return (
-        <div className="px-6 md:text-center md:px-16">
+        <div className="px-6 md:text-center md:px-16 mt-24">
             <section className="text-center">
                 <div>
                     <h1>

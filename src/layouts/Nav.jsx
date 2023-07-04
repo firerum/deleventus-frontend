@@ -31,8 +31,8 @@ const Nav = () => {
     }, []);
 
     return (
-        <header className="px-6 flex justify-between border-solid border-2">
-            <h1 className="flex justify-between text-lg">
+        <header className="px-6 py-3 md:px-16 bg-pry-purple shadow-sm fixed left-0 top-0 right-0 flex justify-between items-center">
+            <h1 className="flex justify-between mb-0 text-lg">
                 <Link href="/">
                     {/* <Image
                     src="/images/universal_DP.jpeg"
@@ -55,12 +55,9 @@ const Nav = () => {
                 </ul>
             </nav>
             <section>
-                <Button
-                    title="Sign In"
-                    padVertical="1rem"
-                    padSide="1rem"
-                    className="text-xs"
-                />
+                <button className="py-2 px-6 text-pry-purple rounded-sm bg-btn-color">
+                    Sign In
+                </button>
             </section>
 
             {/* mobile navigation */}

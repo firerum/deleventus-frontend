@@ -58,7 +58,7 @@ ul {
 }
 
 section:not(:last-child) {
-    padding-block: 2rem;
+    padding-block: 3rem;
 }
 
 header {
