@@ -3,7 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledButton = styled.button`
-    padding-inline: 2rem;
+    ${(props) => console.log(props)}
+    padding-inline:  2rem;
     padding-block: 0.75rem;
     margin: 0.5em;
     color: ${(props) => (props.outlined ? '#140C24' : '#F6F5F6')};
@@ -11,9 +12,19 @@ const StyledButton = styled.button`
         props.outlined ? 'transparent' : '#786995'};
     border: ${(props) => (props.outlined ? '1px solid #140C24' : 'none')};
     border-radius: 3px;
+
+    &:hover {
+        color: red;
+    }
 `;
 
-export const Button = ({ title, outlined = undefined }) => {
+// TODO
+export const Button = ({
+    title,
+    outlined = undefined,
+    padSide = undefined,
+    padVertical = undefined,
+}) => {
     return (
         <StyledButton
             outlined={outlined}

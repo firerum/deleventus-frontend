@@ -27,7 +27,7 @@ const EventCard = ({ title, desc }) => {
 
 export default function Home() {
     return (
-        <div className="px-6 md:text-xl md:text-center">
+        <div className="px-6 md:text-center md:px-16">
             <section className="text-center">
                 <div>
                     <h1>
@@ -74,7 +74,7 @@ export default function Home() {
                     />
                 </div>
             </section>
-            <section className="bg-pry-purple px-6 -mx-6">
+            <section className="bg-pry-purple px-6 md:px-16 -mx-6 md:-mx-16">
                 <div className="xl:grid grid-cols-2">
                     <h2>Featured Events</h2>
                     <p className="text-pry-text-color-2">
@@ -101,7 +101,7 @@ export default function Home() {
             <section className="">
                 <Faq />
             </section>
-            <section className="text-center bg-pry-purple py-12 px-6 -mx-6">
+            <section className="text-center bg-pry-purple py-12 px-6 md:px-16 -mx-6 md:-mx-16">
                 <div className="bg-btn-color py-8 px-6 rounded-lg">
                     <h4 className="text-pry-purple">
                         Get started with Deleventus today
