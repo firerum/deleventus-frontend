@@ -90,9 +90,7 @@ export default function Home() {
                         our platform.
                     </p>
                 </div>
-                <div>
-                    <Image />
-                </div>
+                <div>{/* <Image /> */}</div>
                 <div>
                     <CreateAccountCard
                         title="Create Account"

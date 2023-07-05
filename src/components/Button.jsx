@@ -12,10 +12,6 @@ const _Button = styled.button`
         props.outlined ? 'transparent' : '#786995'};
     border: ${(props) => (props.outlined ? '1px solid #140C24' : 'none')};
     border-radius: 3px;
-
-    &:hover {
-        color: red;
-    }
 `;
 
 // TODO
