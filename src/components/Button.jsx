@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledButton = styled.button`
+const _Button = styled.button`
     padding-inline: 2rem;
     padding-block: 0.75rem;
     font-weight: 500;
@@ -26,12 +26,12 @@ export const Button = ({
     padVertical = undefined,
 }) => {
     return (
-        <StyledButton
+        <_Button
             outlined={outlined}
             title={title}
             onClick={() => console.log('clicked')}
         >
             {title}
-        </StyledButton>
+        </_Button>
     );
 };

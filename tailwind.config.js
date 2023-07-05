@@ -16,6 +16,7 @@ module.exports = {
             colors: {
                 'purple-base': '#29194A',
                 'pry-purple': '#F9F7FE',
+                'secondary-purple': '#E7DDFB',
                 'pry-text-color-1': '#807C89',
                 'pry-text-color-2': '#585264',
                 'pry-header-title': '#140C24',

@@ -1,8 +1,31 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import { Button } from '@components/Button';
 import Faq from '@sections/FAQ/Faq';
 import { faqs } from '@faq';
+import { Testimonial } from '@components/Testimonial';
+
+export const testimonials = [
+    {
+        id: 1,
+        name: 'Gbenga Durojaiye',
+        content: `Deleventus made our wedding planning journey truly
+        memorable. From managing guest lists to personalized
+        recommendations, the platform catered to all our needs. The
+        virtual reality tours were a standout feature, giving us a
+        sneak peek of our dream venue before the big day.`,
+    },
+    {
+        id: 2,
+        name: 'Benjamin Parkinson',
+        content: `As a professional event planner, Deleventus has 
+        become my go-to platform. Its centralized event management, 
+        bulk communication capabilities, and seamless integration 
+        with Google Maps have significantly streamlined my workflow.
+        It's a must-have tool for any event professional.`,
+    },
+];
 
 const CreateAccountCard = ({ title, text }) => {
     return (
@@ -57,7 +80,9 @@ export default function Home() {
             </section>
             <section className="">
                 <div className="xxl:grid grid-cols-2 justify-between xxl:text-left">
-                    <h2 className='xxl:w-2/3'>Getting started with us is easy and free</h2>
+                    <h2 className="xxl:w-2/3">
+                        Getting started with us is easy and free
+                    </h2>
                     <p>
                         Getting started is a breeze - sign up for free and
                         embark on your event planning venture. Start your event
@@ -97,6 +122,13 @@ export default function Home() {
                         it—see what our clients have to say about their
                         experiences with Deleventus.
                     </p>
+                </div>
+                <div className='lg:grid grid-cols-2 gap-6'>
+                    {testimonials.map((testimony) => (
+                        <Testimonial key={testimony.id} name={testimony.name}>
+                            {testimony.content}
+                        </Testimonial>
+                    ))}
                 </div>
             </section>
             <section className="max-w-3xl mx-auto">
