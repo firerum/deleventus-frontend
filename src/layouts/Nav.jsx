@@ -32,7 +32,7 @@ const Nav = () => {
     }, []);
 
     return (
-        <header className="px-6 py-3 md:px-10 text-sm md:text-base bg-pry-purple shadow-sm fixed left-0 top-0 right-0 flex justify-between items-center">
+        <header className="px-6 py-3 md:px-10 text-sm md:text-base bg-pry-purple shadow-sm fixed z-10 left-0 top-0 right-0 flex justify-between items-center">
             <h1 className="flex justify-between mb-0 text-lg">
                 <Link href="/">
                     {/* <Image

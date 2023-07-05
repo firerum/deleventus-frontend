@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { Button } from '@components/Button';
 import Faq from '@sections/FAQ/Faq';
+import { faqs } from '@faq';
 
 const CreateAccountCard = ({ title, text }) => {
     return (
@@ -41,7 +42,7 @@ export default function Home() {
                         </span>
                         , <br /> Uncover the Full Story
                     </h1>
-                    <p className="my-4">
+                    <p className="my-4 max-w-3xl mx-auto">
                         Capture, curate, and share every detail of your events -
                         from photos and videos to ticket sales and attendee
                         interactions. With Deleventus, create and document a
@@ -55,8 +56,8 @@ export default function Home() {
                 </div>
             </section>
             <section className="">
-                <div className="xl:grid grid-cols-2">
-                    <h2>Getting started with us is easy and free</h2>
+                <div className="xxl:grid grid-cols-2 justify-between xxl:text-left">
+                    <h2 className='xxl:w-2/3'>Getting started with us is easy and free</h2>
                     <p>
                         Getting started is a breeze - sign up for free and
                         embark on your event planning venture. Start your event
@@ -75,7 +76,7 @@ export default function Home() {
                 </div>
             </section>
             <section className="bg-pry-purple px-6 md:px-16 -mx-6 md:-mx-16">
-                <div className="xl:grid grid-cols-2">
+                <div className="xxl:grid grid-cols-2 xxl:text-left">
                     <h2>Featured Events</h2>
                     <p className="text-pry-text-color-2">
                         Explore a curated collection of remarkable gatherings,
@@ -88,7 +89,7 @@ export default function Home() {
                 </div>
             </section>
             <section className="">
-                <div className="xl:grid grid-cols-2">
+                <div className="xxl:grid grid-cols-2 xxl:text-left">
                     <h2>What Our Clients Say</h2>
                     <p>
                         We take pride in providing a seamless event planning
@@ -98,15 +99,31 @@ export default function Home() {
                     </p>
                 </div>
             </section>
-            <section className="">
-                <Faq />
+            <section className="max-w-3xl mx-auto">
+                <div className="pb-12">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>
+                        Welcome to our FAQ section where we address common
+                        queries about Deleventus. Find answers to your questions
+                        below, and if you don't see what you're looking for,
+                        feel free to reach out to our support team for further
+                        assistance.
+                    </p>
+                </div>
+                {faqs.map((faq, index) => (
+                    <Faq
+                        title={faq.question}
+                        content={faq.answer}
+                        index={index}
+                    />
+                ))}
             </section>
-            <section className="text-center bg-pry-purple py-12 px-6 md:px-16 -mx-6 md:-mx-16">
-                <div className="bg-btn-color py-8 px-6 rounded-lg">
-                    <h4 className="text-pry-purple">
+            <section className="text-center bg-pry-purple py-16 px-6 md:px-16 -mx-6 md:-mx-16">
+                <div className="bg-btn-color font-medium py-12 px-6 max-w-3xl mx-auto rounded-lg">
+                    <h2 className="text-pry-purple">
                         Get started with Deleventus today
-                    </h4>
-                    <p className="text-contact-text-color">
+                    </h2>
+                    <p className="text-contact-text-color md:w-1/2 md:mx-auto">
                         Join Deleventus today to curate unforgettable event
                         memories. Say goodbye to scattered albums and fragmented
                         documentation.

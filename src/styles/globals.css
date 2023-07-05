@@ -12,6 +12,7 @@
 
 body {
     font-family: var(--font-satoshi);
+    line-height: 24px;
 }
 
 h1,
@@ -76,4 +77,30 @@ footer header {
 
 footer section:last-child {
     color: #140c24;
+}
+
+@media screen and (min-width: 768px) {
+    h1 {
+        font-size: 37.78px;
+        line-height: 47px;
+    }
+
+    h2 {
+        font-size: 27px;
+        line-height: 34.5px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    h1 {
+        font-size: 45px;
+        line-height: 54px;
+    }
+
+    h2 {
+        font-size: 33.18px;
+        line-height: 32px;
+    }
+
+   
 }
