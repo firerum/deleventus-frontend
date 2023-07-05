@@ -55,12 +55,17 @@ const Nav = () => {
                     ))}
                 </ul>
             </nav>
-            <button className="py-2 px-6 ml-auto text-pry-purple font-medium rounded-sm bg-btn-color">
-                Sign In
-            </button>
-            <button className="ml-4 text-2xl font-light lg:hidden">
-                <FaBars />
-            </button>
+            <div className="ml-auto flex items-center gap-4 font-medium ">
+                <button className="py-2 px-6 rounded-sm outline outline-1 outline-btn-color">
+                    Sign In
+                </button>
+                <button className="py-2 px-6 text-pry-purple bg-btn-color rounded-sm sm:hidden md:block ">
+                    Get Started
+                </button>
+                <button className="text-2xl text-center font-light lg:hidden">
+                    <FaBars />
+                </button>
+            </div>
 
             {/* mobile navigation */}
         </header>
