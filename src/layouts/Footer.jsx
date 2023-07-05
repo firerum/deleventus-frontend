@@ -81,7 +81,7 @@ const Footer = () => {
             </section>
             <section className="bg-pry-purple p-10 lg:py-6 text-center md:px-16 lg:flex justify-between -mx-10 md:-mx-16">
                 <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
-                <div className="flex flex-col gap-4 py-8 xl:py-0 lg:flex-row">
+                <div className="flex flex-col gap-4 py-8 lg:py-0 xl:py-0 lg:flex-row">
                     <Link href="#">Terms of Services</Link>
                     <Link href="#">Privacy Policy</Link>
                 </div>

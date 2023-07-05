@@ -24,6 +24,15 @@ module.exports = {
                 'secondary-gold': '#958457',
                 'contact-text-color': '#ECECED',
             },
+            borderWidth: {
+                DEFAULT: '1px',
+                0: '0',
+                2: '2px',
+                3: '3px',
+                4: '4px',
+                6: '6px',
+                8: '8px',
+            },
         },
         screens: {
             sm: '360px',
@@ -34,5 +43,6 @@ module.exports = {
             '2xl': '1536px',
         },
     },
+    important: true,
     plugins: [],
 };

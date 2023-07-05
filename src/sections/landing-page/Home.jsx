@@ -5,6 +5,8 @@ import { Button } from '@components/Button';
 import Faq from '@sections/FAQ/Faq';
 import { faqs } from '@faq';
 import { Testimonial } from '@components/Testimonial';
+import { CreateAccountCard } from '@components/CreateAccountCard';
+import { FaCheckCircle } from 'react-icons/fa';
 
 export const testimonials = [
     {
@@ -27,15 +29,12 @@ export const testimonials = [
     },
 ];
 
-const CreateAccountCard = ({ title, text }) => {
-    return (
-        <section>
-            <header>step 01</header>
-            <h3>{title}</h3>
-            <p>{text}</p>
-        </section>
-    );
-};
+const processCard = [
+    { id: 1, title: 'Create Account', step: 'Step 01' },
+    { id: 2, title: 'Create Account', step: 'Step 02' },
+    { id: 3, title: 'Create Account', step: 'Step 03' },
+    { id: 4, title: 'Create Account', step: 'Step 04' },
+];
 
 const EventCard = ({ title, desc }) => {
     return (
@@ -79,7 +78,7 @@ export default function Home() {
                 </div>
             </section>
             <section className="">
-                <div className="xxl:grid grid-cols-2 justify-between xxl:text-left">
+                <div className="mb-20 xxl:grid grid-cols-2 justify-between xxl:text-left">
                     <h2 className="xxl:w-2/3">
                         Getting started with us is easy and free
                     </h2>
@@ -90,14 +89,65 @@ export default function Home() {
                         our platform.
                     </p>
                 </div>
-                <div>
-                    <Image />
-                </div>
-                <div>
-                    <CreateAccountCard
-                        title="Create Account"
-                        text="You’ll be asked to submit your name, email address and other relevant information"
+                <div className="lg:flex items-center gap-10">
+                    <Image
+                        src="/images/universal_DP.jpeg"
+                        width={700}
+                        height={200}
+                        alt="sign up process visuals"
+                        className="rounded-2xl"
                     />
+                    <div>
+                        <div className="text-left border-b pb-8">
+                            <header className="font-general">Step 01</header>
+                            <h3 className="font-semibold my-2">
+                                Create Account
+                            </h3>
+                            <p className="text-pry-text-color-1 flex items-start">
+                                You’ll be asked to submit your name, email
+                                address and other relevant informations
+                            </p>
+                        </div>
+                        <div className='text-left'>
+                            <div className="pt-8">
+                                <p className="text-pry-text-color-1 mb-4 relative pl-6">
+                                    With our lightning-fast
+                                    <span className="text-purple-base">
+                                        30 Seconds Sign-Up Process,
+                                    </span>{' '}
+                                    you'll be ready to organize events in no
+                                    time.
+                                    <FaCheckCircle className="text-btn-color absolute left-0 top-1" />
+                                </p>
+                            </div>
+                            <p className="text-pry-text-color-1 mb-4 relative pl-6">
+                                Take full control of your{' '}
+                                <span className="text-purple-base">
+                                    Privacy Settings
+                                </span>{' '}
+                                while effortlessly creating an account.
+                                <FaCheckCircle className="text-btn-color absolute left-0 top-1" />
+                            </p>
+                            <p className="text-pry-text-color-1 mb-4 relative pl-6">
+                                Experience the convenience of{' '}
+                                <span className="text-purple-base">
+                                    Passwordless Integration
+                                </span>{' '}
+                                with leading platforms like Google, Apple, and
+                                more.
+                                <FaCheckCircle className="text-btn-color absolute left-0 top-1" />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div className="grid grid-cols-2 gap-6 py-8 xxl:grid-cols-4">
+                    {processCard.map((pc) => (
+                        <CreateAccountCard
+                            key={pc.id}
+                            title={pc.title}
+                            step={pc.step}
+                        />
+                    ))}
                 </div>
             </section>
             <section className="bg-pry-purple px-6 md:px-16 -mx-6 md:-mx-16">
@@ -123,7 +173,7 @@ export default function Home() {
                         experiences with Deleventus.
                     </p>
                 </div>
-                <div className='lg:grid grid-cols-2 gap-6'>
+                <div className="lg:grid grid-cols-2 gap-6">
                     {testimonials.map((testimony) => (
                         <Testimonial key={testimony.id} name={testimony.name}>
                             {testimony.content}
