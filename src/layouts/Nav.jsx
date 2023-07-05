@@ -55,10 +55,10 @@ const Nav = () => {
                     ))}
                 </ul>
             </nav>
-            <button className="py-2 px-6 ml-auto text-pry-purple rounded-sm bg-btn-color">
+            <button className="py-2 px-6 ml-auto text-pry-purple font-medium rounded-sm bg-btn-color">
                 Sign In
             </button>
-            <button className="ml-4 text-2xl lg:hidden">
+            <button className="ml-4 text-2xl font-light lg:hidden">
                 <FaBars />
             </button>
 

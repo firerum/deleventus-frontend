@@ -51,7 +51,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col justify-center md:flex-row">
                     <Button title="Get Started" />
-                    <Button outlined={true} title="Watch Demo" />
+                    <Button outlined={'true'} title="Watch Demo" />
                 </div>
             </section>
             <section className="">
@@ -106,7 +106,7 @@ export default function Home() {
                     <h4 className="text-pry-purple">
                         Get started with Deleventus today
                     </h4>
-                    <p>
+                    <p className="text-contact-text-color">
                         Join Deleventus today to curate unforgettable event
                         memories. Say goodbye to scattered albums and fragmented
                         documentation.

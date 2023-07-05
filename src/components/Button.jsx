@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const StyledButton = styled.button`
     padding-inline: 2rem;
     padding-block: 0.75rem;
+    font-weight: 500;
     margin: 0.5em;
     color: ${(props) => (props.outlined ? '#140C24' : '#F6F5F6')};
     background-color: ${(props) =>
