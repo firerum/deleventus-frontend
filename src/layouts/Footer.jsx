@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 const navigation = {
     product: [
@@ -27,16 +28,17 @@ const navigation = {
         {
             name: 'Facebook',
             href: 'https://facebook.com/deleventus',
-            icon: '',
+            icon: <FaFacebookF />,
         },
         {
             name: 'Instagram',
             href: 'https://instagram.com/deleventus',
-            icon: '',
+            icon: <FaInstagram />,
         },
         {
             name: 'Twitter',
             href: 'https://twitter.com/deleventus',
+            icon: <FaTwitter />,
         },
     ],
 };
@@ -77,16 +79,16 @@ const Footer = () => {
                     <FooterLinks navigation={navigation.company} />
                 </div>
             </section>
-            <section className="bg-pry-purple p-10 sm:text-center md:px-16 lg:flex justify-between -mx-10 md:-mx-16">
+            <section className="bg-pry-purple p-10 text-center md:px-16 lg:flex justify-between -mx-10 md:-mx-16">
                 <p>&copy; {new Date().getFullYear()} All rights reserved.</p>
-                <div className='flex flex-col gap-4 py-8 xl:py-0 lg:flex-row'>
+                <div className="flex flex-col gap-4 py-8 xl:py-0 lg:flex-row">
                     <Link href="#">Terms of Services</Link>
                     <Link href="#">Privacy Policy</Link>
                 </div>
-                <div>
+                <div className="flex justify-center gap-4 text-lg">
                     {navigation.social.map((item) => (
                         <a key={item.name} href={item.href} className="ml-2">
-                            <span>{item.name}</span>
+                            <span>{item?.icon}</span>
                         </a>
                     ))}
                 </div>

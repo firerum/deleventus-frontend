@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 import Image from 'next/image';
 import { Button } from '@components/Button';
+import { FaBars } from 'react-icons/fa';
 
 const navigation = [
     { name: 'Home', href: '/' },
@@ -31,7 +32,7 @@ const Nav = () => {
     }, []);
 
     return (
-        <header className="px-6 py-3 md:px-10 bg-pry-purple shadow-sm fixed left-0 top-0 right-0 flex justify-between items-center">
+        <header className="px-6 py-3 md:px-10 text-sm md:text-base bg-pry-purple shadow-sm fixed left-0 top-0 right-0 flex justify-between items-center">
             <h1 className="flex justify-between mb-0 text-lg">
                 <Link href="/">
                     {/* <Image
@@ -43,7 +44,7 @@ const Nav = () => {
                     <p>Deleventus</p>
                 </Link>
             </h1>
-            <nav className="hidden lg:block">
+            <nav className="hidden ml-auto lg:block font-medium">
                 <ul className="grid grid-cols-4 gap-2">
                     {navigation.map((nav) => (
                         <li key={nav.name}>
@@ -54,11 +55,12 @@ const Nav = () => {
                     ))}
                 </ul>
             </nav>
-            <section>
-                <button className="py-2 px-6 text-pry-purple rounded-sm bg-btn-color">
-                    Sign In
-                </button>
-            </section>
+            <button className="py-2 px-6 ml-auto text-pry-purple rounded-sm bg-btn-color">
+                Sign In
+            </button>
+            <button className="ml-4 text-2xl lg:hidden">
+                <FaBars />
+            </button>
 
             {/* mobile navigation */}
         </header>
