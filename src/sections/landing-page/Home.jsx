@@ -17,6 +17,7 @@ export const testimonials = [
         recommendations, the platform catered to all our needs. The
         virtual reality tours were a standout feature, giving us a
         sneak peek of our dream venue before the big day.`,
+        title: 'Newly Weds',
     },
     {
         id: 2,
@@ -26,6 +27,7 @@ export const testimonials = [
         bulk communication capabilities, and seamless integration 
         with Google Maps have significantly streamlined my workflow.
         It's a must-have tool for any event professional.`,
+        title: 'Professional Event Organizer',
     },
 ];
 
@@ -89,7 +91,7 @@ export default function Home() {
                         our platform.
                     </p>
                 </div>
-                <div className="lg:flex items-center gap-10">
+                <div className="lg:flex justify-start gap-10">
                     <Image
                         src="/images/universal_DP.jpeg"
                         width={700}
@@ -108,11 +110,11 @@ export default function Home() {
                                 address and other relevant informations
                             </p>
                         </div>
-                        <div className='text-left'>
+                        <div className="text-left">
                             <div className="pt-8">
-                                <p className="text-pry-text-color-1 mb-4 relative pl-6">
-                                    With our lightning-fast
-                                    <span className="text-purple-base">
+                                <p className="text-pry-text-color-1 mb-6 relative pl-6">
+                                    With our lightning-fast{' '}
+                                    <span className="text-purple-base font-medium">
                                         30 Seconds Sign-Up Process,
                                     </span>{' '}
                                     you'll be ready to organize events in no
@@ -120,17 +122,17 @@ export default function Home() {
                                     <FaCheckCircle className="text-btn-color absolute left-0 top-1" />
                                 </p>
                             </div>
-                            <p className="text-pry-text-color-1 mb-4 relative pl-6">
+                            <p className="text-pry-text-color-1 mb-6 relative pl-6">
                                 Take full control of your{' '}
-                                <span className="text-purple-base">
+                                <span className="text-purple-base font-medium">
                                     Privacy Settings
                                 </span>{' '}
                                 while effortlessly creating an account.
                                 <FaCheckCircle className="text-btn-color absolute left-0 top-1" />
                             </p>
-                            <p className="text-pry-text-color-1 mb-4 relative pl-6">
+                            <p className="text-pry-text-color-1 mb-6 relative pl-6">
                                 Experience the convenience of{' '}
-                                <span className="text-purple-base">
+                                <span className="text-purple-base font-medium">
                                     Passwordless Integration
                                 </span>{' '}
                                 with leading platforms like Google, Apple, and
@@ -140,7 +142,7 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-2 gap-6 py-8 xxl:grid-cols-4">
+                <div className="grid grid-cols-2 gap-4 py-8 xxl:grid-cols-4">
                     {processCard.map((pc) => (
                         <CreateAccountCard
                             key={pc.id}
@@ -164,7 +166,7 @@ export default function Home() {
                 </div>
             </section>
             <section className="">
-                <div className="xxl:grid grid-cols-2 xxl:text-left">
+                <div className="xxl:grid grid-cols-2 xxl:text-left mb-8">
                     <h2>What Our Clients Say</h2>
                     <p>
                         We take pride in providing a seamless event planning
@@ -173,9 +175,13 @@ export default function Home() {
                         experiences with Deleventus.
                     </p>
                 </div>
-                <div className="lg:grid grid-cols-2 gap-6">
+                <div className="lg:grid grid-cols-2 overflow-hidden gap-6">
                     {testimonials.map((testimony) => (
-                        <Testimonial key={testimony.id} name={testimony.name}>
+                        <Testimonial
+                            key={testimony.id}
+                            name={testimony.name}
+                            title={testimony.title}
+                        >
                             {testimony.content}
                         </Testimonial>
                     ))}
@@ -194,6 +200,7 @@ export default function Home() {
                 </div>
                 {faqs.map((faq, index) => (
                     <Faq
+                        key={index}
                         title={faq.question}
                         content={faq.answer}
                         index={index}
