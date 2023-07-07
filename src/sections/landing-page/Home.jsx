@@ -4,32 +4,9 @@ import Image from 'next/image';
 import { Button } from '@components/Button';
 import Faq from '@sections/FAQ/Faq';
 import { faqs } from '@faq';
-import { Testimonial } from '@components/Testimonial';
-import { CreateAccountCard } from '@components/CreateAccountCard';
+import { CreateAccountCard } from '@sections/landing-page/CreateAccountCard';
 import { FaCheckCircle } from 'react-icons/fa';
-
-export const testimonials = [
-    {
-        id: 1,
-        name: 'Gbenga Durojaiye',
-        content: `Deleventus made our wedding planning journey truly
-        memorable. From managing guest lists to personalized
-        recommendations, the platform catered to all our needs. The
-        virtual reality tours were a standout feature, giving us a
-        sneak peek of our dream venue before the big day.`,
-        title: 'Newly Weds',
-    },
-    {
-        id: 2,
-        name: 'Benjamin Parkinson',
-        content: `As a professional event planner, Deleventus has 
-        become my go-to platform. Its centralized event management, 
-        bulk communication capabilities, and seamless integration 
-        with Google Maps have significantly streamlined my workflow.
-        It's a must-have tool for any event professional.`,
-        title: 'Professional Event Organizer',
-    },
-];
+import { TestimonialSlider } from './TestimonialSlider';
 
 const processCard = [
     { id: 1, title: 'Create Account', step: 'Step 01' },
@@ -97,7 +74,7 @@ export default function Home() {
                         width={700}
                         height={200}
                         alt="sign up process visuals"
-                        className="rounded-2xl"
+                        className="rounded-2xl mb-4"
                     />
                     <div>
                         <div className="text-left border-b pb-8">
@@ -153,7 +130,7 @@ export default function Home() {
                 </div>
             </section>
             <section className="bg-pry-purple px-6 md:px-16 -mx-6 md:-mx-16">
-                <div className="xxl:grid grid-cols-2 xxl:text-left">
+                <div className="xxl:grid grid-cols-2 xxl:text-left mb-16">
                     <h2>Featured Events</h2>
                     <p className="text-pry-text-color-2">
                         Explore a curated collection of remarkable gatherings,
@@ -166,7 +143,7 @@ export default function Home() {
                 </div>
             </section>
             <section className="">
-                <div className="xxl:grid grid-cols-2 xxl:text-left mb-8">
+                <div className="xxl:grid grid-cols-2 xxl:text-left mb-16">
                     <h2>What Our Clients Say</h2>
                     <p>
                         We take pride in providing a seamless event planning
@@ -175,20 +152,12 @@ export default function Home() {
                         experiences with Deleventus.
                     </p>
                 </div>
-                <div className="lg:grid grid-cols-2 overflow-hidden gap-6">
-                    {testimonials.map((testimony) => (
-                        <Testimonial
-                            key={testimony.id}
-                            name={testimony.name}
-                            title={testimony.title}
-                        >
-                            {testimony.content}
-                        </Testimonial>
-                    ))}
+                <div className="max-w-lg mx-auto">
+                    <TestimonialSlider />
                 </div>
             </section>
-            <section className="max-w-3xl mx-auto">
-                <div className="pb-12">
+            <section className="max-w-3xl mx-auto faq">
+                <div className="mb-16">
                     <h2>Frequently Asked Questions</h2>
                     <p>
                         Welcome to our FAQ section where we address common
@@ -198,26 +167,30 @@ export default function Home() {
                         assistance.
                     </p>
                 </div>
-                {faqs.map((faq, index) => (
-                    <Faq
-                        key={index}
-                        title={faq.question}
-                        content={faq.answer}
-                        index={index}
-                    />
-                ))}
+                <div>
+                    {faqs.map((faq, index) => (
+                        <Faq
+                            key={index}
+                            title={faq.question}
+                            content={faq.answer}
+                            index={index}
+                        />
+                    ))}
+                </div>
             </section>
             <section className="text-center bg-pry-purple py-16 px-6 md:px-16 -mx-6 md:-mx-16">
-                <div className="bg-btn-color font-medium py-12 px-6 max-w-3xl mx-auto rounded-lg">
+                <div className="font-medium py-12 px-6 max-w-3xl mx-auto rounded-lg contact">
                     <h2 className="text-pry-purple">
                         Get started with Deleventus today
                     </h2>
-                    <p className="text-contact-text-color md:w-1/2 md:mx-auto">
+                    <p className="text-xs text-contact-text-color font-light md:text-base md:w-3/4 md:mx-auto">
                         Join Deleventus today to curate unforgettable event
-                        memories. Say goodbye to scattered albums and fragmented
+                        memories. Capture and share photos/videos, manage ticket
+                        sales, engage with attendees, and preserve valuable
+                        remarks. Say goodbye to scattered albums and fragmented
                         documentation.
                     </p>
-                    <div>
+                    <div className="mt-6">
                         <Button title="Get Started Free" />
                     </div>
                 </div>

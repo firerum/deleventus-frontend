@@ -22,6 +22,7 @@ module.exports = {
                 'pry-header-title': '#140C24',
                 'btn-color': '#786995',
                 'secondary-gold': '#958457',
+                'background-gold': '#F5D88F',
                 'contact-text-color': '#ECECED',
             },
             borderWidth: {

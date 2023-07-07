@@ -59,7 +59,7 @@ ul {
 }
 
 section:not(:last-child) {
-    padding-block: 3rem;
+    padding-block: 4rem;
 }
 
 header {
@@ -77,6 +77,29 @@ footer header {
 
 footer section:last-child {
     color: #140c24;
+}
+
+.faq {
+    position: relative;
+    overflow: hidden;
+}
+
+.faq::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 25%;
+    height: 50%;
+    width: 50%;
+    z-index: -1;
+    opacity: 0.122;
+    background: var(--gold-secondary-g-300, #f5d88f);
+    filter: blur(52.710025787353516px);
+}
+
+.contact {
+    background-color: #29194a;
+    background: url('/images/contact-bg.png'), #29194a no-repeat;
 }
 
 @media screen and (min-width: 768px) {
@@ -101,6 +124,4 @@ footer section:last-child {
         font-size: 33.18px;
         line-height: 32px;
     }
-
-   
 }

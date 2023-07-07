@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 
@@ -18,12 +17,12 @@ const _Testimonial = styled.div`
     );
 `;
 
-export const Testimonial = ({ children, name, title }) => {
+export const Testimonial = ({ name, title, content }) => {
     return (
         <div>
             <_Testimonial className="bg-purple-base h-80 md:h-64">
                 <p className="max-w-lg mx-auto text-gray-200 text-left">
-                    {children}
+                    {content}
                 </p>
             </_Testimonial>
             <figure className="flex gap-4 pl-6">
@@ -36,7 +35,7 @@ export const Testimonial = ({ children, name, title }) => {
                 />
                 <figcaption className="flex flex-col gap-2 text-left">
                     <span className="font-medium font-general">{name}</span>
-                    <span className='text-sm'>{title}</span>
+                    <span className="text-sm">{title}</span>
                 </figcaption>
             </figure>
         </div>
