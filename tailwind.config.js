@@ -34,6 +34,9 @@ module.exports = {
                 6: '6px',
                 8: '8px',
             },
+            backgroundImage: {
+                'hero-pattern': "url('/images/Hero_Section_Gradient.svg')",
+            },
         },
         screens: {
             sm: '360px',

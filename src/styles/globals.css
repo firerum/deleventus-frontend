@@ -79,6 +79,16 @@ footer section:last-child {
     color: #140c24;
 }
 
+.banner {
+    background-image: url('/images/Hero_Section_Gradient.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.award-wining {
+    background-color: #fefbf4;
+}
+
 .faq {
     position: relative;
     overflow: hidden;
@@ -100,6 +110,7 @@ footer section:last-child {
 .contact {
     background-color: #29194a;
     background: url('/images/contact-bg.png'), #29194a no-repeat;
+    background-size: cover;
 }
 
 @media screen and (min-width: 768px) {

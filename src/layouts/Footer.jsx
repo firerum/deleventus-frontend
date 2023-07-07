@@ -60,7 +60,7 @@ const FooterLinks = ({ navigation }) => {
 const Footer = () => {
     return (
         <footer className="py-8 px-10 md:px-16">
-            <h2 className="font-bold text-white text-left">Deleventus</h2>
+            <h2 className="font-medium text-white text-left">Deleventus</h2>
             <section className="py-14 text-pry-purple grid grid-cols-2 gap-16 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
                 <div>
                     <header className="mb-6">Product</header>

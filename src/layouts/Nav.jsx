@@ -45,9 +45,9 @@ const Nav = () => {
                 </Link>
             </h1>
             <nav className="hidden ml-auto lg:block font-medium">
-                <ul className="grid grid-cols-4 gap-2">
+                <ul className="grid grid-cols-4 gap-8">
                     {navigation.map((nav) => (
-                        <li key={nav.name}>
+                        <li key={nav.name} className="text-pry-header-title">
                             <Link href={nav.href}>
                                 <span>{nav.name}</span>
                             </Link>
@@ -55,6 +55,9 @@ const Nav = () => {
                     ))}
                 </ul>
             </nav>
+            {/* <select name="" id="">
+                <option value=""></option>
+            </select> */}
             <div className="ml-auto flex items-center gap-4 font-medium ">
                 <button className="py-2 px-6 rounded-sm outline outline-1 outline-btn-color">
                     Sign In
