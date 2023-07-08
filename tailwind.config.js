@@ -25,6 +25,9 @@ module.exports = {
                 'background-gold': '#F5D88F',
                 'contact-text-color': '#ECECED',
             },
+            borderRadius: {
+                'default': '3px',
+            },
             borderWidth: {
                 1: '1px',
                 2: '2px',

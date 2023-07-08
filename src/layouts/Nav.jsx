@@ -61,13 +61,13 @@ const Nav = () => {
             <div className="ml-auto flex items-center gap-4 font-medium ">
                 <Link
                     href="/signin"
-                    className="py-2 px-6 rounded-sm border-1 border-btn-color"
+                    className="py-2 px-6 rounded-default border-1 border-btn-color"
                 >
                     Sign In
                 </Link>
                 <Link
                     href="signup"
-                    className="py-2 px-6 text-pry-purple bg-btn-color rounded-sm sm:hidden md:block "
+                    className="py-2 px-6 text-pry-purple bg-btn-color rounded-default sm:hidden md:block "
                 >
                     Get Started
                 </Link>
@@ -92,7 +92,10 @@ const Nav = () => {
                                 key={nav.name}
                                 className="text-pry-header-title border-b-2 py-4"
                             >
-                                <Link href={nav.href}>
+                                <Link
+                                    href={nav.href}
+                                    onClick={() => setOpen((open) => !open)}
+                                >
                                     <span>{nav.name}</span>
                                 </Link>
                             </li>
@@ -102,13 +105,13 @@ const Nav = () => {
                 <div className="text-center font-medium grid pt-6">
                     <Link
                         href="signin"
-                        className="py-4 px-6 mb-4 w-full rounded-md border-1 border-btn-color"
+                        className="py-3 px-6 mb-4 w-full rounded-default border-1 border-btn-color"
                     >
                         Sign In
                     </Link>
                     <Link
                         href="/signup"
-                        className="py-4 px-6 w-full rounded-md text-pry-purple bg-btn-color"
+                        className="py-3 px-6 w-full rounded-default text-pry-purple bg-btn-color"
                     >
                         Get Started
                     </Link>

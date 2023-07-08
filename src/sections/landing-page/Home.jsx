@@ -7,6 +7,7 @@ import { faqs } from '@faq';
 import { CreateAccountCard } from '@sections/landing-page/CreateAccountCard';
 import { FaCheckCircle } from 'react-icons/fa';
 import { TestimonialSlider } from './TestimonialSlider';
+import Link from 'next/link';
 
 const processCard = [
     { id: 1, title: 'Create Account', step: 'Step 01' },
@@ -51,8 +52,13 @@ export default function Home() {
                         events to life.
                     </p>
                 </div>
-                <div className="flex flex-col justify-center md:flex-row">
-                    <Button title="Get Started" />
+                <div className="flex flex-col justify-center md:flex-row gap-4 mt-8">
+                    <Link
+                        href="/signup"
+                        className="py-4 px-8 font-medium rounded-default text-pry-purple bg-btn-color"
+                    >
+                        Get Started
+                    </Link>
                     <Button outlined={'true'} title="Watch Demo" />
                 </div>
             </section>
@@ -190,8 +196,13 @@ export default function Home() {
                         remarks. Say goodbye to scattered albums and fragmented
                         documentation.
                     </p>
-                    <div className="mt-6">
-                        <Button title="Get Started Free" />
+                    <div className="mt-8">
+                        <Link
+                            href="/signup"
+                            className="py-4 px-8 font-medium rounded-default text-pry-purple bg-btn-color"
+                        >
+                            Get Started Free
+                        </Link>
                     </div>
                 </div>
             </section>
