@@ -81,7 +81,7 @@ const Nav = () => {
                 <FaBars />
             </button>
             <div
-                className={`text-lg px-6 md:px-10 bg-pry-purple font-medium absolute left-0 top-full h-screen w-screen z-10 lg:hidden overflow-hidden transition-[height] duration-500 ${
+                className={`text-lg px-6 md:px-10 bg-pry-purple font-medium absolute left-0 top-full w-screen z-10 lg:hidden overflow-hidden transition-[height] duration-500 ${
                     open ? 'h-screen' : 'h-0'
                 }`}
             >
