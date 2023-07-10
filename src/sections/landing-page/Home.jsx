@@ -1,13 +1,14 @@
 'use client';
-import React from 'react';
 import Image from 'next/image';
 import { Button } from '@components/Button';
 import Faq from '@sections/FAQ/Faq';
 import { faqs } from '@faq';
 import { CreateAccountCard } from '@sections/landing-page/CreateAccountCard';
 import { FaCheckCircle } from 'react-icons/fa';
-import { TestimonialSlider } from './TestimonialSlider';
+import { TestimonialSlider, sliderData } from './TestimonialSlider';
 import Link from 'next/link';
+import { Testimonial } from './Testimonial';
+import { useWindowSize } from '@utils/useWindowSize';
 
 const processCard = [
     { id: 1, title: 'Create Account', step: 'Step 01' },
@@ -29,6 +30,8 @@ const EventCard = ({ title, desc }) => {
 };
 
 export default function Home() {
+    const size = useWindowSize(360);
+
     return (
         <div className="px-6 md:text-center md:px-16">
             <section className="banner bg-pry-purple text-center xl:h-screen pt-24 px-6 md:px-16 -mx-6 md:-mx-16 ">
@@ -84,9 +87,11 @@ export default function Home() {
                             className="rounded-2xl rounded-b-none"
                         />
                     </div>
-                    <div className='xl:mt-8'>
+                    <div className="xl:mt-8">
                         <div className="text-left border-b pb-8">
-                            <header className="font-general font-medium text-[#645F6E]">Step 01</header>
+                            <header className="font-general font-medium text-[#645F6E]">
+                                Step 01
+                            </header>
                             <h3 className="font-semibold my-2">
                                 Create Account
                             </h3>
@@ -151,7 +156,7 @@ export default function Home() {
                 </div>
             </section>
             <section className="">
-                <div className="xxl:grid grid-cols-2 xxl:text-left mb-16">
+                <div className="xxl:grid grid-cols-2 xxl:text-left mb-12">
                     <h2>What Our Clients Say</h2>
                     <p>
                         We take pride in providing a seamless event planning
@@ -160,8 +165,28 @@ export default function Home() {
                         experiences with Deleventus.
                     </p>
                 </div>
-                <div className="max-w-lg mx-auto">
-                    <TestimonialSlider />
+                <div className="max-w-lg mx-auto overflow-hidden xl:grid xl:grid-cols-2 xxl:grid-cols-3 gap-6">
+                    {size <= 960 ? (
+                        <TestimonialSlider>
+                            {sliderData.map((data, index) => (
+                                <Testimonial
+                                    key={index}
+                                    name={data.name}
+                                    title={data.title}
+                                    content={data.content}
+                                />
+                            ))}
+                        </TestimonialSlider>
+                    ) : (
+                        sliderData.map((data, index) => (
+                            <Testimonial
+                                key={index}
+                                name={data.name}
+                                title={data.title}
+                                content={data.content}
+                            />
+                        ))
+                    )}
                 </div>
             </section>
             <section className="max-w-3xl mx-auto faq">

@@ -20,8 +20,8 @@ const _Testimonial = styled.div`
 export const Testimonial = ({ name, title, content }) => {
     return (
         <div>
-            <_Testimonial className="bg-purple-base h-80 md:h-64">
-                <p className="max-w-lg mx-auto text-gray-200 text-left">
+            <_Testimonial className="bg-purple-base h-80 md:h-64 lg:h-72">
+                <p className="max-w-lg mx-auto text-gray-200 font-light text-left">
                     {content}
                 </p>
             </_Testimonial>

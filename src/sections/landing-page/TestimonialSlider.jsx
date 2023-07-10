@@ -34,51 +34,95 @@ export const sliderData = [
     },
 ];
 
-export const TestimonialSlider = () => {
+export const TestimonialSlider = ({ children }) => {
     const [current, setCurrent] = useState(0);
 
     const nextSlide = () => {
         setCurrent((current) =>
-            current === sliderData.length - 1 ? 0 : current + 1
+            current === children.length - 1 ? 0 : current + 1
         );
     };
 
     const prevSlide = () => {
         setCurrent((current) =>
-            current === 0 ? sliderData.length - 1 : current - 1
+            current === 0 ? children.length - 1 : current - 1
         );
     };
 
-    if (!Array.isArray(sliderData) || sliderData.length <= 0) {
+    if (!Array.isArray(children) || children.length <= 0) {
         return null;
     }
 
     return (
-        <div className="relative">
+        <div>
             <div className="flex justify-between">
                 <FaArrowLeft onClick={prevSlide} />
                 <FaArrowRight onClick={nextSlide} />
                 {/* <FaRegCircle /> */}
             </div>
-            {sliderData.map((testimony, index) => {
-                return (
-                    <div
-                        className={
-                            index === current ? 'opacity-100' : 'opacity-0'
-                        }
-                        key={index}
-                    >
-                        {index === current && (
-                            <Testimonial
-                                key={testimony.id}
-                                name={testimony.name}
-                                title={testimony.title}
-                                content={testimony.content}
-                            />
-                        )}
-                    </div>
-                );
-            })}
+            {children.map((child, index) => (
+                <div
+                    className={
+                        index === current
+                            ? 'translate-x-0 transition-all duration-500 ease-linear'
+                            : 'translate-x-10 opacity-0'
+                    }
+                    key={index}
+                >
+                    {index === current && child}
+                </div>
+            ))}
         </div>
     );
 };
+
+// export const TestimonialSlide = () => {
+//     const [current, setCurrent] = useState(0);
+
+//     const nextSlide = () => {
+//         setCurrent((current) =>
+//             current === sliderData.length - 1 ? 0 : current + 1
+//         );
+//     };
+
+//     const prevSlide = () => {
+//         setCurrent((current) =>
+//             current === 0 ? sliderData.length - 1 : current - 1
+//         );
+//     };
+
+//     if (!Array.isArray(sliderData) || sliderData.length <= 0) {
+//         return null;
+//     }
+
+//     return (
+//         <div className="relative">
+//             <div className="flex justify-between">
+//                 <FaArrowLeft onClick={prevSlide} />
+//                 <FaArrowRight onClick={nextSlide} />
+//                 {/* <FaRegCircle /> */}
+//             </div>
+//             {sliderData.map((testimony, index) => {
+//                 return (
+//                     <div
+//                         className={
+//                             index === current
+//                                 ? 'opacity-100 transition-[opacity] duration-500 ease-linear'
+//                                 : 'opacity-0'
+//                         }
+//                         key={index}
+//                     >
+//                         {index === current && (
+//                             <Testimonial
+//                                 key={testimony.id}
+//                                 name={testimony.name}
+//                                 title={testimony.title}
+//                                 content={testimony.content}
+//                             />
+//                         )}
+//                     </div>
+//                 );
+//             })}
+//         </div>
+//     );
+// };
