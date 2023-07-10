@@ -165,7 +165,7 @@ export default function Home() {
                         experiences with Deleventus.
                     </p>
                 </div>
-                <div className="max-w-lg mx-auto overflow-hidden xl:grid xl:grid-cols-2 xxl:grid-cols-3 gap-6">
+                <div className="max-w-lg mx-auto overflow-hidden xl:max-w-none xl:grid xl:grid-cols-2 xxl:grid-cols-3 gap-6">
                     {size <= 960 ? (
                         <TestimonialSlider>
                             {sliderData.map((data, index) => (
