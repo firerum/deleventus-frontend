@@ -26,7 +26,7 @@ module.exports = {
                 'contact-text-color': '#ECECED',
             },
             borderRadius: {
-                'default': '3px',
+                default: '3px',
             },
             borderWidth: {
                 1: '1px',
@@ -36,8 +36,15 @@ module.exports = {
                 6: '6px',
                 8: '8px',
             },
-            backgroundImage: {
-                'hero-pattern': "url('/images/Hero_Section_Gradient.svg')",
+            keyframes: {
+                account: {
+                    '0%': { opacity: 0.4 },
+                    '50%': { opacity: 0.6 },
+                    '100%': { opacity: 1 },
+                },
+            },
+            animation: {
+                account: 'account 600ms ease-in-out',
             },
         },
         screens: {

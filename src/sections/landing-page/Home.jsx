@@ -17,13 +17,56 @@ const processCard = [
     { id: 4, title: 'Create Account', step: 'Step 04' },
 ];
 
-const EventCard = ({ title, desc }) => {
+const eventData = [
+    {
+        name: 'Artistry Pro Met Gala',
+        desc: `Immerse yourself in a night of artistic brilliance at the Artistry Gala,
+         featuring captivating performances, stunning exhibits, and an opportunity
+          to celebrate the beauty of art.
+        `,
+        date_of_event: 'Jan 17',
+        avatar: '/images/featured_event_image1.jpeg',
+        icon: '',
+    },
+    {
+        name: 'Green Tech Summit',
+        desc: `Dive into the world of sustainable technologies at the Green Tech Summit, 
+        where experts gather to discuss about innovative and conservative solutions 
+        for a greener future generation.
+        `,
+        date_of_event: 'Jan 17',
+        avatar: '/images/featured_event_image_2.jpeg',
+        icon: '',
+    },
+    {
+        name: 'Startup Launchpad',
+        desc: `Join aspiring entrepreneurs, founders and industry experts at the Startup Launchpad, 
+        where groundbreaking startups pitch their ideas, network, and seek investment opportunities.
+        `,
+        date_of_event: 'Jan 17',
+        avatar: '/images/featured_event_image_3.jpeg',
+        icon: '',
+    },
+];
+
+const EventCard = ({ name, desc, date, avatar }) => {
     return (
-        <article>
-            {/* <Image src="" width={50} height={50} alt="" /> */}
-            <div>
-                <h3>{title}</h3>
-                <p>{desc}</p>
+        <article className="max-w-xs text-left mx-auto">
+            <Image
+                src={avatar}
+                width={350}
+                height={50}
+                alt="featured event one"
+                className="inline-block w-full"
+            />
+            <div className="flex justify-start bg-white rounded-xl">
+                <div className="px-4 py-8 order-2">
+                    <h3 className="text-xl">{name}</h3>
+                    <p className="text-pry-text-color-1">{desc}</p>
+                </div>
+                <span className="order-1 py-8 pl-4 font-semibold text-secondary-gold">
+                    {date}
+                </span>
             </div>
         </article>
     );
@@ -152,7 +195,31 @@ export default function Home() {
                         entertainment, or a chance to support a worthy cause,
                         our featured events offer something for everyone.
                     </p>
-                    <EventCard />
+                </div>
+                <div className="xl:grid min-w-fit xl:grid-cols-3 gap-6">
+                    {size <= 960 ? (
+                        <TestimonialSlider>
+                            {eventData.map((data, index) => (
+                                <EventCard
+                                    key={index}
+                                    name={data.name}
+                                    desc={data.desc}
+                                    date={data.date_of_event}
+                                    avatar={data.avatar}
+                                />
+                            ))}
+                        </TestimonialSlider>
+                    ) : (
+                        eventData.map((data, index) => (
+                            <EventCard
+                                key={index}
+                                name={data.name}
+                                desc={data.desc}
+                                date={data.date_of_event}
+                                avatar={data.avatar}
+                            />
+                        ))
+                    )}
                 </div>
             </section>
             <section className="">
