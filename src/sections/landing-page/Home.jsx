@@ -75,16 +75,18 @@ export default function Home() {
                     </p>
                 </div>
                 <div className="lg:flex justify-start gap-10">
-                    <Image
-                        src="/images/universal_DP.jpeg"
-                        width={700}
-                        height={200}
-                        alt="sign up process visuals"
-                        className="rounded-2xl mb-4"
-                    />
-                    <div>
+                    <div className="get-started-image-bg mb-4 pt-20 px-6 xl:px-8 xl:pt-24 rounded-2xl">
+                        <Image
+                            src="/images/universal_DP.jpeg"
+                            width={750}
+                            height={200}
+                            alt="sign up process visuals"
+                            className="rounded-2xl rounded-b-none"
+                        />
+                    </div>
+                    <div className='xl:mt-8'>
                         <div className="text-left border-b pb-8">
-                            <header className="font-general">Step 01</header>
+                            <header className="font-general font-medium text-[#645F6E]">Step 01</header>
                             <h3 className="font-semibold my-2">
                                 Create Account
                             </h3>

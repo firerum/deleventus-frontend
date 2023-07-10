@@ -85,6 +85,15 @@ footer section:last-child {
     background-repeat: no-repeat;
 }
 
+.get-started-image-bg {
+    background-image: linear-gradient(
+        180deg,
+        #f9e8be 0%,
+        #8a7980 0.59%,
+        #29194a 90%
+    );
+}
+
 .faq {
     position: relative;
     overflow: hidden;
