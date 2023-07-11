@@ -1,7 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { FaArrowRight, FaArrowLeft, FaRegCircle } from 'react-icons/fa';
-import { Testimonial } from './Testimonial';
 
 export const sliderData = [
     {
@@ -64,8 +63,8 @@ export const TestimonialSlider = ({ children }) => {
                 <div
                     className={
                         index === current
-                            ? 'translate-x-0 transition-all duration-500 ease-linear'
-                            : 'translate-x-10 opacity-0'
+                            ? 'transition-all duration-500 ease-linear'
+                            : 'opacity-30'
                     }
                     key={index}
                 >

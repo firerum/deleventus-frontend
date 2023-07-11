@@ -9,6 +9,7 @@ import { TestimonialSlider, sliderData } from './TestimonialSlider';
 import Link from 'next/link';
 import { Testimonial } from './Testimonial';
 import { useWindowSize } from '@utils/useWindowSize';
+import { EventCard, eventData } from '@sections/UserEvents/EventCard';
 
 const processCard = [
     { id: 1, title: 'Create Account', step: 'Step 01' },
@@ -17,63 +18,8 @@ const processCard = [
     { id: 4, title: 'Create Account', step: 'Step 04' },
 ];
 
-const eventData = [
-    {
-        name: 'Artistry Pro Met Gala',
-        desc: `Immerse yourself in a night of artistic brilliance at the Artistry Gala,
-         featuring captivating performances, stunning exhibits, and an opportunity
-          to celebrate the beauty of art.
-        `,
-        date_of_event: 'Jan 17',
-        avatar: '/images/featured_event_image1.jpeg',
-        icon: '',
-    },
-    {
-        name: 'Green Tech Summit',
-        desc: `Dive into the world of sustainable technologies at the Green Tech Summit, 
-        where experts gather to discuss about innovative and conservative solutions 
-        for a greener future generation.
-        `,
-        date_of_event: 'Jan 17',
-        avatar: '/images/featured_event_image_2.jpeg',
-        icon: '',
-    },
-    {
-        name: 'Startup Launchpad',
-        desc: `Join aspiring entrepreneurs, founders and industry experts at the Startup Launchpad, 
-        where groundbreaking startups pitch their ideas, network, and seek investment opportunities.
-        `,
-        date_of_event: 'Jan 17',
-        avatar: '/images/featured_event_image_3.jpeg',
-        icon: '',
-    },
-];
-
-const EventCard = ({ name, desc, date, avatar }) => {
-    return (
-        <article className="max-w-xs text-left mx-auto">
-            <Image
-                src={avatar}
-                width={350}
-                height={50}
-                alt="featured event one"
-                className="inline-block w-full"
-            />
-            <div className="flex justify-start bg-white rounded-xl">
-                <div className="px-4 py-8 order-2">
-                    <h3 className="text-xl">{name}</h3>
-                    <p className="text-pry-text-color-1">{desc}</p>
-                </div>
-                <span className="order-1 py-8 pl-4 font-semibold text-secondary-gold">
-                    {date}
-                </span>
-            </div>
-        </article>
-    );
-};
-
 export default function Home() {
-    const size = useWindowSize(360);
+    const size = useWindowSize(900);
 
     return (
         <div className="px-6 md:text-center md:px-16">
@@ -185,7 +131,7 @@ export default function Home() {
                     ))}
                 </div>
             </section>
-            <section className="bg-pry-purple px-6 md:px-16 -mx-6 md:-mx-16">
+            <section className="bg-pry-purple px-6 md:px-16 -mx-6 md:-mx-16 ">
                 <div className="xxl:grid grid-cols-2 xxl:text-left mb-16">
                     <h2>Featured Events</h2>
                     <p className="text-pry-text-color-2">
@@ -196,8 +142,8 @@ export default function Home() {
                         our featured events offer something for everyone.
                     </p>
                 </div>
-                <div className="xl:grid min-w-fit xl:grid-cols-3 gap-6">
-                    {size <= 960 ? (
+                <div className="lg:flex flex-wrap xl:grid xl:grid-cols-3 gap-6">
+                    {size < 900 ? (
                         <TestimonialSlider>
                             {eventData.map((data, index) => (
                                 <EventCard
