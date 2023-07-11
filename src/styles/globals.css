@@ -141,8 +141,7 @@ footer section:last-child {
         line-height: 32px;
     }
 
-    .container  article {
-        display: grid;
-        gap: 20px;
+    .container > div {
+        margin-right: 1rem;
     }
 }

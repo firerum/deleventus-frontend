@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { Testimonial } from './Testimonial';
 import { useWindowSize } from '@utils/useWindowSize';
 import { EventCard, eventData } from '@sections/UserEvents/EventCard';
-import { EventCardSlider } from '@sections/UserEvents/EventCardSlider';
+import { CarouselSlider } from '@sections/UserEvents/CarouselSlider';
 
 const processCard = [
     { id: 1, title: 'Create Account', step: 'Step 01' },
@@ -144,21 +144,9 @@ export default function Home() {
                         our featured events offer something for everyone.
                     </p>
                 </div>
-                <div className="">
-                    {/* {size < 900 ? (
-                        <TestimonialSlider>
-                            {eventData.map((data, index) => (
-                                <EventCard
-                                    key={index}
-                                    name={data.name}
-                                    desc={data.desc}
-                                    date={data.date_of_event}
-                                    avatar={data.avatar}
-                                />
-                            ))}
-                        </TestimonialSlider>
-                    ) : (
-                        eventData.map((data, index) => (
+                <div className="relative">
+                    <CarouselSlider>
+                        {eventData.map((data, index) => (
                             <EventCard
                                 key={index}
                                 name={data.name}
@@ -166,9 +154,8 @@ export default function Home() {
                                 date={data.date_of_event}
                                 avatar={data.avatar}
                             />
-                        ))
-                    )} */}
-                    <EventCardSlider />
+                        ))}
+                    </CarouselSlider>
                 </div>
             </section>
             <section className="">
@@ -181,9 +168,20 @@ export default function Home() {
                         experiences with Deleventus.
                     </p>
                 </div>
-                <div className="max-w-lg mx-auto overflow-hidden xl:max-w-none xl:grid xl:grid-cols-2 xxl:grid-cols-3 gap-6">
-                    {size <= 960 ? (
-                        <TestimonialSlider>
+                <div className="">
+                    {/* {size <= 960 ? ( */}
+                    <CarouselSlider>
+                        {sliderData.map((data, index) => (
+                            <Testimonial
+                                key={index}
+                                name={data.name}
+                                title={data.title}
+                                content={data.content}
+                            />
+                        ))}
+                    </CarouselSlider>
+                    {/* ) : (
+                        <div className="grid grid-cols-3 gap-6">
                             {sliderData.map((data, index) => (
                                 <Testimonial
                                     key={index}
@@ -192,17 +190,8 @@ export default function Home() {
                                     content={data.content}
                                 />
                             ))}
-                        </TestimonialSlider>
-                    ) : (
-                        sliderData.map((data, index) => (
-                            <Testimonial
-                                key={index}
-                                name={data.name}
-                                title={data.title}
-                                content={data.content}
-                            />
-                        ))
-                    )}
+                        </div> */}
+                    {/* )} */}
                 </div>
             </section>
             <section className="max-w-3xl mx-auto faq">

@@ -1,4 +1,3 @@
-import { EventCard, eventData } from '@sections/UserEvents/EventCard';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -7,18 +6,20 @@ const settings = {
     dots: true,
     infinite: false,
     speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
+    slidesToShow: 3,
+    slidesToScroll: 2,
+    initialSlide: 3,
     swipeToSlide: true,
     responsive: [
         {
-            breakpoint: 1280,
+            breakpoint: 1024,
             settings: {
-                slidesToShow: 3,
+                slidesToShow: 2,
                 slidesToScroll: 1,
+                initialSlide: 2,
                 infinite: true,
                 dots: true,
+                focusOnSelect: true,
             },
         },
         {
@@ -34,27 +35,18 @@ const settings = {
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
+                initialSlide: 1,
             },
         },
     ],
 };
 
-export const EventCardSlider = () => {
+export const CarouselSlider = ({ children }) => {
     return (
-        <div className="">
-            <Slider {...settings}>
-                {eventData.map((data, index) => (
-                    <div className="mr-6">
-                        <EventCard
-                            key={index}
-                            name={data.name}
-                            desc={data.desc}
-                            date={data.date_of_event}
-                            avatar={data.avatar}
-                        />
-                    </div>
-                ))}
-            </Slider>
-        </div>
+        <Slider {...settings}>
+            {children.map((child, index) => (
+                <div key={index}>{child}</div>
+            ))}
+        </Slider>
     );
 };
