@@ -140,4 +140,9 @@ footer section:last-child {
         font-size: 33.18px;
         line-height: 32px;
     }
+
+    .container  article {
+        display: grid;
+        gap: 20px;
+    }
 }

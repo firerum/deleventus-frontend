@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { Testimonial } from './Testimonial';
 import { useWindowSize } from '@utils/useWindowSize';
 import { EventCard, eventData } from '@sections/UserEvents/EventCard';
+import { EventCardSlider } from '@sections/UserEvents/EventCardSlider';
 
 const processCard = [
     { id: 1, title: 'Create Account', step: 'Step 01' },
@@ -74,6 +75,7 @@ export default function Home() {
                             height={200}
                             alt="sign up process visuals"
                             className="rounded-2xl rounded-b-none"
+                            loading="lazy"
                         />
                     </div>
                     <div className="xl:mt-8">
@@ -142,8 +144,8 @@ export default function Home() {
                         our featured events offer something for everyone.
                     </p>
                 </div>
-                <div className="lg:flex flex-wrap xl:grid xl:grid-cols-3 gap-6">
-                    {size < 900 ? (
+                <div className="">
+                    {/* {size < 900 ? (
                         <TestimonialSlider>
                             {eventData.map((data, index) => (
                                 <EventCard
@@ -165,7 +167,8 @@ export default function Home() {
                                 avatar={data.avatar}
                             />
                         ))
-                    )}
+                    )} */}
+                    <EventCardSlider />
                 </div>
             </section>
             <section className="">
