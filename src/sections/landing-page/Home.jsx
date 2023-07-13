@@ -5,12 +5,11 @@ import Faq from '@sections/FAQ/Faq';
 import { faqs } from '@faq';
 import { CreateAccountCard } from '@sections/landing-page/CreateAccountCard';
 import { FaCheckCircle } from 'react-icons/fa';
-import { TestimonialSlider, sliderData } from './TestimonialSlider';
 import Link from 'next/link';
-import { Testimonial } from './Testimonial';
+import { Testimonial, testimonialData } from './Testimonial';
 import { useWindowSize } from '@utils/useWindowSize';
 import { EventCard, eventData } from '@sections/UserEvents/EventCard';
-import { CarouselSlider } from '@sections/UserEvents/CarouselSlider';
+import { Carousel } from './Carousel';
 
 const processCard = [
     { id: 1, title: 'Create Account', step: 'Step 01' },
@@ -144,8 +143,8 @@ export default function Home() {
                         our featured events offer something for everyone.
                     </p>
                 </div>
-                <div className="relative">
-                    <CarouselSlider>
+                <div className="">
+                    <Carousel>
                         {eventData.map((data, index) => (
                             <EventCard
                                 key={index}
@@ -155,7 +154,7 @@ export default function Home() {
                                 avatar={data.avatar}
                             />
                         ))}
-                    </CarouselSlider>
+                    </Carousel>
                 </div>
             </section>
             <section className="">
@@ -169,9 +168,8 @@ export default function Home() {
                     </p>
                 </div>
                 <div className="">
-                    {/* {size <= 960 ? ( */}
-                    <CarouselSlider>
-                        {sliderData.map((data, index) => (
+                    <Carousel>
+                        {testimonialData.map((data, index) => (
                             <Testimonial
                                 key={index}
                                 name={data.name}
@@ -179,19 +177,7 @@ export default function Home() {
                                 content={data.content}
                             />
                         ))}
-                    </CarouselSlider>
-                    {/* ) : (
-                        <div className="grid grid-cols-3 gap-6">
-                            {sliderData.map((data, index) => (
-                                <Testimonial
-                                    key={index}
-                                    name={data.name}
-                                    title={data.title}
-                                    content={data.content}
-                                />
-                            ))}
-                        </div> */}
-                    {/* )} */}
+                    </Carousel>
                 </div>
             </section>
             <section className="max-w-3xl mx-auto faq">

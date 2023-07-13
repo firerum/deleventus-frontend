@@ -1,6 +1,37 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 
+export const testimonialData = [
+    {
+        id: 1,
+        name: 'Gbenga Durojaiye',
+        content: `Deleventus made our wedding planning journey truly
+        memorable. From managing guest lists to personalized
+        recommendations, the platform catered to all our needs. The
+        virtual reality tours were a standout feature, giving us a
+        sneak peek of our dream venue before the big day.`,
+        title: 'Newly Weds',
+    },
+    {
+        id: 2,
+        name: 'Benjamin Parkinson',
+        content: `As a professional event planner, Deleventus has 
+        become my go-to platform. Its centralized event management, 
+        bulk communication capabilities, and seamless integration 
+        with Google Maps have significantly streamlined my workflow.
+        It's a must-have tool for any event professional.`,
+        title: 'Professional Event Organizer',
+    },
+    {
+        id: 3,
+        name: 'John Doe',
+        content: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Omnis, at placeat nobis cumque fugit expedita sunt. 
+        Sunt non laudantium sed.`,
+        title: 'Mr Worldwide',
+    },
+];
+
 const _Testimonial = styled.div`
     margin-top: 2rem;
     padding-inline: 2rem;
@@ -19,7 +50,7 @@ const _Testimonial = styled.div`
 
 export const Testimonial = ({ name, title, content }) => {
     return (
-        <div className='mr-2'>
+        <div>
             <_Testimonial className="bg-purple-base h-80 md:h-64 lg:h-72">
                 <p className="max-w-lg mx-auto text-gray-200 font-light text-left">
                     {content}
