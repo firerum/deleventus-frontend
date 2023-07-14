@@ -1,34 +1,29 @@
+import { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
-
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 export const CreateAccountCarousel = ({ children, count }) => {
-    // console.log(count);
+    const sliderRef = useRef();
+    const [sliderIndex, setSliderIndex] = useState(0);
+
+    // to initialize the first index to zero because swiper is undefined at mount && change swiper index to count
+    useEffect(() => {
+        setSliderIndex(count);
+        sliderRef.current.swiper.slideTo(sliderIndex);
+    }, [sliderIndex, count]);
+
     const settings = {
         direction: 'vertical',
         autoHeight: true,
-        activeIndex: null,
-        initialSlide: 0,
-        pagination: {
-            clickable: true,
-        },
-        modules: [Pagination],
-        // onBeforeDestroy: (s) => console.log(s),
-        // onSwiper: (swiper) => console.log(swiper),
-        onSlideChange: (d) => console.log(d.slides),
-        // onClick: (d) => console.log(d),
         className: 'mySwiper',
     };
 
     return (
-        <Swiper {...settings}>
+        <Swiper {...settings} ref={sliderRef}>
             {children.map((child, index) => (
-                <SwiperSlide key={index} style={{ height: '100%' }}>
-                    {child}
-                </SwiperSlide>
+                <SwiperSlide key={index}>{child}</SwiperSlide>
             ))}
         </Swiper>
     );

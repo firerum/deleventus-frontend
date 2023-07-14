@@ -15,6 +15,7 @@ import { CreateAccountCarousel } from './CreateAccountCarousel';
 import { FirstProcess } from './getting-started/FirstProcess';
 import { SecondProcess } from './getting-started/SecondProcess';
 import { ThirdProcess } from './getting-started/ThirdProcess';
+import { FourthProcess } from './getting-started/FourthProcess';
 
 const processCard = [
     { id: 1, title: 'Create Account', step: 'Step 01' },
@@ -25,7 +26,6 @@ const processCard = [
 
 export default function Home() {
     const [count, setCount] = useState(0);
-    // console.log(count);
     const size = useWindowSize(900);
 
     return (
@@ -79,6 +79,8 @@ export default function Home() {
                     <SecondProcess />
                     {/* slide 3 */}
                     <ThirdProcess />
+                    {/* slide 4 */}
+                    <FourthProcess />
                 </CreateAccountCarousel>
                 <div className="grid grid-cols-2 gap-4 py-8 xxl:grid-cols-4">
                     {processCard.map((pc, index) => (

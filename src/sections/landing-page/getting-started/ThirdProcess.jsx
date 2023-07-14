@@ -1,5 +1,5 @@
-import React from 'react';
+import { FirstProcess } from './FirstProcess';
 
 export const ThirdProcess = () => {
-    return <div>ThirdProcess</div>;
+    return <FirstProcess />;
 };
