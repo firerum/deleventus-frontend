@@ -23,11 +23,11 @@ const _Button = styled.button`
     }
 `;
 
-export const CreateAccountCard = ({ title, step }) => {
+export const CreateAccountCard = ({ title, step, setCount, index }) => {
     return (
         <_Button
             className="bg-pry-purple text-left cursor-pointer hover:animate-account py-8 px-6 rounded-xl max-w-md"
-            onClick={() => console.log('clicked')}
+            onClick={() => setCount(index)}
         >
             <span className="block font-general mb-4">{step}</span>
             <span className="block font-semibold mb-6">{title}</span>

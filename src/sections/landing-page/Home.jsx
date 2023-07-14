@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import Image from 'next/image';
 import { Button } from '@components/Button';
 import Faq from '@sections/FAQ/Faq';
@@ -11,6 +12,9 @@ import { useWindowSize } from '@utils/useWindowSize';
 import { EventCard, eventData } from '@sections/UserEvents/EventCard';
 import { Carousel } from '@components/Carousels/Carousel';
 import { CreateAccountCarousel } from './CreateAccountCarousel';
+import { FirstProcess } from './getting-started/FirstProcess';
+import { SecondProcess } from './getting-started/SecondProcess';
+import { ThirdProcess } from './getting-started/ThirdProcess';
 
 const processCard = [
     { id: 1, title: 'Create Account', step: 'Step 01' },
@@ -20,6 +24,8 @@ const processCard = [
 ];
 
 export default function Home() {
+    const [count, setCount] = useState(0);
+    // console.log(count);
     const size = useWindowSize(900);
 
     return (
@@ -67,68 +73,21 @@ export default function Home() {
                         our platform.
                     </p>
                 </div>
-                <div className="lg:flex justify-start gap-10">
-                    <div className="get-started-image-bg mb-4 pt-20 px-6 xl:px-8 xl:pt-24 rounded-2xl">
-                        <Image
-                            src="/images/universal_DP.jpeg"
-                            width={750}
-                            height={200}
-                            alt="sign up process visuals"
-                            className="rounded-2xl rounded-b-none"
-                            loading="lazy"
-                        />
-                    </div>
-                    <div className="xl:mt-8">
-                        <div className="text-left border-b pb-8">
-                            <header className="font-general font-medium text-[#645F6E]">
-                                Step 01
-                            </header>
-                            <h3 className="font-semibold my-2">
-                                Create Account
-                            </h3>
-                            <p className="text-pry-text-color-1 flex items-start">
-                                You’ll be asked to submit your name, email
-                                address and other relevant informations
-                            </p>
-                        </div>
-                        <div className="text-left">
-                            <div className="pt-8">
-                                <p className="text-pry-text-color-1 mb-6 relative pl-6">
-                                    With our lightning-fast{' '}
-                                    <span className="text-purple-base font-medium">
-                                        30 Seconds Sign-Up Process,
-                                    </span>{' '}
-                                    you'll be ready to organize events in no
-                                    time.
-                                    <FaCheckCircle className="text-btn-color absolute left-0 top-1" />
-                                </p>
-                            </div>
-                            <p className="text-pry-text-color-1 mb-6 relative pl-6">
-                                Take full control of your{' '}
-                                <span className="text-purple-base font-medium">
-                                    Privacy Settings
-                                </span>{' '}
-                                while effortlessly creating an account.
-                                <FaCheckCircle className="text-btn-color absolute left-0 top-1" />
-                            </p>
-                            <p className="text-pry-text-color-1 mb-6 relative pl-6">
-                                Experience the convenience of{' '}
-                                <span className="text-purple-base font-medium">
-                                    Passwordless Integration
-                                </span>{' '}
-                                with leading platforms like Google, Apple, and
-                                more.
-                                <FaCheckCircle className="text-btn-color absolute left-0 top-1" />
-                            </p>
-                        </div>
-                    </div>
-                </div>
+                <CreateAccountCarousel count={count}>
+                    <FirstProcess />
+                    {/* slide 2 */}
+                    <SecondProcess />
+                    {/* slide 3 */}
+                    <ThirdProcess />
+                </CreateAccountCarousel>
                 <div className="grid grid-cols-2 gap-4 py-8 xxl:grid-cols-4">
-                    {processCard.map((pc) => (
+                    {processCard.map((pc, index) => (
                         <CreateAccountCard
                             key={pc.id}
                             title={pc.title}
                             step={pc.step}
+                            setCount={setCount}
+                            index={index}
                         />
                     ))}
                 </div>
@@ -208,7 +167,7 @@ export default function Home() {
                     <h2 className="text-pry-purple">
                         Get started with Deleventus today
                     </h2>
-                    <p className="text-xs text-contact-text-color font-light md:text-base md:w-3/4 md:mx-auto">
+                    <p className="text-sm text-contact-text-color font-light md:text-base md:w-3/4 md:mx-auto">
                         Join Deleventus today to curate unforgettable event
                         memories. Capture and share photos/videos, manage ticket
                         sales, engage with attendees, and preserve valuable

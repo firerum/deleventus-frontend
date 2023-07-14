@@ -25,6 +25,7 @@ h6 {
     color: #140c24;
     margin-bottom: 1rem;
     line-height: 32px;
+    text-wrap: balance;
 }
 
 h1 {
@@ -47,6 +48,7 @@ h6 {
 p {
     color: #585264;
     line-height: 24px;
+    text-wrap: balance;
 }
 
 a:hover {

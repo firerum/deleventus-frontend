@@ -5,22 +5,30 @@ import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-const settings = {
-    direction: 'vertical',
-    autoHeight: true,
-    pagination: {
-        clickable: true,
-    },
-    modules: [Pagination],
-    onSlideChange: () => console.log('slide change'),
-    className: 'mySwiper',
-};
+export const CreateAccountCarousel = ({ children, count }) => {
+    // console.log(count);
+    const settings = {
+        direction: 'vertical',
+        autoHeight: true,
+        activeIndex: null,
+        initialSlide: 0,
+        pagination: {
+            clickable: true,
+        },
+        modules: [Pagination],
+        // onBeforeDestroy: (s) => console.log(s),
+        // onSwiper: (swiper) => console.log(swiper),
+        onSlideChange: (d) => console.log(d.slides),
+        // onClick: (d) => console.log(d),
+        className: 'mySwiper',
+    };
 
-export const CreateAccountCarousel = ({ children }) => {
     return (
         <Swiper {...settings}>
             {children.map((child, index) => (
-                <SwiperSlide key={index}>{child}</SwiperSlide>
+                <SwiperSlide key={index} style={{ height: '100%' }}>
+                    {child}
+                </SwiperSlide>
             ))}
         </Swiper>
     );

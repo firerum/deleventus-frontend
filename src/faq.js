@@ -1,7 +1,15 @@
 export const faqs = [
     {
         question: `Can I create an old event ?`,
-        answer: `Absolutely. Our primary objective is to help you centralise all of your memories, events into one single place. With Deleventus, there will be no need for scattered albums, files etc. Everything is curated in a single place.`,
+        answer: `Absolutely. One of our primary objectives is to help you centralise and organize all of your memories, events into one single place. With Deleventus, there will be no need for scattered albums, files etc. Everything is curated in a single place.`,
+    },
+    {
+        question: 'How secure is Deleventus ?',
+        answer: `At Deleventus, safeguarding your trusted data is our utmost priority. 
+        We employ a robust combination of physical, procedural, and 
+        technical measures to ensure the integrity and security of your information. 
+        With regular data backups in place, we provide reliable protection against loss and swift recovery options. 
+        Rest assured, your data is in competent hands.`,
     },
     {
         question: `Can I customize the event registration process ?`,

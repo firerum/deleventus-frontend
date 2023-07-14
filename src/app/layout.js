@@ -1,7 +1,7 @@
 import '@styles/globals.css';
 import Nav from '@layouts/Nav';
 import Footer from '@layouts/Footer';
-import Provider from '@authentication/Provider';
+import Provider from '@sections/authentication/Provider';
 import { Satoshi, General } from '../../public/fonts/fonts.local';
 
 export const metadata = {
