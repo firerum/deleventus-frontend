@@ -9,7 +9,8 @@ import Link from 'next/link';
 import { Testimonial, testimonialData } from './Testimonial';
 import { useWindowSize } from '@utils/useWindowSize';
 import { EventCard, eventData } from '@sections/UserEvents/EventCard';
-import { Carousel } from './Carousel';
+import { Carousel } from '@components/Carousels/Carousel';
+import { CreateAccountCarousel } from './CreateAccountCarousel';
 
 const processCard = [
     { id: 1, title: 'Create Account', step: 'Step 01' },

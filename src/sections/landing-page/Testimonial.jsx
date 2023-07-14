@@ -22,18 +22,10 @@ export const testimonialData = [
         It's a must-have tool for any event professional.`,
         title: 'Professional Event Organizer',
     },
-    {
-        id: 3,
-        name: 'John Doe',
-        content: `Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Omnis, at placeat nobis cumque fugit expedita sunt. 
-        Sunt non laudantium sed.`,
-        title: 'Mr Worldwide',
-    },
 ];
 
 const _Testimonial = styled.div`
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
     padding-inline: 2rem;
     padding-top: 2rem;
     border-radius: 8px;
@@ -51,7 +43,7 @@ const _Testimonial = styled.div`
 export const Testimonial = ({ name, title, content }) => {
     return (
         <div>
-            <_Testimonial className="bg-purple-base h-80 md:h-64 lg:h-72">
+            <_Testimonial className="bg-purple-base h-80">
                 <p className="max-w-lg mx-auto text-gray-200 font-light text-left">
                     {content}
                 </p>

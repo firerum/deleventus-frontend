@@ -1,8 +1,10 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
+import 'swiper/css/pagination';
 
 const settings = {
-    spaceBetween: 20,
+    spaceBetween: 40,
     slidesPerView: 1,
     onSlideChange: () => console.log('slide change'),
     onSwiper: (swiper) => console.log(swiper),
