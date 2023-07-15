@@ -73,15 +73,17 @@ export default function Home() {
                         our platform.
                     </p>
                 </div>
-                <CreateAccountCarousel count={count}>
-                    <FirstProcess />
-                    {/* slide 2 */}
-                    <SecondProcess />
-                    {/* slide 3 */}
-                    <ThirdProcess />
-                    {/* slide 4 */}
-                    <FourthProcess />
-                </CreateAccountCarousel>
+                <div className="pointer-events-none">
+                    <CreateAccountCarousel count={count}>
+                        <FirstProcess />
+                        {/* slide 2 */}
+                        <SecondProcess />
+                        {/* slide 3 */}
+                        <ThirdProcess />
+                        {/* slide 4 */}
+                        <FourthProcess />
+                    </CreateAccountCarousel>
+                </div>
                 <div className="grid grid-cols-2 gap-4 py-8 xxl:grid-cols-4">
                     {processCard.map((pc, index) => (
                         <CreateAccountCard
