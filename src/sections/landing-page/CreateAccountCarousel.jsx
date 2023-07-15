@@ -22,7 +22,7 @@ export const CreateAccountCarousel = ({ children, count }) => {
     };
 
     return (
-        <Swiper {...settings} ref={sliderRef}>
+        <Swiper {...settings} ref={sliderRef} className="banner-slide">
             {children.map((child, index) => (
                 <SwiperSlide key={index}>{child}</SwiperSlide>
             ))}
