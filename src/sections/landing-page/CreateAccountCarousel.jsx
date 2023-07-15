@@ -17,7 +17,8 @@ export const CreateAccountCarousel = ({ children, count }) => {
     const settings = {
         direction: 'vertical',
         autoHeight: true,
-        allowTouchMove: false,
+        noSwiping: true,
+        noSwipingClass: 'swiper-slide',
         className: 'mySwiper',
     };
 
