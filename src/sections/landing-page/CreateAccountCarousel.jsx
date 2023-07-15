@@ -17,12 +17,12 @@ export const CreateAccountCarousel = ({ children, count }) => {
     const settings = {
         direction: 'vertical',
         autoHeight: true,
-        speed: 1000,
+        speed: 850,
         className: 'mySwiper',
     };
 
     return (
-        <Swiper {...settings} ref={sliderRef}>
+        <Swiper {...settings} ref={sliderRef} className="banner-slide">
             {children.map((child, index) => (
                 <SwiperSlide key={index}>{child}</SwiperSlide>
             ))}

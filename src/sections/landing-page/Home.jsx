@@ -18,10 +18,34 @@ import { ThirdProcess } from './getting-started/ThirdProcess';
 import { FourthProcess } from './getting-started/FourthProcess';
 
 const processCard = [
-    { id: 1, title: 'Create Account', step: 'Step 01' },
-    { id: 2, title: 'Create Account', step: 'Step 02' },
-    { id: 3, title: 'Create Account', step: 'Step 03' },
-    { id: 4, title: 'Create Account', step: 'Step 04' },
+    {
+        id: 1,
+        title: 'Create Account',
+        step: 'Step 01',
+        content:
+            'You’ll be asked to submit your name, email address and other relevant information',
+    },
+    {
+        id: 2,
+        title: 'Create and Manage Events',
+        step: 'Step 02',
+        content:
+            'Provide event details, manage RSVPs, and send invitations seamlessly.',
+    },
+    {
+        id: 3,
+        title: 'Ticketing and Secure Payments',
+        step: 'Step 03',
+        content:
+            'Set ticket prices, manage sales, and offer secure payment for your event. Track ticket sales.',
+    },
+    {
+        id: 4,
+        title: 'Upload Precious Memories',
+        step: 'Step 04',
+        content:
+            'Upload and share photos, videos, and other media to create a comprehensive album of event memories.',
+    },
 ];
 
 export default function Home() {
@@ -74,7 +98,10 @@ export default function Home() {
                     </p>
                 </div>
                 <div className="pointer-events-none">
-                    <CreateAccountCarousel count={count}>
+                    <CreateAccountCarousel
+                        count={count}
+                        style={{ overflow: 'hidden' }}
+                    >
                         <FirstProcess />
                         {/* slide 2 */}
                         <SecondProcess />
@@ -90,6 +117,7 @@ export default function Home() {
                             key={pc.id}
                             title={pc.title}
                             step={pc.step}
+                            content={pc.content}
                             setCount={setCount}
                             index={index}
                         />

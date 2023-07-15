@@ -23,7 +23,13 @@ const _Button = styled.button`
     }
 `;
 
-export const CreateAccountCard = ({ title, step, setCount, index }) => {
+export const CreateAccountCard = ({
+    title,
+    step,
+    content,
+    setCount,
+    index,
+}) => {
     return (
         <_Button
             className="bg-pry-purple text-left cursor-pointer hover:animate-account py-8 px-6 rounded-xl max-w-md"
@@ -31,10 +37,7 @@ export const CreateAccountCard = ({ title, step, setCount, index }) => {
         >
             <span className="block font-general mb-4">{step}</span>
             <span className="block font-semibold mb-6">{title}</span>
-            <span className="hidden md:block text-sm">
-                You’ll be asked to submit your name, email address and other
-                relevant information
-            </span>
+            <span className="hidden md:block text-sm">{content}</span>
         </_Button>
     );
 };
