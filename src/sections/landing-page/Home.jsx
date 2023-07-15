@@ -1,14 +1,11 @@
 'use client';
 import { useState } from 'react';
-import Image from 'next/image';
 import { Button } from '@components/Button';
 import Faq from '@sections/FAQ/Faq';
 import { faqs } from '@faq';
 import { CreateAccountCard } from '@sections/landing-page/CreateAccountCard';
-import { FaCheckCircle } from 'react-icons/fa';
 import Link from 'next/link';
 import { Testimonial, testimonialData } from './Testimonial';
-import { useWindowSize } from '@utils/useWindowSize';
 import { EventCard, eventData } from '@sections/UserEvents/EventCard';
 import { Carousel } from '@components/Carousels/Carousel';
 import { CreateAccountCarousel } from './CreateAccountCarousel';
@@ -50,7 +47,6 @@ const processCard = [
 
 export default function Home() {
     const [count, setCount] = useState(0);
-    const size = useWindowSize(900);
 
     return (
         <div className="px-6 md:text-center md:px-16">
