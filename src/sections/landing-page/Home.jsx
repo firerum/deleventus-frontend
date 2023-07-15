@@ -98,10 +98,7 @@ export default function Home() {
                     </p>
                 </div>
                 <div className="pointer-events-none">
-                    <CreateAccountCarousel
-                        count={count}
-                        style={{ overflow: 'hidden' }}
-                    >
+                    <CreateAccountCarousel count={count}>
                         <FirstProcess />
                         {/* slide 2 */}
                         <SecondProcess />
