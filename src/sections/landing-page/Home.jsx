@@ -120,6 +120,7 @@ export default function Home() {
                         ))}
                     </Carousel>
                 </div>
+                <div className="swiper-custom-pagination"></div>
             </section>
             <section className="">
                 <div className="xxl:grid grid-cols-2 xxl:text-left mb-12">
@@ -139,6 +140,7 @@ export default function Home() {
                                 name={data.name}
                                 title={data.title}
                                 content={data.content}
+                                avatar={data.image}
                             />
                         ))}
                     </Carousel>

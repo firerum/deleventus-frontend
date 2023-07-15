@@ -42,8 +42,10 @@ export const EventCard = ({ name, desc, date, avatar }) => {
                 width={350}
                 height={50}
                 alt="featured event one"
-                className="inline-block w-full"
-                loading="lazy"
+                className="inline-block w-full h-auto"
+                priority={true}
+                placeholder="blur"
+                blurDataURL={avatar}
             />
             <Link href="#" className="hover:no-underline">
                 <div className="flex justify-start bg-white shadow-sm rounded-b-xl cursor-pointer">

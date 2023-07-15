@@ -11,8 +11,10 @@ export const FirstProcess = () => {
                     width={750}
                     height={200}
                     alt="sign up process visuals"
-                    className="rounded-2xl rounded-b-none"
-                    loading="lazy"
+                    className="rounded-2xl rounded-b-none inline-block mb-0"
+                    priority={true}
+                    placeholder="blur"
+                    blurDataURL={'/images/universal_DP.jpeg'}
                 />
             </div>
             <div className="xl:mt-8">

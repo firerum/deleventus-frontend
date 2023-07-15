@@ -133,6 +133,15 @@ footer section:last-child {
     height: 100% !important;
 }
 
+/* .swiper-pagination-bullets.swiper-pagination-horizontal {
+    width: max-content !important;
+}
+
+.swiper-custom-pagination {
+    margin: auto;
+    margin-top: 20px;
+} */
+
 /* Media Queries */
 @media screen and (min-width: 768px) {
     h1 {

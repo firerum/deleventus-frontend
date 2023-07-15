@@ -1,13 +1,16 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 const settings = {
     spaceBetween: 40,
     slidesPerView: 1,
-    // onSlideChange: () => console.log('slide change'),
-    // onSwiper: (swiper) => console.log(swiper),
+    // pagination: {
+    //     clickable: true,
+    //     el: '.swiper-custom-pagination',
+    // },
+    // modules: [Pagination],
     breakpoints: {
         640: {
             slidesPerView: 2,
@@ -25,7 +28,9 @@ export const Carousel = ({ children }) => {
     return (
         <Swiper {...settings}>
             {children.map((child, index) => (
-                <SwiperSlide key={index}>{child}</SwiperSlide>
+                <div className="swiper-slide" key={index}>
+                    <SwiperSlide>{child}</SwiperSlide>
+                </div>
             ))}
         </Swiper>
     );
