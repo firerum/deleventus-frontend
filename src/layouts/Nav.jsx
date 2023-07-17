@@ -33,14 +33,21 @@ const Nav = () => {
 
     return (
         <header className="px-6 py-3 md:px-10 text-sm md:text-base bg-pry-purple shadow-sm fixed z-10 left-0 top-0 right-0 flex justify-between items-center">
-            <h1 className="flex justify-between mb-0 text-lg">
-                <Link href="/">
+            <h1 className="mb-0 text-lg">
+                <Link
+                    href="/"
+                    className="flex justify-between items-center gap-2"
+                >
                     {/* <Image
-                    src="/images/universal_DP.jpeg"
-                    alt="deleventus logo"
-                    width={30}
-                    height={30}
-                /> */}
+                        src="/images/universal_DP.jpeg"
+                        alt="deleventus logo"
+                        width={30}
+                        height={30}
+                        priority={true}
+                        placeholder="blur"
+                        blurDataURL="/images/universal_DP.jpeg"
+                        className="rounded-full"
+                    /> */}
                     <p>Deleventus</p>
                 </Link>
             </h1>
@@ -76,7 +83,7 @@ const Nav = () => {
                 className="text-2xl ml-4 text-center font-light lg:hidden"
                 onClick={() => setOpen((open) => !open)}
             >
-                <FaBars />
+                {open ? <FaTimes /> : <FaBars />}
             </button>
             <div
                 className={`text-lg px-6 md:px-10 bg-pry-purple font-medium absolute left-0 top-full w-screen z-10 lg:hidden overflow-hidden transition-[height] duration-500 ${
@@ -88,7 +95,7 @@ const Nav = () => {
                         {navigation.map((nav) => (
                             <li
                                 key={nav.name}
-                                className="text-pry-header-title border-b-2 py-4"
+                                className="text-pry-header-title border-b-1 py-4"
                             >
                                 <Link
                                     href={nav.href}

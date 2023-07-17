@@ -14,6 +14,7 @@ import { SecondProcess } from './getting-started/SecondProcess';
 import { ThirdProcess } from './getting-started/ThirdProcess';
 import { FourthProcess } from './getting-started/FourthProcess';
 import { Banner, HomeAnimation } from './Animation/HomeAnimation';
+import { motion } from 'framer-motion';
 
 const processCard = [
     {
@@ -55,7 +56,7 @@ export default function Home() {
             <div className="px-6 md:text-center md:px-16">
                 <section className="banner bg-pry-purple text-center xl:h-screen pt-24 px-6 md:px-16 -mx-6 md:-mx-16 ">
                     <div>
-                        <h1>
+                        <motion.h1>
                             <span className="text-xs font-semibold md:text-base rounded-3xl py-2 px-6 mb-4 inline-block bg-[#fefbf4] text-secondary-gold">
                                 #1 Award-winning memory curation platform
                             </span>
@@ -65,7 +66,7 @@ export default function Home() {
                                 Every Moment
                             </span>
                             , <br /> Uncover the Full Story
-                        </h1>
+                        </motion.h1>
                         <p className="my-4 max-w-3xl mx-auto">
                             Capture, curate, and share every detail of your
                             events - from photos and videos to ticket sales and

@@ -14,10 +14,8 @@ export const PricingCard = ({ title, sub_title, price, info_header, info }) => {
             </div>
             <div>
                 {info?.map((inf, index) => (
-                    <ul className="relative text-pry-text-color-1">
-                        <li key={index} className="pl-8 mb-6">
-                            {inf}
-                        </li>
+                    <ul key={index} className="relative text-pry-text-color-1">
+                        <li className="pl-8 mb-6">{inf}</li>
                         <FaCheck className="absolute top-1 left-0 text-xs" />
                     </ul>
                 ))}
