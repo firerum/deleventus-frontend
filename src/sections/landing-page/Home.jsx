@@ -117,6 +117,7 @@ export default function Home() {
                                 content={pc.content}
                                 setCount={setCount}
                                 index={index}
+                                count={count}
                             />
                         ))}
                     </div>
@@ -124,7 +125,7 @@ export default function Home() {
                 <section className="bg-pry-purple px-6 md:px-16 -mx-6 md:-mx-16 ">
                     <div className="xxl:grid grid-cols-2 xxl:text-left mb-16">
                         <h2>Featured Events</h2>
-                        <p className="text-pry-text-color-2">
+                        <p>
                             Explore a curated collection of remarkable
                             gatherings, conferences, parties, fundraisers, and
                             more. Whether you're looking for networking

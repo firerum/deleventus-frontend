@@ -29,7 +29,7 @@ export const Carousel = ({ children }) => {
         <Swiper {...settings}>
             {children.map((child, index) => (
                 <div className="swiper-slide" key={index}>
-                    <SwiperSlide>{child}</SwiperSlide>
+                    <SwiperSlide key={index}>{child}</SwiperSlide>
                 </div>
             ))}
         </Swiper>

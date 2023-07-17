@@ -98,6 +98,14 @@ footer section:last-child {
     );
 }
 
+.get-started-image-bg span:nth-child(2) {
+    color: #f8e4b2 !important;
+}
+
+.get-started-image-bg span {
+    color: #fefbf4 !important;
+}
+
 /* FAQ styles */
 .faq {
     position: relative;
