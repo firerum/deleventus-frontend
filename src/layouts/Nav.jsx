@@ -1,10 +1,11 @@
 'use client';
-
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 import Image from 'next/image';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { ulVariants, liVariants } from '@utils/framer-motion/variants';
 
 const navigation = [
     { name: 'Home', href: '/' },
@@ -22,6 +23,7 @@ const dropDown = [
 const Nav = () => {
     // const [providers, setProviders] = useState(null);
     const [open, setOpen] = useState(false);
+    const navRef = useRef(null);
 
     // useEffect(() => {
     //     const getAllProviders = async () => {
@@ -78,7 +80,7 @@ const Nav = () => {
                 </Link>
             </div>
 
-            {/* mobile navigation */}
+            {/* Mobile Navigation */}
             <button
                 className="text-2xl ml-4 text-center font-light lg:hidden"
                 onClick={() => setOpen((open) => !open)}
@@ -87,15 +89,20 @@ const Nav = () => {
             </button>
             <div
                 className={`text-lg px-6 md:px-10 bg-pry-purple font-medium absolute left-0 top-full w-screen z-10 lg:hidden overflow-hidden transition-[height] duration-500 ${
-                    open ? 'h-screen' : 'h-0'
+                    open ? 'h-screen' : 'h-0 delay-300'
                 }`}
             >
-                <nav>
-                    <ul className="grid py-6">
+                <motion.nav
+                    initial={false}
+                    animate={open ? 'open' : 'closed'}
+                    ref={navRef}
+                >
+                    <motion.ul variants={ulVariants} className="grid py-6">
                         {navigation.map((nav) => (
-                            <li
+                            <motion.li
                                 key={nav.name}
                                 className="text-pry-header-title border-b-1 py-4"
+                                variants={liVariants}
                             >
                                 <Link
                                     href={nav.href}
@@ -103,24 +110,24 @@ const Nav = () => {
                                 >
                                     <span>{nav.name}</span>
                                 </Link>
-                            </li>
+                            </motion.li>
                         ))}
-                    </ul>
-                </nav>
-                <div className="text-center font-medium grid pt-6">
-                    <Link
-                        href="signin"
-                        className="py-3 px-6 mb-4 w-full rounded-default border-1 border-btn-color"
-                    >
-                        Sign In
-                    </Link>
-                    <Link
-                        href="/signup"
-                        className="py-3 px-6 w-full rounded-default text-pry-purple bg-btn-color"
-                    >
-                        Get Started
-                    </Link>
-                </div>
+                    </motion.ul>
+                    <div className="text-center font-medium grid pt-6">
+                        <Link
+                            href="signin"
+                            className="py-3 px-6 mb-4 w-full rounded-default border-1 border-btn-color"
+                        >
+                            Sign In
+                        </Link>
+                        <Link
+                            href="/signup"
+                            className="py-3 px-6 w-full rounded-default text-pry-purple bg-btn-color"
+                        >
+                            Get Started
+                        </Link>
+                    </div>
+                </motion.nav>
             </div>
         </header>
     );
