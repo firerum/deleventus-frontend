@@ -58,11 +58,9 @@ const Nav = () => {
             {/* <select name="" id="">
                 <option value=""></option>
             </select> */}
+
             <div className="ml-auto flex items-center gap-4 font-medium ">
-                <Link
-                    href="/signin"
-                    className="py-2 px-6 rounded-default border-1 border-btn-color"
-                >
+                <Link href="/signin" className="py-2">
                     Sign In
                 </Link>
                 <Link
