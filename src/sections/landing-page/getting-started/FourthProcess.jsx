@@ -31,7 +31,7 @@ export const FourthProcess = () => {
                 </div>
                 <div className="text-left">
                     <div className="pt-8">
-                        <p className="text-pry-text-color-1 mb-6 relative pl-6">
+                        <p className="text-pry-text-color-1 mb-6 xxl:mb-10 relative pl-6">
                             Create a{' '}
                             <span className="text-purple-base font-medium">
                                 Captivating Album of Memories
@@ -40,7 +40,7 @@ export const FourthProcess = () => {
                             <FaCheckCircle className="text-btn-color absolute left-0 top-1" />
                         </p>
                     </div>
-                    <p className="text-pry-text-color-1 mb-6 relative pl-6">
+                    <p className="text-pry-text-color-1 mb-6 xxl:mb-10 relative pl-6">
                         Keep all{' '}
                         <span className="text-purple-base font-medium">
                             Event Memories Organized

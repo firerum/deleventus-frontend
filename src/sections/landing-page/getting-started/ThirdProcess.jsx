@@ -31,7 +31,7 @@ export const ThirdProcess = () => {
                 </div>
                 <div className="text-left">
                     <div className="pt-8">
-                        <p className="text-pry-text-color-1 mb-6 relative pl-6">
+                        <p className="text-pry-text-color-1 mb-6 xxl:mb-10 relative pl-6">
                             Set ticket prices, create ticket types, and manage
                             sales effortlessly, ensuring a{' '}
                             <span className="text-purple-base font-medium">
@@ -40,7 +40,7 @@ export const ThirdProcess = () => {
                             <FaCheckCircle className="text-btn-color absolute left-0 top-1" />
                         </p>
                     </div>
-                    <p className="text-pry-text-color-1 mb-6 relative pl-6">
+                    <p className="text-pry-text-color-1 mb-6 xxl:mb-10 relative pl-6">
                         Ensure peace of mind with{' '}
                         <span className="text-purple-base font-medium">
                             Secure Payment Processing

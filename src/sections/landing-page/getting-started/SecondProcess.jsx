@@ -31,7 +31,7 @@ export const SecondProcess = () => {
                 </div>
                 <div className="text-left">
                     <div className="pt-8">
-                        <p className="text-pry-text-color-1 mb-6 relative pl-6">
+                        <p className="text-pry-text-color-1 mb-6 xxl:mb-10 relative pl-6">
                             Easily plan, organize, and manage your events with
                             an{' '}
                             <span className="text-purple-base font-medium">
@@ -40,7 +40,7 @@ export const SecondProcess = () => {
                             <FaCheckCircle className="text-btn-color absolute left-0 top-1" />
                         </p>
                     </div>
-                    <p className="text-pry-text-color-1 mb-6 relative pl-6">
+                    <p className="text-pry-text-color-1 mb-6 xxl:mb-10 relative pl-6">
                         Effortlessly{' '}
                         <span className="text-purple-base font-medium">
                             Manage RSVPs
