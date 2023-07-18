@@ -210,7 +210,7 @@ export default function Home() {
                     <div className="mt-8">
                         <Link
                             href="/signup"
-                            className="py-4 px-8 font-medium rounded-default text-pry-purple bg-btn-color"
+                            className="py-4 px-8 font-medium rounded-default text-[#F8E4B2] bg-btn-color"
                         >
                             Get Started Free
                         </Link>
