@@ -83,7 +83,7 @@ export default function Home() {
                     >
                         Get Started
                     </Link>
-                    <Button outlined={'true'} title="Watch Demo" />
+                    <Button outlined={'true'}>Watch Demo</Button>
                 </div>
             </section>
             <section className="">

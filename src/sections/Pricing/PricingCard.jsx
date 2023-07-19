@@ -9,7 +9,7 @@ export const PricingCard = ({ title, sub_title, price, info_header, info }) => {
                 <p>{sub_title}</p>
                 <p className="text-4xl font-general font-semibold">{price}</p>
                 <div className="my-10">
-                    <Button width="100%" title="Get Started" />
+                    <Button className="w-full">Get Started</Button>
                 </div>
             </div>
             <div>

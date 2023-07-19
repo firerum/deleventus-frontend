@@ -91,17 +91,13 @@ export default function Signup() {
                                 type="checkbox"
                                 name=""
                                 id=""
-                                label={
-                                    'I accept the terms and conditions of use'
-                                }
                                 onChange={(e) => console.log(e.target.value)}
                             />
                         </div>
                     </div>
-                    <Button
-                        title="Create Account"
-                        className="w-full bg-btn-color mb-2 border-0 text-[#F6F5F6]"
-                    />
+                    <Button className="w-full bg-btn-color mb-2 border-0 text-[#F6F5F6]">
+                        Create Account
+                    </Button>
                 </form>
                 <div className="mb-8">
                     <span>Already have an account? </span>
@@ -109,21 +105,21 @@ export default function Signup() {
                         Log In
                     </Link>
                 </div>
-                <section className="relative">
-                    <header className="text-center text-sm text-pry-text-color-1 inline-block before:w-full before:h-4 before:bg-red-500 top-1 ">
+                <section>
+                    <header className="text-center relative text-sm text-pry-text-color-1 inline-block">
                         OR <br />
                         CONTINUE WITH
                     </header>
                     <div className="flex gap-6 justify-center mt-8 text-2xl">
-                        <button>
+                        <Button>
                             <FaFacebook />
-                        </button>
-                        <button>
+                        </Button>
+                        <Button>
                             <FaTwitter />
-                        </button>
-                        <button>
+                        </Button>
+                        <Button>
                             <FaGoogle />
-                        </button>
+                        </Button>
                     </div>
                 </section>
             </div>

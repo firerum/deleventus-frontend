@@ -19,23 +19,14 @@ const _Button = styled.button`
 `;
 
 // TODO
-export const Button = ({
-    title,
-    outlined = 'false',
-    padSide = '',
-    padVertical = '',
-    width = '',
-    className,
-}) => {
+export const Button = ({ outlined = 'false', className, children }) => {
     return (
         <_Button
             className={className}
             outlined={outlined}
-            title={title}
-            width={width}
             onClick={() => console.log('clicked')}
         >
-            {title}
+            {children}
         </_Button>
     );
 };
