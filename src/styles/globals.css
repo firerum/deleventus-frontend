@@ -130,11 +130,31 @@ footer section:last-child {
     background: var(--gold-secondary-g-300, #f5d88f);
     filter: blur(52.710025787353516px);
 }
-
+/* Contact style */
 .contact {
     background-color: #29194a;
     background: url('/images/contact-bg.png'), #29194a no-repeat;
     background-size: cover;
+}
+
+/* Sign up */
+.continue-with::before,
+.continue-with::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    width: 130px;
+    height: 1px;
+    background-color: #786995;
+}
+
+.continue-with::before {
+    left: 50px;
+    margin-right: 50px;
+}
+
+.continue-with::after {
+    right: 50px;
 }
 
 /* Swiper styles */

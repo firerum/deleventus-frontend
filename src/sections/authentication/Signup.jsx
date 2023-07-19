@@ -84,7 +84,10 @@ export default function Signup() {
                         </div>
                         <div className="flex gap-4 mb-6">
                             <label htmlFor="" className="order-2">
-                                I accept the <span>terms and conditions</span>{' '}
+                                I accept the{' '}
+                                <Link href="/" className="text-[#5C73DB]">
+                                    terms and conditions
+                                </Link>{' '}
                                 of use
                             </label>
                             <InputField
@@ -106,11 +109,11 @@ export default function Signup() {
                     </Link>
                 </div>
                 <section>
-                    <header className="text-center relative text-sm text-pry-text-color-1 inline-block">
+                    <header className="continue-with block max-w-md mx-auto relative text-sm text-pry-text-color-1">
                         OR <br />
                         CONTINUE WITH
                     </header>
-                    <div className="flex gap-6 justify-center mt-8 text-2xl">
+                    <div className="flex gap-6 justify-center mt-6 text-2xl">
                         <Button>
                             <FaFacebook />
                         </Button>
