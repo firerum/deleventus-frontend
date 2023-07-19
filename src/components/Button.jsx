@@ -24,10 +24,12 @@ export const Button = ({
     outlined = 'false',
     padSide = '',
     padVertical = '',
-    width = ''
+    width = '',
+    className,
 }) => {
     return (
         <_Button
+            className={className}
             outlined={outlined}
             title={title}
             width={width}

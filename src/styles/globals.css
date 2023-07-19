@@ -68,6 +68,12 @@ header {
     display: flex;
 }
 
+input::placeholder {
+    text-transform: uppercase;
+    font-weight: light;
+    font-size: 0.8rem;
+}
+
 /* Footer styles */
 footer {
     color: #f9f7fe;
@@ -190,6 +196,16 @@ footer section:last-child {
     h2 {
         font-size: 27px;
         line-height: 34.5px;
+    }
+
+    /* Form styles */
+    .form {
+        background: linear-gradient(
+            180deg,
+            #f9e8be -55.83%,
+            #8a7980 -29.98%,
+            #29194a 100%
+        );
     }
 }
 

@@ -1,7 +1,6 @@
 'use client';
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 import Image from 'next/image';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { motion } from 'framer-motion';
@@ -21,17 +20,8 @@ const dropDown = [
 ];
 
 const Nav = () => {
-    // const [providers, setProviders] = useState(null);
     const [open, setOpen] = useState(false);
     const navRef = useRef(null);
-
-    // useEffect(() => {
-    //     const getAllProviders = async () => {
-    //         const response = await getProviders();
-    //         setProviders(response);
-    //     };
-    //     getAllProviders();
-    // }, []);
 
     return (
         <header className="px-6 py-3 md:px-10 text-sm md:text-base bg-pry-purple shadow-sm fixed z-10 left-0 top-0 right-0 flex justify-between items-center">
