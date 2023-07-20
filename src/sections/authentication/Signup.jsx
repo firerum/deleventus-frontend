@@ -113,14 +113,14 @@ export default function Signup() {
                         OR <br />
                         CONTINUE WITH
                     </header>
-                    <div className="flex gap-6 justify-center mt-6 text-2xl">
-                        <Button>
+                    <div className="mt-6 text-2xl">
+                        <Button className="border-0 px-4">
                             <FaFacebook />
                         </Button>
-                        <Button>
+                        <Button className="border-0 px-4">
                             <FaTwitter />
                         </Button>
-                        <Button>
+                        <Button className="border-0 px-4">
                             <FaGoogle />
                         </Button>
                     </div>
