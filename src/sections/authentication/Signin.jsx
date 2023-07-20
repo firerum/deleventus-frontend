@@ -30,10 +30,10 @@ export default function Signin() {
                         <div className="relative">
                             <InputField
                                 type="email"
-                                value=""
+                                value={email}
                                 placeholder="email"
                                 required
-                                onChange={(e) => console.log(e.target.value)}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaEnvelope />
