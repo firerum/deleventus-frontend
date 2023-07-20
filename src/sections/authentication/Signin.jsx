@@ -61,7 +61,10 @@ export default function Signin() {
                                 id=""
                                 onChange={(e) => console.log(e.target.value)}
                             />
-                            <Link href="#" className="order-3 ml-auto">
+                            <Link
+                                href="/reset-password"
+                                className="order-3 ml-auto"
+                            >
                                 Forgot Password?
                             </Link>
                         </div>
