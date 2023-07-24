@@ -10,7 +10,8 @@ export const SearchBox = () => {
                 value={query}
                 name="search"
                 placeholder="search by keyword e.g event"
-                onChange={() => console.log('clicked')}
+                onChange={(e) => setQuery(e.target.value)}
+                className='bg-pry-purple px-4 py-2 rounded-sm'
             />
         </div>
     );

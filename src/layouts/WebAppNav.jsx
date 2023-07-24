@@ -26,22 +26,48 @@ const navigation = {
 
 const NavLinks = ({ navigation }) => {
     return (
-        <ul className="flex flex-col">
-            {navigation.map((item) => (
-                <li
-                    key={item.name}
-                    className="mb-6 sm:text-sm flex gap-2 items-center"
-                >
+        <nav>
+            <div className="flex flex-col">
+                {navigation.map((item) => (
                     <Link
+                        key={item.name}
                         href={item?.href}
-                        className="text-xs md:text-sm font-general text-[#3E384B] order-2 no-underline hover:font-medium"
+                        className="mb-2 px-6 py-2  flex gap-2 items-center text-[#3E384B] no-underline hover:bg-dashboard-gold"
                     >
-                        <span>{item.name}</span>
+                        <span className="text-xs md:text-sm order-2 font-general">
+                            {item.name}
+                        </span>
+                        <span className="text-lg order-1">{item.icon}</span>
                     </Link>
-                    <span className="order-1 text-lg">{item.icon}</span>
-                </li>
-            ))}
-        </ul>
+                ))}
+            </div>
+        </nav>
+    );
+};
+
+const NavHeaders = () => {
+    return (
+        <div>
+            <h1 className="text-base mb-10 px-6">
+                <Link href="/">Deleventus</Link>
+            </h1>
+            <div className="mb-4">
+                <header className="mb-4 text-sm px-6">EVENTS</header>
+                <NavLinks navigation={navigation.events} />
+            </div>
+            <div className="mb-4">
+                <header className="mb-4 text-sm px-6">COMMUNICATION</header>
+                <NavLinks navigation={navigation.communications} />
+            </div>
+            <div className="mb-4">
+                <header className="mb-4 text-sm px-6">PAYMENTS</header>
+                <NavLinks navigation={navigation.payments} />
+            </div>
+            <div className="mb-4">
+                <header className="mb-4 text-sm px-6">SETTINGS</header>
+                <NavLinks navigation={navigation.settings} />
+            </div>
+        </div>
     );
 };
 
@@ -51,58 +77,20 @@ const WebAppNav = () => {
     return (
         <section>
             <div className="hidden lg:block">
-                <h1 className="text-base mb-10">
-                    <Link href="/">Deleventus</Link>
-                </h1>
-                <div className="mb-4">
-                    <header className="mb-4 text-sm">EVENTS</header>
-                    <NavLinks navigation={navigation.events} />
-                </div>
-                <div className="mb-4">
-                    <header className="mb-4 text-sm">COMMUNICATION</header>
-                    <NavLinks navigation={navigation.communications} />
-                </div>
-                <div className="mb-4">
-                    <header className="mb-4 text-sm">PAYMENTS</header>
-                    <NavLinks navigation={navigation.payments} />
-                </div>
-                <div className="mb-4">
-                    <header className="mb-4 text-sm">SETTINGS</header>
-                    <NavLinks navigation={navigation.settings} />
-                </div>
+                <NavHeaders />
             </div>
 
             {/* Mobile Navigation */}
             <div>
                 <button
-                    className="lg:hidden"
+                    className="lg:hidden p-6"
                     onClick={() => setOpen((open) => !open)}
                 >
                     <FaTh />
                 </button>
                 {open && (
                     <div className="lg:hidden">
-                        <h1 className="text-base mb-10">
-                            <Link href="/">Deleventus</Link>
-                        </h1>
-                        <div className="mb-4">
-                            <header className="mb-4 text-sm">EVENTS</header>
-                            <NavLinks navigation={navigation.events} />
-                        </div>
-                        <div className="mb-4">
-                            <header className="mb-4 text-sm">
-                                COMMUNICATION
-                            </header>
-                            <NavLinks navigation={navigation.communications} />
-                        </div>
-                        <div className="mb-4">
-                            <header className="mb-4 text-sm">PAYMENTS</header>
-                            <NavLinks navigation={navigation.payments} />
-                        </div>
-                        <div className="mb-4">
-                            <header className="mb-4 text-sm">SETTINGS</header>
-                            <NavLinks navigation={navigation.settings} />
-                        </div>
+                        <NavHeaders />
                     </div>
                 )}
             </div>

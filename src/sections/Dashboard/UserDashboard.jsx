@@ -6,11 +6,14 @@ import { SearchBox } from './SearchBox';
 
 export default function UserDashboard() {
     return (
-        <div className="bg-pry-purple overflow-hidden relative">
-            <div className="ml-40 bg-pry-purple ">
-                <header className="flex gap-4">
-                    <div>
-                        <span>{new Date().now}</span>
+        <div className="bg-pry-purple h-screen overflow-hidden relative">
+            <div className="lg:absolute top-0 bottom-0 left-56 right-0">
+                <header className="flex gap-4 justify-between items-center p-4 bg-white">
+                    <div className="flex flex-col">
+                        <span>{new Date().toLocaleDateString()}</span>
+                        <span className="text-pry-header-title text-sm font-medium">
+                            Good Morning, John Doe
+                        </span>
                     </div>
                     <SearchBox />
                     <span>
@@ -25,15 +28,18 @@ export default function UserDashboard() {
                             priority={true}
                             className="rounded-full h-8 w-8"
                         />
-                        <figcaption>
-                            <span>name</span>
-                            <span>profession</span>
+                        <figcaption className="text-sm">
+                            <span className="font-medium">Joh Doe</span>
+                            {/* <span>profession</span> */}
                         </figcaption>
                     </figure>
                 </header>
-                <main></main>
+                <main className="clear-right">
+                    Who is in the garden? A little fine girl. Can I come and see
+                    her? No no no no.
+                </main>
             </div>
-            <aside className="fixed left-0 bottom-0 top-0 z-50 w-1/3 p-6 ">
+            <aside className="fixed left-0 bottom-0 bg-white top-0 z-50 ">
                 <WebAppNav />
             </aside>
         </div>
