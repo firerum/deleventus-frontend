@@ -6,7 +6,6 @@ import Footer from './Footer';
 export const LayoutProvider = ({ children }) => {
     const pathname = usePathname();
     const paths = ['/signin', '/signup', '/dashboard', '/reset-password'];
-    console.log(pathname)
 
     return (
         <>
