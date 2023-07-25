@@ -1,14 +1,42 @@
 'use client';
+import { useState } from 'react';
 import WebAppNav from '@layouts/WebAppNav';
 import Image from 'next/image';
 import { FaRegBell } from 'react-icons/fa';
+import { MdGridView, MdFilterAlt } from 'react-icons/md';
 import { SearchBox } from './SearchBox';
 import { EventSummaryCard } from '@sections/UserEvents/EventSummaryCard';
+import { WebAppSubnav } from '@layouts/WebAppSubnav';
+
+const FormatView = () => {
+    return (
+        <div className="flex gap-8 py-6">
+            <div className="w-1/2">
+                <SearchBox
+                    className="bg-white w-full px-14 py-2 rounded-md shadow-default"
+                    placeholder="search event"
+                />
+            </div>
+            <div className="flex gap-8">
+                <button className="flex gap-2 items-center px-4 border-1 rounded-md">
+                    <MdGridView />
+                    <span>Grid</span>
+                </button>
+                <button className="flex gap-2 items-center px-4 border-1 rounded-md">
+                    <MdFilterAlt />
+                    <span>Filter</span>
+                </button>
+            </div>
+        </div>
+    );
+};
 
 export default function UserDashboard() {
+    const [tab, setTab] = useState('All');
+
     return (
-        <div className="bg-pry-purple h-screen overflow-hidden relative">
-            <div className="lg:absolute top-0 bottom-0 left-56 right-0">
+        <div className="bg-pry-purple overflow-hidden">
+            <div className="lg:pl-56">
                 <header className="flex gap-4 justify-between items-center p-4 bg-white shadow-sm">
                     <div className="hidden md:block">
                         {/* <span>{new Date().toLocaleDateString()}</span> */}
@@ -18,7 +46,10 @@ export default function UserDashboard() {
                     </div>
                     <div className="w-2/3 flex gap-4 justify-center items-center">
                         <div className="w-2/3">
-                            <SearchBox />
+                            <SearchBox
+                                className="bg-pry-purple w-full px-14 py-2 rounded-md shadow-default"
+                                placeholder="search by keyword e.g events"
+                            />
                         </div>
                         <span className="h-12 w-12 bg-pry-purple rounded-full flex justify-center items-center">
                             <FaRegBell className="lg:text-2xl" />
@@ -39,9 +70,9 @@ export default function UserDashboard() {
                     </div>
                 </header>
                 <main>
-                    <section>
-                        <h2 className='text-xl'>Events Summary</h2>
-                        <div className='grid grid-cols-2 lg:flex flex-wrap gap-6'>
+                    <section className="hidden lg:block">
+                        <h2 className="text-xl">Events Summary</h2>
+                        <div className="flex flex-wrap gap-6">
                             <EventSummaryCard />
                             <EventSummaryCard />
                             <EventSummaryCard />
@@ -49,12 +80,31 @@ export default function UserDashboard() {
                         </div>
                     </section>
                     <section>
-                        <h2 className='text-xl'>Events</h2>
-                        <div>sub navs</div>
+                        <h2 className="text-xl">Events</h2>
+                        <WebAppSubnav
+                            tabs={[
+                                'All',
+                                'Upcoming',
+                                'In-Progress',
+                                'Completed',
+                                'Cancelled',
+                            ]}
+                            setTab={setTab}
+                        />
+                        <div>
+                            <FormatView />
+                            {tab === 'All' && <div>All Events</div>}
+                            {tab === 'Upcoming' && <div>Upcoming Events</div>}
+                            {tab === 'In-Progress' && (
+                                <div>In Progress Events</div>
+                            )}
+                            {tab === 'Completed' && <div>Completed Events</div>}
+                            {tab === 'Cancelled' && <div>Cancelled Events</div>}
+                        </div>
                     </section>
                 </main>
             </div>
-            <aside className="fixed left-0 bottom-0 bg-white top-0 z-50 ">
+            <aside className="fixed left-0 bottom-0 bg-white top-0 z-50 shadow-sm">
                 <WebAppNav />
             </aside>
         </div>

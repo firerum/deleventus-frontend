@@ -34,7 +34,7 @@ const NavLinks = ({ navigation }) => {
                         href={item?.href}
                         className="mb-2 px-6 py-2  flex gap-2 items-center text-[#3E384B] no-underline hover:bg-dashboard-gold"
                     >
-                        <span className="text-xs md:text-sm order-2 font-general">
+                        <span className="md:text-sm order-2 font-general">
                             {item.name}
                         </span>
                         <span className="text-lg order-1">{item.icon}</span>

@@ -6,7 +6,7 @@ export const EventSummaryCard = () => {
             EventSummaryCard
             <p className="text-pry-header-title font-bold my-6">5</p>
             <div className="flex justify-between">
-                <span>title</span>
+                <span>Title</span>
                 <button>
                     <FaEllipsisH />
                 </button>

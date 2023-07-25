@@ -1,18 +1,22 @@
 import { useState } from 'react';
+import { MdSearch } from 'react-icons/md';
 
-export const SearchBox = () => {
+export const SearchBox = ({ className, placeholder }) => {
     const [query, setQuery] = useState('');
 
     return (
-        <div>
+        <div className="relative">
             <input
                 type="search"
                 value={query}
                 name="search"
-                placeholder="search by keyword e.g event"
+                placeholder={placeholder}
                 onChange={(e) => setQuery(e.target.value)}
-                className='bg-pry-purple w-full px-4 py-2 rounded-sm'
+                className={className}
             />
+            <span className="text-xl absolute top-[13px] left-0 px-6">
+                <MdSearch />
+            </span>
         </div>
     );
 };
