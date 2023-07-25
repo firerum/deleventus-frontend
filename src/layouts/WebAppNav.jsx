@@ -47,24 +47,32 @@ const NavLinks = ({ navigation }) => {
 
 const NavHeaders = () => {
     return (
-        <div>
+        <div className="py-6">
             <h1 className="text-base mb-10 px-6">
                 <Link href="/">Deleventus</Link>
             </h1>
             <div className="mb-4">
-                <header className="mb-4 text-sm px-6">EVENTS</header>
+                <header className="mb-4 text-sm text-[#645F6E] font-medium px-6">
+                    EVENTS
+                </header>
                 <NavLinks navigation={navigation.events} />
             </div>
             <div className="mb-4">
-                <header className="mb-4 text-sm px-6">COMMUNICATION</header>
+                <header className="mb-4 text-sm text-[#645F6E] font-medium px-6">
+                    COMMUNICATION
+                </header>
                 <NavLinks navigation={navigation.communications} />
             </div>
             <div className="mb-4">
-                <header className="mb-4 text-sm px-6">PAYMENTS</header>
+                <header className="mb-4 text-sm text-[#645F6E] font-medium px-6">
+                    PAYMENTS
+                </header>
                 <NavLinks navigation={navigation.payments} />
             </div>
             <div className="mb-4">
-                <header className="mb-4 text-sm px-6">SETTINGS</header>
+                <header className="mb-4 text-sm text-[#645F6E] font-medium px-6">
+                    SETTINGS
+                </header>
                 <NavLinks navigation={navigation.settings} />
             </div>
         </div>
@@ -83,7 +91,7 @@ const WebAppNav = () => {
             {/* Mobile Navigation */}
             <div>
                 <button
-                    className="lg:hidden p-6"
+                    className="lg:hidden absolute top-8 left-4"
                     onClick={() => setOpen((open) => !open)}
                 >
                     <FaTh />

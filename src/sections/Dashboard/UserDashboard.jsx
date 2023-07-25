@@ -7,6 +7,7 @@ import { MdGridView, MdFilterAlt } from 'react-icons/md';
 import { SearchBox } from './SearchBox';
 import { EventSummaryCard } from '@sections/UserEvents/EventSummaryCard';
 import { WebAppSubnav } from '@layouts/WebAppSubnav';
+import { EventCard, eventData } from '@sections/UserEvents/EventCard';
 
 const FormatView = () => {
     return (
@@ -35,7 +36,7 @@ export default function UserDashboard() {
     const [tab, setTab] = useState('All');
 
     return (
-        <div className="bg-pry-purple overflow-hidden">
+        <div className="bg-pry-purple min-h-screen overflow-hidden">
             <div className="lg:pl-56">
                 <header className="flex gap-4 justify-between items-center p-4 bg-white shadow-sm">
                     <div className="hidden md:block">
@@ -44,7 +45,7 @@ export default function UserDashboard() {
                             Good Morning, John Doe
                         </span>
                     </div>
-                    <div className="w-2/3 flex gap-4 justify-center items-center">
+                    <div className="md:w-2/3 flex gap-4 justify-center items-center">
                         <div className="w-2/3">
                             <SearchBox
                                 className="bg-pry-purple w-full px-14 py-2 rounded-md shadow-default"
@@ -69,7 +70,7 @@ export default function UserDashboard() {
                         </figure>
                     </div>
                 </header>
-                <main>
+                <main className="p-4 lg:p-0">
                     <section className="hidden lg:block">
                         <h2 className="text-xl">Events Summary</h2>
                         <div className="flex flex-wrap gap-6">
@@ -93,7 +94,19 @@ export default function UserDashboard() {
                         />
                         <div>
                             <FormatView />
-                            {tab === 'All' && <div>All Events</div>}
+                            {tab === 'All' && (
+                                <div className="flex flex-wrap gap-4">
+                                    {eventData.map((ev, index) => (
+                                        <EventCard
+                                            key={index}
+                                            name={ev.name}
+                                            desc={ev.desc}
+                                            date={ev.date_of_event}
+                                            avatar={ev.avatar}
+                                        />
+                                    ))}
+                                </div>
+                            )}
                             {tab === 'Upcoming' && <div>Upcoming Events</div>}
                             {tab === 'In-Progress' && (
                                 <div>In Progress Events</div>
