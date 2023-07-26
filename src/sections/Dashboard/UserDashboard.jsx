@@ -3,11 +3,12 @@ import { useState } from 'react';
 import WebAppNav from '@layouts/WebAppNav';
 import Image from 'next/image';
 import { FaRegBell } from 'react-icons/fa';
-import { MdGridView, MdFilterAlt } from 'react-icons/md';
+import { MdGridView, MdFilterAlt, MdUpload, MdCreate } from 'react-icons/md';
 import { SearchBox } from './SearchBox';
 import { EventSummaryCard } from '@sections/UserEvents/EventSummaryCard';
 import { WebAppSubnav } from '@layouts/WebAppSubnav';
 import { EventCard, eventData } from '@sections/UserEvents/EventCard';
+import { Button } from '@components/Button';
 
 const ViewFormatter = () => {
     return (
@@ -70,7 +71,17 @@ export default function UserDashboard() {
                         </figure>
                     </div>
                 </header>
-                <main className="p-6 lg:p-0">
+                <main className="p-6 lg:p-0 lg:pr-6">
+                    <div className="flex md:justify-end gap-4 py-4 text-xs md:text-sm">
+                        <Button className="flex items-center gap-2 border-1 px-4 py-2 rounded-md shadow-sm">
+                            <span className="order-2">Create Event</span>
+                            <MdCreate />
+                        </Button>
+                        <Button className="bg-btn-color text-white flex items-center gap-2 border-1 px-4 rounded-md shadow-premium">
+                            <span className="order-2">Upload Memories</span>
+                            <MdUpload />
+                        </Button>
+                    </div>
                     <section className="hidden lg:block">
                         <h2 className="text-xl">Events Summary</h2>
                         <div className="flex flex-wrap gap-6">
@@ -86,7 +97,7 @@ export default function UserDashboard() {
                             tabs={[
                                 'All',
                                 'Upcoming',
-                                'In-Progress',
+                                'Happening',
                                 'Completed',
                                 'Cancelled',
                             ]}
@@ -108,7 +119,7 @@ export default function UserDashboard() {
                                 </div>
                             )}
                             {tab === 'Upcoming' && <div>Upcoming Events</div>}
-                            {tab === 'In-Progress' && (
+                            {tab === 'Happening' && (
                                 <div>In Progress Events</div>
                             )}
                             {tab === 'Completed' && <div>Completed Events</div>}

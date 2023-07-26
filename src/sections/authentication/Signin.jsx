@@ -69,7 +69,7 @@ export default function Signin() {
                             </Link>
                         </div>
                     </div>
-                    <Button className="w-full bg-btn-color mb-2 border-0 text-[#F6F5F6]">
+                    <Button className="w-full bg-btn-color mb-2 py-3 border-0 text-[#F6F5F6]">
                         Log In
                     </Button>
                 </form>
