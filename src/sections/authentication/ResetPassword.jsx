@@ -34,10 +34,10 @@ export default function ResetPassword() {
                             </span>
                         </div>
                     </div>
-                    <Button className="w-full bg-btn-color my-4 py-3 border-0 text-[#F6F5F6]">
+                    <Button className="w-full bg-btn-color my-4 py-3 rounded-default border-0 text-[#F6F5F6]">
                         Send Reset Link
                     </Button>
-                    <Link href="/signin" className="w-full">Back to Log In</Link>
+                    <Link href="/signin" className="w-full text-[#5C73DB]">Back to Log In</Link>
                 </form>
             </div>
         </section>

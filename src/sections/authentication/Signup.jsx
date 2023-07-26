@@ -99,7 +99,7 @@ export default function Signup() {
                             />
                         </div>
                     </div>
-                    <Button className="w-full bg-btn-color mb-2 py-3 border-0 text-[#F6F5F6]">
+                    <Button className="w-full bg-btn-color mb-2 py-3 rounded-default border-0 text-[#F6F5F6]">
                         Create Account
                     </Button>
                 </form>

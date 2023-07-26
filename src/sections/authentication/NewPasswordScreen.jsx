@@ -49,7 +49,7 @@ export default function NewPasswordScreen() {
                             <FaLock />
                         </span>
                     </div>
-                    <Button className="w-full bg-btn-color my-4 py-3 border-0 text-[#F6F5F6]">
+                    <Button className="w-full bg-btn-color my-4 py-3 rounded-default border-0 text-[#F6F5F6]">
                         Reset Password
                     </Button>
                     <Link href="/signin" className="w-full">
