@@ -14,7 +14,7 @@ export const SearchBox = ({ className, placeholder }) => {
                 onChange={(e) => setQuery(e.target.value)}
                 className={className}
             />
-            <span className="text-xl absolute top-[13px] left-0 px-6">
+            <span className="text-xl absolute top-[13px] left-0 pl-6">
                 <MdSearch />
             </span>
         </div>

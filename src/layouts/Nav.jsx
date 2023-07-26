@@ -64,7 +64,7 @@ const Nav = () => {
                 </Link>
                 <Link
                     href="signup"
-                    className="py-2 px-6 text-pry-purple bg-btn-color rounded-default sm:hidden md:block "
+                    className="py-2 px-6 text-pry-purple bg-btn-color rounded-default hidden md:block"
                 >
                     Get Started
                 </Link>

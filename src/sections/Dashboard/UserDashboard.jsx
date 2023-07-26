@@ -9,7 +9,7 @@ import { EventSummaryCard } from '@sections/UserEvents/EventSummaryCard';
 import { WebAppSubnav } from '@layouts/WebAppSubnav';
 import { EventCard, eventData } from '@sections/UserEvents/EventCard';
 
-const FormatView = () => {
+const ViewFormatter = () => {
     return (
         <div className="flex gap-8 py-6">
             <div className="w-1/2">
@@ -18,7 +18,7 @@ const FormatView = () => {
                     placeholder="search event"
                 />
             </div>
-            <div className="flex gap-8">
+            <div className="flex gap-2 md:gap-8">
                 <button className="flex gap-2 items-center px-4 border-1 rounded-md">
                     <MdGridView />
                     <span>Grid</span>
@@ -70,7 +70,7 @@ export default function UserDashboard() {
                         </figure>
                     </div>
                 </header>
-                <main className="p-4 lg:p-0">
+                <main className="p-6 lg:p-0">
                     <section className="hidden lg:block">
                         <h2 className="text-xl">Events Summary</h2>
                         <div className="flex flex-wrap gap-6">
@@ -93,9 +93,9 @@ export default function UserDashboard() {
                             setTab={setTab}
                         />
                         <div>
-                            <FormatView />
+                            <ViewFormatter />
                             {tab === 'All' && (
-                                <div className="flex flex-wrap gap-4">
+                                <div className="flex flex-wrap gap-6">
                                     {eventData.map((ev, index) => (
                                         <EventCard
                                             key={index}

@@ -36,7 +36,7 @@ export const eventData = [
 
 export const EventCard = ({ name, desc, date, avatar }) => {
     return (
-        <article className="max-w-xs text-left mx-auto">
+        <article className="max-w-[300px] text-left">
             <Image
                 src={avatar}
                 width={350}
@@ -50,8 +50,8 @@ export const EventCard = ({ name, desc, date, avatar }) => {
             <Link href="#" className="hover:no-underline">
                 <div className="flex justify-start bg-white shadow-sm rounded-b-xl cursor-pointer">
                     <div className="px-4 py-8 order-2 relative">
-                        <h3 className="text-xl">{name}</h3>
-                        <p className="text-pry-text-color-1 text-sm">{desc}</p>
+                        <h3 className="text-sm">{name}</h3>
+                        <p className="text-pry-text-color-1 text-xs">{desc}</p>
                         <span className="absolute right-6 text-[#29194a] top-0 pt-[2.3rem]">
                             <FaExternalLinkAlt />
                         </span>
