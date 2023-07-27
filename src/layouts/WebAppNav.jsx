@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import Link from 'next/link';
 import {
@@ -12,15 +13,21 @@ import { FaTh, FaBrain } from 'react-icons/fa';
 
 const navigation = {
     events: [
-        { name: 'My Events', icon: <MdEvent />, href: '' },
-        { name: 'Memories', icon: <FaBrain />, href: '' },
-        { name: 'Live Events', icon: <MdVideoCameraBack />, href: '' },
+        { name: 'My Events', icon: <MdEvent />, href: 'my-events' },
+        { name: 'Memories', icon: <FaBrain />, href: 'memories' },
+        {
+            name: 'Live Events',
+            icon: <MdVideoCameraBack />,
+            href: '/live-events',
+        },
     ],
-    communications: [{ name: 'Messages', icon: <MdMessage />, href: '' }],
-    payments: [{ name: 'Payments', icon: <MdPayments />, href: '' }],
+    communications: [
+        { name: 'Messages', icon: <MdMessage />, href: 'communications' },
+    ],
+    payments: [{ name: 'Payments', icon: <MdPayments />, href: 'payments' }],
     settings: [
-        { name: 'Account Settings', icon: <MdSettings />, href: '' },
-        { name: 'Help and Support', icon: <MdHelpOutline />, href: '' },
+        { name: 'Account Settings', icon: <MdSettings />, href: 'settings' },
+        { name: 'Help and Support', icon: <MdHelpOutline />, href: 'support' },
     ],
 };
 

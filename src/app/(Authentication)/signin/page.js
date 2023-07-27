@@ -1,4 +1,4 @@
-import Signin from '@sections/authentication/Signin';
+import Signin from "@sections/authentication/Signin";
 
 export default function SigninPage() {
     return (
