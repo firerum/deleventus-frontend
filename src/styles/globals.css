@@ -157,6 +157,18 @@ footer section:last-child {
     right: 50px;
 }
 
+/*Web App Sub Navigation styles*/
+.subnav:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 100%;
+    width: 1px;
+    background-color: #807C89;
+    padding-block: 0.5rem;
+    opacity: .3;
+}
+
 /* Swiper styles */
 .swiper-slide {
     height: auto !important;

@@ -39,7 +39,7 @@ export default function UserDashboard() {
     return (
         <div className="bg-pry-purple min-h-screen overflow-hidden">
             <div className="lg:pl-56">
-                <header className="flex gap-4 justify-between items-center p-4 bg-white shadow-sm">
+                <header className="flex gap-4 justify-between items-center p-4 bg-white rounded-bl-lg shadow-sm">
                     <div className="hidden md:block">
                         {/* <span>{new Date().toLocaleDateString()}</span> */}
                         <span className="text-pry-header-title text-sm font-medium">
@@ -73,17 +73,17 @@ export default function UserDashboard() {
                 </header>
                 <main className="p-6 lg:p-0 lg:pr-6">
                     <div className="flex md:justify-end gap-4 py-4 text-xs md:text-sm">
-                        <Button className="flex items-center gap-2 border-1 px-4 py-2 rounded-md shadow-sm">
+                        <Button className="flex items-center gap-2 border-1 px-4 py-3 rounded-md shadow-sm">
                             <span className="order-2">Create Event</span>
                             <MdCreate />
                         </Button>
-                        <Button className="bg-btn-color text-white flex items-center gap-2 border-1 px-4 rounded-md shadow-premium">
+                        <Button className="bg-btn-color text-white flex items-center gap-2 border-1 px-4 py-3 rounded-md shadow-premium">
                             <span className="order-2">Upload Memories</span>
                             <MdUpload />
                         </Button>
                     </div>
                     <section className="hidden lg:block">
-                        <h2 className="text-xl">Events Summary</h2>
+                        <h2 className="text-xl pb-2">Events Summary</h2>
                         <div className="flex flex-wrap gap-6">
                             <EventSummaryCard />
                             <EventSummaryCard />
