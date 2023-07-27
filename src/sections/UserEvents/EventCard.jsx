@@ -43,15 +43,16 @@ export const EventCard = ({ name, desc, date, avatar }) => {
                 height={50}
                 alt="featured event one"
                 className="inline-block w-full h-auto"
-                priority={true}
                 placeholder="blur"
                 blurDataURL={avatar}
             />
-            <Link href="#" className="hover:no-underline">
+            <Link href={`/events/${name}`} className="hover:no-underline">
                 <div className="flex justify-start bg-white shadow-sm rounded-b-xl cursor-pointer">
                     <div className="px-4 py-8 order-2 relative">
                         <h3 className="text-base">{name}</h3>
-                        <p className="text-pry-text-color-1 text-sm lg:text-xs">{desc}</p>
+                        <p className="text-pry-text-color-1 text-sm lg:text-xs">
+                            {desc}
+                        </p>
                         <span className="absolute right-6 text-[#29194a] top-0 pt-[2.3rem]">
                             <FaExternalLinkAlt />
                         </span>

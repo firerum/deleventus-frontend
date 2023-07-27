@@ -13,8 +13,8 @@ import { FaTh, FaBrain } from 'react-icons/fa';
 
 const navigation = {
     events: [
-        { name: 'My Events', icon: <MdEvent />, href: 'my-events' },
-        { name: 'Memories', icon: <FaBrain />, href: 'memories' },
+        { name: 'My Events', icon: <MdEvent />, href: '/events' },
+        { name: 'Memories', icon: <FaBrain />, href: '/memories' },
         {
             name: 'Live Events',
             icon: <MdVideoCameraBack />,
@@ -22,12 +22,12 @@ const navigation = {
         },
     ],
     communications: [
-        { name: 'Messages', icon: <MdMessage />, href: 'communications' },
+        { name: 'Messages', icon: <MdMessage />, href: '/communications' },
     ],
-    payments: [{ name: 'Payments', icon: <MdPayments />, href: 'payments' }],
+    payments: [{ name: 'Payments', icon: <MdPayments />, href: '/payments' }],
     settings: [
-        { name: 'Account Settings', icon: <MdSettings />, href: 'settings' },
-        { name: 'Help and Support', icon: <MdHelpOutline />, href: 'support' },
+        { name: 'Account Settings', icon: <MdSettings />, href: '/settings' },
+        { name: 'Help and Support', icon: <MdHelpOutline />, href: '/support' },
     ],
 };
 
@@ -98,13 +98,13 @@ const WebAppNav = () => {
             {/* Mobile Navigation */}
             <div>
                 <button
-                    className="lg:hidden absolute top-8 left-4"
+                    className="lg:hidden absolute top-8 left-6"
                     onClick={() => setOpen((open) => !open)}
                 >
                     <FaTh />
                 </button>
                 {open && (
-                    <div className="lg:hidden">
+                    <div className="lg:hidden mt-16">
                         <NavHeaders />
                     </div>
                 )}

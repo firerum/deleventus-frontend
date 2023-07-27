@@ -1,6 +1,6 @@
 export const WebAppSubnav = ({ tabs, setTab }) => {
     return (
-        <div className="flex items-center overflow-x-scroll">
+        <div className="flex items-center overflow-x-scroll scroll-smooth">
             {tabs.map((nav, index) => (
                 <div
                     key={index}

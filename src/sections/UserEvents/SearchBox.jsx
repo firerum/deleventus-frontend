@@ -1,3 +1,4 @@
+'use client';
 import { useState } from 'react';
 import { MdSearch } from 'react-icons/md';
 
