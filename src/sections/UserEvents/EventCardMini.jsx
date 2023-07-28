@@ -1,15 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaLink, FaEllipsisV } from 'react-icons/fa';
+import { FaLink } from 'react-icons/fa';
 
-export const eventData = [
+export const eventData2 = [
     {
         name: 'Artistry Pro Met Gala',
         desc: `Immerse yourself in a night of artistic brilliance at the Artistry Gala,
          featuring captivating performances, stunning exhibits, and an opportunity
           to celebrate the beauty of art.
         `,
-        date_of_event: 'Jan 17',
+        date_of_event: 'Jan 17, 2023',
         avatar: '/images/featured_event_image1.jpeg',
         icon: '',
     },
@@ -19,22 +19,22 @@ export const eventData = [
         where experts gather to discuss about innovative and conservative solutions 
         for a greener future generation.
         `,
-        date_of_event: 'Jan 17',
+        date_of_event: 'Jan 17, 2023',
         avatar: '/images/featured_event_image_2.jpeg',
         icon: '',
     },
     {
-        name: 'Startup Launchpad',
+        name: 'Startup Launchpad Of the Silicon Valley is Here',
         desc: `Join aspiring entrepreneurs, founders and industry experts at the Startup Launchpad, 
         where groundbreaking startups pitch their ideas, network, and seek investment opportunities.
         `,
-        date_of_event: 'Jan 17',
+        date_of_event: 'Jan 17, 2023',
         avatar: '/images/featured_event_image_3.jpeg',
         icon: '',
     },
 ];
 
-export const EventCard = ({ name, desc, date, avatar }) => {
+export const EventCardMini = ({ name, date, avatar }) => {
     return (
         <article className="max-w-[300px] mx-auto text-left">
             <Image
@@ -47,19 +47,18 @@ export const EventCard = ({ name, desc, date, avatar }) => {
                 blurDataURL={avatar}
             />
             <Link href={`/events/${name}`} className="hover:no-underline">
-                <div className="flex justify-start bg-white shadow-sm rounded-b-xl cursor-pointer">
-                    <div className="px-4 py-8 order-2 relative">
-                        <h3 className="text-base">{name}</h3>
-                        <p className="text-pry-text-color-1 text-sm lg:text-xs">
-                            {desc}
-                        </p>
-                        <span className="absolute right-6 text-[#29194a] top-0 pt-[2.3rem]">
+                <div className="flex flex-col gap-2 justify-start p-4 bg-white shadow-sm rounded-b-xl cursor-pointer">
+                    <h3 className="text-xs order-2 whitespace-nowrap text-ellipsis overflow-hidden">
+                        {name}
+                    </h3>
+                    <div className="flex justify-between items-center order-1">
+                        <span className="text-[#29194a] text-xs order-2">
                             <FaLink />
                         </span>
+                        <span className="font-semibold text-[10px] text-secondary-gold">
+                            {date}
+                        </span>
                     </div>
-                    <span className="order-1 py-8 pl-4 font-semibold text-secondary-gold">
-                        {date}
-                    </span>
                 </div>
             </Link>
         </article>
