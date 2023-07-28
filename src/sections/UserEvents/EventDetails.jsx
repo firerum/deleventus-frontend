@@ -13,7 +13,7 @@ export default function EventDetails() {
     return (
         <div className="p-6 lg:p-0 lg:pr-6">
             <div className="py-4">
-                My Events &gt; <span className="font-bold">Event Name</span>{' '}
+                My Events &gt; <span className="font-bold">Event Name</span>
             </div>
             <section className="hidden lg:block">
                 <h2 className="text-xl pb-2">Events Summary</h2>
@@ -28,6 +28,7 @@ export default function EventDetails() {
                 <WebAppSubnav
                     tabs={['Overview', 'Guest List', 'Media']}
                     setTab={setTab}
+                    tab={tab}
                 />
                 <div>
                     <ViewFormatter />

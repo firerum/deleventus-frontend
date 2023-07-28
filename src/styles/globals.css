@@ -130,6 +130,7 @@ footer section:last-child {
     background: var(--gold-secondary-g-300, #f5d88f);
     filter: blur(52.710025787353516px);
 }
+
 /* Contact style */
 .contact {
     background-color: #29194a;
@@ -158,15 +159,30 @@ footer section:last-child {
 }
 
 /*Web App Sub Navigation styles*/
-.subnav:not(:last-child)::after {
+.subnav::-webkit-scrollbar {
+    display: none;
+}
+
+.selected-tab:not(:last-child)::after {
     content: '';
     position: absolute;
     top: 12px;
     left: 100%;
     width: 1px;
-    background-color: #807C89;
+    background-color: #807c89;
     padding-block: 0.5rem;
-    opacity: .3;
+    opacity: 0.3;
+}
+
+.selected-tab-active::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    border-radius: 4px;
+    background-color: #786995;
 }
 
 /* Swiper styles */

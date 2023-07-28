@@ -1,13 +1,15 @@
-export const WebAppSubnav = ({ tabs, setTab }) => {
+export const WebAppSubnav = ({ tabs, setTab, tab }) => {
     return (
-        <div className="flex items-center overflow-x-scroll scroll-smooth">
-            {tabs.map((nav, index) => (
+        <div className="subnav flex items-center overflow-x-scroll overscroll-contain">
+            {tabs.map((selectedTab, index) => (
                 <div
                     key={index}
-                    onClick={() => setTab(nav)}
-                    className="relative subnav text-pry-text-color-2 font-medium py-2 px-4 first-of-type:pl-0 cursor-pointer hover:text-btn-color"
+                    onClick={() => setTab(selectedTab)}
+                    className={`relative selected-tab text-pry-text-color-2 font-medium py-2 px-4 first-of-type:pl-0 cursor-pointer hover:text-btn-color ${
+                        selectedTab === tab && 'selected-tab-active'
+                    }`}
                 >
-                    {nav}
+                    {selectedTab}
                 </div>
             ))}
         </div>

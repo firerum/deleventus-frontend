@@ -21,7 +21,7 @@ export default function MyEvents() {
                     <EventSummaryCard />
                 </div>
             </section>
-            <section className='py-0'>
+            <section className="py-0">
                 <h2 className="text-xl">Events</h2>
                 <WebAppSubnav
                     tabs={[
@@ -32,15 +32,15 @@ export default function MyEvents() {
                         'Cancelled',
                     ]}
                     setTab={setTab}
+                    tab={tab}
                 />
                 <div>
                     <ViewFormatter />
                     {tab === 'All' && (
                         <div className="flex flex-wrap gap-4">
                             {eventData2.map((ev, index) => (
-                                <div className="w-40">
+                                <div className="w-40" key={index}>
                                     <EventCardMini
-                                        key={index}
                                         name={ev.name}
                                         date={ev.date_of_event}
                                         avatar={ev.avatar}
