@@ -27,7 +27,7 @@ export default function MyEvents() {
                     tabs={[
                         'All',
                         'Upcoming',
-                        'Happening',
+                        'In-Progress',
                         'Completed',
                         'Cancelled',
                     ]}
@@ -50,7 +50,7 @@ export default function MyEvents() {
                         </div>
                     )}
                     {tab === 'Upcoming' && <div>Upcoming Events</div>}
-                    {tab === 'Happening' && <div>In Progress Events</div>}
+                    {tab === 'In-Progress' && <div>In Progress Events</div>}
                     {tab === 'Completed' && <div>Completed Events</div>}
                     {tab === 'Cancelled' && <div>Cancelled Events</div>}
                 </div>

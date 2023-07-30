@@ -20,7 +20,7 @@ export const EventGuests = () => {
             <ViewFormatter />
             <section className="bg-white sm:rounded-lg shadow-default pl-4 p-2">
                 <h3>Total Guests</h3>
-                <div className="relative overflow-x-auto shadow-subtle sm:rounded-lg">
+                <div className="relative overflow-x-auto border-1">
                     <table className="w-full text-sm text-left text-[#726D7C]">
                         <thead className="w-full text-xs uppercase bg-[#FAFAFB] text-[#3E384B]">
                             <tr>
@@ -56,8 +56,8 @@ export const EventGuests = () => {
                         <tbody>
                             {guests.map((guest, index) => (
                                 <tr key={index} className="bg-white border-b">
-                                    <td class="w-4 p-4">
-                                        <div class="flex items-center">
+                                    <td className="w-4 p-4">
+                                        <div className="flex items-center">
                                             <input
                                                 id="checkbox-table-search-1"
                                                 type="checkbox"

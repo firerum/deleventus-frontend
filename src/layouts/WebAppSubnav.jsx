@@ -5,7 +5,7 @@ export const WebAppSubnav = ({ tabs, setTab, tab }) => {
                 <div
                     key={index}
                     onClick={() => setTab(selectedTab)}
-                    className={`relative selected-tab text-pry-text-color-2 font-medium py-2 px-4 first-of-type:pl-0 cursor-pointer hover:text-btn-color ${
+                    className={`relative selected-tab whitespace-nowrap text-pry-text-color-2 font-medium py-2 px-4 first-of-type:pl-0 cursor-pointer hover:text-btn-color ${
                         selectedTab === tab && 'selected-tab-active'
                     }`}
                 >
