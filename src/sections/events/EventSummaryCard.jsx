@@ -4,9 +4,9 @@ export const EventSummaryCard = () => {
     return (
         <div className="bg-white w-max p-6 rounded-md shadow-default">
             EventSummaryCard
-            <p className="text-pry-header-title font-bold my-6">5</p>
+            <p className="text-pry-header-title font-bold mt-6 mb-2">50</p>
             <div className="flex justify-between">
-                <span>Title</span>
+                <span className="text-pry-text-color-1 text-sm capitalize">Attendance</span>
                 <button>
                     <FaEllipsisH />
                 </button>
