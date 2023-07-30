@@ -1,4 +1,4 @@
-import EventDetails from '@sections/UserEvents/EventDetails';
+import EventDetails from '@sections/events/EventDetails';
 
 export default function EventIdPage() {
     return (

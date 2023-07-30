@@ -6,7 +6,7 @@ import { faqs } from '@faq';
 import { CreateAccountCard } from '@sections/landing-page/CreateAccountCard';
 import Link from 'next/link';
 import { Testimonial, testimonialData } from './Testimonial';
-import { EventCard, eventData } from '@sections/UserEvents/EventCard';
+import { EventCard, eventData } from '@sections/events/EventCard';
 import { Carousel } from '@components/Carousels/Carousel';
 import { CreateAccountCarousel } from './CreateAccountCarousel';
 import { FirstProcess } from './getting-started/FirstProcess';

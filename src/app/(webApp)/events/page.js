@@ -1,4 +1,4 @@
-import MyEvents from '@sections/UserEvents/MyEvents';
+import MyEvents from '@sections/events/MyEvents';
 
 export default function EventsPage() {
     return (

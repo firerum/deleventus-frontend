@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { FaRegBell } from 'react-icons/fa';
-import { SearchBox } from '@sections/UserEvents/SearchBox';
+import { SearchBox } from '@sections/events/SearchBox';
 
 const WebAppHeader = () => {
     return (

@@ -1,4 +1,4 @@
-import { SearchBox } from '@sections/UserEvents/SearchBox';
+import { SearchBox } from '@sections/events/SearchBox';
 import { MdGridView, MdFilterAlt } from 'react-icons/md';
 import { Button } from './Button';
 
