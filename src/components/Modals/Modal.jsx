@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { Button } from '@components/Button';
 import { ReactPortal } from './ReactPortal';
+import { FaTimes } from 'react-icons/fa';
 
 export const Modal = ({ children, isOpen, handleClose }) => {
     // enable escape key to close the modal for accessibility
@@ -21,8 +22,11 @@ export const Modal = ({ children, isOpen, handleClose }) => {
     return (
         <ReactPortal wrapperId="modal-container">
             <div className="modal">
-                <Button onClick={handleClose} className="close-btn">
-                    Close
+                <Button
+                    onClick={handleClose}
+                    className="bg-white shadow-default p-2 absolute top-2 right-4"
+                >
+                    <FaTimes />
                 </Button>
                 <div className="modal-content">{children}</div>
             </div>
