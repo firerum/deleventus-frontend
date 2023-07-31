@@ -36,7 +36,7 @@ export const eventData2 = [
 
 export const EventCardMini = ({ name, date, avatar }) => {
     return (
-        <article className="max-w-[300px] mx-auto text-left">
+        <article className="max-w-[300px] text-left">
             <Image
                 src={avatar}
                 width={350}

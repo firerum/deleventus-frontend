@@ -8,13 +8,15 @@ import {
     MdVideoCameraBack,
     MdEvent,
     MdMessage,
+    MdDashboard,
 } from 'react-icons/md';
 import { FaTh, FaBrain } from 'react-icons/fa';
 
 const navigation = {
     events: [
+        { name: 'Timeline', icon: <MdDashboard />, href: '/timeline' },
         { name: 'My Events', icon: <MdEvent />, href: '/events' },
-        { name: 'Memories', icon: <FaBrain />, href: '/memories' },
+        // { name: 'Memories', icon: <FaBrain />, href: '/memories' },
         {
             name: 'Live Events',
             icon: <MdVideoCameraBack />,
