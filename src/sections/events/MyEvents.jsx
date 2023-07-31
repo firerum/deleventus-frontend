@@ -6,6 +6,7 @@ import { WebAppSubnav } from '@layouts/WebAppSubnav';
 import { EventCardMini, eventData2 } from './EventCardMini';
 import { Button } from '@components/Button';
 import { ViewFormatter } from '@components/ViewFormatter';
+import { CreateEvent } from './CreateEvent';
 
 export default function MyEvents() {
     const [tab, setTab] = useState('All');

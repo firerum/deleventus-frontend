@@ -19,7 +19,7 @@ export const EventGuests = () => {
         <>
             <ViewFormatter />
             <section className="bg-white sm:rounded-lg shadow-default pl-4 p-2">
-                <h3>Total Guests</h3>
+                <h3>Total Guests {guests.length}</h3>
                 <div className="relative overflow-x-auto border-1">
                     <table className="w-full text-sm text-left text-[#726D7C]">
                         <thead className="w-full text-xs uppercase bg-[#FAFAFB] text-[#3E384B]">
@@ -32,7 +32,7 @@ export const EventGuests = () => {
                                             className="w-4 h-4 rounded"
                                         />
                                         <label
-                                            for="checkbox-all-search"
+                                            htmlFor="checkbox-all-search"
                                             className="sr-only"
                                         >
                                             checkbox
@@ -65,7 +65,7 @@ export const EventGuests = () => {
                                                 className="w-4 h-4 rounded"
                                             />
                                             <label
-                                                for="checkbox-table-search-1"
+                                                htmlFor="checkbox-table-search-1"
                                                 className="sr-only"
                                             >
                                                 checkbox
