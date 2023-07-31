@@ -7,9 +7,12 @@ import { EventCardMini, eventData2 } from './EventCardMini';
 import { Button } from '@components/Button';
 import { ViewFormatter } from '@components/ViewFormatter';
 import { CreateEvent } from './CreateEvent';
+import { Modal } from '@components/Modals/Modal';
 
 export default function MyEvents() {
     const [tab, setTab] = useState('All');
+    // modal state
+    const [isOpen, setIsOpen] = useState(false);
 
     return (
         <main className="p-6 lg:p-0 lg:pr-6">
@@ -56,8 +59,14 @@ export default function MyEvents() {
                     {tab === 'Cancelled' && <div>Cancelled Events</div>}
                 </div>
             </section>
+            <Modal isOpen={isOpen} handleClose={() => setIsOpen(false)}>
+                <CreateEvent />
+            </Modal>
             <div className="fixed right-4 bottom-6">
-                <Button className="bg-white flex items-center border-1 px-4 py-4 mb-4 rounded-full shadow-sm">
+                <Button
+                    className="bg-white flex items-center border-1 px-4 py-4 mb-4 rounded-full shadow-sm"
+                    onClick={() => setIsOpen((prev) => !prev)}
+                >
                     {/* <span className="order-2">Create Event</span> */}
                     <MdCreate />
                 </Button>
