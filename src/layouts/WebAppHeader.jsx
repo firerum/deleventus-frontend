@@ -4,7 +4,7 @@ import { SearchBox } from '@sections/events/SearchBox';
 
 const WebAppHeader = () => {
     return (
-        <header className="flex gap-4 justify-between items-center p-4 bg-white rounded-bl-lg shadow-sm">
+        <header className="flex gap-4 justify-between items-center p-4 bg-white  shadow-sm">
             <div className="hidden md:block">
                 {/* <span>{new Date().toLocaleDateString()}</span> */}
                 <span className="text-pry-header-title text-sm font-medium">

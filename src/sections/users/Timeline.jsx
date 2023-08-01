@@ -10,18 +10,20 @@ export default function Timeline() {
     return (
         <main className="p-6 lg:pl-0 lg:pr-6">
             <section className="py-0">
-                <WebAppSubnav
-                    tabs={[
-                        'All',
-                        'Wedding',
-                        'Birthday',
-                        'Anniversary',
-                        'Convocation',
-                        'Other',
-                    ]}
-                    setTab={setTab}
-                    tab={tab}
-                />
+                <div className="sticky top-[75px] bg-pry-purple">
+                    <WebAppSubnav
+                        tabs={[
+                            'All',
+                            'Wedding',
+                            'Birthday',
+                            'Anniversary',
+                            'Convocation',
+                            'Other',
+                        ]}
+                        setTab={setTab}
+                        tab={tab}
+                    />
+                </div>
                 <div className="mt-6">
                     {tab === 'All' && (
                         <div className="flex flex-wrap gap-4">
