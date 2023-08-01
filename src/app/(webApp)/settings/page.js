@@ -1,3 +1,9 @@
+import AccountSettings from '@sections/users/AccountSettings';
+
 export default function SettingsPage() {
-    return <div>My Account Settings</div>;
+    return (
+        <div>
+            <AccountSettings></AccountSettings>
+        </div>
+    );
 }

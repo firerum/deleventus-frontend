@@ -8,7 +8,7 @@ export default function Timeline() {
     const [tab, setTab] = useState('All');
 
     return (
-        <div className="p-6 lg:pl-0 flex gap-8">
+        <main className="p-6 lg:pl-0 lg:pr-6">
             <section className="py-0">
                 <WebAppSubnav
                     tabs={[
@@ -26,9 +26,10 @@ export default function Timeline() {
                     {tab === 'All' && (
                         <div className="flex flex-wrap gap-4">
                             {eventData.map((eve, index) => (
-                                <EventCardMini
+                                <EventCard
                                     key={index}
                                     name={eve.name}
+                                    desc={eve.desc}
                                     date={eve.date_of_event}
                                     avatar={eve.avatar}
                                 />
@@ -38,7 +39,7 @@ export default function Timeline() {
                     {tab === 'Wedding' && <div>All Public Weddings</div>}
                     {tab === 'Birthday' && <div>All Public Birthdays</div>}
                     {tab === 'Anniversary' && (
-                        <div>All Pu1blic Anniversaries</div>
+                        <div>All Public Anniversaries</div>
                     )}
                     {tab === 'Convocation' && (
                         <div>All Public Convocations</div>
@@ -46,7 +47,6 @@ export default function Timeline() {
                     {tab === 'Other' && <div>All Other Events</div>}
                 </div>
             </section>
-            {/* <section className="bg-purple-base w-1/3 h-screen"></section> */}
-        </div>
+        </main>
     );
 }

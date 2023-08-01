@@ -15,6 +15,7 @@ import { ThirdProcess } from './getting-started/ThirdProcess';
 import { FourthProcess } from './getting-started/FourthProcess';
 import { HomeAnimation } from './Animation/HomeAnimation';
 import { motion } from 'framer-motion';
+import { FaPause, FaPlay } from 'react-icons/fa';
 
 const processCard = [
     {
@@ -50,10 +51,11 @@ const processCard = [
 export default function Home() {
     /* count to change get started step on button click */
     const [count, setCount] = useState(0);
+    const [videoDemo, setVideoDemo] = useState(false);
 
     return (
         <div className="px-6 md:text-center md:px-16">
-            <section className="banner bg-pry-purple text-center xl:h-screen pt-24 px-6 md:px-16 -mx-6 md:-mx-16 ">
+            <section className="banner bg-pry-purple text-center xl:h-screen pt-24 pb-0 px-6 md:px-16 -mx-6 md:-mx-16 overflow-hidden">
                 <HomeAnimation>
                     <div>
                         <motion.h1>
@@ -83,8 +85,15 @@ export default function Home() {
                     >
                         Get Started
                     </Link>
-                    <Button outlined={'true'}>Watch Demo</Button>
+                    <Button
+                        className="border-1 border-btn-color py-4 px-8 flex justify-center items-center gap-4 font-medium rounded-default"
+                        onClick={() => setVideoDemo((prev) => !prev)}
+                    >
+                        <span className="order-2"> Watch Demo</span>
+                        {videoDemo ? <FaPause /> : <FaPlay />}
+                    </Button>
                 </div>
+                <div className="bg-white shadow-sm max-w-3xl mx-auto h-56 mt-8 rounded-t-xl"></div>
             </section>
             <section className="">
                 <div className="mb-20 xxl:grid grid-cols-2 justify-between xxl:text-left">
