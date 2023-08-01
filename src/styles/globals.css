@@ -89,7 +89,7 @@ footer section:last-child {
 }
 
 /* Input type file styles */
-input::file-selector-button {
+input.create-event::file-selector-button {
     border: none;
     background-color: #e7ddfb;
     width: 100%;
@@ -279,7 +279,7 @@ input::file-selector-button {
         line-height: 34.5px;
     }
 
-    /* Form styles */
+    /* Authentication form styles */
     .form {
         background: linear-gradient(
             180deg,

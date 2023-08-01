@@ -66,7 +66,7 @@ export const CreateEvent = () => {
                         <input
                             type="file"
                             id="file"
-                            className="absolute inset-0"
+                            className="create-event absolute inset-0"
                             onChange={(e) => console.log(e.target.files[0])}
                         />
                     </div>
