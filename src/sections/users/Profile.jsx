@@ -1,13 +1,16 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Button } from '@components/Button';
 import { InputField } from '@components/InputField';
 import { FaEnvelope, FaLock, FaPhoneAlt, FaUser } from 'react-icons/fa';
 import { Modal } from '@components/Modals/Modal';
+import Image from 'next/image';
 
 export const Profile = () => {
     const [firstName, setFirstName] = useState('');
+    const [avatar, setAvatar] = useState('');
     const [isOpen, setIsOpen] = useState(false);
+    const targetRef = useRef();
 
     const DeactivateAccount = () => {
         return (
@@ -25,6 +28,11 @@ export const Profile = () => {
         );
     };
 
+    const handleImage = (e) => {
+        const blobURL = URL.createObjectURL(e.target.files[0]);
+        setAvatar(blobURL);
+    };
+
     return (
         <section className="mt-4">
             <h2 className="text-base">Profile Settings</h2>
@@ -34,9 +42,28 @@ export const Profile = () => {
             >
                 <div className="border-b-1">
                     <h3>Personal Details</h3>
-                    <div>
-                        <label htmlFor="avatar"></label>
-                        <input type="file" name="" id="avatar" />
+                    <div className="flex flex-col border-b-1 mb-8">
+                        <label
+                            htmlFor="avatar"
+                            className="order-3 text-center w-max my-4 rounded-default bg-btn-color text-white text-sm py-2 px-4"
+                        >
+                            Upload
+                        </label>
+                        <Image
+                            src={avatar}
+                            width={80}
+                            height={80}
+                            alt="user image"
+                            className="h-20 w-20 lg:h-32 lg:w-32 rounded-full"
+                        />
+                        <input
+                            type="file"
+                            name=""
+                            id="avatar"
+                            ref={targetRef}
+                            onChange={(e) => handleImage(e)}
+                            className="hidden"
+                        />
                     </div>
                     <div className="md:flex justify-between gap-8">
                         <div className="relative md:w-1/2">

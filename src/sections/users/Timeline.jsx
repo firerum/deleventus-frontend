@@ -10,7 +10,7 @@ export default function Timeline() {
     return (
         <main className="p-6 lg:pl-0 lg:pr-6">
             <section className="py-0">
-                <div className="sticky top-[75px] bg-pry-purple">
+                <div className="sticky top-[75px] z-20 bg-pry-purple">
                     <WebAppSubnav
                         tabs={[
                             'All',

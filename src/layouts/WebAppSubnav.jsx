@@ -1,6 +1,6 @@
 export const WebAppSubnav = ({ tabs, setTab, tab }) => {
     return (
-        <div className="subnav flex items-center overflow-x-scroll overscroll-contain">
+        <div className="subnav flex items-center border-b-1 overflow-x-scroll overscroll-contain">
             {tabs.map((selectedTab, index) => (
                 <div
                     key={index}

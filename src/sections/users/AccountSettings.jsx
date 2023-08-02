@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { WebAppSubnav } from '@layouts/WebAppSubnav';
 import { Profile } from './Profile';
 import { Button } from '@components/Button';
+import { Notification } from './Notification';
 
 export default function AccountSettings() {
     const [tab, setTab] = useState('Profile');
@@ -24,7 +25,7 @@ export default function AccountSettings() {
                 />
                 <div>
                     {tab === 'Profile' && <Profile />}
-                    {tab === 'Notifications' && <></>}
+                    {tab === 'Notifications' && <Notification />}
                     {tab === 'Payment and Billing' && <></>}
                 </div>
             </section>
