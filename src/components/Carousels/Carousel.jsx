@@ -1,20 +1,15 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
 const settings = {
     spaceBetween: 40,
     slidesPerView: 1,
-    // autoplay: {
-    //     delay: 3500,
-    //     disableOnInteraction: true,
-    // },
-    // pagination: {
-    //     clickable: true,
-    //     el: '.swiper-custom-pagination',
-    // },
-    // modules: [Pagination, Autoplay],
+    pagination: {
+        clickable: true,
+    },
+    modules: [Pagination],
     breakpoints: {
         640: {
             slidesPerView: 2,

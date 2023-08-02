@@ -14,10 +14,10 @@ export const Profile = () => {
 
     const DeactivateAccount = () => {
         return (
-            <div className="bg-btn-color p-8 flex flex-col justify-center items-center text-white text-center">
+            <div className="bg-purple-base p-8 flex flex-col justify-center items-center text-white text-center">
                 Are you sure you want to Deactivate your Account ?
                 <div className="flex gap-4 mt-4">
-                    <Button className="py-2 px-4 bg-purple-base text-white rounded-default">
+                    <Button className="py-2 px-4 bg-green-700 text-white rounded-default">
                         Yes
                     </Button>
                     <Button className="py-2 px-4 bg-red-700 text-white">
@@ -45,12 +45,12 @@ export const Profile = () => {
                     <div className="flex flex-col border-b-1 mb-8">
                         <label
                             htmlFor="avatar"
-                            className="order-3 text-center w-max my-4 rounded-default bg-btn-color text-white text-sm py-2 px-4"
+                            className="order-3 text-center w-max my-4 cursor-pointer rounded-default bg-btn-color text-white text-sm py-2 px-4 lg:px-8"
                         >
                             Upload
                         </label>
                         <Image
-                            src={avatar}
+                            src={avatar || '/images/universal_DP.jpeg'}
                             width={80}
                             height={80}
                             alt="user image"

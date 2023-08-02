@@ -216,6 +216,15 @@ input.create-event::file-selector-button {
     background-color: #786995;
 }
 
+/* Event card paragraph styles */
+.desc {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+
 /* Swiper styles */
 .swiper-slide {
     height: auto !important;
@@ -223,6 +232,13 @@ input.create-event::file-selector-button {
 
 .swiper-content {
     height: 100% !important;
+}
+
+/* I changed the absolute default position to relative 
+to give the bullets enough space above the event card */
+.swiper-pagination {
+    position: relative !important;
+    margin-top: 20px;
 }
 
 //TODO find a more elegant solution to the propblem
@@ -256,14 +272,6 @@ input.create-event::file-selector-button {
         height: 623px !important;
     }
 }
-
-/* .swiper-pagination-bullets.swiper-pagination-horizontal {
-    width: max-content !important;
-}
-.swiper-custom-pagination {
-    margin: auto;
-    margin-top: 20px;
-} */
 
 /* Media Queries for fonts */
 @media screen and (min-width: 768px) {
