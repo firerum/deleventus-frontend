@@ -13,11 +13,11 @@ export default function NewPasswordScreen() {
     // console.log('this is the token', searchParams.get('token'));
 
     return (
-        <section className="text-center xl:flex">
-            <div className="hidden xl:block form pt-24 w-1/2"></div>
-            <div className="bg-white pt-24 xl:w-1/2 text-center py-12 max-w-3xl mx-auto rounded-md">
+        <section className="text-center lg:flex">
+            <div className="hidden lg:block h-screen form w-1/2"></div>
+            <div className="bg-white pt-24 lg:w-1/2 text-center py-12 max-w-3xl mx-auto rounded-md">
                 <div className="mb-12">
-                    <h1 className="mb-1">Set New Password</h1>
+                    <h1 className="mb-1 text-2xl">Set New Password</h1>
                     <p className="px-10">
                         Create a new password for your account. Make sure it's
                         secure, memorable and different from the previous

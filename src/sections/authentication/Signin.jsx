@@ -9,7 +9,6 @@ import {
     FaFacebook,
     FaLock,
     FaEnvelope,
-    FaUser,
 } from 'react-icons/fa';
 import Link from 'next/link';
 
@@ -18,11 +17,11 @@ export default function Signin() {
     const [email, setEmail] = useState('');
 
     return (
-        <section className="text-center xl:flex">
-            <div className="hidden xl:block form pt-24 w-1/2"></div>
-            <div className="bg-white pt-24 xl:w-1/2 text-center py-12 max-w-3xl mx-auto rounded-md">
+        <section className="text-center lg:flex">
+            <div className="hidden lg:block form pt-24 w-1/2"></div>
+            <div className="bg-white pt-24 lg:w-1/2 text-center py-12 max-w-3xl mx-auto rounded-md">
                 <div className="mb-12">
-                    <h1 className="mb-1">Welcome Back</h1>
+                    <h1 className="mb-1 text-2xl">Welcome Back</h1>
                     <p>Please enter your details to Log In</p>
                 </div>
                 <form className="text-pry-text-color-1 px-10 max-w-md mx-auto">

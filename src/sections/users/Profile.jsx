@@ -9,10 +9,29 @@ export const Profile = () => {
     const [firstName, setFirstName] = useState('');
     const [isOpen, setIsOpen] = useState(false);
 
+    const DeactivateAccount = () => {
+        return (
+            <div className="bg-btn-color p-8 flex flex-col justify-center items-center text-white text-center">
+                Are you sure you want to Deactivate your Account ?
+                <div className="flex gap-4 mt-4">
+                    <Button className="py-2 px-4 bg-purple-base text-white rounded-default">
+                        Yes
+                    </Button>
+                    <Button className="py-2 px-4 bg-red-700 text-white">
+                        No
+                    </Button>
+                </div>
+            </div>
+        );
+    };
+
     return (
         <section className="mt-4">
             <h2 className="text-base">Profile Settings</h2>
-            <form className="bg-white px-4 py-8 shadow-default rounded-lg">
+            <form
+                onSubmit={(e) => e.preventDefault()}
+                className="bg-white px-4 py-8 shadow-sm rounded-lg"
+            >
                 <div className="border-b-1">
                     <h3>Personal Details</h3>
                     <div>
@@ -128,7 +147,7 @@ export const Profile = () => {
                         whenever you're ready. We hope to see you back soon!"
                     </p>
                     <Modal isOpen={isOpen} handleClose={() => setIsOpen(false)}>
-                        Are Your Sure you want to Deactive your Account
+                        <DeactivateAccount />
                     </Modal>
                     <Button
                         className={

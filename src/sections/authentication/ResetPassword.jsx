@@ -9,11 +9,11 @@ export default function ResetPassword() {
     const [email, setEmail] = useState('');
 
     return (
-        <section className="text-center xl:flex">
-            <div className="hidden xl:block h-screen form pt-24 w-1/2"></div>
-            <div className="bg-white pt-24 xl:w-1/2 text-center py-12 max-w-3xl mx-auto rounded-md">
+        <section className="text-center lg:flex">
+            <div className="hidden lg:block h-screen form pt-24 w-1/2"></div>
+            <div className="bg-white pt-24 lg:w-1/2 text-center py-12 max-w-3xl mx-auto rounded-md">
                 <div className="mb-12">
-                    <h1 className="mb-1">Forgot Password</h1>
+                    <h1 className="mb-1 text-2xl">Forgot Password</h1>
                     <p className="px-10 max-w-lg mx-auto">
                         Enter the email address associated with your account.
                         We'll send a reset link to verify your identity

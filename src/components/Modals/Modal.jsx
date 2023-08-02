@@ -22,13 +22,15 @@ export const Modal = ({ children, isOpen, handleClose }) => {
     return (
         <ReactPortal wrapperId="modal-container">
             <div className="modal">
-                <Button
-                    onClick={handleClose}
-                    className="bg-white shadow-default p-2 absolute top-2 right-4"
-                >
-                    <FaTimes />
-                </Button>
-                <div className="modal-content">{children}</div>
+                <div className="modal-content">
+                    <Button
+                        onClick={handleClose}
+                        className="bg-white shadow-lg p-1 absolute top-0 right-0"
+                    >
+                        <FaTimes />
+                    </Button>
+                    {children}
+                </div>
             </div>
         </ReactPortal>
     );

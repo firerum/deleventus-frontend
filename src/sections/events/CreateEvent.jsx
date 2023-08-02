@@ -40,8 +40,8 @@ export const CreateEvent = () => {
     const [eventName, setEventName] = useState('');
 
     return (
-        <div className="lg:flex w-full text-sm max-w-4xl">
-            <section className="hidden px-8 lg:w-1/2 lg:block bg-purple-base">
+        <div className="w-full md:flex text-sm max-w-4xl">
+            <section className="hidden px-8 md:w-1/2 md:block bg-purple-base">
                 <ol className="text-[#E0DFE3] gap-8 list-decimal" type="i">
                     {eventSteps.map((step, index) => (
                         <li key={index} className="flex flex-col mb-8">
@@ -53,7 +53,7 @@ export const CreateEvent = () => {
                     ))}
                 </ol>
             </section>
-            <section className="bg-white max-w-md mx-auto px-8 pt-8 mb-0 lg:w-1/2 overflow-hidden">
+            <section className="bg-white px-8 pt-8 mb-0 md:w-1/2 overflow-hidden">
                 <h1 className="text-xl">Create Event</h1>
                 <form className="text-pry-text-color-1 w-full pb-12">
                     <div className="relative mb-4 h-40">

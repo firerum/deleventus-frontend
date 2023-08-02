@@ -26,11 +26,11 @@ export default function Signup() {
     // }, []);
 
     return (
-        <section className="text-center xl:flex">
-            <div className="hidden xl:block form pt-24 w-1/2"></div>
-            <div className="bg-white pt-24 xl:w-1/2 text-center py-12 max-w-3xl mx-auto rounded-md">
+        <section className="text-center lg:flex">
+            <div className="hidden lg:block form pt-24 w-1/2"></div>
+            <div className="bg-white pt-24 lg:w-1/2 text-center py-12 max-w-3xl mx-auto rounded-md">
                 <div className="mb-12">
-                    <h1 className="mb-1">Create an Account</h1>
+                    <h1 className="mb-1 text-2xl">Create an Account</h1>
                     <p>Please enter your details to continue</p>
                 </div>
                 <form className="text-pry-text-color-1 px-10 max-w-md mx-auto">

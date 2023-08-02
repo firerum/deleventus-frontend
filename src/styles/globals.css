@@ -100,21 +100,19 @@ input.create-event::file-selector-button {
 /* Modal styles */
 .modal {
     position: fixed;
-    inset: 0; /* I used inset sets all 4 values (top right bottom left) at once */
+    inset: 0; /* I used inset to set all 4 values (top right bottom left) at once */
     background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     transition: all 0.3s ease-in-out;
     overflow: hidden;
     z-index: 999;
-    padding: 20px 20px 20px 20px;
+    padding: 20px;
 }
 
 .modal-content {
-    width: 100%;
-    height: 100%;
+    position: relative;
     /* background-color: #282c34; */
     display: flex;
     align-items: center;
@@ -299,5 +297,10 @@ input.create-event::file-selector-button {
     h2 {
         font-size: 33.18px;
         line-height: 32px;
+    }
+
+    /* I had to do this because the close button was shifting out of the modal from this screen upward*/
+    .modal {
+        align-items: center;
     }
 }
