@@ -3,6 +3,15 @@ import { useState } from 'react';
 import { InputField } from '@components/InputField';
 import { Button } from '@components/Button';
 import { SelectField } from '@components/SelectField';
+import {
+    FaPencilAlt,
+    FaMoneyBill,
+    FaTicketAlt,
+    FaIdBadge,
+    FaComments,
+} from 'react-icons/fa';
+import Image from 'next/image';
+import { CreateEventCarousel } from '@components/Carousels/CreateEventCarousel';
 
 const eventSteps = [
     {
@@ -36,8 +45,173 @@ const eventSteps = [
     },
 ];
 
-export const CreateEvent = () => {
+const EventInformation = () => {
     const [eventName, setEventName] = useState('');
+    const [eventAvatar, setEventAvatar] = useState('');
+
+    const handleImage = (e) => {
+        const blobURL = URL.createObjectURL(e.target.files[0]);
+        setEventAvatar(blobURL);
+    };
+
+    return (
+        <div>
+            <div className="relative mb-4 h-40 border-1 rounded-md overflow-hidden">
+                <label
+                    className="font-bold cursor-pointer text-xl text-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10 text-white bg-btn-color p-4 shadow-default rounded-full"
+                    htmlFor="file"
+                >
+                    <FaPencilAlt />
+                </label>
+                <Image
+                    src={eventAvatar || '/images/universal_DP.jpeg'}
+                    width={80}
+                    height={80}
+                    alt="event image"
+                    className="w-full h-auto absolute inset-0 object-contain"
+                />
+                <input
+                    type="file"
+                    id="file"
+                    className="hidden"
+                    onChange={(e) => handleImage(e)}
+                />
+            </div>
+            <InputField
+                type="text"
+                value={eventName}
+                placeholder="event name"
+                required
+                onChange={(e) => setEventName(e.target.value)}
+            />
+            <div className="lg:flex justify-between">
+                <InputField
+                    type="date"
+                    placeholder="date"
+                    required
+                    onChange={(e) => console.log(e.target.value)}
+                />
+                <InputField
+                    type="time"
+                    placeholder="time"
+                    required
+                    onChange={(e) => console.log(e.target.value)}
+                />
+            </div>
+            {/* TODO work on the select component */}
+            <SelectField>{['wedding', 'birthday']}</SelectField>
+            <div className="lg:flex justify-between">
+                <SelectField>{['Nigeria', 'Ghana']}</SelectField>
+                <SelectField>{['PUBLIC', 'PRIVATE', 'PERSONAL']}</SelectField>
+            </div>
+        </div>
+    );
+};
+const EventDescription = () => {
+    return (
+        <div>
+            <textarea
+                name=""
+                id=""
+                cols="30"
+                rows="10"
+                placeholder="enter event description"
+                className="border-1 w-full p-4"
+            ></textarea>
+        </div>
+    );
+};
+const EventTicket = () => {
+    const [ticketName, setTicketName] = useState('');
+
+    return (
+        <div>
+            <div className="relative">
+                <InputField
+                    type="text"
+                    value={ticketName}
+                    placeholder="ticket name"
+                    required
+                    onChange={(e) => setTicketName(e.target.value)}
+                />
+                <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                    <FaIdBadge />
+                </span>
+            </div>
+            <div className="relative">
+                <InputField
+                    type="text"
+                    value="description"
+                    placeholder="description"
+                    required
+                    onChange={(e) => setTicketName(e.target.value)}
+                />
+                <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                    <FaComments />
+                </span>
+            </div>
+            <div>
+                <label htmlFor="">Ticket Type</label>
+                <SelectField>{['FREE', 'PAID']}</SelectField>
+            </div>
+            <div className="relative">
+                <InputField
+                    type="number"
+                    value="available quantity"
+                    placeholder="available quantity"
+                    required
+                    onChange={(e) => setTicketName(e.target.value)}
+                />
+                <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                    <FaTicketAlt />
+                </span>
+            </div>
+            <div className="relative">
+                <InputField
+                    type="number"
+                    value="price"
+                    placeholder="price"
+                    required
+                    onChange={(e) => setTicketName(e.target.value)}
+                />
+                <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                    <FaMoneyBill />
+                </span>
+            </div>
+            <div className="lg:flex justify-between">
+                <InputField
+                    type="date"
+                    placeholder="date"
+                    required
+                    onChange={(e) => console.log(e.target.value)}
+                />
+                <InputField
+                    type="time"
+                    placeholder="time"
+                    required
+                    onChange={(e) => console.log(e.target.value)}
+                />
+            </div>
+            <div className="lg:flex justify-between">
+                <InputField
+                    type="date"
+                    placeholder="date"
+                    required
+                    onChange={(e) => console.log(e.target.value)}
+                />
+                <InputField
+                    type="time"
+                    placeholder="time"
+                    required
+                    onChange={(e) => console.log(e.target.value)}
+                />
+            </div>
+        </div>
+    );
+};
+
+export const CreateEvent = () => {
+    const [carouselCount, setCarouselCount] = useState(0);
 
     return (
         <div className="w-full md:flex text-sm max-w-4xl">
@@ -56,50 +230,31 @@ export const CreateEvent = () => {
             <section className="bg-white px-8 pt-8 mb-0 md:w-1/2 overflow-hidden">
                 <h1 className="text-xl">Create Event</h1>
                 <form className="text-pry-text-color-1 w-full pb-12">
-                    <div className="relative mb-4 h-40">
-                        <label
-                            className="font-bold text-xl text-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10 text-pry-header-title"
-                            htmlFor="file"
-                        >
-                            Choose Event Image
-                        </label>
-                        <input
-                            type="file"
-                            id="file"
-                            className="create-event absolute inset-0"
-                            onChange={(e) => console.log(e.target.files[0])}
-                        />
-                    </div>
-                    <InputField
-                        type="text"
-                        value={eventName}
-                        placeholder="event name"
-                        required
-                        onChange={(e) => setEventName(e.target.value)}
-                    />
-                    <div className="lg:flex justify-between">
-                        <InputField
-                            type="date"
-                            placeholder="date"
-                            required
-                            onChange={(e) => console.log(e.target.value)}
-                        />
-                        <InputField
-                            type="time"
-                            placeholder="time"
-                            required
-                            onChange={(e) => console.log(e.target.value)}
-                        />
-                    </div>
-                    {/* TODO work on the select component */}
-                    <SelectField>{['wedding', 'birthday']}</SelectField>
-                    {/* <SelectField>{['Nigeria', 'Ghana']}</SelectField> */}
+                    <CreateEventCarousel count={carouselCount}>
+                        <EventInformation />
+                        <EventDescription />
+                        <EventTicket />
+                    </CreateEventCarousel>
                 </form>
                 <div className="bg-[#FAFAFB] flex py-4 -mx-8 px-8 justify-end gap-4">
-                    <Button className="border-1 text-pry-header-title py-2 px-4 rounded-default">
+                    <Button
+                        className="border-1 text-pry-header-title py-2 px-4 rounded-default"
+                        onClick={() =>
+                            setCarouselCount((prev) =>
+                                prev <= 0 ? 0 : prev - 1
+                            )
+                        }
+                    >
                         Back
                     </Button>
-                    <Button className="bg-btn-color py-2 px-4 rounded-default text-white">
+                    <Button
+                        className="bg-btn-color py-2 px-4 rounded-default text-white"
+                        onClick={() =>
+                            setCarouselCount((prev) =>
+                                prev >= 2 ? 2 : prev + 1
+                            )
+                        }
+                    >
                         Next
                     </Button>
                 </div>

@@ -106,7 +106,7 @@ input.create-event::file-selector-button {
     flex-direction: column;
     justify-content: center;
     transition: all 0.3s ease-in-out;
-    overflow: hidden;
+    overflow-y: scroll;
     z-index: 999;
     padding: 20px;
 }

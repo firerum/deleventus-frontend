@@ -64,7 +64,7 @@ export default function MyEvents() {
             </Modal>
 
             <Button
-                className="bg-white fixed right-4 bottom-6 flex items-center border-1 px-4 py-4 mb-4 rounded-full shadow-sm"
+                className="bg-white fixed right-4 bottom-4 flex items-center border-1 px-4 py-4 mb-4 rounded-full shadow-sm"
                 onClick={() => setIsOpen((prev) => !prev)}
             >
                 {/* <span className="order-2">Create Event</span> */}
