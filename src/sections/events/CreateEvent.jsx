@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { InputField } from '@components/InputField';
 import { Button } from '@components/Button';
-import { SelectField } from '@components/SelectField';
 import {
     FaPencilAlt,
     FaMoneyBill,
@@ -12,6 +11,8 @@ import {
 } from 'react-icons/fa';
 import Image from 'next/image';
 import { CreateEventCarousel } from '@components/Carousels/CreateEventCarousel';
+import { SelectField } from '@components/SelectField';
+import { InputDateTimeField } from '@components/InputField';
 
 const eventSteps = [
     {
@@ -68,7 +69,7 @@ const EventInformation = () => {
                     width={80}
                     height={80}
                     alt="event image"
-                    className="w-full h-auto absolute inset-0 object-contain"
+                    className="w-full absolute inset-0 object-contain"
                 />
                 <input
                     type="file"
@@ -77,33 +78,45 @@ const EventInformation = () => {
                     onChange={(e) => handleImage(e)}
                 />
             </div>
-            <InputField
-                type="text"
-                value={eventName}
-                placeholder="event name"
-                required
-                onChange={(e) => setEventName(e.target.value)}
-            />
-            <div className="lg:flex justify-between">
+            <div className="relative">
                 <InputField
+                    type="text"
+                    value={eventName}
+                    placeholder="event name"
+                    required
+                    onChange={(e) => setEventName(e.target.value)}
+                />
+                <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                    <FaIdBadge />
+                </span>
+            </div>
+            <div className="lg:flex gap-4">
+                <InputDateTimeField
                     type="date"
                     placeholder="date"
-                    required
+                    required={true}
                     onChange={(e) => console.log(e.target.value)}
                 />
-                <InputField
+                <InputDateTimeField
                     type="time"
                     placeholder="time"
-                    required
+                    required={true}
                     onChange={(e) => console.log(e.target.value)}
                 />
             </div>
-            {/* TODO work on the select component */}
-            <SelectField>{['wedding', 'birthday']}</SelectField>
-            <div className="lg:flex justify-between">
-                <SelectField>{['Nigeria', 'Ghana']}</SelectField>
-                <SelectField>{['PUBLIC', 'PRIVATE', 'PERSONAL']}</SelectField>
-            </div>
+            <SelectField header={'event category'}>
+                <div>wedding</div>
+                <div>birthday</div>
+            </SelectField>
+            <SelectField header={'event location'}>
+                <div>nigeria</div>
+                <div>ghana</div>
+            </SelectField>
+            <SelectField header={'privacy status'}>
+                <div>public</div>
+                <div>private</div>
+                <div>personal</div>
+            </SelectField>
         </div>
     );
 };
@@ -123,6 +136,8 @@ const EventDescription = () => {
 };
 const EventTicket = () => {
     const [ticketName, setTicketName] = useState('');
+    const [desc, setDesc] = useState('');
+    const [quantity, setQuantity] = useState(0);
 
     return (
         <div>
@@ -134,35 +149,37 @@ const EventTicket = () => {
                     required
                     onChange={(e) => setTicketName(e.target.value)}
                 />
-                <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                <span className="absolute left-0 top-[16px] pl-6 pr-2 border-r-1 border-solid">
                     <FaIdBadge />
                 </span>
             </div>
             <div className="relative">
                 <InputField
                     type="text"
-                    value="description"
+                    value={desc}
                     placeholder="description"
                     required
-                    onChange={(e) => setTicketName(e.target.value)}
+                    onChange={(e) => setDesc(e.target.value)}
                 />
-                <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                <span className="absolute left-0 top-[16px] pl-6 pr-2 border-r-1 border-solid">
                     <FaComments />
                 </span>
             </div>
-            <div>
-                <label htmlFor="">Ticket Type</label>
-                <SelectField>{['FREE', 'PAID']}</SelectField>
+            <div className="bg-white">
+                <SelectField header={'TICKET TYPE'}>
+                    <div>Free</div>
+                    <div>Paid</div>
+                </SelectField>
             </div>
             <div className="relative">
                 <InputField
                     type="number"
-                    value="available quantity"
+                    value={quantity}
                     placeholder="available quantity"
                     required
-                    onChange={(e) => setTicketName(e.target.value)}
+                    onChange={(e) => setQuantity(e.target.value)}
                 />
-                <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                <span className="absolute left-0 top-[16px] pl-6 pr-2 border-r-1 border-solid">
                     <FaTicketAlt />
                 </span>
             </div>
@@ -174,35 +191,35 @@ const EventTicket = () => {
                     required
                     onChange={(e) => setTicketName(e.target.value)}
                 />
-                <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                <span className="absolute left-0 top-[16px] pl-6 pr-2 border-r-1 border-solid">
                     <FaMoneyBill />
                 </span>
             </div>
-            <div className="lg:flex justify-between">
-                <InputField
+            <div className="lg:flex gap-4 justify-between">
+                <InputDateTimeField
                     type="date"
                     placeholder="date"
-                    required
+                    required={true}
                     onChange={(e) => console.log(e.target.value)}
                 />
-                <InputField
+                <InputDateTimeField
                     type="time"
                     placeholder="time"
-                    required
+                    required={true}
                     onChange={(e) => console.log(e.target.value)}
                 />
             </div>
-            <div className="lg:flex justify-between">
-                <InputField
+            <div className="lg:flex gap-4 justify-between">
+                <InputDateTimeField
                     type="date"
                     placeholder="date"
-                    required
+                    required={true}
                     onChange={(e) => console.log(e.target.value)}
                 />
-                <InputField
+                <InputDateTimeField
                     type="time"
                     placeholder="time"
-                    required
+                    required={true}
                     onChange={(e) => console.log(e.target.value)}
                 />
             </div>
@@ -227,7 +244,7 @@ export const CreateEvent = () => {
                     ))}
                 </ol>
             </section>
-            <section className="bg-white px-8 pt-8 mb-0 md:w-1/2 overflow-hidden">
+            <section className="bg-pry-purple px-8 pt-8 mb-0 md:w-1/2 overflow-hidden">
                 <h1 className="text-xl">Create Event</h1>
                 <form className="text-pry-text-color-1 w-full pb-12">
                     <CreateEventCarousel count={carouselCount}>

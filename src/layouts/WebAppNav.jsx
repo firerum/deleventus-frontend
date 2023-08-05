@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import {
     MdPayments,
@@ -11,6 +11,7 @@ import {
     MdDashboard,
 } from 'react-icons/md';
 import { FaTh, FaBrain } from 'react-icons/fa';
+import { useCloseElementOnClick } from '@utils/useCloseElementOnClick';
 
 const navigation = {
     events: [
@@ -90,9 +91,12 @@ const NavHeaders = () => {
 
 const WebAppNav = () => {
     const [open, setOpen] = useState(false);
+    const ref = useRef();
+    // close the menu if clicked outside of it
+    useCloseElementOnClick(ref, () => setOpen(false));
 
     return (
-        <section>
+        <section ref={ref}>
             <div className="hidden lg:block">
                 <NavHeaders />
             </div>
