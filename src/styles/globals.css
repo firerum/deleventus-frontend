@@ -216,12 +216,19 @@ input.create-event::file-selector-button {
     background-color: #786995;
 }
 
-/* Event card paragraph styles */
+/* Event card paragraph and title styles */
 .desc {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 4; /* number of lines to show */
     line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+.title {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* number of lines to show */
+    line-clamp: 1;
     -webkit-box-orient: vertical;
 }
 

@@ -10,14 +10,13 @@ import {
     MdMessage,
     MdDashboard,
 } from 'react-icons/md';
-import { FaTh, FaBrain } from 'react-icons/fa';
+import { FaTh } from 'react-icons/fa';
 import { useCloseElementOnClick } from '@utils/useCloseElementOnClick';
 
 const navigation = {
     events: [
-        { name: 'Timeline', icon: <MdDashboard />, href: '/timeline' },
+        { name: 'Explore', icon: <MdDashboard />, href: '/timeline' },
         { name: 'My Events', icon: <MdEvent />, href: '/events' },
-        // { name: 'Memories', icon: <FaBrain />, href: '/memories' },
         {
             name: 'Live Events',
             icon: <MdVideoCameraBack />,

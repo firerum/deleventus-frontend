@@ -8,7 +8,7 @@ import { ulVariants, liVariants } from '@utils/framer-motion/variants';
 
 const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'Services', href: '#' },
+    { name: 'Explore', href: '/explore' },
     { name: 'Contact', href: '#' },
     { name: 'Pricing', href: '/pricing' },
 ];
@@ -24,7 +24,7 @@ const Nav = () => {
     const navRef = useRef(null);
 
     return (
-        <header className="px-6 py-3 md:px-10 text-sm md:text-base bg-pry-purple shadow-sm fixed z-10 left-0 top-0 right-0 flex justify-between items-center">
+        <header className="px-6 py-3 md:px-10 text-sm md:text-base bg-pry-purple shadow-sm fixed z-30 left-0 top-0 right-0 flex justify-between items-center">
             <h1 className="mb-0 text-lg">
                 <Link
                     href="/"

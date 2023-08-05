@@ -2,20 +2,14 @@
 import { useState } from 'react';
 import { WebAppSubnav } from '@layouts/WebAppSubnav';
 import { EventCard, eventData } from '@sections/events/EventCard';
-import { EventCardMini } from '@sections/events/EventCardMini';
-import { Button } from '@components/Button';
-import { Modal } from '@components/Modals/Modal';
-import { CreateEvent } from '@sections/events/CreateEvent';
-import { MdCreate } from 'react-icons/md';
 
-export default function Timeline() {
+export default function Explore() {
     const [tab, setTab] = useState('All');
-    const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <main className="p-6 lg:pl-0 lg:pr-6">
-            <section className="py-0">
-                <div className="sticky top-[75px] z-20 bg-pry-purple">
+        <main className="bg-pry-purple min-h-screen text-center pt-20 pb-12 px-6 md:px-16 overflow-clip">
+            <section>
+                <div className="sticky top-[63px] z-20 bg-pry-purple">
                     <WebAppSubnav
                         tabs={[
                             'All',
@@ -23,6 +17,7 @@ export default function Timeline() {
                             'Birthday',
                             'Anniversary',
                             'Convocation',
+                            'Concert',
                             'Other',
                         ]}
                         setTab={setTab}
@@ -53,15 +48,6 @@ export default function Timeline() {
                     )}
                     {tab === 'Other' && <div>All Other Events</div>}
                 </div>
-                <Modal isOpen={isOpen} handleClose={() => setIsOpen(false)}>
-                    <CreateEvent />
-                </Modal>
-                <Button
-                    className="bg-white fixed right-4 bottom-4 flex items-center border-1 px-4 py-4 mb-4 rounded-full shadow-sm"
-                    onClick={() => setIsOpen((prev) => !prev)}
-                >
-                    <MdCreate />
-                </Button>
             </section>
         </main>
     );
