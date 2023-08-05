@@ -1,10 +1,15 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Button } from '@components/Button';
 import { ReactPortal } from './ReactPortal';
 import { FaTimes } from 'react-icons/fa';
+import { useCloseElementOnClick } from '@utils/useCloseElementOnClick';
 
 export const Modal = ({ children, isOpen, handleClose }) => {
+    const ref = useRef(null);
+    // close modal when clicked outside of it
+    useCloseElementOnClick(ref, () => handleClose());
+
     // enable escape key to close the modal for accessibility
     useEffect(() => {
         const closeModalOnEscapeKey = (e) =>
@@ -22,7 +27,7 @@ export const Modal = ({ children, isOpen, handleClose }) => {
     return (
         <ReactPortal wrapperId="modal-container">
             <div className="modal">
-                <div className="modal-content">
+                <div className="modal-content" ref={ref}>
                     <Button
                         onClick={handleClose}
                         className="bg-white shadow-lg p-1 absolute top-0 right-0"

@@ -22,7 +22,7 @@ export const CreateEventCarousel = ({ children, count }) => {
         <Swiper
             {...settings}
             ref={sliderRef}
-            style={{ 'overflow-y': 'visible' }}
+            style={{ 'overflowY': 'visible' }}
         >
             {children.map((child, index) => (
                 <SwiperSlide key={index}>{child}</SwiperSlide>

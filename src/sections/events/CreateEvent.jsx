@@ -46,6 +46,8 @@ const eventSteps = [
     },
 ];
 
+const category = ['wedding', 'birthday', 'convocation', 'anniversary', 'other'];
+
 const EventInformation = () => {
     const [eventName, setEventName] = useState('');
     const [eventAvatar, setEventAvatar] = useState('');
@@ -105,8 +107,9 @@ const EventInformation = () => {
                 />
             </div>
             <SelectField header={'event category'}>
-                <div>wedding</div>
-                <div>birthday</div>
+                {category.map((cat, index) => (
+                    <div key={index}>{cat}</div>
+                ))}
             </SelectField>
             <SelectField header={'event location'}>
                 <div>nigeria</div>
