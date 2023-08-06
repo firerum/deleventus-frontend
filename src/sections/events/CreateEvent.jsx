@@ -232,6 +232,7 @@ const EventTicket = () => {
 
 export const CreateEvent = () => {
     const [carouselCount, setCarouselCount] = useState(0);
+    console.log(carouselCount);
 
     return (
         <div className="w-full md:flex text-sm max-w-4xl">
@@ -258,7 +259,8 @@ export const CreateEvent = () => {
                 </form>
                 <div className="bg-[#FAFAFB] flex py-4 -mx-8 px-8 justify-end gap-4">
                     <Button
-                        className="border-1 text-pry-header-title py-2 px-4 rounded-default"
+                        disabled={carouselCount === 0 && true}
+                        className="border-1 text-pry-header-title py-2 px-4 rounded-default disabled:bg-gray-300 disabled:text-white"
                         onClick={() =>
                             setCarouselCount((prev) =>
                                 prev <= 0 ? 0 : prev - 1
@@ -268,7 +270,8 @@ export const CreateEvent = () => {
                         Back
                     </Button>
                     <Button
-                        className="bg-btn-color py-2 px-4 rounded-default text-white"
+                        disabled={carouselCount === 2 && true}
+                        className="bg-btn-color py-2 px-4 rounded-default text-white disabled:bg-gray-300"
                         onClick={() =>
                             setCarouselCount((prev) =>
                                 prev >= 2 ? 2 : prev + 1

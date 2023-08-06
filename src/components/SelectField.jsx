@@ -49,12 +49,17 @@ export const SelectField = ({ children, header }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
     const ref = useRef();
+    const optionItem = useRef();
+    const listBox = useRef();
+    // close select when clicked anywhere outside of it
     useCloseElementOnClick(ref, () => setIsOpen(false));
 
     const onOptionClicked = (value) => () => {
         setSelectedOption(value);
         setIsOpen(false);
     };
+
+    //TODO work on accessibility for screen readers
 
     return (
         <div className="App">
@@ -63,7 +68,7 @@ export const SelectField = ({ children, header }) => {
                     className="w-full font-light flex justify-between items-center gap-4"
                     onClick={() => setIsOpen((prev) => !prev)}
                 >
-                    <DropDownHeader>
+                    <DropDownHeader aria-labelledby={header}>
                         {selectedOption ? (
                             <span className="font-normal">
                                 {selectedOption}
@@ -80,10 +85,12 @@ export const SelectField = ({ children, header }) => {
                 </div>
 
                 {isOpen && (
-                    <DropDownList>
+                    <DropDownList role="listbox" ref={listBox}>
                         {children.map((child, index) => (
                             <ListItem
                                 key={index}
+                                role="option"
+                                ref={optionItem}
                                 onClick={onOptionClicked(child)}
                             >
                                 {child}
