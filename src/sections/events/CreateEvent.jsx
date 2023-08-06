@@ -48,7 +48,7 @@ const eventSteps = [
 
 const category = ['wedding', 'birthday', 'convocation', 'anniversary', 'other'];
 
-const EventInformation = () => {
+export const EventInformation = () => {
     const [eventName, setEventName] = useState('');
     const [eventAvatar, setEventAvatar] = useState('');
 
@@ -59,7 +59,7 @@ const EventInformation = () => {
 
     return (
         <div>
-            <div className="relative mb-4 h-40 border-1 rounded-md overflow-hidden">
+            <div className="relative mb-4 border-1 rounded-md overflow-hidden">
                 <label
                     className="font-bold cursor-pointer text-xl text-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10 text-white bg-btn-color p-4 shadow-default rounded-full"
                     htmlFor="file"
@@ -71,7 +71,10 @@ const EventInformation = () => {
                     width={80}
                     height={80}
                     alt="event image"
-                    className="w-full absolute inset-0 object-contain"
+                    loading="lazy"
+                    blurDataURL="loading"
+                    placeholder="blur"
+                    className="w-full max-w-full h-auto max-h-56"
                 />
                 <input
                     type="file"
@@ -123,7 +126,7 @@ const EventInformation = () => {
         </div>
     );
 };
-const EventDescription = () => {
+export const EventDescription = () => {
     return (
         <div>
             <textarea
@@ -137,7 +140,7 @@ const EventDescription = () => {
         </div>
     );
 };
-const EventTicket = () => {
+export const EventTicket = () => {
     const [ticketName, setTicketName] = useState('');
     const [desc, setDesc] = useState('');
     const [quantity, setQuantity] = useState(0);
@@ -235,7 +238,7 @@ export const CreateEvent = () => {
     console.log(carouselCount);
 
     return (
-        <div className="w-full md:flex text-sm max-w-4xl">
+        <div className="w-full h-full md:flex text-sm max-w-4xl">
             <section className="hidden px-8 md:w-1/2 md:block bg-purple-base">
                 <ol className="text-[#E0DFE3] gap-8 list-decimal" type="i">
                     {eventSteps.map((step, index) => (
@@ -248,7 +251,7 @@ export const CreateEvent = () => {
                     ))}
                 </ol>
             </section>
-            <section className="bg-pry-purple px-8 pt-8 mb-0 md:w-1/2 overflow-hidden">
+            <section className="bg-pry-purple px-8 pt-8 mb-0 md:w-1/2 overflow-y-scroll">
                 <h1 className="text-xl">Create Event</h1>
                 <form className="text-pry-text-color-1 w-full pb-12">
                     <CreateEventCarousel count={carouselCount}>

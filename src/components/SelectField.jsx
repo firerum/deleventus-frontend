@@ -62,43 +62,39 @@ export const SelectField = ({ children, header }) => {
     //TODO work on accessibility for screen readers
 
     return (
-        <div className="App">
-            <DropDownContainer ref={ref}>
-                <div
-                    className="w-full font-light flex justify-between items-center gap-4"
-                    onClick={() => setIsOpen((prev) => !prev)}
-                >
-                    <DropDownHeader aria-labelledby={header}>
-                        {selectedOption ? (
-                            <span className="font-normal">
-                                {selectedOption}
-                            </span>
-                        ) : (
-                            <span>{header}</span>
-                        )}
-                    </DropDownHeader>
-                    <FaAngleDown
-                        className={`transition-all duration-500 linear ${
-                            isOpen ? '-rotate-180' : 'rotate-0'
-                        }`}
-                    />
-                </div>
+        <DropDownContainer ref={ref}>
+            <div
+                className="w-full font-light flex justify-between items-center gap-4"
+                onClick={() => setIsOpen((prev) => !prev)}
+            >
+                <DropDownHeader aria-labelledby={header}>
+                    {selectedOption ? (
+                        <span className="font-normal">{selectedOption}</span>
+                    ) : (
+                        <span className="title">{header}</span>
+                    )}
+                </DropDownHeader>
+                <FaAngleDown
+                    className={`transition-all duration-500 linear ${
+                        isOpen ? '-rotate-180' : 'rotate-0'
+                    }`}
+                />
+            </div>
 
-                {isOpen && (
-                    <DropDownList role="listbox" ref={listBox}>
-                        {children.map((child, index) => (
-                            <ListItem
-                                key={index}
-                                role="option"
-                                ref={optionItem}
-                                onClick={onOptionClicked(child)}
-                            >
-                                {child}
-                            </ListItem>
-                        ))}
-                    </DropDownList>
-                )}
-            </DropDownContainer>
-        </div>
+            {isOpen && (
+                <DropDownList role="listbox" ref={listBox}>
+                    {children.map((child, index) => (
+                        <ListItem
+                            key={index}
+                            role="option"
+                            ref={optionItem}
+                            onClick={onOptionClicked(child)}
+                        >
+                            {child}
+                        </ListItem>
+                    ))}
+                </DropDownList>
+            )}
+        </DropDownContainer>
     );
 };

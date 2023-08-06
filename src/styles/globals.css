@@ -113,10 +113,17 @@ input.create-event::file-selector-button {
 
 .modal-content {
     position: relative;
-    /* background-color: #282c34; */
     display: flex;
     align-items: center;
     justify-content: center;
+    max-height: 100%; /* To enable scrolling */
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.modal-content::-webkit-scrollbar {
+    /* remove scrollbar */
+    display: none;
 }
 
 /* Hero section styles */
