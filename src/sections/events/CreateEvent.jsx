@@ -235,7 +235,6 @@ export const EventTicket = () => {
 
 export const CreateEvent = () => {
     const [carouselCount, setCarouselCount] = useState(0);
-    console.log(carouselCount);
 
     return (
         <div className="w-full h-full md:flex text-sm max-w-4xl">
