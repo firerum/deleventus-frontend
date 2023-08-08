@@ -7,7 +7,7 @@ import jwtDecode from 'jwt-decode';
 import { loginUser } from '@sections/api/auth';
 
 const AuthContext = createContext({});
-const API_URL = 'http://localhost:5000/v1/api' || process.env.API_URL;
+const API_URL = process.env.API_URL || 'http://localhost:5000/v1/api';
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
