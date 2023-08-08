@@ -2,6 +2,7 @@ import '@styles/globals.css';
 import Nav from '@layouts/Nav';
 import Footer from '@layouts/Footer';
 import Provider from '@sections/authentication/Provider';
+import { AuthProvider } from '@sections/authentication/AuthProtect';
 import { Satoshi, General } from '../../../public/fonts/fonts.local';
 
 export const metadata = {
@@ -14,11 +15,13 @@ export default function RootLayout({ children }) {
         <html lang="en" className={`${Satoshi.variable} ${General.variable}`}>
             <body>
                 <Provider>
-                    <div>
-                        <Nav />
-                        {children}
-                        <Footer />
-                    </div>
+                    <AuthProvider>
+                        <div>
+                            <Nav />
+                            {children}
+                            <Footer />
+                        </div>
+                    </AuthProvider>
                 </Provider>
             </body>
         </html>
