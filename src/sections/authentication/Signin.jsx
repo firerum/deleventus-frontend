@@ -22,7 +22,7 @@ export default function Signin() {
         password: '',
     });
     const router = useRouter();
-    console.log(isAuthenticated)
+    // console.log(isAuthenticated)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
