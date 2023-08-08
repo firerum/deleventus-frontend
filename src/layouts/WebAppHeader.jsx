@@ -1,14 +1,18 @@
+'use client';
 import Image from 'next/image';
 import { FaRegBell } from 'react-icons/fa';
 import { SearchBox } from '@sections/events/SearchBox';
+import { useAuth } from '@sections/authentication/AuthProtect';
 
 const WebAppHeader = () => {
+    const { user } = useAuth();
+
     return (
         <header className="flex gap-4 justify-between items-center p-4 bg-white shadow-sm">
             <div className="hidden md:block">
                 {/* <span>{new Date().toLocaleDateString()}</span> */}
                 <span className="text-pry-header-title text-sm font-medium">
-                    Good Morning, John Doe
+                    Good Morning, {user.first_name || 'John Doe'}
                 </span>
             </div>
             <div className="w-full md:w-2/3 flex gap-4 justify-end items-center">
@@ -31,7 +35,10 @@ const WebAppHeader = () => {
                         className="rounded-full h-8 w-8 lg:h-10 lg:w-10"
                     />
                     <figcaption className="text-sm flex items-center">
-                        <span className="font-medium">John Doe</span>
+                        <span className="font-medium">
+                            {`${user.first_name}  ${user.last_name}` ||
+                                'John Doe'}
+                        </span>
                     </figcaption>
                 </figure>
             </div>

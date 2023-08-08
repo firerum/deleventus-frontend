@@ -5,12 +5,14 @@ import { InputField } from '@components/InputField';
 import { FaEnvelope, FaLock, FaPhoneAlt, FaUser } from 'react-icons/fa';
 import { Modal } from '@components/Modals/Modal';
 import Image from 'next/image';
+import { useAuth } from '@sections/authentication/AuthProtect';
 
 export const Profile = () => {
     const [firstName, setFirstName] = useState('');
     const [avatar, setAvatar] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     const targetRef = useRef();
+    const { user } = useAuth();
 
     const DeactivateAccount = () => {
         return (
@@ -69,7 +71,7 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="text"
-                                value=""
+                                value={user.first_name || ''}
                                 placeholder="first name"
                                 required
                                 onChange={(e) => console.log(e.target.value)}
@@ -81,7 +83,7 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="text"
-                                value=""
+                                value={user.first_name || 'John Doe'}
                                 placeholder="last name"
                                 required
                                 onChange={(e) => console.log(e.target.value)}
@@ -95,7 +97,7 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="email"
-                                value=""
+                                value={user.email || 'johndoe@gmail.com'}
                                 placeholder="email"
                                 required
                                 onChange={(e) => console.log(e.target.value)}
@@ -107,7 +109,7 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="text"
-                                value=""
+                                value={user.username || 'mr worldwide'}
                                 placeholder="username"
                                 required
                                 onChange={(e) => console.log(e.target.value)}
@@ -121,7 +123,7 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="telephone"
-                                value=""
+                                value={user.phone_no || '(+237) 696 88 77 55"'}
                                 placeholder="(+237) 696 88 77 55"
                                 required
                                 onChange={(e) => console.log(e.target.value)}
@@ -133,7 +135,7 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="text"
-                                value=""
+                                value={user.username || 'mr worldwide'}
                                 placeholder="username"
                                 required
                                 onChange={(e) => console.log(e.target.value)}
@@ -149,7 +151,7 @@ export const Profile = () => {
                     <div className="relative md:w-1/2">
                         <InputField
                             type="password"
-                            value=""
+                            value={user.password || '123456'}
                             placeholder="password"
                             required
                             onChange={(e) => console.log(e.target.value)}
