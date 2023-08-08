@@ -15,14 +15,10 @@ const navigation = [
     { name: 'Pricing', href: '/pricing' },
 ];
 
-const dropDown = [
-    { name: 'Dashboard', href: '/dashboard' },
-    { name: 'Settings', href: '/settings' },
-    { name: 'Signout' },
-];
+const dropDown = [{ name: 'Dashboard', href: '/dashboard' }];
 
 const Nav = () => {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, logout } = useAuth();
     const [open, setOpen] = useState(false);
     const navRef = useRef(null);
 
@@ -63,7 +59,10 @@ const Nav = () => {
 
             <div className="ml-auto">
                 {isAuthenticated ? (
-                    <Button className="py-2 text-base font-semibold">
+                    <Button
+                        className="py-2 text-base font-semibold"
+                        onClick={() => logout()}
+                    >
                         Sign out
                     </Button>
                 ) : (
@@ -116,7 +115,10 @@ const Nav = () => {
                     </motion.ul>
                     <div>
                         {isAuthenticated ? (
-                            <Button className="py-3 px-6 mb-4 w-full rounded-default border-1 border-btn-color">
+                            <Button
+                                className="py-3 px-6 mb-4 w-full rounded-default border-1 border-btn-color"
+                                onClick={() => logout()}
+                            >
                                 Sign Out
                             </Button>
                         ) : (

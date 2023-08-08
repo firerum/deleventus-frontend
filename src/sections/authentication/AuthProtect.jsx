@@ -7,6 +7,7 @@ import jwtDecode from 'jwt-decode';
 import { loginUser } from '@sections/api/auth';
 
 const AuthContext = createContext({});
+const API_URL = 'http://localhost:5000/v1/api' || process.env.API_URL;
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -20,7 +21,7 @@ export const AuthProvider = ({ children }) => {
                 const userData = jwtDecode(access_token);
                 // Get user from the backend using the access token to make sure it is a valid one
                 const response = await axios(
-                    `http://localhost:5000/v1/api/users/${userData.id}`,
+                    `${API_URL}/users/${userData.id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${access_token}`,
@@ -40,6 +41,12 @@ export const AuthProvider = ({ children }) => {
         const { access_token } = response.data;
         if (access_token) {
             Cookies.set('access_token', access_token, { expires: 60 });
+            const userData = jwtDecode(access_token);
+            const response = await axios(`${API_URL}/users/${userData.id}`, {
+                headers: {
+                    Authorization: `Bearer ${access_token}`,
+                },
+            });
             const user = response.data;
             if (user) {
                 router.push('/');
