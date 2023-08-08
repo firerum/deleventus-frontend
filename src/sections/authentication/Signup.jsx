@@ -12,10 +12,14 @@ import {
     FaUser,
 } from 'react-icons/fa';
 import Link from 'next/link';
+import { registerUser } from '@sections/api/auth';
 
 export default function Signup() {
+    const [first_name, setFirstname] = useState('');
+    const [last_name, setLastName] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [firstname, setFirstname] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     // const [providers, setProviders] = useState(null);
     // useEffect(() => {
     //     const getAllProviders = async () => {
@@ -24,7 +28,15 @@ export default function Signup() {
     //     };
     //     getAllProviders();
     // }, []);
-
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await registerUser({ first_name, last_name, email, password });
+            console.log('User registered successfully');
+        } catch (error) {
+            console.error('Error registering user:', error);
+        }
+    };
     return (
         <section className="text-center lg:flex">
             <div className="hidden lg:block form pt-24 w-1/2"></div>
@@ -33,12 +45,15 @@ export default function Signup() {
                     <h1 className="mb-1 text-2xl">Create an Account</h1>
                     <p>Please enter your details to continue</p>
                 </div>
-                <form className="text-pry-text-color-1 px-10 max-w-md mx-auto">
+                <form
+                    onSubmit={handleSubmit}
+                    className="text-pry-text-color-1 px-10 max-w-md mx-auto"
+                >
                     <div>
                         <div className="relative">
                             <InputField
                                 type="text"
-                                value={firstname}
+                                value={first_name}
                                 placeholder="first name"
                                 required
                                 onChange={(e) => setFirstname(e.target.value)}
@@ -50,10 +65,10 @@ export default function Signup() {
                         <div className="relative">
                             <InputField
                                 type="text"
-                                value=""
+                                value={last_name}
                                 placeholder="last name"
                                 required
-                                onChange={(e) => console.log(e.target.value)}
+                                onChange={(e) => setLastName(e.target.value)}
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaUser />
@@ -62,10 +77,10 @@ export default function Signup() {
                         <div className="relative">
                             <InputField
                                 type="email"
-                                value=""
+                                value={email}
                                 placeholder="email"
                                 required
-                                onChange={(e) => console.log(e.target.value)}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaEnvelope />
@@ -78,6 +93,18 @@ export default function Signup() {
                                 value={password}
                                 required
                                 onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                                <FaLock />
+                            </span>
+                        </div>
+                        <div className="relative">
+                            <InputField
+                                type="password"
+                                placeholder="password"
+                                value={confirmPassword}
+                                required
+                                onChange={(e) => setConfirmPassword(e.target.value)}
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaLock />

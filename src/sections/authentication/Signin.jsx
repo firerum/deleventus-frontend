@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { InputField } from '@components/InputField';
 import { Button } from '@components/Button';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
@@ -11,10 +12,27 @@ import {
     FaEnvelope,
 } from 'react-icons/fa';
 import Link from 'next/link';
+import { useAuth } from './AuthProtect';
+import { useMap } from 'react-use';
 
 export default function Signin() {
-    const [password, setPassword] = useState('');
-    const [email, setEmail] = useState('');
+    const { login, isAuthenticated } = useAuth();
+    const [form, { set }] = useMap({
+        email: '',
+        password: '',
+    });
+    const router = useRouter();
+    console.log(isAuthenticated)
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        login(form);
+    };
+
+    if (isAuthenticated) {
+        router.push('/');
+        return;
+    }
 
     return (
         <section className="text-center lg:flex">
@@ -24,15 +42,19 @@ export default function Signin() {
                     <h1 className="mb-1 text-2xl">Welcome Back</h1>
                     <p>Please enter your details to Log In</p>
                 </div>
-                <form className="text-pry-text-color-1 px-10 max-w-md mx-auto">
+                <form
+                    // onSubmit={handleSubmit}
+                    className="text-pry-text-color-1 px-10 max-w-md mx-auto"
+                >
                     <div>
                         <div className="relative">
                             <InputField
                                 type="email"
-                                value={email}
                                 placeholder="email"
                                 required
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(email) =>
+                                    set('email', email.target.value)
+                                }
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaEnvelope />
@@ -42,9 +64,10 @@ export default function Signin() {
                             <InputField
                                 type="password"
                                 placeholder="password"
-                                value={password}
                                 required
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(password) =>
+                                    set('password', password.target.value)
+                                }
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaLock />
@@ -68,7 +91,10 @@ export default function Signin() {
                             </Link>
                         </div>
                     </div>
-                    <Button className="w-full bg-btn-color mb-2 py-3 rounded-default border-0 text-[#F6F5F6]">
+                    <Button
+                        className="w-full bg-btn-color mb-2 py-3 rounded-default border-0 text-[#F6F5F6]"
+                        onClick={handleSubmit}
+                    >
                         Log In
                     </Button>
                 </form>
