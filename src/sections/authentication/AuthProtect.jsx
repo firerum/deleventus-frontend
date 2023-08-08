@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
     // check token for expiration
     const checkTokenExpiration = () => {
         const currentTime = Math.floor(Date.now() / 1000);
-        const tokenExpiration = jwtDecode(accessToken);
+        const tokenExpiration = accessToken && jwtDecode(accessToken);
         const timeDifference = tokenExpiration.exp - currentTime;
         // Token is about to expire in 1 minute, initiate refresh.
         if (timeDifference <= 60) {
