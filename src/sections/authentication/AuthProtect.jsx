@@ -25,6 +25,9 @@ export const AuthProvider = ({ children }) => {
                 setRefreshToken(refresh_token);
                 // Get user from the api using the access token to make sure it is a valid one
                 const userData = jwtDecode(access_token);
+                if (userData * 1000 < Date.now()) {
+                    logout();
+                }
                 const response = await axios(
                     `${API_URL}/users/${userData.id}`,
                     {
@@ -33,6 +36,9 @@ export const AuthProvider = ({ children }) => {
                         },
                     }
                 );
+                if (response.status === 401) {
+                    logout();
+                }
                 const user = response.data;
                 if (user) setUser(user);
             }
@@ -43,7 +49,6 @@ export const AuthProvider = ({ children }) => {
 
     // check token for expiration
     const checkTokenExpiration = () => {
-        console.log(accessToken);
         const currentTime = Math.floor(Date.now() / 1000);
         const tokenExpiration = jwtDecode(accessToken);
         const timeDifference = tokenExpiration.exp - currentTime;
