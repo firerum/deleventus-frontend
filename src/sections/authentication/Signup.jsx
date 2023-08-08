@@ -12,14 +12,22 @@ import {
     FaUser,
 } from 'react-icons/fa';
 import Link from 'next/link';
-import { registerUser } from '@sections/api/auth';
+import { useAuth } from './AuthProtect';
+import { useMap } from 'react-use';
 
 export default function Signup() {
-    const [first_name, setFirstname] = useState('');
-    const [last_name, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    // const [first_name, setFirstname] = useState('');
+    // const [last_name, setLastName] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const { register, isAuthenticated } = useAuth();
+    const [form, { set }] = useMap({
+        first_name: '',
+        last_name: '',
+        email: '',
+        password: '',
+    });
     // const [providers, setProviders] = useState(null);
     // useEffect(() => {
     //     const getAllProviders = async () => {
@@ -30,13 +38,20 @@ export default function Signup() {
     // }, []);
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            await registerUser({ first_name, last_name, email, password });
-            console.log('User registered successfully');
-        } catch (error) {
-            console.error('Error registering user:', error);
-        }
+        register(form);
+        // try {
+        //     await registerUser({ first_name, last_name, email, password });
+        //     console.log('User registered successfully');
+        // } catch (error) {
+        //     console.error('Error registering user:', error);
+        // }
     };
+
+    if (isAuthenticated) {
+        router.push('/');
+        return;
+    }
+
     return (
         <section className="text-center lg:flex">
             <div className="hidden lg:block form pt-24 w-1/2"></div>
@@ -53,10 +68,11 @@ export default function Signup() {
                         <div className="relative">
                             <InputField
                                 type="text"
-                                value={first_name}
                                 placeholder="first name"
                                 required
-                                onChange={(e) => setFirstname(e.target.value)}
+                                onChange={(first_name) =>
+                                    set('first_name', first_name.target.value)
+                                }
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaUser />
@@ -65,10 +81,11 @@ export default function Signup() {
                         <div className="relative">
                             <InputField
                                 type="text"
-                                value={last_name}
                                 placeholder="last name"
                                 required
-                                onChange={(e) => setLastName(e.target.value)}
+                                onChange={(last_name) =>
+                                    set('last_name', last_name.target.value)
+                                }
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaUser />
@@ -77,10 +94,11 @@ export default function Signup() {
                         <div className="relative">
                             <InputField
                                 type="email"
-                                value={email}
                                 placeholder="email"
                                 required
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(email) =>
+                                    set('email', email.target.value)
+                                }
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaEnvelope />
@@ -90,9 +108,10 @@ export default function Signup() {
                             <InputField
                                 type="password"
                                 placeholder="password"
-                                value={password}
                                 required
-                                onChange={(e) => setPassword(e.target.value)}
+                                onChange={(password) =>
+                                    set('password', password.target.value)
+                                }
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaLock />
@@ -104,7 +123,9 @@ export default function Signup() {
                                 placeholder="password"
                                 value={confirmPassword}
                                 required
-                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                onChange={(e) =>
+                                    setConfirmPassword(e.target.value)
+                                }
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaLock />

@@ -59,7 +59,7 @@ export default function EventDetails() {
             <section>
                 <div className="bg-pry-purple sticky top-[75px] z-20">
                     <WebAppSubnav
-                        tabs={['Overview', 'Guest List', 'Media', 'Payment']}
+                        tabs={['Overview', 'Guest List', 'Gallery', 'Payment']}
                         setTab={setTab}
                         tab={tab}
                     />
@@ -67,7 +67,7 @@ export default function EventDetails() {
                 <div>
                     {tab === 'Overview' && <EventOverview />}
                     {tab === 'Guest List' && <EventGuests />}
-                    {tab === 'Media' && <EventMedia />}
+                    {tab === 'Gallery' && <EventMedia />}
                     {tab === 'Payment' && <div>Payment Section</div>}
                 </div>
             </section>

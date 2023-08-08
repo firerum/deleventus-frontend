@@ -9,3 +9,6 @@ export const registerUser = async (data) => {
 export const loginUser = async (data) => {
     return await axios.post(`${API_URL}/auth/signin`, data);
 };
+export const logUserOut = async () => {
+    return await axios.get(`${API_URL}/auth/signout`);
+};
