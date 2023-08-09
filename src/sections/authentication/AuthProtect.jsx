@@ -14,7 +14,6 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [accessToken, setAccessToken] = useState('');
     const [refreshToken, setRefreshToken] = useState('');
-    const [userActivity, setUserActivity] = useState(true);
     const router = useRouter();
 
     useEffect(() => {
@@ -66,7 +65,7 @@ export const AuthProvider = ({ children }) => {
         return () => {
             clearInterval(tokenCheckInterval);
         };
-    }, []);
+    }, [accessToken]);
 
     // get new access and refresh token when the access_token is about to expire
     const getRefreshToken = async () => {
