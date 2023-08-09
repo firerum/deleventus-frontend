@@ -56,28 +56,27 @@ export default function Home() {
     return (
         <div className="px-6 md:text-center md:px-16">
             <section className="banner bg-pry-purple text-center xl:h-screen pt-24 pb-0 px-6 md:px-16 -mx-6 md:-mx-16 overflow-hidden">
-                <HomeAnimation>
-                    <div>
-                        <motion.h1>
-                            <span className="text-xs font-semibold md:text-base rounded-3xl py-2 px-6 mb-4 inline-block bg-[#fefbf4] text-secondary-gold">
-                                #1 Award-winning memory curation platform
-                            </span>
-                            <br />
-                            Preserve
-                            <span className="text-btn-color ml-1">
-                                Every Moment
-                            </span>
-                            , <br /> Uncover the Full Story
-                        </motion.h1>
-                        <p className="my-4 max-w-3xl mx-auto">
-                            Capture, curate, and share every detail of your
-                            events - from photos and videos to ticket sales and
-                            attendee interactions. With Deleventus, create and
-                            document a complete narrative of your memories,
-                            bringing your events to life.
-                        </p>
-                    </div>
-                </HomeAnimation>
+                <div>
+                    <h1>
+                        <span className="text-xs font-semibold md:text-base rounded-3xl py-2 px-6 mb-4 inline-block bg-[#fefbf4] text-secondary-gold">
+                            #1 Award-winning memory curation platform
+                        </span>
+                        <br />
+                        Preserve
+                        <span className="text-btn-color ml-1">
+                            Every Moment
+                        </span>
+                        , <br /> Uncover the Full Story
+                    </h1>
+                    <p className="my-4 max-w-3xl mx-auto">
+                        Capture, curate, and share every detail of your events -
+                        from photos and videos to ticket sales and attendee
+                        interactions. With Deleventus, create and document a
+                        complete narrative of your memories, bringing your
+                        events to life.
+                    </p>
+                </div>
+
                 <div className="flex flex-col justify-center md:flex-row gap-4 mt-8">
                     <Link
                         href="/signup"
