@@ -14,6 +14,7 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [accessToken, setAccessToken] = useState('');
     const [refreshToken, setRefreshToken] = useState('');
+    const [userActivity, setUserActivity] = useState(true);
     const router = useRouter();
 
     useEffect(() => {
@@ -25,8 +26,9 @@ export const AuthProvider = ({ children }) => {
                 setRefreshToken(refresh_token);
                 // Get user from the api using the access token to make sure it is a valid one
                 const userData = jwtDecode(access_token);
-                if (userData * 1000 < Date.now()) {
+                if (userData.exp * 1000 < Date.now()) {
                     logout();
+                    return;
                 }
                 const response = await axios(
                     `${API_URL}/users/${userData.id}`,
@@ -38,38 +40,47 @@ export const AuthProvider = ({ children }) => {
                 );
                 if (response.status === 401) {
                     logout();
+                    return;
                 }
                 const user = response.data;
                 if (user) setUser(user);
             }
             setLoading(false);
         }
-        loadUserFromCookies();
-    }, []);
 
-    // check token for expiration
-    const checkTokenExpiration = () => {
-        const currentTime = Math.floor(Date.now() / 1000);
-        const tokenExpiration = accessToken && jwtDecode(accessToken);
-        const timeDifference = tokenExpiration.exp - currentTime;
-        // Token is about to expire in 1 minute, initiate refresh.
-        if (timeDifference <= 60) {
-            getRefreshToken();
-        }
-    };
+        loadUserFromCookies();
+
+        // check token for expiration
+        const checkTokenExpiration = () => {
+            const currentTime = Math.floor(Date.now() / 1000);
+            const tokenExpiration = accessToken && jwtDecode(accessToken);
+            const timeDifference = tokenExpiration.exp - currentTime;
+            // Token is about to expire in 2 minutes, initiate refresh.
+            if (timeDifference <= 120) {
+                getRefreshToken();
+            }
+        };
+
+        const tokenCheckInterval = setInterval(checkTokenExpiration, 60000); // Check every minute
+
+        return () => {
+            clearInterval(tokenCheckInterval);
+        };
+    }, []);
 
     // get new access and refresh token when the access_token is about to expire
     const getRefreshToken = async () => {
+        if (!refreshToken) return;
         try {
             const response = await axios(`${API_URL}/auth/refresh`, {
                 headers: {
                     Authorization: `Bearer ${refreshToken}`,
                 },
             });
-            if (response) {
+            if (response.status === 200) {
                 const { access_token, refresh_token } = response.data;
                 setAccessToken(access_token);
-                setAccessToken(refresh_token);
+                setRefreshToken(refresh_token);
                 // Store the new access token.
                 Cookies.set('access_token', access_token);
                 Cookies.set('refresh_token', refresh_token);
@@ -83,12 +94,6 @@ export const AuthProvider = ({ children }) => {
             logout();
         }
     };
-
-    // refresh the function every minute to check if it is about to expire
-    useEffect(() => {
-        const tokenCheckInterval = setInterval(checkTokenExpiration, 60000); // Check every minute
-        return () => clearInterval(tokenCheckInterval);
-    }, [accessToken]);
 
     const login = async ({ email, password }) => {
         const response = await loginUser({ email, password });
@@ -111,30 +116,38 @@ export const AuthProvider = ({ children }) => {
     };
 
     const register = async (data) => {
-        const response = await registerUser(data);
-        const { access_token, refresh_token } = response.data;
-        if (access_token) {
-            Cookies.set('access_token', access_token, { expires: 60 });
-            Cookies.set('refresh_token', refresh_token);
-            const userData = jwtDecode(access_token);
-            const response = await axios(`${API_URL}/users/${userData.id}`, {
-                headers: {
-                    Authorization: `Bearer ${access_token}`,
-                },
-            });
-            const user = response.data;
-            if (user) {
-                router.push('/');
+        try {
+            const response = await registerUser(data);
+            if (response.status !== 201) return response;
+            const { access_token, refresh_token } = response.data;
+            if (access_token) {
+                Cookies.set('access_token', access_token);
+                Cookies.set('refresh_token', refresh_token);
+                const userData = jwtDecode(access_token);
+                const response = await axios(
+                    `${API_URL}/users/${userData.id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${access_token}`,
+                        },
+                    }
+                );
+                const user = response.data;
+                if (user) {
+                    router.push('/');
+                }
+                setUser(user);
             }
-            setUser(user);
+        } catch (err) {
+            return err;
         }
     };
 
-    const logout = (email, password) => {
+    const logout = () => {
         Cookies.remove('access_token');
         Cookies.remove('refresh_token');
         setUser(null);
-        window.location.pathname = '/signin';
+        router.push('/signin');
     };
 
     return (
@@ -166,7 +179,7 @@ export const ProtectRoute = ({ children }) => {
 
     if (!isAuthenticated && !pathnames.includes(window.location.pathname)) {
         router.push('/signin');
-        return;
+        return null;
     }
 
     return children;

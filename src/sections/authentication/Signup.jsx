@@ -22,6 +22,7 @@ export default function Signup() {
     // const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const { register, isAuthenticated } = useAuth();
+    const [error, setError] = useState(null);
     const [form, { set }] = useMap({
         first_name: '',
         last_name: '',
@@ -37,14 +38,13 @@ export default function Signup() {
     //     getAllProviders();
     // }, []);
     const handleSubmit = async (e) => {
-        e.preventDefault();
-        register(form);
-        // try {
-        //     await registerUser({ first_name, last_name, email, password });
-        //     console.log('User registered successfully');
-        // } catch (error) {
-        //     console.error('Error registering user:', error);
-        // }
+        try {
+            e.preventDefault();
+            const result = await register(form);
+            setError(result.response.data.message);
+        } catch (err) {
+            return err;
+        }
     };
 
     if (isAuthenticated) {
@@ -60,6 +60,7 @@ export default function Signup() {
                     <h1 className="mb-1 text-2xl">Create an Account</h1>
                     <p>Please enter your details to continue</p>
                 </div>
+                <div className="text-red-500 mb-2">{error && error}</div>
                 <form
                     onSubmit={handleSubmit}
                     className="text-pry-text-color-1 px-10 max-w-md mx-auto"
