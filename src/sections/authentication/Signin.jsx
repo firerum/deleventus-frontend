@@ -14,19 +14,32 @@ import {
 import Link from 'next/link';
 import { useAuth } from './AuthProtect';
 import { useMap } from 'react-use';
+import { ButtonLoader } from '@components/Spinner';
 
 export default function Signin() {
     const { login, isAuthenticated } = useAuth();
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
     const [form, { set }] = useMap({
         email: '',
         password: '',
     });
     const router = useRouter();
-    // console.log(isAuthenticated);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        login(form);
+        setLoading(true);
+        try {
+            const response = await login(form);
+            if (response) {
+                setLoading(false);
+            }
+        } catch (err) {
+            setErrorMessage(err.response.data.message);
+            setTimeout(setErrorMessage, 7000);
+        } finally {
+            setLoading(false);
+        }
     };
 
     if (isAuthenticated) {
@@ -42,10 +55,10 @@ export default function Signin() {
                     <h1 className="mb-1 text-2xl">Welcome Back</h1>
                     <p>Please enter your details to Log In</p>
                 </div>
-                <form
-                    // onSubmit={handleSubmit}
-                    className="text-pry-text-color-1 px-10 max-w-md mx-auto"
-                >
+                <form className="text-pry-text-color-1 px-10 max-w-md mx-auto">
+                    {errorMessage && (
+                        <div className="text-red-500">{errorMessage}</div>
+                    )}
                     <div>
                         <div className="relative">
                             <InputField
@@ -95,7 +108,7 @@ export default function Signin() {
                         className="w-full bg-btn-color mb-2 py-3 rounded-default border-0 text-[#F6F5F6]"
                         onClick={handleSubmit}
                     >
-                        Log In
+                        {loading ? <ButtonLoader></ButtonLoader> : 'Log In'}
                     </Button>
                 </form>
                 <div className="mb-8 px-10">
