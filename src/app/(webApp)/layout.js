@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
     return (
         <html lang="en" className={`${Satoshi.variable} ${General.variable}`}>
             <body className="bg-pry-purple">
-                <Provider>
+                {/* <Provider> */}
                     <AuthProvider>
                         <ProtectRoute>
                             <div>
@@ -33,7 +33,7 @@ export default function RootLayout({ children }) {
                             </div>
                         </ProtectRoute>
                     </AuthProvider>
-                </Provider>
+                {/* </Provider> */}
             </body>
         </html>
     );
