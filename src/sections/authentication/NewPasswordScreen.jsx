@@ -5,6 +5,7 @@ import { Button } from '@components/Button';
 import { InputField } from '@components/InputField';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 
 export default function NewPasswordScreen() {
     const [password, setPassword] = useState('');
@@ -16,6 +17,16 @@ export default function NewPasswordScreen() {
         <section className="text-center lg:flex">
             <div className="hidden lg:block h-screen form w-1/2"></div>
             <div className="bg-white pt-24 lg:w-1/2 text-center py-12 max-w-3xl mx-auto rounded-md">
+                <span className="inline-block m-auto">
+                    <Image
+                        src="/images/logo-full-color.svg"
+                        alt="deleventus logo"
+                        width={40}
+                        height={40}
+                        priority={true}
+                        className="w-56 h-16"
+                    />
+                </span>
                 <div className="mb-12">
                     <h1 className="mb-1 text-2xl">Set New Password</h1>
                     <p className="px-10">

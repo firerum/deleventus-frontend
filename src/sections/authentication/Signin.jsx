@@ -15,6 +15,7 @@ import Link from 'next/link';
 import { useAuth } from './AuthProtect';
 import { useMap } from 'react-use';
 import { ButtonLoader } from '@components/Spinner';
+import Image from 'next/image';
 
 export default function Signin() {
     const { login, isAuthenticated } = useAuth();
@@ -51,16 +52,28 @@ export default function Signin() {
 
     return (
         <section className="text-center lg:flex">
-            <div className="hidden lg:block form pt-24 w-1/2"></div>
-            <div className="bg-white pt-24 lg:w-1/2 text-center py-12 max-w-3xl mx-auto rounded-md">
-                <div className="mb-12">
+            <div className="hidden lg:flex form w-1/2"></div>
+            <div className="bg-white lg:w-1/2 text-center py-12 max-w-3xl mx-auto rounded-md">
+                <span className="inline-block m-auto">
+                    <Image
+                        src="/images/logo-full-color.svg"
+                        alt="deleventus logo"
+                        width={40}
+                        height={40}
+                        priority={true}
+                        className="w-56 h-16"
+                    />
+                </span>
+                <div className="mb-10">
                     <h1 className="mb-1 text-2xl">Welcome Back</h1>
                     <p>Please enter your details to Log In</p>
                 </div>
+                {errorMessage && (
+                    <div className="text-red-500 mb-2 max-w-md mx-auto">
+                        {errorMessage}
+                    </div>
+                )}
                 <form className="text-pry-text-color-1 px-10 max-w-md mx-auto">
-                    {errorMessage && (
-                        <div className="text-red-500">{errorMessage}</div>
-                    )}
                     <div>
                         <div className="relative">
                             <InputField
@@ -88,7 +101,7 @@ export default function Signin() {
                                 <FaLock />
                             </span>
                         </div>
-                        <div className="flex gap-4 mb-6">
+                        <div className="flex gap-4 mb-2">
                             <label htmlFor="" className="order-2">
                                 Remember me
                             </label>
@@ -113,7 +126,7 @@ export default function Signin() {
                         {loading ? <ButtonLoader></ButtonLoader> : 'Log In'}
                     </Button>
                 </form>
-                <div className="mb-8 px-10">
+                <div className="mb-4 px-10">
                     <span>You don’t have an account? </span>
                     <Link href="/signup" className="text-[#5C73DB]">
                         Create Account

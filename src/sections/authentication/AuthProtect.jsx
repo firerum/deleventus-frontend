@@ -8,7 +8,7 @@ import { loginUser, registerUser } from '@sections/api/auth';
 import { PageLoader } from '@components/Spinner';
 
 const AuthContext = createContext({});
-const API_URL = process.env.API_URL ;
+const API_URL = process.env.API_URL;
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
                 } catch (error) {
                     console.error('Error loading user:', error);
                     setLoading(false);
-                    // logout();
+                    logout();
                 }
             } else {
                 setLoading(false);
@@ -126,10 +126,10 @@ export const AuthProvider = ({ children }) => {
     // get new access and refresh token when the access_token is about to expire
     const getRefreshToken = async () => {
         if (!refreshToken) return;
-        console.log(refreshToken);
         try {
             // Acquire a lock to prevent multiple tabs from refreshing the token simultaneously
             const canRefresh = await acquireLock();
+            console.log(canRefresh)
             if (canRefresh) {
                 const response = await axios(`${API_URL}/auth/refresh`, {
                     headers: {

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { FaFacebookF, FaInstagram, FaTwitter } from 'react-icons/fa';
+import Image from 'next/image';
 
 const navigation = {
     product: [
@@ -48,7 +49,10 @@ const FooterLinks = ({ navigation }) => {
         <ul className="flex flex-col">
             {navigation.map((item) => (
                 <li key={item.name} className="mb-4 sm:text-sm">
-                    <Link href={item?.href}>
+                    <Link
+                        href={item?.href}
+                        className="hover:text-dashboard-gold"
+                    >
                         <span>{item.name}</span>
                     </Link>
                 </li>
@@ -60,7 +64,14 @@ const FooterLinks = ({ navigation }) => {
 const Footer = () => {
     return (
         <footer className="py-8 px-10 md:px-16">
-            <h2 className="font-medium text-white text-left">Deleventus</h2>
+            <Image
+                src="/images/deleventus-logo-white-wordmark.svg"
+                alt="deleventus logo"
+                width={40}
+                height={40}
+                priority={true}
+                className="w-56 h-16"
+            />
             <section className="py-14 text-pry-purple grid grid-cols-2 gap-16 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
                 <div>
                     <header className="mb-6">Product</header>

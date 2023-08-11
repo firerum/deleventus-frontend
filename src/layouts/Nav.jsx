@@ -24,22 +24,19 @@ const Nav = () => {
 
     return (
         <header className="px-6 py-3 md:px-10 text-sm md:text-base bg-pry-purple shadow-sm fixed z-30 left-0 top-0 right-0 flex justify-between items-center">
-            <h1 className="mb-0 text-lg">
+            <h1 className="mb-0 text-xs sm:text-lg">
                 <Link
                     href="/"
                     className="flex justify-between items-center gap-2"
                 >
-                    {/* <Image
-                        src="/images/universal_DP.jpeg"
+                    <Image
+                        src="/images/deleventus-logo.svg"
                         alt="deleventus logo"
                         width={30}
                         height={30}
                         priority={true}
-                        placeholder="blur"
-                        blurDataURL="/images/universal_DP.jpeg"
-                        className="rounded-full"
-                    /> */}
-                    <p>Deleventus</p>
+                    />
+                    <p className="text-purple-base">Deleventus</p>
                 </Link>
             </h1>
             <nav className="hidden ml-auto lg:block font-medium">

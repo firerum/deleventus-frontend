@@ -9,7 +9,7 @@ export const InputField = ({
     onChange,
 }) => {
     return (
-        <div className="mb-4 md:mb-6">
+        <div className="mb-4">
             {/* {label && <label htmlFor="">{label}</label>} */}
             <input
                 type={type}
