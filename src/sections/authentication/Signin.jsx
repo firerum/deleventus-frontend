@@ -42,10 +42,12 @@ export default function Signin() {
         }
     };
 
-    if (isAuthenticated) {
-        router.push('/');
-        return;
-    }
+    useEffect(() => {
+        if (isAuthenticated) {
+            router.push('/');
+            return;
+        }
+    }, [isAuthenticated]);
 
     return (
         <section className="text-center lg:flex">
