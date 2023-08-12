@@ -27,7 +27,7 @@ const Nav = () => {
             <h1 className="mb-0 text-xs sm:text-lg">
                 <Link
                     href="/"
-                    className="flex justify-between items-center gap-2"
+                    className="flex justify-between items-center gap-1"
                 >
                     <Image
                         src="/images/deleventus-logo.svg"

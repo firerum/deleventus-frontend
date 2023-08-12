@@ -27,6 +27,8 @@ const DropDownList = styled.ul`
     z-index: 999999999;
     width: 100%;
     border: inherit;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
     flex-direction: column;
     background-color: #fff;
     overflow: hidden;

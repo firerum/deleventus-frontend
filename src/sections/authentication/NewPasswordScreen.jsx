@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { FaLock } from 'react-icons/fa';
+import { FaLock, FaArrowLeft } from 'react-icons/fa';
 import { Button } from '@components/Button';
 import { InputField } from '@components/InputField';
 import Link from 'next/link';
@@ -11,7 +11,6 @@ export default function NewPasswordScreen() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const searchParams = useSearchParams();
-    // console.log('this is the token', searchParams.get('token'));
 
     return (
         <section className="text-center lg:flex">
@@ -60,10 +59,14 @@ export default function NewPasswordScreen() {
                             <FaLock />
                         </span>
                     </div>
-                    <Button className="w-full bg-btn-color my-4 py-3 rounded-default border-0 text-[#F6F5F6]">
+                    <Button className="w-full font-semibold bg-btn-color my-4 py-3 rounded-default border-0 text-[#F6F5F6]">
                         Reset Password
                     </Button>
-                    <Link href="/signin" className="w-full">
+                    <Link
+                        href="/signin"
+                        className="w-full text-[#5C73DB] flex items-center justify-center gap-2"
+                    >
+                        <FaArrowLeft />
                         Back to Log In
                     </Link>
                 </form>

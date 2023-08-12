@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { WebAppSubnav } from '@layouts/WebAppSubnav';
 import { EventCard, eventData } from '@sections/events/EventCard';
+import Link from 'next/link';
 
 export default function Explore() {
     const [tab, setTab] = useState('All');
@@ -28,13 +29,18 @@ export default function Explore() {
                     {tab === 'All' && (
                         <div className="flex flex-wrap gap-4 xl:grid grid-cols-4">
                             {eventData.map((eve, index) => (
-                                <EventCard
+                                <Link
                                     key={index}
-                                    name={eve.name}
-                                    desc={eve.desc}
-                                    date={eve.date_of_event}
-                                    avatar={eve.avatar}
-                                />
+                                    href={`/explore/${eve.name}`}
+                                    className="hover:no-underline"
+                                >
+                                    <EventCard
+                                        name={eve.name}
+                                        desc={eve.desc}
+                                        date={eve.date_of_event}
+                                        avatar={eve.avatar}
+                                    />
+                                </Link>
                             ))}
                         </div>
                     )}

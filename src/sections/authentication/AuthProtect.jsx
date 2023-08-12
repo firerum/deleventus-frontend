@@ -190,7 +190,7 @@ export const AuthProvider = ({ children }) => {
                 );
                 const user = response.data;
                 if (user) {
-                    router.push('/');
+                    router.push('/timeline');
                 }
                 setUser(user);
                 // Refresh tokens after successful login from a new device
@@ -221,7 +221,7 @@ export const AuthProvider = ({ children }) => {
                 );
                 const user = response.data;
                 if (user) {
-                    router.push('/');
+                    router.push('/timeline');
                 }
                 setUser(user);
             }

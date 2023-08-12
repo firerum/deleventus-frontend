@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Image from 'next/image';
 
 export const eventData = [
@@ -61,19 +60,17 @@ export const EventCard = ({ name, desc, date, avatar }) => {
                 placeholder="blur"
                 blurDataURL={avatar}
             />
-            <Link href={`/events/${name}`} className="hover:no-underline">
-                <div className="flex justify-start bg-white shadow-sm rounded-b-xl cursor-pointer">
-                    <div className="px-4 py-8 order-2 relative">
-                        <h3 className="title text-base">{name}</h3>
-                        <p className="desc text-pry-text-color-1 text-sm lg:text-xs">
-                            {desc}
-                        </p>
-                    </div>
-                    <span className="order-1 py-8 pl-4 font-semibold text-secondary-gold">
-                        {date}
-                    </span>
+            <div className="flex justify-start bg-white shadow-sm rounded-b-xl cursor-pointer">
+                <div className="px-4 py-8 order-2 relative">
+                    <h3 className="title text-base">{name}</h3>
+                    <p className="desc text-pry-text-color-1 text-sm lg:text-xs">
+                        {desc}
+                    </p>
                 </div>
-            </Link>
+                <span className="order-1 py-8 pl-4 font-semibold text-secondary-gold">
+                    {date}
+                </span>
+            </div>
         </article>
     );
 };

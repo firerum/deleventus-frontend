@@ -2,11 +2,11 @@
 import { useState } from 'react';
 import { WebAppSubnav } from '@layouts/WebAppSubnav';
 import { EventCard, eventData } from '@sections/events/EventCard';
-import { EventCardMini } from '@sections/events/EventCardMini';
 import { Button } from '@components/Button';
 import { Modal } from '@components/Modals/Modal';
 import { CreateEvent } from '@sections/events/CreateEvent';
 import { MdCreate } from 'react-icons/md';
+import Link from 'next/link';
 
 export default function Timeline() {
     const [tab, setTab] = useState('All');
@@ -33,13 +33,14 @@ export default function Timeline() {
                     {tab === 'All' && (
                         <div className="flex flex-wrap gap-4 xl:grid grid-cols-4">
                             {eventData.map((eve, index) => (
-                                <EventCard
-                                    key={index}
-                                    name={eve.name}
-                                    desc={eve.desc}
-                                    date={eve.date_of_event}
-                                    avatar={eve.avatar}
-                                />
+                                <Link href={`events/${eve.name}`} key={index}>
+                                    <EventCard
+                                        name={eve.name}
+                                        desc={eve.desc}
+                                        date={eve.date_of_event}
+                                        avatar={eve.avatar}
+                                    />
+                                </Link>
                             ))}
                         </div>
                     )}

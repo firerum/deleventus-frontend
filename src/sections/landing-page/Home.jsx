@@ -13,8 +13,6 @@ import { FirstProcess } from './getting-started/FirstProcess';
 import { SecondProcess } from './getting-started/SecondProcess';
 import { ThirdProcess } from './getting-started/ThirdProcess';
 import { FourthProcess } from './getting-started/FourthProcess';
-import { HomeAnimation } from './Animation/HomeAnimation';
-import { motion } from 'framer-motion';
 import { FaPause, FaPlay } from 'react-icons/fa';
 
 const processCard = [
@@ -145,13 +143,14 @@ export default function Home() {
                 <div className="">
                     <Carousel>
                         {eventData.map((data, index) => (
-                            <EventCard
-                                key={index}
-                                name={data.name}
-                                desc={data.desc}
-                                date={data.date_of_event}
-                                avatar={data.avatar}
-                            />
+                            <Link href={`explore/${data.name}`} key={index}>
+                                <EventCard
+                                    name={data.name}
+                                    desc={data.desc}
+                                    date={data.date_of_event}
+                                    avatar={data.avatar}
+                                />
+                            </Link>
                         ))}
                     </Carousel>
                 </div>

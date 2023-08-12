@@ -56,7 +56,7 @@ export default function Signup() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/');
+            router.push('/timeline');
             return;
         }
     }, [isAuthenticated]);
@@ -177,7 +177,7 @@ export default function Signup() {
                         {loading ? (
                             <ButtonLoader></ButtonLoader>
                         ) : (
-                            'Create Account'
+                            <div className="font-semibold">Create Account</div>
                         )}
                     </Button>
                 </form>

@@ -11,6 +11,7 @@ import {
     FaLock,
     FaEnvelope,
 } from 'react-icons/fa';
+import { MdLogin } from 'react-icons/md';
 import Link from 'next/link';
 import { useAuth } from './AuthProtect';
 import { useMap } from 'react-use';
@@ -45,7 +46,7 @@ export default function Signin() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/');
+            router.push('/timeline');
             return;
         }
     }, [isAuthenticated]);
@@ -123,7 +124,14 @@ export default function Signin() {
                         className="w-full bg-btn-color mb-2 py-3 rounded-default border-0 text-[#F6F5F6]"
                         onClick={handleSubmit}
                     >
-                        {loading ? <ButtonLoader></ButtonLoader> : 'Log In'}
+                        {loading ? (
+                            <ButtonLoader></ButtonLoader>
+                        ) : (
+                            <div className="font-semibold flex justify-center items-center gap-2">
+                                <MdLogin />
+                                Log In
+                            </div>
+                        )}
                     </Button>
                 </form>
                 <div className="mb-4 px-10">

@@ -250,7 +250,7 @@ export const CreateEvent = () => {
                     ))}
                 </ol>
             </section>
-            <section className="bg-pry-purple px-8 pt-8 mb-0 md:w-1/2 overflow-y-scroll">
+            <section className="bg-white px-8 pt-8 mb-0 md:w-1/2 overflow-y-scroll">
                 <h1 className="text-xl">Create Event</h1>
                 <form className="text-pry-text-color-1 w-full pb-12">
                     <CreateEventCarousel count={carouselCount}>

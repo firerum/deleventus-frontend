@@ -9,9 +9,13 @@ import {
     MdEvent,
     MdMessage,
     MdDashboard,
+    MdLogout,
 } from 'react-icons/md';
 import { FaTh } from 'react-icons/fa';
 import { useCloseElementOnClick } from '@utils/useCloseElementOnClick';
+import Image from 'next/image';
+import { Button } from '@components/Button';
+import { useAuth } from '@sections/authentication/AuthProtect';
 
 const navigation = {
     events: [
@@ -55,10 +59,21 @@ const NavLinks = ({ navigation }) => {
 };
 
 const NavHeaders = () => {
+    const { logout } = useAuth();
+
     return (
         <div className="py-6">
-            <h1 className="text-base mb-10 px-6">
-                <Link href="/">Deleventus</Link>
+            <h1 className="text-xs sm:text-lg mb-8 px-6">
+                <Link href="/" className="flex items-center gap-1">
+                    <Image
+                        src="/images/deleventus-logo.svg"
+                        alt="deleventus logo"
+                        width={30}
+                        height={30}
+                        priority={true}
+                    />
+                    <span>Deleventus</span>
+                </Link>
             </h1>
             <div className="mb-4">
                 <header className="mb-4 text-sm text-[#645F6E] font-medium px-6">
@@ -83,6 +98,15 @@ const NavHeaders = () => {
                     SETTINGS
                 </header>
                 <NavLinks navigation={navigation.settings} />
+            </div>
+            <div className="px-6">
+                <Button
+                    className="py-2 w-full flex justify-center items-center gap-2 bg-purple-base font-semibold text-sm text-white rounded-default hover:text-dashboard-gold"
+                    onClick={() => logout()}
+                >
+                    <MdLogout />
+                    <span>Sign Out</span>
+                </Button>
             </div>
         </div>
     );
