@@ -15,13 +15,13 @@ export default function RootLayout({ children }) {
         <html lang="en" className={`${Satoshi.variable} ${General.variable}`}>
             <body>
                 {/* <Provider> */}
-                    <AuthProvider>
-                        <div>
-                            <Nav />
-                            {children}
-                            <Footer />
-                        </div>
-                    </AuthProvider>
+                <AuthProvider>
+                    <div>
+                        <Nav />
+                        {children}
+                        <Footer />
+                    </div>
+                </AuthProvider>
                 {/* </Provider> */}
             </body>
         </html>

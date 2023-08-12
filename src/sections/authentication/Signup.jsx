@@ -19,7 +19,6 @@ import { useRouter } from 'next/navigation';
 import { ButtonLoader } from '@components/Spinner';
 
 export default function Signup() {
-    const [confirmPassword, setConfirmPassword] = useState('');
     const { register, isAuthenticated } = useAuth();
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
@@ -148,11 +147,10 @@ export default function Signup() {
                         <div className="relative">
                             <InputField
                                 type="password"
-                                placeholder="password"
-                                value={confirmPassword}
+                                placeholder="confirm password"
                                 required
                                 onChange={(e) =>
-                                    setConfirmPassword(e.target.value)
+                                    set('ConfirmPassword', e.target.value)
                                 }
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
