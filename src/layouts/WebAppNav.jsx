@@ -16,6 +16,8 @@ import { useCloseElementOnClick } from '@utils/useCloseElementOnClick';
 import Image from 'next/image';
 import { Button } from '@components/Button';
 import { useAuth } from '@sections/authentication/AuthProtect';
+import { motion } from 'framer-motion';
+import { AnimateContent } from '@utils/framer-motion/AnimateContent';
 
 const navigation = {
     events: [
@@ -134,7 +136,9 @@ const WebAppNav = () => {
                 </button>
                 {open && (
                     <div className="lg:hidden mt-16">
-                        <NavHeaders />
+                        <AnimateContent>
+                            <NavHeaders />
+                        </AnimateContent>
                     </div>
                 )}
             </div>

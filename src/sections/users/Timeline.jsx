@@ -7,6 +7,7 @@ import { Modal } from '@components/Modals/Modal';
 import { CreateEvent } from '@sections/events/CreateEvent';
 import { MdCreate } from 'react-icons/md';
 import Link from 'next/link';
+import { AnimateContent } from '@utils/framer-motion/AnimateContent';
 
 export default function Timeline() {
     const [tab, setTab] = useState('All');
@@ -31,28 +32,39 @@ export default function Timeline() {
                 </div>
                 <div className="mt-6">
                     {tab === 'All' && (
-                        <div className="flex flex-wrap gap-4 xl:grid grid-cols-4">
-                            {eventData.map((eve, index) => (
-                                <Link href={`events/${eve.name}`} key={index}>
-                                    <EventCard
-                                        name={eve.name}
-                                        desc={eve.desc}
-                                        date={eve.date_of_event}
-                                        avatar={eve.avatar}
-                                    />
-                                </Link>
-                            ))}
-                        </div>
+                        <AnimateContent>
+                            <div className="flex flex-wrap gap-4 xl:grid grid-cols-4">
+                                {eventData.map((eve, index) => (
+                                    <Link
+                                        href={`events/${eve.name}`}
+                                        key={index}
+                                    >
+                                        <EventCard
+                                            name={eve.name}
+                                            desc={eve.desc}
+                                            date={eve.date_of_event}
+                                            avatar={eve.avatar}
+                                        />
+                                    </Link>
+                                ))}
+                            </div>
+                        </AnimateContent>
                     )}
-                    {tab === 'Wedding' && <div>All Public Weddings</div>}
-                    {tab === 'Birthday' && <div>All Public Birthdays</div>}
+                    {tab === 'Wedding' && (
+                        <AnimateContent>Public Weddings</AnimateContent>
+                    )}
+                    {tab === 'Birthday' && (
+                        <AnimateContent>All Public Birthdays</AnimateContent>
+                    )}
                     {tab === 'Anniversary' && (
-                        <div>All Public Anniversaries</div>
+                        <AnimateContent>Public Anniversaries</AnimateContent>
                     )}
                     {tab === 'Convocation' && (
-                        <div>All Public Convocations</div>
+                        <AnimateContent>Public Convocations</AnimateContent>
                     )}
-                    {tab === 'Other' && <div>All Other Events</div>}
+                    {tab === 'Other' && (
+                        <AnimateContent>All Other Events</AnimateContent>
+                    )}
                 </div>
                 <Modal isOpen={isOpen} handleClose={() => setIsOpen(false)}>
                     <CreateEvent />

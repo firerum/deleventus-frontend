@@ -1,17 +1,23 @@
+import { motion } from 'framer-motion';
+
 export const WebAppSubnav = ({ tabs, setTab, tab }) => {
     return (
-        <div className="subnav flex items-center border-b-1 overflow-x-scroll overscroll-contain">
+        <ul className="subnav flex items-center border-b-1 overflow-x-scroll overscroll-contain">
             {tabs.map((selectedTab, index) => (
-                <div
+                <li
                     key={index}
                     onClick={() => setTab(selectedTab)}
-                    className={`relative selected-tab whitespace-nowrap text-pry-text-color-2 font-medium py-2 px-4 first-of-type:pl-0 cursor-pointer hover:text-btn-color ${
-                        selectedTab === tab && 'selected-tab-active'
-                    }`}
+                    className="relative selected-tab whitespace-nowrap text-pry-text-color-2 font-medium py-2 px-4 first-of-type:pl-0 cursor-pointer hover:text-btn-color"
                 >
                     {selectedTab}
-                </div>
+                    {selectedTab === tab && (
+                        <motion.div
+                            className="selected-tab-active"
+                            layoutId="selected-tab-active"
+                        />
+                    )}
+                </li>
             ))}
-        </div>
+        </ul>
     );
 };

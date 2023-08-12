@@ -251,8 +251,7 @@ input.create-event::file-selector-button {
     opacity: 0.3;
 }
 
-.selected-tab-active::before {
-    content: '';
+.selected-tab-active {
     position: absolute;
     bottom: 0;
     left: 0;

@@ -4,6 +4,7 @@ import { WebAppSubnav } from '@layouts/WebAppSubnav';
 import { Profile } from './Profile';
 import { Button } from '@components/Button';
 import { Notification } from './Notification';
+import { AnimateContent } from '@utils/framer-motion/AnimateContent';
 
 export default function AccountSettings() {
     const [tab, setTab] = useState('Profile');
@@ -24,8 +25,16 @@ export default function AccountSettings() {
                     setTab={setTab}
                 />
                 <div>
-                    {tab === 'Profile' && <Profile />}
-                    {tab === 'Notifications' && <Notification />}
+                    {tab === 'Profile' && (
+                        <AnimateContent>
+                            <Profile />
+                        </AnimateContent>
+                    )}
+                    {tab === 'Notifications' && (
+                        <AnimateContent>
+                            <Notification />
+                        </AnimateContent>
+                    )}
                     {tab === 'Payment and Billing' && <></>}
                 </div>
             </section>
