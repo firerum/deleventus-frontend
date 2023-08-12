@@ -7,5 +7,9 @@ export const PageLoader = () => {
 };
 
 export const ButtonLoader = () => {
-    return <span className="loader"></span>;
+    return (
+        <div className="flex justify-center items-center">
+            <span className="loader"></span>
+        </div>
+    );
 };
