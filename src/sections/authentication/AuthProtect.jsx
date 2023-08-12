@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
-import { loginUser, registerUser } from '@sections/api/auth';
+import { loginUser, registerUser } from '@helper/auth';
 import { PageLoader } from '@components/Spinner';
 
 const AuthContext = createContext({});
