@@ -3,10 +3,8 @@ import WebAppNav from '@layouts/WebAppNav';
 import Provider from '@sections/authentication/Provider';
 import { Satoshi, General } from '../../../public/fonts/fonts.local';
 import WebAppHeader from '@layouts/WebAppHeader';
-import {
-    AuthProvider,
-    ProtectRoute,
-} from '@sections/authentication/AuthProtect';
+import { AuthProvider } from '@sections/authentication/AuthProtect';
+import { ProtectRoute } from '@sections/authentication/ProtectRoute';
 
 export const metadata = {
     title: 'Deliciae Eventus - Deleventus',

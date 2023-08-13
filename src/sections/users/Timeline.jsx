@@ -33,7 +33,7 @@ export default function Timeline() {
                 <div className="mt-6">
                     {tab === 'All' && (
                         <AnimateContent>
-                            <div className="flex flex-wrap gap-4 xl:grid grid-cols-4">
+                            <div className="flex flex-wrap justify-center gap-4 lg:grid grid-cols-2 xl:grid-cols-4">
                                 {eventData.map((eve, index) => (
                                     <Link
                                         href={`events/${eve.name}`}

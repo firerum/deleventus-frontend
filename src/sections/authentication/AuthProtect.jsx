@@ -5,7 +5,6 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import jwtDecode from 'jwt-decode';
 import { loginUser, registerUser } from '@helper/auth';
-import { PageLoader } from '@components/Spinner';
 
 const AuthContext = createContext({});
 const API_URL = process.env.API_URL;
@@ -129,7 +128,7 @@ export const AuthProvider = ({ children }) => {
         try {
             // Acquire a lock to prevent multiple tabs from refreshing the token simultaneously
             const canRefresh = await acquireLock();
-            console.log(canRefresh)
+            console.log(canRefresh);
             if (canRefresh) {
                 const response = await axios(`${API_URL}/auth/refresh`, {
                     headers: {
@@ -255,20 +254,3 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
-
-export const ProtectRoute = ({ children }) => {
-    const { isAuthenticated, loading } = useAuth();
-    const router = useRouter();
-    const pathnames = ['/signin', '/signup'];
-
-    if (loading) {
-        return <PageLoader />;
-    }
-
-    if (!isAuthenticated && !pathnames.includes(window.location.pathname)) {
-        router.push('/signin');
-        return null;
-    }
-
-    return children;
-};
