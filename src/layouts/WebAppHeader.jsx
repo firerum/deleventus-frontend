@@ -8,7 +8,7 @@ const WebAppHeader = () => {
     const { user } = useAuth();
 
     return (
-        <header className="flex gap-4 justify-between items-center p-4 bg-white shadow-sm">
+        <header className="fixed right-0 left-0 z-40 lg:left-56 flex gap-4 justify-between items-center p-4 bg-white shadow-sm">
             <div className="hidden md:block">
                 {/* <span>{new Date().toLocaleDateString()}</span> */}
                 <span className="text-pry-header-title text-sm font-medium">

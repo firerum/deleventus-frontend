@@ -121,25 +121,33 @@ const WebAppNav = () => {
     useCloseElementOnClick(ref, () => setOpen(false));
 
     return (
-        <section ref={ref}>
-            <div className="hidden lg:block">
+        <section ref={ref} className="fixed left-0 top-0 bottom-0 py-0 z-50">
+            <div className="hidden lg:block h-full bg-white shadow-sm">
                 <NavHeaders />
             </div>
 
             {/* Mobile Navigation */}
-            <div>
+            <div className="h-full">
                 <button
-                    className="lg:hidden absolute top-8 left-6"
+                    className="lg:hidden absolute z-10 top-8 left-6"
                     onClick={() => setOpen((open) => !open)}
                 >
                     <FaTh />
                 </button>
                 {open && (
-                    <div className="lg:hidden mt-16">
-                        <AnimateContent>
-                            <NavHeaders />
-                        </AnimateContent>
-                    </div>
+                    <motion.div
+                        drag="x"
+                        dragSnapToOrigin="true"
+                        dragConstraints={{ right: 0 }}
+                        dragElastic={{ left: 0, right: 0 }}
+                        dragMomentum={false}
+                        onDrag={(event, info) =>
+                            info.point.x <= 20 && setOpen(false)
+                        }
+                        className="lg:hidden h-full relative z-20 bg-white shadow-sm"
+                    >
+                        <NavHeaders />
+                    </motion.div>
                 )}
             </div>
         </section>
