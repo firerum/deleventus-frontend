@@ -66,14 +66,16 @@ export default function Signup() {
             <div className="hidden lg:block form pt-24 w-1/2"></div>
             <div className="bg-white lg:w-1/2 text-center pb-12 pt-10 max-w-3xl mx-auto rounded-md">
                 <span className="inline-block m-auto">
-                    <Image
-                        src="/images/logo-full-color.svg"
-                        alt="deleventus logo"
-                        width={40}
-                        height={40}
-                        priority={true}
-                        className="w-56 h-16"
-                    />
+                    <Link href="/">
+                        <Image
+                            src="/images/logo-full-color.svg"
+                            alt="deleventus logo"
+                            width={40}
+                            height={40}
+                            priority={true}
+                            className="w-56 h-16"
+                        />
+                    </Link>
                 </span>
                 <div className="mb-10">
                     <h1 className="mb-1 text-2xl">Create an Account</h1>

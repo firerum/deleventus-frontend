@@ -56,12 +56,20 @@ const Nav = () => {
 
             <div className="ml-auto">
                 {isAuthenticated ? (
-                    <Button
-                        className="py-2 text-base font-semibold"
-                        onClick={() => logout()}
-                    >
-                        Sign out
-                    </Button>
+                    <div className="ml-auto flex text-base items-center gap-4 font-medium">
+                        <Button
+                            className="py-2 text-base font-semibold"
+                            onClick={() => logout()}
+                        >
+                            Sign out
+                        </Button>
+                        <Link
+                            href="/timeline"
+                            className="py-2 px-6 text-pry-purple bg-btn-color rounded-default hidden md:block"
+                        >
+                            Dashboard
+                        </Link>
+                    </div>
                 ) : (
                     <div className="ml-auto flex text-base items-center gap-4 font-medium">
                         <Link href="/signin" className="py-2 font-semibold">

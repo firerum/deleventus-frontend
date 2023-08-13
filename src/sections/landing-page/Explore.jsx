@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { WebAppSubnav } from '@layouts/WebAppSubnav';
 import { EventCard, eventData } from '@sections/events/EventCard';
 import Link from 'next/link';
+import { AnimateContent } from '@utils/framer-motion/AnimateContent';
 
 export default function Explore() {
     const [tab, setTab] = useState('All');
@@ -27,22 +28,24 @@ export default function Explore() {
                 </div>
                 <div className="mt-6">
                     {tab === 'All' && (
-                        <div className="flex flex-wrap gap-4 xl:grid grid-cols-4">
-                            {eventData.map((eve, index) => (
-                                <Link
-                                    key={index}
-                                    href={`/explore/${eve.name}`}
-                                    className="hover:no-underline"
-                                >
-                                    <EventCard
-                                        name={eve.name}
-                                        desc={eve.desc}
-                                        date={eve.date_of_event}
-                                        avatar={eve.avatar}
-                                    />
-                                </Link>
-                            ))}
-                        </div>
+                        <AnimateContent>
+                            <div className="flex flex-wrap gap-4 xl:grid grid-cols-4">
+                                {eventData.map((eve, index) => (
+                                    <Link
+                                        key={index}
+                                        href={`/explore/${eve.name}`}
+                                        className="hover:no-underline"
+                                    >
+                                        <EventCard
+                                            name={eve.name}
+                                            desc={eve.desc}
+                                            date={eve.date_of_event}
+                                            avatar={eve.avatar}
+                                        />
+                                    </Link>
+                                ))}
+                            </div>
+                        </AnimateContent>
                     )}
                     {tab === 'Wedding' && <div>All Public Weddings</div>}
                     {tab === 'Birthday' && <div>All Public Birthdays</div>}
