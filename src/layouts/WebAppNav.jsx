@@ -17,7 +17,6 @@ import Image from 'next/image';
 import { Button } from '@components/Button';
 import { useAuth } from '@sections/authentication/AuthProtect';
 import { motion } from 'framer-motion';
-import { AnimateContent } from '@utils/framer-motion/AnimateContent';
 
 const navigation = {
     events: [
@@ -120,6 +119,22 @@ const WebAppNav = () => {
     // close the menu if clicked outside of it
     useCloseElementOnClick(ref, () => setOpen(false));
 
+    //TODO the transition feels hacky. Find elegant solution
+    const variants = {
+        open: {
+            opacity: 1,
+            x: 0,
+            display: 'block',
+        },
+        closed: {
+            opacity: 0,
+            x: '-100%',
+            transitionEnd: {
+                display: 'none',
+            },
+        },
+    };
+
     return (
         <section ref={ref} className="fixed left-0 top-0 bottom-0 py-0 z-50">
             <div className="hidden lg:block h-full bg-white shadow-sm">
@@ -128,27 +143,29 @@ const WebAppNav = () => {
 
             {/* Mobile Navigation */}
             <div className="h-full">
-                <button
-                    className="lg:hidden absolute z-10 top-8 left-6"
+                <Button
+                    className="lg:hidden text-xl absolute z-10 top-8 left-6"
                     onClick={() => setOpen((open) => !open)}
                 >
                     <FaTh />
-                </button>
-                {open && (
-                    <motion.div
-                        drag="x"
-                        dragSnapToOrigin="true"
-                        dragConstraints={{ right: 0 }}
-                        dragElastic={{ left: 0, right: 0 }}
-                        dragMomentum={false}
-                        onDrag={(event, info) =>
-                            info.point.x <= 20 && setOpen(false)
-                        }
-                        className="lg:hidden h-full relative z-20 bg-white shadow-sm"
-                    >
-                        <NavHeaders />
-                    </motion.div>
-                )}
+                </Button>
+
+                <motion.div
+                    drag="x"
+                    dragSnapToOrigin="true"
+                    dragConstraints={{ right: 0 }}
+                    dragElastic={{ left: 0, right: 0 }}
+                    dragMomentum={false}
+                    onDrag={(event, info) =>
+                        info.point.x <= 20 && setOpen(false)
+                    }
+                    animate={open ? 'open' : 'closed'}
+                    variants={variants}
+                    transition={{ stiffness: 100 }}
+                    className="lg:hidden h-full relative z-20 bg-white shadow-sm"
+                >
+                    <NavHeaders />
+                </motion.div>
             </div>
         </section>
     );
