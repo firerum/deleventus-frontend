@@ -4,6 +4,7 @@ import { Button } from '@components/Button';
 import { ReactPortal } from './ReactPortal';
 import { FaTimes } from 'react-icons/fa';
 import { useCloseElementOnClick } from '@utils/useCloseElementOnClick';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const Modal = ({ children, isOpen, handleClose }) => {
     const ref = useRef(null);
@@ -27,15 +28,28 @@ export const Modal = ({ children, isOpen, handleClose }) => {
     return (
         <ReactPortal wrapperId="modal-container">
             <div className="modal" role="aria-modal" aria-modal="true">
-                <div className="modal-content" ref={ref}>
-                    <Button
-                        onClick={handleClose}
-                        className="bg-white shadow-lg p-1 absolute top-0 right-0"
+                <AnimatePresence>
+                    <motion.div
+                        className="modal-content"
+                        ref={ref}
+                        initial={{ y: '-100%' }}
+                        animate={{ y: 0 }}
+                        exit={{ y: '-100%' }}
+                        transition={{
+                            type: 'spring',
+                            stiffness: 300,
+                            damping: 30,
+                        }}
                     >
-                        <FaTimes />
-                    </Button>
-                    {children}
-                </div>
+                        <Button
+                            onClick={handleClose}
+                            className="bg-white shadow-lg p-1 absolute top-0 right-0"
+                        >
+                            <FaTimes />
+                        </Button>
+                        {children}
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </ReactPortal>
     );
