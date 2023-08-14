@@ -16,7 +16,7 @@ import { useCloseElementOnClick } from '@utils/useCloseElementOnClick';
 import Image from 'next/image';
 import { Button } from '@components/Button';
 import { useAuth } from '@sections/authentication/AuthProtect';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const navigation = {
     events: [
@@ -119,20 +119,10 @@ const WebAppNav = () => {
     // close the menu if clicked outside of it
     useCloseElementOnClick(ref, () => setOpen(false));
 
-    //TODO the transition feels hacky. Find elegant solution
-    const variants = {
-        open: {
-            opacity: 1,
-            x: 0,
-            display: 'block',
-        },
-        closed: {
-            opacity: 0,
-            x: '-100%',
-            transitionEnd: {
-                display: 'none',
-            },
-        },
+    const handleDrag = (event, info) => {
+        if (info.point.x <= 20) {
+            setOpen(false);
+        }
     };
 
     return (
@@ -149,23 +139,29 @@ const WebAppNav = () => {
                 >
                     <FaTh />
                 </Button>
-
-                <motion.div
-                    drag="x"
-                    dragSnapToOrigin="true"
-                    dragConstraints={{ right: 0 }}
-                    dragElastic={{ left: 0, right: 0 }}
-                    dragMomentum={false}
-                    onDrag={(event, info) =>
-                        info.point.x <= 20 && setOpen(false)
-                    }
-                    animate={open ? 'open' : 'closed'}
-                    variants={variants}
-                    transition={{ stiffness: 100 }}
-                    className="lg:hidden h-full relative z-20 bg-white shadow-sm"
-                >
-                    <NavHeaders />
-                </motion.div>
+                <AnimatePresence>
+                    {open && (
+                        <motion.div
+                            drag="x"
+                            dragSnapToOrigin="true"
+                            dragConstraints={{ right: 0 }}
+                            dragElastic={{ left: 0, right: 0 }}
+                            dragMomentum={false}
+                            onDrag={handleDrag}
+                            initial={{ x: '-100%' }}
+                            animate={{ x: 0 }}
+                            exit={{ x: '-100%' }}
+                            transition={{
+                                type: 'spring',
+                                stiffness: 300,
+                                damping: 30,
+                            }}
+                            className="lg:hidden h-full relative z-20 bg-white shadow-sm"
+                        >
+                            <NavHeaders />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </section>
     );
