@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@components/Button';
 import Faq from '@sections/FAQ/Faq';
 import { faqs } from '@faq';
@@ -14,7 +14,7 @@ import { SecondProcess } from './getting-started/SecondProcess';
 import { ThirdProcess } from './getting-started/ThirdProcess';
 import { FourthProcess } from './getting-started/FourthProcess';
 import { FaPause, FaPlay } from 'react-icons/fa';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, useAnimation, useInView } from 'framer-motion';
 
 const processCard = [
     {
@@ -51,11 +51,40 @@ export default function Home() {
     /* count to change get started step on button click */
     const [count, setCount] = useState(0);
     const [videoDemo, setVideoDemo] = useState(false);
-    
+    const targetRef = useRef(null);
+    const isInView = useInView(targetRef);
+    const switchAnimation = useAnimation();
+
+    if (isInView) {
+        switchAnimation.start('visible');
+    }
+
+    const h2PAnimation = {
+        hidden: { opacity: 0, y: -20 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, delay: 0.5, ease: 'easeOut' },
+        },
+    };
+
+    const steps = {
+        hidden: { opacity: 0, y: '100%' },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.6, delay: 0.9, ease: 'easeOut' },
+        },
+    };
 
     return (
         <div className="px-6 md:text-center md:px-16">
-            <section className="banner bg-pry-purple text-center xl:h-screen pt-24 pb-0 px-6 md:px-16 -mx-6 md:-mx-16 overflow-hidden">
+            <motion.section
+                className="banner bg-pry-purple text-center xl:h-screen pt-24 pb-0 px-6 md:px-16 -mx-6 md:-mx-16 overflow-hidden"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
                 <div>
                     <h1>
                         <span className="text-xs font-semibold md:text-base rounded-3xl py-2 px-6 mb-4 inline-block bg-[#fefbf4] text-secondary-gold">
@@ -68,16 +97,25 @@ export default function Home() {
                         </span>
                         , <br /> Uncover the Full Story
                     </h1>
-                    <p className="my-4 max-w-3xl mx-auto">
+                    <motion.p
+                        className="my-4 max-w-3xl mx-auto"
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ duration: 1, delay: 0.5 }}
+                    >
                         Capture, curate, and share every detail of your events -
                         from photos and videos to ticket sales and attendee
                         interactions. With Deleventus, create and document a
                         complete narrative of your memories, bringing your
                         events to life.
-                    </p>
+                    </motion.p>
                 </div>
-
-                <div className="flex flex-col justify-center md:flex-row gap-4 mt-8">
+                <motion.div
+                    className="flex flex-col justify-center md:flex-row gap-4 mt-8"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 1, delay: 1 }}
+                >
                     <Link
                         href="/signup"
                         className="py-4 px-8 font-medium rounded-default text-pry-purple bg-btn-color"
@@ -91,22 +129,44 @@ export default function Home() {
                         <span className="order-2"> Watch Demo</span>
                         {videoDemo ? <FaPause /> : <FaPlay />}
                     </Button>
-                </div>
-                <div className="bg-white shadow-sm max-w-3xl mx-auto h-56 mt-8 rounded-t-xl"></div>
-            </section>
+                </motion.div>
+                <motion.div
+                    className="bg-white shadow-sm max-w-3xl mx-auto h-56 mt-8 rounded-t-xl"
+                    initial={{ y: 40, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 1, delay: 1.5 }}
+                ></motion.div>
+            </motion.section>
             <section className="">
-                <div className="mb-20 xxl:grid grid-cols-2 justify-between xxl:text-left">
-                    <h2 className="xxl:w-2/3">
+                <div
+                    className="mb-20 xxl:grid grid-cols-2 justify-between xxl:text-left"
+                    ref={targetRef}
+                >
+                    <motion.h2
+                        className="xxl:w-2/3"
+                        initial="hidden"
+                        animate={switchAnimation}
+                        variants={h2PAnimation}
+                    >
                         Getting started with us is easy and free
-                    </h2>
-                    <p>
+                    </motion.h2>
+                    <motion.p
+                        initial="hidden"
+                        animate={switchAnimation}
+                        variants={h2PAnimation}
+                    >
                         Getting started is a breeze - sign up for free and
                         embark on your event planning venture. Start your event
                         planning journey with ease and unlock the potential of
                         our platform.
-                    </p>
+                    </motion.p>
                 </div>
-                <div className="pointer-events-none">
+                <motion.div
+                    className="pointer-events-none"
+                    initial="hidden"
+                    animate={switchAnimation}
+                    variants={steps}
+                >
                     <CreateAccountCarousel count={count}>
                         <FirstProcess />
                         {/* slide 2 */}
@@ -116,7 +176,7 @@ export default function Home() {
                         {/* slide 4 */}
                         <FourthProcess />
                     </CreateAccountCarousel>
-                </div>
+                </motion.div>
                 <div className="grid grid-cols-2 gap-4 py-8 xl:grid-cols-3 xxl:grid-cols-4">
                     {processCard.map((pc, index) => (
                         <CreateAccountCard
