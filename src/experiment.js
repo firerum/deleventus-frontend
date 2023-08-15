@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@components/Button';
 import Faq from '@sections/FAQ/Faq';
 import { faqs } from '@faq';
@@ -14,7 +14,6 @@ import { SecondProcess } from './getting-started/SecondProcess';
 import { ThirdProcess } from './getting-started/ThirdProcess';
 import { FourthProcess } from './getting-started/FourthProcess';
 import { FaPause, FaPlay } from 'react-icons/fa';
-import { motion, useAnimation } from 'framer-motion';
 
 const processCard = [
     {
@@ -51,7 +50,6 @@ export default function Home() {
     /* count to change get started step on button click */
     const [count, setCount] = useState(0);
     const [videoDemo, setVideoDemo] = useState(false);
-    
 
     return (
         <div className="px-6 md:text-center md:px-16">
@@ -69,9 +67,7 @@ export default function Home() {
                         , <br /> Uncover the Full Story
                     </h1>
                     <p className="my-4 max-w-3xl mx-auto">
-                        Capture, curate, and share every detail of your events -
-                        from photos and videos to ticket sales and attendee
-                        interactions. With Deleventus, create and document a
+                        , create and document a
                         complete narrative of your memories, bringing your
                         events to life.
                     </p>
@@ -100,8 +96,7 @@ export default function Home() {
                         Getting started with us is easy and free
                     </h2>
                     <p>
-                        Getting started is a breeze - sign up for free and
-                        embark on your event planning venture. Start your event
+                        Start your event
                         planning journey with ease and unlock the potential of
                         our platform.
                     </p>
@@ -136,10 +131,7 @@ export default function Home() {
                     <h2>Featured Events</h2>
                     <p>
                         Explore a curated collection of remarkable gatherings,
-                        conferences, parties, fundraisers, and more. Whether
-                        you're looking for networking opportunities,
-                        entertainment, or a chance to support a worthy cause,
-                        our featured events offer something for everyone.
+                        
                     </p>
                 </div>
                 <div className="">
@@ -163,9 +155,7 @@ export default function Home() {
                     <h2>What Our Clients Say</h2>
                     <p>
                         We take pride in providing a seamless event planning
-                        experience for our clients. Don't just take our word for
-                        it—see what our clients have to say about their
-                        experiences with Deleventus.
+                        
                     </p>
                 </div>
                 <div className="">
@@ -185,13 +175,7 @@ export default function Home() {
             <section className="max-w-3xl mx-auto faq">
                 <div className="mb-16">
                     <h2>Frequently Asked Questions</h2>
-                    <p>
-                        Welcome to our FAQ section where we address common
-                        queries about Deleventus. Find answers to your questions
-                        below, and if you don't see what you're looking for,
-                        feel free to reach out to our support team for further
-                        assistance.
-                    </p>
+                    <p>Welcome to our FAQ section where we address common</p>
                 </div>
                 <div>
                     {faqs.map((faq, index) => (
@@ -211,10 +195,6 @@ export default function Home() {
                     </h2>
                     <p className="text-sm text-contact-text-color font-light md:text-base md:w-3/4 md:mx-auto">
                         Join Deleventus today to curate unforgettable event
-                        memories. Capture and share photos/videos, manage ticket
-                        sales, engage with attendees, and preserve valuable
-                        remarks. Say goodbye to scattered albums and fragmented
-                        documentation.
                     </p>
                     <div className="mt-8">
                         <Link

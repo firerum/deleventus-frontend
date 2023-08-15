@@ -1,13 +1,31 @@
 'use client';
-import React, { useState } from 'react';
+import { useState, useRef } from 'react';
 import { FaAngleDown } from 'react-icons/fa';
+import { motion, useInView, useAnimation } from 'framer-motion';
 
 export default function Faq({ title, content, index }) {
     const [open, setOpen] = useState(false);
+    const targetRef = useRef(null);
+    const isInView = useInView(targetRef);
+    const switchAnimation = useAnimation();
+    
+    const faqAnimation = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 },
+    };
+
+    if (isInView) {
+        switchAnimation.start('visible');
+    }
 
     return (
-        <div
+        <motion.div
+            initial="hidden"
+            animate={switchAnimation}
+            variants={faqAnimation}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
             className="text-start relative mb-4 border-b"
+            ref={targetRef}
             key={index}
             onClick={() => setOpen((open) => !open)}
         >
@@ -24,6 +42,6 @@ export default function Faq({ title, content, index }) {
             >
                 <p className="pb-4">{content}</p>
             </div>
-        </div>
+        </motion.div>
     );
 }
