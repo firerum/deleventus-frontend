@@ -33,3 +33,37 @@ export const liVariants = {
         },
     },
 };
+
+/* Home Get started variants */
+export const h2PAnimation = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        stiffness: 100,
+        velocity: -100,
+        transition: { duration: 0.6, delay: 0.5, ease: 'easeOut' },
+    },
+};
+
+export const steps = {
+    hidden: { opacity: 0, y: '100%' },
+    visible: {
+        opacity: 1,
+        y: 0,
+        stiffness: 100,
+        velocity: -100,
+        transition: { duration: 0.6, delay: 1, ease: 'easeOut' },
+    },
+};
+
+export const faqPAnimation = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        stiffness: 100,
+        velocity: -100,
+        transition: { duration: 0.6, delay: 0.4, ease: 'easeOut' },
+    },
+};

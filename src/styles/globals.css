@@ -293,29 +293,32 @@ to give the bullets enough space above the event card */
     margin-top: 20px;
 }
 
-//TODO find a more elegant solution to the propblem
-/* The absolute height is necessary to fix the carousel overflow that was occuring using height:auto */
-/* custom style for getting started steps */
-.banner-slide .swiper-slide {
-    height: 920px !important;
+/* Vertical Carousel Slide */
+.carousel-container {
+    overflow: hidden;
+    min-height: 840px;
+}
+
+.carousel-slide {
+    min-height: 100%; /* Ensure each slide takes full height */
 }
 
 /* Media queries custom style for getting started steps */
 @media screen and (min-width: 768px) {
-    .banner-slide .swiper-slide {
-        height: 1093px !important;
+    .carousel-container {
+        min-height: 940px;
     }
 }
 
 @media screen and (min-width: 900px) {
-    .banner-slide .swiper-slide {
-        height: 459px !important;
+    .carousel-container {
+        min-height: 459px;
     }
 }
 
 @media screen and (min-width: 980px) {
-    .banner-slide .swiper-slide {
-        height: 493px !important;
+    .carousel-container {
+        min-height: 493px;
     }
 }
 

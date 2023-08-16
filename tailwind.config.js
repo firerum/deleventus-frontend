@@ -25,7 +25,6 @@ module.exports = {
                 'background-gold': '#F5D88F',
                 'contact-text-color': '#ECECED',
                 'dashboard-gold': '#F8E4B2',
-                'other-purple': '#FEF6FD',
             },
             borderRadius: {
                 default: '3px',

@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { Button } from '@components/Button';
 import Faq from '@sections/FAQ/Faq';
 import { faqs } from '@faq';
@@ -8,13 +8,18 @@ import Link from 'next/link';
 import { Testimonial, testimonialData } from './Testimonial';
 import { EventCard, eventData } from '@sections/events/EventCard';
 import { Carousel } from '@components/Carousels/Carousel';
-import { CreateAccountCarousel } from './CreateAccountCarousel';
 import { FirstProcess } from './getting-started/FirstProcess';
 import { SecondProcess } from './getting-started/SecondProcess';
 import { ThirdProcess } from './getting-started/ThirdProcess';
 import { FourthProcess } from './getting-started/FourthProcess';
 import { FaPause, FaPlay } from 'react-icons/fa';
 import { motion, useAnimation, useInView } from 'framer-motion';
+import {
+    h2PAnimation,
+    steps,
+    faqPAnimation,
+} from '@utils/framer-motion/variants';
+import { VerticalCarousel } from '@components/Carousels/VerticalCarousel';
 
 const processCard = [
     {
@@ -59,24 +64,6 @@ export default function Home() {
         switchAnimation.start('visible');
     }
 
-    const h2PAnimation = {
-        hidden: { opacity: 0, y: -20 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, delay: 0.5, ease: 'easeOut' },
-        },
-    };
-
-    const steps = {
-        hidden: { opacity: 0, y: '100%' },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: { duration: 0.6, delay: 0.9, ease: 'easeOut' },
-        },
-    };
-
     return (
         <div className="px-6 md:text-center md:px-16">
             <motion.section
@@ -118,12 +105,12 @@ export default function Home() {
                 >
                     <Link
                         href="/signup"
-                        className="py-4 px-8 font-medium rounded-default text-pry-purple bg-btn-color"
+                        className="py-3 px-8 font-medium rounded-default text-pry-purple bg-btn-color"
                     >
                         Get Started
                     </Link>
                     <Button
-                        className="border-1 border-btn-color py-4 px-8 flex justify-center items-center gap-4 font-medium rounded-default"
+                        className="border-1 border-btn-color py-3 px-8 flex justify-center items-center gap-4 font-medium rounded-default"
                         onClick={() => setVideoDemo((prev) => !prev)}
                     >
                         <span className="order-2"> Watch Demo</span>
@@ -137,7 +124,7 @@ export default function Home() {
                     transition={{ duration: 1, delay: 1.5 }}
                 ></motion.div>
             </motion.section>
-            <section className="">
+            <section>
                 <div
                     className="mb-20 xxl:grid grid-cols-2 justify-between xxl:text-left"
                     ref={targetRef}
@@ -145,15 +132,17 @@ export default function Home() {
                     <motion.h2
                         className="xxl:w-2/3"
                         initial="hidden"
-                        animate={switchAnimation}
+                        whileInView="visible"
                         variants={h2PAnimation}
+                        viewport={{ once: true }}
                     >
                         Getting started with us is easy and free
                     </motion.h2>
                     <motion.p
                         initial="hidden"
-                        animate={switchAnimation}
+                        whileInView="visible"
                         variants={h2PAnimation}
+                        viewport={{ once: true }}
                     >
                         Getting started is a breeze - sign up for free and
                         embark on your event planning venture. Start your event
@@ -167,7 +156,7 @@ export default function Home() {
                     animate={switchAnimation}
                     variants={steps}
                 >
-                    <CreateAccountCarousel count={count}>
+                    <VerticalCarousel currentIndex={count}>
                         <FirstProcess />
                         {/* slide 2 */}
                         <SecondProcess />
@@ -175,7 +164,7 @@ export default function Home() {
                         <ThirdProcess />
                         {/* slide 4 */}
                         <FourthProcess />
-                    </CreateAccountCarousel>
+                    </VerticalCarousel>
                 </motion.div>
                 <div className="grid grid-cols-2 gap-4 py-8 xl:grid-cols-3 xxl:grid-cols-4">
                     {processCard.map((pc, index) => (
@@ -193,16 +182,28 @@ export default function Home() {
             </section>
             <section className="bg-pry-purple px-6 md:px-16 -mx-6 md:-mx-16 ">
                 <div className="xxl:grid grid-cols-2 xxl:text-left mb-16">
-                    <h2>Featured Events</h2>
-                    <p>
+                    <motion.h2
+                        initial="hidden"
+                        whileInView="visible"
+                        variants={h2PAnimation}
+                        viewport={{ once: true }}
+                    >
+                        Featured Events
+                    </motion.h2>
+                    <motion.p
+                        initial="hidden"
+                        whileInView="visible"
+                        variants={h2PAnimation}
+                        viewport={{ once: true }}
+                    >
                         Explore a curated collection of remarkable gatherings,
                         conferences, parties, fundraisers, and more. Whether
                         you're looking for networking opportunities,
                         entertainment, or a chance to support a worthy cause,
                         our featured events offer something for everyone.
-                    </p>
+                    </motion.p>
                 </div>
-                <div className="">
+                <div>
                     <Carousel>
                         {eventData.map((data, index) => (
                             <Link href={`explore/${data.name}`} key={index}>
@@ -218,7 +219,7 @@ export default function Home() {
                 </div>
                 <div className="swiper-custom-pagination"></div>
             </section>
-            <section className="">
+            <section>
                 <div className="xxl:grid grid-cols-2 xxl:text-left mb-12">
                     <h2>What Our Clients Say</h2>
                     <p>
@@ -228,7 +229,7 @@ export default function Home() {
                         experiences with Deleventus.
                     </p>
                 </div>
-                <div className="">
+                <div>
                     <Carousel>
                         {testimonialData.map((data, index) => (
                             <Testimonial
@@ -244,14 +245,26 @@ export default function Home() {
             </section>
             <section className="max-w-3xl mx-auto faq">
                 <div className="mb-16">
-                    <h2>Frequently Asked Questions</h2>
-                    <p>
+                    <motion.h2
+                        initial="hidden"
+                        whileInView="visible"
+                        variants={h2PAnimation}
+                        viewport={{ once: true }}
+                    >
+                        Frequently Asked Questions
+                    </motion.h2>
+                    <motion.p
+                        initial="hidden"
+                        whileInView="visible"
+                        variants={faqPAnimation}
+                        viewport={{ once: true }}
+                    >
                         Welcome to our FAQ section where we address common
                         queries about Deleventus. Find answers to your questions
                         below, and if you don't see what you're looking for,
                         feel free to reach out to our support team for further
                         assistance.
-                    </p>
+                    </motion.p>
                 </div>
                 <div>
                     {faqs.map((faq, index) => (
@@ -266,24 +279,42 @@ export default function Home() {
             </section>
             <section className="text-center bg-pry-purple py-16 px-6 md:px-16 -mx-6 md:-mx-16">
                 <div className="font-medium py-12 px-6 max-w-3xl mx-auto rounded-lg contact">
-                    <h2 className="text-pry-purple">
+                    <motion.h2
+                        className="text-pry-purple"
+                        initial="hidden"
+                        whileInView="visible"
+                        variants={faqPAnimation}
+                        viewport={{ once: true }}
+                    >
                         Get started with Deleventus today
-                    </h2>
-                    <p className="text-sm text-contact-text-color font-light md:text-base md:w-3/4 md:mx-auto">
+                    </motion.h2>
+                    <motion.p
+                        className="text-sm text-contact-text-color font-light md:text-base md:w-3/4 md:mx-auto"
+                        initial="hidden"
+                        whileInView="visible"
+                        variants={faqPAnimation}
+                        viewport={{ once: true }}
+                    >
                         Join Deleventus today to curate unforgettable event
                         memories. Capture and share photos/videos, manage ticket
                         sales, engage with attendees, and preserve valuable
                         remarks. Say goodbye to scattered albums and fragmented
                         documentation.
-                    </p>
-                    <div className="mt-8">
+                    </motion.p>
+                    <motion.div
+                        className="mt-8"
+                        initial="hidden"
+                        whileInView="visible"
+                        variants={faqPAnimation}
+                        viewport={{ once: true }}
+                    >
                         <Link
                             href="/signup"
                             className="py-4 px-8 font-medium rounded-default text-pry-purple bg-btn-color"
                         >
                             Get Started Free
                         </Link>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
         </div>

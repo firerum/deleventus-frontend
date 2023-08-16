@@ -4,11 +4,11 @@ import { FaCheckCircle } from 'react-icons/fa';
 export const ThirdProcess = () => {
     return (
         <div className="lg:flex justify-start gap-10">
-            <div className="get-started-image-bg mb-4 pt-20 px-6 xl:px-8 xl:pt-24 rounded-2xl">
+            <div className="get-started-image-bg mb-4 pt-10 px-6 xl:px-8 rounded-2xl">
                 <Image
                     src="/images/universal_DP.jpeg"
-                    width={750}
-                    height={200}
+                    width={500}
+                    height={100}
                     alt="sign up process visuals"
                     className="rounded-2xl rounded-b-none inline-block mb-0"
                     priority={true}
