@@ -12,11 +12,20 @@ const DropDownContainer = styled.div`
     border-radius: 3px;
     margin-bottom: 1rem;
     background-color: #fff;
+
+    &:focus-within {
+        outline: 2px solid #786995;
+    }
 `;
 
-const DropDownHeader = styled.div`
+const DropDownHeader = styled.button`
     background: inherit;
     text-transform: uppercase;
+    display: block;
+
+    &:focus {
+        outline: 2px solid #786995;
+    }
 `;
 
 const DropDownList = styled.ul`
@@ -53,6 +62,7 @@ export const SelectField = ({ children, header }) => {
     const ref = useRef();
     const optionItem = useRef();
     const listBox = useRef();
+
     // close select when clicked anywhere outside of it
     useCloseElementOnClick(ref, () => setIsOpen(false));
 
@@ -61,7 +71,18 @@ export const SelectField = ({ children, header }) => {
         setIsOpen(false);
     };
 
-    //TODO work on accessibility for screen readers
+    // Toggles the dropdown open/close on click or Space/Enter key press
+    const handleDropdownToggle = () => {
+        setIsOpen((prev) => !prev);
+    };
+
+    // Handle key presses on individual options
+    const handleOptionKeyDown = (event, value) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            setSelectedOption(value); // Selects the option on Enter or Space key press
+            setIsOpen(false); // Closes the dropdown after selection
+        }
+    };
 
     return (
         <DropDownContainer ref={ref}>
@@ -69,7 +90,18 @@ export const SelectField = ({ children, header }) => {
                 className="w-full font-light flex justify-between items-center gap-4"
                 onClick={() => setIsOpen((prev) => !prev)}
             >
-                <DropDownHeader aria-labelledby={header}>
+                <DropDownHeader
+                    type="button"
+                    aria-haspopup="listbox"
+                    aria-expanded={isOpen}
+                    onClick={() => handleDropdownToggle()}
+                    onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            handleDropdownToggle();
+                        }
+                    }}
+                >
                     {selectedOption ? (
                         <span className="font-normal">{selectedOption}</span>
                     ) : (
@@ -84,13 +116,22 @@ export const SelectField = ({ children, header }) => {
             </div>
 
             {isOpen && (
-                <DropDownList role="listbox" ref={listBox}>
+                <DropDownList
+                    role="listbox"
+                    ref={listBox}
+                    tabIndex={0}
+                    aria-activedescendant={selectedOption}
+                >
                     {children.map((child, index) => (
                         <ListItem
                             key={index}
                             role="option"
                             ref={optionItem}
                             onClick={onOptionClicked(child)}
+                            aria-selected={child === selectedOption}
+                            onKeyDown={(event) =>
+                                handleOptionKeyDown(event, child)
+                            }
                         >
                             {child}
                         </ListItem>
