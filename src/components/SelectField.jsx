@@ -43,7 +43,6 @@ const ListItem = styled.li`
 export const SelectField = ({ children, header }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
-    const [focusedOptionIndex, setFocusedOptionIndex] = useState(-1);
     const ref = useRef();
     const listBox = useRef();
 
@@ -61,18 +60,10 @@ export const SelectField = ({ children, header }) => {
     };
 
     // Handle key presses on individual options
-    const handleOptionKeyDown = (event, index, value) => {
+    const handleOptionKeyDown = (event, value) => {
         if (event.key === 'Enter' || event.key === ' ') {
             setSelectedOption(value); // Selects the option on Enter or Space key press
             setIsOpen(false); // Closes the dropdown after selection
-        } else if (event.key === 'ArrowDown') {
-            event.preventDefault();
-            const nextIndex = (index + 1) % children.length;
-            setFocusedOptionIndex(nextIndex);
-        } else if (event.key === 'ArrowUp') {
-            event.preventDefault();
-            const prevIndex = (index - 1 + children.length) % children.length;
-            setFocusedOptionIndex(prevIndex);
         }
     };
 
@@ -122,14 +113,8 @@ export const SelectField = ({ children, header }) => {
                             onClick={onOptionClicked(child)}
                             aria-selected={child === selectedOption}
                             onKeyDown={(event) =>
-                                handleOptionKeyDown(event, index, child)
+                                handleOptionKeyDown(event, child)
                             }
-                            style={{
-                                backgroundColor:
-                                    focusedOptionIndex === index
-                                        ? '#e7ddfb'
-                                        : 'transparent',
-                            }}
                         >
                             {child}
                         </ListItem>
