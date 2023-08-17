@@ -38,7 +38,7 @@ export const Modal = ({ children, isOpen, handleClose }) => {
                         transition={{
                             type: 'spring',
                             stiffness: 300,
-                            damping: 30,
+                            damping: 24,
                         }}
                     >
                         <Button
