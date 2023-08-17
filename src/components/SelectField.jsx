@@ -72,7 +72,7 @@ export const SelectField = ({ children, header, setOption }) => {
     return (
         <DropDownContainer ref={ref}>
             <button
-                className="w-full py-[0.57rem] px-4 font-light flex justify-between items-center gap-4"
+                className="w-full py-default px-4 font-light flex justify-between items-center gap-4"
                 tabIndex={0}
                 aria-haspopup="listbox"
                 aria-expanded={isOpen}

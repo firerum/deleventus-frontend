@@ -134,7 +134,7 @@ const WebAppNav = () => {
             {/* Mobile Navigation */}
             <div className="h-full">
                 <Button
-                    className="lg:hidden text-xl absolute z-10 top-8 left-6"
+                    className="lg:hidden text-xl absolute z-10 top-7 left-6"
                     onClick={() => setOpen((open) => !open)}
                 >
                     <FaTh />

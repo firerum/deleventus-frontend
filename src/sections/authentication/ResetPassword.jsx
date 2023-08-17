@@ -53,7 +53,7 @@ export default function ResetPassword() {
                                 required
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                            <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaEnvelope />
                             </span>
                         </div>

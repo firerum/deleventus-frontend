@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { CreateEventCarousel } from '@components/Carousels/CreateEventCarousel';
 import { SelectField } from '@components/SelectField';
 import { InputDateTimeField } from '@components/InputField';
+import { DateField } from '@components/DateField';
 
 const eventSteps = [
     {
@@ -72,6 +73,7 @@ export const EventInformation = () => {
     const [cat, setCat] = useState('wedding');
     const [country, setCountry] = useState('Nigeria');
     const [status, setStatus] = useState('public');
+    const [date, setDate] = useState('');
 
     const handleImage = (e) => {
         const blobURL = URL.createObjectURL(e.target.files[0]);
@@ -112,16 +114,15 @@ export const EventInformation = () => {
                     required
                     onChange={(e) => setEventName(e.target.value)}
                 />
-                <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                     <FaIdBadge />
                 </span>
             </div>
             <div className="lg:flex gap-4">
-                <InputDateTimeField
-                    type="date"
-                    placeholder="date"
-                    required={true}
-                    onChange={(e) => console.log(e.target.value)}
+                <DateField
+                    placeholder={'Date'}
+                    selected={date}
+                    setSelected={setDate}
                 />
                 <InputDateTimeField
                     type="time"
@@ -167,6 +168,7 @@ export const EventTicket = () => {
     const [desc, setDesc] = useState('');
     const [quantity, setQuantity] = useState(0);
     const [ticketType, setTicketType] = useState('PAID');
+    const [date, setDate] = useState('');
 
     return (
         <div>
@@ -225,11 +227,10 @@ export const EventTicket = () => {
                 </span>
             </div>
             <div className="lg:flex gap-4 justify-between">
-                <InputDateTimeField
-                    type="date"
-                    placeholder="date"
-                    required={true}
-                    onChange={(e) => console.log(e.target.value)}
+                <DateField
+                    placeholder={'Start Date'}
+                    selected={date}
+                    setSelected={setDate}
                 />
                 <InputDateTimeField
                     type="time"
@@ -239,11 +240,10 @@ export const EventTicket = () => {
                 />
             </div>
             <div className="lg:flex gap-4 justify-between">
-                <InputDateTimeField
-                    type="date"
-                    placeholder="date"
-                    required={true}
-                    onChange={(e) => console.log(e.target.value)}
+                <DateField
+                    placeholder={'sales end'}
+                    selected={date}
+                    setSelected={setDate}
                 />
                 <InputDateTimeField
                     type="time"
@@ -273,7 +273,7 @@ export const CreateEvent = () => {
                     ))}
                 </ol>
             </section>
-            <section className="bg-white px-8 pt-8 mb-0 md:w-1/2 overflow-y-scroll">
+            <section className="bg-[#f8fafc] px-8 pt-8 mb-0 md:w-1/2 overflow-y-scroll">
                 <h1 className="text-xl">Create Event</h1>
                 <form className="text-pry-text-color-1 w-full pb-12">
                     <CreateEventCarousel count={carouselCount}>
@@ -282,7 +282,7 @@ export const CreateEvent = () => {
                         <EventTicket />
                     </CreateEventCarousel>
                 </form>
-                <div className="bg-[#FAFAFB] flex py-4 -mx-8 px-8 justify-end gap-4">
+                <div className="flex py-4 -mx-8 px-8 justify-end gap-4">
                     <Button
                         disabled={carouselCount === 0 && true}
                         className="border-1 text-pry-header-title py-2 px-4 rounded-default disabled:bg-gray-300 disabled:text-white"

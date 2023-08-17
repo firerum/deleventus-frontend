@@ -89,7 +89,7 @@ export default function Signup() {
                     className="text-pry-text-color-1 px-10 max-w-md mx-auto"
                 >
                     <div>
-                        <div className="flex flex-col md:flex-row md:gap-2">
+                        <div className="grid md:grid-cols-2 md:gap-2">
                             <div className="relative">
                                 <InputField
                                     type="text"
@@ -102,7 +102,7 @@ export default function Signup() {
                                         )
                                     }
                                 />
-                                <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                                <span className="absolute left-0 top-1/3 transform -translate-y-1/3 pl-6 pr-2 border-r-1 border-solid">
                                     <FaUser />
                                 </span>
                             </div>
@@ -115,7 +115,7 @@ export default function Signup() {
                                         set('last_name', last_name.target.value)
                                     }
                                 />
-                                <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                                <span className="absolute left-0 top-1/3 transform -translate-y-1/3 pl-6 pr-2 border-r-1 border-solid">
                                     <FaUser />
                                 </span>
                             </div>
@@ -129,7 +129,7 @@ export default function Signup() {
                                     set('email', email.target.value)
                                 }
                             />
-                            <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                            <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaEnvelope />
                             </span>
                         </div>
@@ -142,7 +142,7 @@ export default function Signup() {
                                     set('password', password.target.value)
                                 }
                             />
-                            <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                            <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaLock />
                             </span>
                         </div>
@@ -155,7 +155,7 @@ export default function Signup() {
                                     set('ConfirmPassword', e.target.value)
                                 }
                             />
-                            <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                            <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaLock />
                             </span>
                         </div>

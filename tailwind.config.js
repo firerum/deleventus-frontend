@@ -26,6 +26,9 @@ module.exports = {
                 'contact-text-color': '#ECECED',
                 'dashboard-gold': '#F8E4B2',
             },
+            padding: {
+                default: '0.57rem',
+            },
             borderRadius: {
                 default: '3px',
             },

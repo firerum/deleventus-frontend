@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
                         tokenData.id,
                         access_token
                     );
-                    setUser(user);
+                    if (user) setUser(user);
                     setLoading(false);
                     checkTokenExpiration(access_token);
                 } catch (error) {
