@@ -46,11 +46,32 @@ const eventSteps = [
     },
 ];
 
-const category = ['wedding', 'birthday', 'convocation', 'anniversary', 'other'];
+const category = [
+    'wedding',
+    'birthday',
+    'convocation',
+    'anniversary',
+    'concert',
+    'festival',
+    'other',
+];
+const countries = [
+    'Nigeria',
+    'Ghana',
+    'Canada',
+    'Cameroon',
+    'Senegal',
+    'United States',
+    'United Kingdom',
+];
+const privacyStatus = ['public', 'private', 'personal'];
 
 export const EventInformation = () => {
     const [eventName, setEventName] = useState('');
     const [eventAvatar, setEventAvatar] = useState('');
+    const [cat, setCat] = useState('wedding');
+    const [country, setCountry] = useState('Nigeria');
+    const [status, setStatus] = useState('public');
 
     const handleImage = (e) => {
         const blobURL = URL.createObjectURL(e.target.files[0]);
@@ -109,19 +130,20 @@ export const EventInformation = () => {
                     onChange={(e) => console.log(e.target.value)}
                 />
             </div>
-            <SelectField header={'event category'}>
+            <SelectField header={'event category'} setOption={setCat}>
                 {category.map((cat, index) => (
                     <div key={index}>{cat}</div>
                 ))}
             </SelectField>
-            <SelectField header={'event location'}>
-                <div>nigeria</div>
-                <div>ghana</div>
+            <SelectField header={'event location'} setOption={setCountry}>
+                {countries.map((country, index) => (
+                    <div key={index}>{country}</div>
+                ))}
             </SelectField>
-            <SelectField header={'privacy status'}>
-                <div>public</div>
-                <div>private</div>
-                <div>personal</div>
+            <SelectField header={'privacy status'} setOption={setStatus}>
+                {privacyStatus.map((country, index) => (
+                    <div key={index}>{country}</div>
+                ))}
             </SelectField>
         </div>
     );
@@ -144,6 +166,7 @@ export const EventTicket = () => {
     const [ticketName, setTicketName] = useState('');
     const [desc, setDesc] = useState('');
     const [quantity, setQuantity] = useState(0);
+    const [ticketType, setTicketType] = useState('PAID');
 
     return (
         <div>
@@ -172,7 +195,7 @@ export const EventTicket = () => {
                 </span>
             </div>
             <div className="bg-white">
-                <SelectField header={'TICKET TYPE'}>
+                <SelectField header={'TICKET TYPE'} setOption={setTicketType}>
                     <div>Free</div>
                     <div>Paid</div>
                 </SelectField>

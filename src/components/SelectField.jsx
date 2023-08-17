@@ -40,7 +40,7 @@ const ListItem = styled.li`
     }
 `;
 
-export const SelectField = ({ children, header }) => {
+export const SelectField = ({ children, header, setOption }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
     const ref = useRef();
@@ -51,6 +51,7 @@ export const SelectField = ({ children, header }) => {
 
     const onOptionClicked = (value) => () => {
         setSelectedOption(value);
+        setOption(value)
         setIsOpen(false);
     };
 
@@ -63,6 +64,7 @@ export const SelectField = ({ children, header }) => {
     const handleOptionKeyDown = (event, value) => {
         if (event.key === 'Enter' || event.key === ' ') {
             setSelectedOption(value); // Selects the option on Enter or Space key press
+            setOption(value)
             setIsOpen(false); // Closes the dropdown after selection
         }
     };
