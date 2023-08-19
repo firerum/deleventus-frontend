@@ -63,7 +63,7 @@ export default function Signup() {
 
     return (
         <section className="text-center lg:flex overflow-hidden">
-            <div className="hidden lg:block form pt-24 w-1/2"></div>
+            <div className="hidden h-screen lg:block form w-1/2"></div>
             <div className="bg-white lg:w-1/2 text-center pb-12 pt-10 max-w-3xl mx-auto rounded-md">
                 <span className="inline-block m-auto">
                     <Link href="/">
@@ -89,37 +89,6 @@ export default function Signup() {
                     className="text-pry-text-color-1 px-10 max-w-md mx-auto"
                 >
                     <div>
-                        <div className="grid md:grid-cols-2 md:gap-2">
-                            <div className="relative">
-                                <InputField
-                                    type="text"
-                                    placeholder="first name"
-                                    required
-                                    onChange={(first_name) =>
-                                        set(
-                                            'first_name',
-                                            first_name.target.value
-                                        )
-                                    }
-                                />
-                                <span className="absolute left-0 top-1/3 transform -translate-y-1/3 pl-6 pr-2 border-r-1 border-solid">
-                                    <FaUser />
-                                </span>
-                            </div>
-                            <div className="relative">
-                                <InputField
-                                    type="text"
-                                    placeholder="last name"
-                                    required
-                                    onChange={(last_name) =>
-                                        set('last_name', last_name.target.value)
-                                    }
-                                />
-                                <span className="absolute left-0 top-1/3 transform -translate-y-1/3 pl-6 pr-2 border-r-1 border-solid">
-                                    <FaUser />
-                                </span>
-                            </div>
-                        </div>
                         <div className="relative">
                             <InputField
                                 type="email"

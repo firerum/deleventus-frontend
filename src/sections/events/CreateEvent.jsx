@@ -13,7 +13,6 @@ import Image from 'next/image';
 import { CreateEventCarousel } from '@components/Carousels/CreateEventCarousel';
 import { SelectField } from '@components/SelectField';
 import { InputDateTimeField } from '@components/InputField';
-import { DateField } from '@components/DateField';
 
 const eventSteps = [
     {
@@ -74,6 +73,7 @@ export const EventInformation = () => {
     const [country, setCountry] = useState('Nigeria');
     const [status, setStatus] = useState('public');
     const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
 
     const handleImage = (e) => {
         const blobURL = URL.createObjectURL(e.target.files[0]);
@@ -119,16 +119,19 @@ export const EventInformation = () => {
                 </span>
             </div>
             <div className="lg:flex gap-4">
-                <DateField
-                    placeholder={'Date'}
-                    selected={date}
-                    setSelected={setDate}
+                <InputDateTimeField
+                    type={'date'}
+                    placeholder={'date'}
+                    onChange={(e) => console.log(e)}
+                    required={true}
+                    label={'date'}
                 />
                 <InputDateTimeField
-                    type="time"
-                    placeholder="time"
+                    type={'time'}
+                    placeholder={'Time'}
+                    onChange={(e) => console.log(e)}
                     required={true}
-                    onChange={(e) => console.log(e.target.value)}
+                    label={'time'}
                 />
             </div>
             <SelectField header={'event category'} setOption={setCat}>
@@ -227,10 +230,11 @@ export const EventTicket = () => {
                 </span>
             </div>
             <div className="lg:flex gap-4 justify-between">
-                <DateField
-                    placeholder={'Start Date'}
-                    selected={date}
-                    setSelected={setDate}
+                <InputDateTimeField
+                    type="date"
+                    placeholder="sales start"
+                    required={true}
+                    onChange={(e) => console.log(e.target.value)}
                 />
                 <InputDateTimeField
                     type="time"
@@ -240,10 +244,11 @@ export const EventTicket = () => {
                 />
             </div>
             <div className="lg:flex gap-4 justify-between">
-                <DateField
-                    placeholder={'sales end'}
-                    selected={date}
-                    setSelected={setDate}
+                <InputDateTimeField
+                    type="date"
+                    placeholder="sales end"
+                    required={true}
+                    onChange={(e) => console.log(e.target.value)}
                 />
                 <InputDateTimeField
                     type="time"
