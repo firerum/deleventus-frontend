@@ -9,6 +9,11 @@ const navigation = {
         { name: 'Web App', href: '/timeline' },
         { name: 'Receipt and Invoicing', href: '#' },
     ],
+    // legal: [
+    //     { name: 'Privacy', href: '' },
+    //     { name: 'Terms', href: '' },
+    //     { name: 'Privacy', href: '' },
+    // ],
     integration: [
         { name: 'Google Map', href: '' },
         { name: 'Google Calendar', href: '' },
@@ -89,6 +94,10 @@ const Footer = () => {
                     <header className="mb-6">Company</header>
                     <FooterLinks navigation={navigation.company} />
                 </div>
+                {/* <div>
+                    <header className="mb-6">Legal</header>
+                    <FooterLinks navigation={navigation.legal} />
+                </div> */}
             </section>
             <section className="bg-pry-purple p-10 lg:py-6 text-center md:px-16 lg:flex justify-between -mx-10 md:-mx-16">
                 <p>&copy; {new Date().getFullYear()} All rights reserved.</p>

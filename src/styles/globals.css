@@ -97,6 +97,12 @@ input.create-event::file-selector-button {
     color: transparent;
 }
 
+/* Zoom Event Image on hover */
+.zoom-over:hover img {
+    scale: 110%;
+    transition: transform 800ms ease-in;
+}
+
 /* Modal styles */
 .modal {
     position: fixed;
