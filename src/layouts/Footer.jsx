@@ -9,11 +9,6 @@ const navigation = {
         { name: 'Web App', href: '/timeline' },
         { name: 'Receipt and Invoicing', href: '#' },
     ],
-    // legal: [
-    //     { name: 'Privacy', href: '' },
-    //     { name: 'Terms', href: '' },
-    //     { name: 'Privacy', href: '' },
-    // ],
     integration: [
         { name: 'Google Map', href: '' },
         { name: 'Google Calendar', href: '' },
