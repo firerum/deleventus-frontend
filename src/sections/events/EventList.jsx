@@ -54,7 +54,7 @@ export const EventList = () => {
                     >
                         <EventCard
                             name={eve?.name}
-                            desc={eve?.desc}
+                            desc={eve?.description}
                             date={eve?.date_of_event}
                             avatar={eve?.avatar}
                         />
