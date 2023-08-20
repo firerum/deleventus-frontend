@@ -6,7 +6,7 @@ import { Modal } from '@components/Modals/Modal';
 import { CreateEvent } from '@sections/events/CreateEvent';
 import { MdCreate } from 'react-icons/md';
 import { AnimateContent } from '@utils/framer-motion/AnimateContent';
-import { EventsList } from '@sections/events/EventsList';
+import { EventList } from '@sections/events/EventList';
 
 export default function Timeline() {
     const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +29,7 @@ export default function Timeline() {
                 <div className="mt-6">
                     {tab === 'All' && (
                         <AnimateContent>
-                            <EventsList />
+                            <EventList />
                         </AnimateContent>
                     )}
                     {tab === 'Wedding' && (
