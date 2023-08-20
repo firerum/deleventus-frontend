@@ -71,7 +71,7 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="text"
-                                value={user.first_name || ''}
+                                value={user?.first_name || ''}
                                 placeholder="first name"
                                 required
                                 onChange={(e) => console.log(e.target.value)}
@@ -83,7 +83,7 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="text"
-                                value={user.first_name || 'John Doe'}
+                                value={user?.first_name || 'John Doe'}
                                 placeholder="last name"
                                 required
                                 onChange={(e) => console.log(e.target.value)}
@@ -97,7 +97,7 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="email"
-                                value={user.email || 'johndoe@gmail.com'}
+                                value={user?.email || 'johndoe@gmail.com'}
                                 placeholder="email"
                                 required
                                 onChange={(e) => console.log(e.target.value)}
@@ -109,7 +109,7 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="text"
-                                value={user.username || 'mr worldwide'}
+                                value={user?.username || 'mr worldwide'}
                                 placeholder="username"
                                 required
                                 onChange={(e) => console.log(e.target.value)}
@@ -123,7 +123,7 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="telephone"
-                                value={user.phone_no || '(+237) 696 88 77 55"'}
+                                value={user?.phone_no || '(+237) 696 88 77 55"'}
                                 placeholder="(+237) 696 88 77 55"
                                 required
                                 onChange={(e) => console.log(e.target.value)}
@@ -135,7 +135,7 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="text"
-                                value={user.username || 'mr worldwide'}
+                                value={user?.username || 'mr worldwide'}
                                 placeholder="username"
                                 required
                                 onChange={(e) => console.log(e.target.value)}
@@ -151,7 +151,7 @@ export const Profile = () => {
                     <div className="relative md:w-1/2">
                         <InputField
                             type="password"
-                            value={user.password || '123456'}
+                            value={user?.password || '123456'}
                             placeholder="password"
                             required
                             onChange={(e) => console.log(e.target.value)}
