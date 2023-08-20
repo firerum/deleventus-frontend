@@ -53,16 +53,16 @@ export const EventCard = ({ name, desc, date, avatar }) => {
         <article className="max-w-[330px] mx-auto text-left rounded-xl zoom-over">
             <div className="overflow-hidden rounded-xl">
                 <Image
-                    src={avatar}
+                    src={avatar || '/images/featured_event_image1.jpeg'}
                     width={350}
                     height={50}
                     alt="featured event one"
                     className="inline-block w-full h-44 object-fill rounded-xl transition-all transform-gpu"
                     placeholder="blur"
-                    blurDataURL={avatar}
+                    blurDataURL={avatar || '/images/featured_event_image1.jpeg'}
                 />
             </div>
-            <div className="flex justify-start bg-white shadow-sm rounded-b-xl cursor-pointer">
+            <div className="w-full flex justify-start bg-white shadow-sm rounded-b-xl cursor-pointer">
                 <div className="px-4 py-8 order-2 relative">
                     <h3 className="title text-base">{name}</h3>
                     <p className="desc text-pry-text-color-1 text-sm lg:text-xs">
@@ -70,7 +70,7 @@ export const EventCard = ({ name, desc, date, avatar }) => {
                     </p>
                 </div>
                 <span className="order-1 py-8 pl-4 font-semibold text-secondary-gold">
-                    {date}
+                    {date?.split('-')[0]}
                 </span>
             </div>
         </article>

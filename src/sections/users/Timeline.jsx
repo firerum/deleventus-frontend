@@ -1,13 +1,12 @@
 'use client';
 import { useState } from 'react';
 import { WebAppSubnav } from '@layouts/WebAppSubnav';
-import { EventCard, eventData } from '@sections/events/EventCard';
 import { Button } from '@components/Button';
 import { Modal } from '@components/Modals/Modal';
 import { CreateEvent } from '@sections/events/CreateEvent';
 import { MdCreate } from 'react-icons/md';
-import Link from 'next/link';
 import { AnimateContent } from '@utils/framer-motion/AnimateContent';
+import { EventsList } from '@sections/events/EventsList';
 
 export default function Timeline() {
     const [isOpen, setIsOpen] = useState(false);
@@ -30,21 +29,7 @@ export default function Timeline() {
                 <div className="mt-6">
                     {tab === 'All' && (
                         <AnimateContent>
-                            <div className="flex flex-wrap justify-center gap-4 lg:grid grid-cols-2 xl:grid-cols-4">
-                                {eventData.map((eve, index) => (
-                                    <Link
-                                        href={`events/${eve.name}`}
-                                        key={index}
-                                    >
-                                        <EventCard
-                                            name={eve.name}
-                                            desc={eve.desc}
-                                            date={eve.date_of_event}
-                                            avatar={eve.avatar}
-                                        />
-                                    </Link>
-                                ))}
-                            </div>
+                            <EventsList />
                         </AnimateContent>
                     )}
                     {tab === 'Wedding' && (

@@ -3,16 +3,20 @@ import { useState } from 'react';
 import { MdCreate } from 'react-icons/md';
 import { EventSummaryCard } from './EventSummaryCard';
 import { WebAppSubnav } from '@layouts/WebAppSubnav';
-import { EventCardMini, eventData2 } from './EventCardMini';
+import { EventCard } from './EventCard';
 import { Button } from '@components/Button';
 import { ViewFormatter } from '@components/ViewFormatter';
 import { CreateEvent } from './CreateEvent';
 import { Modal } from '@components/Modals/Modal';
+import { useAuth } from '@sections/authentication/AuthProtect';
+import Link from 'next/link';
+import { AnimateContent } from '@utils/framer-motion/AnimateContent';
 
 export default function MyEvents() {
     const [tab, setTab] = useState('All');
     // modal state
     const [isOpen, setIsOpen] = useState(false);
+    const { user } = useAuth();
 
     return (
         <main className="p-6 lg:p-0 lg:pr-6">
@@ -41,22 +45,38 @@ export default function MyEvents() {
                 <div>
                     <ViewFormatter />
                     {tab === 'All' && (
-                        <div className="flex flex-wrap gap-4">
-                            {eventData2.map((ev, index) => (
-                                <div className="w-40" key={index}>
-                                    <EventCardMini
-                                        name={ev.name}
-                                        date={ev.date_of_event}
-                                        avatar={ev.avatar}
-                                    />
-                                </div>
-                            ))}
-                        </div>
+                        <AnimateContent>
+                            <div className="flex flex-wrap justify-center gap-4 lg:grid grid-cols-2 xl:grid-cols-4">
+                                {user &&
+                                    user?.events?.map((ev, index) => (
+                                        <Link
+                                            href={`events/${ev.id}`}
+                                            className="w-full"
+                                            key={index}
+                                        >
+                                            <EventCard
+                                                name={ev?.name}
+                                                desc={ev?.description}
+                                                date={ev?.date_of_event}
+                                                avatar={ev?.avatar}
+                                            />
+                                        </Link>
+                                    ))}
+                            </div>
+                        </AnimateContent>
                     )}
-                    {tab === 'Upcoming' && <div>Upcoming Events</div>}
-                    {tab === 'In-Progress' && <div>In Progress Events</div>}
-                    {tab === 'Completed' && <div>Completed Events</div>}
-                    {tab === 'Cancelled' && <div>Cancelled Events</div>}
+                    {tab === 'Upcoming' && (
+                        <AnimateContent>Upcoming Events</AnimateContent>
+                    )}
+                    {tab === 'In-Progress' && (
+                        <AnimateContent>In Progress Events</AnimateContent>
+                    )}
+                    {tab === 'Completed' && (
+                        <AnimateContent>Completed Events</AnimateContent>
+                    )}
+                    {tab === 'Cancelled' && (
+                        <AnimateContent>Cancelled Events</AnimateContent>
+                    )}
                 </div>
             </section>
             <Modal isOpen={isOpen} handleClose={() => setIsOpen(false)}>
