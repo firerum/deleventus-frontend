@@ -1,26 +1,30 @@
 'use client';
+import { forwardRef } from 'react';
 
-export const InputField = ({
-    type,
-    value,
-    name,
-    label,
-    placeholder,
-    onChange,
-}) => {
-    return (
-        <div className="mb-4">
-            <input
-                type={type}
-                value={value}
-                name={name}
-                placeholder={placeholder}
-                onChange={onChange}
-                className="pl-14 pr-4 py-default w-full border-1 border-secondary-purple rounded-default"
-            />
-        </div>
-    );
-};
+export const InputField = forwardRef(
+    ({ type, value, name, placeholder, onChange, errors }, ref) => {
+        return (
+            <>
+                {errors && (
+                    <p className="text-xs text-red-500 absolute -top-4 left-0 mb-2 mt-0 max-w-md mx-auto">
+                        {errors[name]?.message}
+                    </p>
+                )}
+                <div className="mb-4">
+                    <input
+                        type={type}
+                        value={value}
+                        name={name}
+                        placeholder={placeholder}
+                        onChange={onChange}
+                        className="pl-14 pr-4 py-default w-full border-1 border-secondary-purple rounded-default"
+                        ref={ref}
+                    />
+                </div>
+            </>
+        );
+    }
+);
 
 export const InputDateTimeField = ({
     type,

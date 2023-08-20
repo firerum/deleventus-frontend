@@ -9,7 +9,6 @@ import {
     FaFacebook,
     FaLock,
     FaEnvelope,
-    FaUser,
 } from 'react-icons/fa';
 import Link from 'next/link';
 import { useAuth } from './AuthProtect';
@@ -17,31 +16,25 @@ import { useMap } from 'react-use';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ButtonLoader } from '@components/Spinner';
+import { useForm } from 'react-hook-form';
 
 export default function Signup() {
-    const { register, isAuthenticated } = useAuth();
+    const { register: reg, isAuthenticated } = useAuth();
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
-    const [form, { set }] = useMap({
-        first_name: '',
-        last_name: '',
-        email: '',
-        password: '',
-    });
-    // const [providers, setProviders] = useState(null);
-    // useEffect(() => {
-    //     const getAllProviders = async () => {
-    //         const response = await getProviders();
-    //         setProviders(response);
-    //     };
-    //     getAllProviders();
-    // }, []);
-    const handleSubmit = async (e) => {
+    const [form, { set }] = useMap({ email: '', password: '' });
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+    const handleSubmition = async (e) => {
         try {
             e.preventDefault();
             setLoading(true);
-            const result = await register(form);
+            const result = await reg(form);
             if (result) {
                 setErrorMessage(result.response.data.message);
                 setLoading(false);
@@ -85,7 +78,7 @@ export default function Signup() {
                     {errorMessage && errorMessage}
                 </div>
                 <form
-                    onSubmit={handleSubmit}
+                    onSubmit={handleSubmit((data) => console.log(data))}
                     className="text-pry-text-color-1 px-10 max-w-md mx-auto"
                 >
                     <div>
@@ -97,6 +90,14 @@ export default function Signup() {
                                 onChange={(email) =>
                                     set('email', email.target.value)
                                 }
+                                {...register('email', {
+                                    required: 'Email must not be empty',
+                                    minLength: {
+                                        value: 3,
+                                        message: 'Minimum length of 3',
+                                    },
+                                })}
+                                errors={errors}
                             />
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaEnvelope />
@@ -110,6 +111,14 @@ export default function Signup() {
                                 onChange={(password) =>
                                     set('password', password.target.value)
                                 }
+                                {...register('password', {
+                                    required: 'Password must not be empty',
+                                    minLength: {
+                                        value: 6,
+                                        message: 'Minimum length of 6',
+                                    },
+                                })}
+                                errors={errors}
                             />
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaLock />
@@ -123,6 +132,14 @@ export default function Signup() {
                                 onChange={(e) =>
                                     set('ConfirmPassword', e.target.value)
                                 }
+                                {...register('confirmPassword', {
+                                    required: 'Password must not be empty',
+                                    minLength: {
+                                        value: 6,
+                                        message: 'Minimum length of 6',
+                                    },
+                                })}
+                                errors={errors}
                             />
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaLock />
@@ -179,3 +196,12 @@ export default function Signup() {
         </section>
     );
 }
+
+// const [providers, setProviders] = useState(null);
+// useEffect(() => {
+//     const getAllProviders = async () => {
+//         const response = await getProviders();
+//         setProviders(response);
+//     };
+//     getAllProviders();
+// }, []);

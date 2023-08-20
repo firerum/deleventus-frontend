@@ -11,6 +11,7 @@ import { Modal } from '@components/Modals/Modal';
 import { useAuth } from '@sections/authentication/AuthProtect';
 import Link from 'next/link';
 import { AnimateContent } from '@utils/framer-motion/AnimateContent';
+import { EventList } from './EventList';
 
 export default function MyEvents() {
     const [tab, setTab] = useState('All');
