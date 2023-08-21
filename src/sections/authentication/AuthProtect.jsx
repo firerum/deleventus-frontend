@@ -47,12 +47,21 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const fetchUserData = async (userId, access_token) => {
-        const response = await axios.get(`${API_URL}/users/${userId}`, {
-            headers: {
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
-        return response.data;
+        try {
+            const response = await axios.get(`${API_URL}/users/${userId}`, {
+                headers: {
+                    Authorization: `Bearer ${access_token}`,
+                },
+            });
+            return response.data;
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                // Access token expired, attempt to refresh token
+                getRefreshToken();
+            } else {
+                throw error;
+            }
+        }
     };
 
     // check token for expiration
@@ -179,13 +188,9 @@ export const AuthProvider = ({ children }) => {
                 Cookies.set('access_token', access_token, { expires: 60 });
                 Cookies.set('refresh_token', refresh_token);
                 const tokenData = jwtDecode(access_token);
-                const response = await axios(
-                    `${API_URL}/users/${tokenData.id}`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${access_token}`,
-                        },
-                    }
+                const response = await fetchUserData(
+                    tokenData.id,
+                    access_token
                 );
                 const user = response.data;
                 if (user) {
@@ -210,13 +215,9 @@ export const AuthProvider = ({ children }) => {
                 Cookies.set('access_token', access_token);
                 Cookies.set('refresh_token', refresh_token);
                 const tokenData = jwtDecode(access_token);
-                const response = await axios(
-                    `${API_URL}/users/${tokenData.id}`,
-                    {
-                        headers: {
-                            Authorization: `Bearer ${access_token}`,
-                        },
-                    }
+                const response = await fetchUserData(
+                    tokenData.id,
+                    access_token
                 );
                 const user = response.data;
                 if (user) {
