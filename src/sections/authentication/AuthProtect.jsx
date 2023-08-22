@@ -115,22 +115,6 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    useEffect(() => {
-        const broadcastChannel = new BroadcastChannel('tokenRefreshChannel');
-        broadcastChannel.onmessage = (event) => {
-            if (event.data === true) {
-                const tokenData = accessToken && jwtDecode(accessToken);
-                // Token was refreshed in another tab, update UI to reflect changes
-                // fetch user data to keep the UI up-to-date
-                fetchUserData(tokenData.id, accessToken);
-            }
-        };
-
-        return () => {
-            broadcastChannel.close();
-        };
-    }, [accessToken]);
-
     // get new access and refresh token when the access_token is about to expire
     const getRefreshToken = async () => {
         if (!refreshToken) return;
@@ -188,15 +172,11 @@ export const AuthProvider = ({ children }) => {
                 Cookies.set('access_token', access_token, { expires: 60 });
                 Cookies.set('refresh_token', refresh_token);
                 const tokenData = jwtDecode(access_token);
-                const response = await fetchUserData(
-                    tokenData.id,
-                    access_token
-                );
-                const user = response.data;
+                const user = await fetchUserData(tokenData.id, access_token);
                 if (user) {
-                    router.push('/timeline');
+                    setUser(user);
+                    router.replace('/timeline');
                 }
-                setUser(user);
                 // Refresh tokens after successful login from a new device
                 getRefreshToken();
             }
@@ -215,15 +195,11 @@ export const AuthProvider = ({ children }) => {
                 Cookies.set('access_token', access_token);
                 Cookies.set('refresh_token', refresh_token);
                 const tokenData = jwtDecode(access_token);
-                const response = await fetchUserData(
-                    tokenData.id,
-                    access_token
-                );
-                const user = response.data;
+                const user = await fetchUserData(tokenData.id, access_token);
                 if (user) {
-                    router.push('/timeline');
+                    setUser(user);
+                    router.replace('/timeline');
                 }
-                setUser(user);
             }
         } catch (err) {
             return err;
@@ -233,7 +209,6 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         Cookies.remove('access_token');
         Cookies.remove('refresh_token');
-        localStorage.removeItem('refreshTimer');
         setUser(null);
         router.push('/signin');
     };
