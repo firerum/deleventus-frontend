@@ -178,7 +178,7 @@ export const AuthProvider = ({ children }) => {
                     router.replace('/timeline');
                 }
                 // Refresh tokens after successful login from a new device
-                getRefreshToken();
+                // getRefreshToken();
             }
             return result;
         } catch (err) {

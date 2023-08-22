@@ -6,7 +6,7 @@ export const InputField = forwardRef(
         return (
             <>
                 {errors && (
-                    <p className="text-xs text-red-500 absolute -top-4 left-0 mb-2 mt-0 max-w-md mx-auto">
+                    <p className="text-xs text-left text-red-500 absolute -top-4 left-0 mb-2 mt-0 max-w-md mx-auto">
                         {errors[name]?.message}
                     </p>
                 )}

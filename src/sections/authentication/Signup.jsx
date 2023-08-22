@@ -12,35 +12,57 @@ import {
 } from 'react-icons/fa';
 import Link from 'next/link';
 import { useAuth } from './AuthProtect';
-import { useMap } from 'react-use';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { ButtonLoader } from '@components/Spinner';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup
+    .object({
+        email: yup
+            .string()
+            .email('Invalid email')
+            .required('Email is required'),
+        password: yup
+            .string()
+            .min(6, 'Password must be at least 6 characters')
+            .required('Password is required'),
+        confirmPassword: yup
+            .string()
+            .min(6, 'Password must be at least 6 characters')
+            .required('Password is required'),
+    })
+    .required();
 
 export default function Signup() {
     const { register: reg, isAuthenticated } = useAuth();
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
-    const [form, { set }] = useMap({ email: '', password: '' });
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm({
+        defaultValues: {
+            email: '',
+            password: '',
+        },
+        resolver: yupResolver(schema),
+    });
 
-    const handleSubmition = async (e) => {
+    const submitData = async (data) => {
+        setLoading(true);
         try {
-            e.preventDefault();
-            setLoading(true);
-            const result = await reg(form);
+            const result = await reg(data);
             if (result) {
                 setErrorMessage(result.response.data.message);
                 setLoading(false);
             }
-        } catch (err) {
-            setErrorMessage(err.response.data.message);
+        } catch (error) {
+            setErrorMessage(error.response.data.message);
             setTimeout(setErrorMessage, 7000);
         } finally {
             setLoading(false);
@@ -78,7 +100,7 @@ export default function Signup() {
                     {errorMessage && errorMessage}
                 </div>
                 <form
-                    onSubmit={handleSubmit((data) => console.log(data))}
+                    onSubmit={handleSubmit(submitData)}
                     className="text-pry-text-color-1 px-10 max-w-md mx-auto"
                 >
                     <div>
@@ -87,16 +109,7 @@ export default function Signup() {
                                 type="email"
                                 placeholder="email"
                                 required
-                                onChange={(email) =>
-                                    set('email', email.target.value)
-                                }
-                                {...register('email', {
-                                    required: 'Email must not be empty',
-                                    minLength: {
-                                        value: 3,
-                                        message: 'Minimum length of 3',
-                                    },
-                                })}
+                                {...register('email')}
                                 errors={errors}
                             />
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
@@ -108,16 +121,7 @@ export default function Signup() {
                                 type="password"
                                 placeholder="password"
                                 required
-                                onChange={(password) =>
-                                    set('password', password.target.value)
-                                }
-                                {...register('password', {
-                                    required: 'Password must not be empty',
-                                    minLength: {
-                                        value: 6,
-                                        message: 'Minimum length of 6',
-                                    },
-                                })}
+                                {...register('password')}
                                 errors={errors}
                             />
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
@@ -129,16 +133,7 @@ export default function Signup() {
                                 type="password"
                                 placeholder="confirm password"
                                 required
-                                onChange={(e) =>
-                                    set('ConfirmPassword', e.target.value)
-                                }
-                                {...register('confirmPassword', {
-                                    required: 'Password must not be empty',
-                                    minLength: {
-                                        value: 6,
-                                        message: 'Minimum length of 6',
-                                    },
-                                })}
+                                {...register('confirmPassword')}
                                 errors={errors}
                             />
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">

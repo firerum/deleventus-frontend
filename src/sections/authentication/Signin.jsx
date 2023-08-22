@@ -14,26 +14,48 @@ import {
 import { MdLogin } from 'react-icons/md';
 import Link from 'next/link';
 import { useAuth } from './AuthProtect';
-import { useMap } from 'react-use';
 import { ButtonLoader } from '@components/Spinner';
 import Image from 'next/image';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup
+    .object({
+        email: yup
+            .string()
+            .email('Invalid email')
+            .required('Email is required'),
+        password: yup
+            .string()
+            .min(6, 'Password must be at least 6 characters')
+            .required('Password is required'),
+    })
+    .required();
 
 export default function Signin() {
     const { login, isAuthenticated } = useAuth();
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    const [form, { set }] = useMap({
-        email: '',
-        password: '',
-    });
     const router = useRouter();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        defaultValues: {
+            email: '',
+            password: '',
+        },
+        resolver: yupResolver(schema),
+    });
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const submitData = async (data) => {
         setLoading(true);
         try {
-            const response = await login(form);
+            const response = await login(data);
             if (response) {
+                setErrorMessage(response.data.message);
                 setLoading(false);
             }
         } catch (err) {
@@ -83,9 +105,8 @@ export default function Signin() {
                                 type="email"
                                 placeholder="email"
                                 required
-                                onChange={(email) =>
-                                    set('email', email.target.value)
-                                }
+                                {...register('email')}
+                                errors={errors}
                             />
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaEnvelope />
@@ -96,9 +117,8 @@ export default function Signin() {
                                 type="password"
                                 placeholder="password"
                                 required
-                                onChange={(password) =>
-                                    set('password', password.target.value)
-                                }
+                                {...register('password')}
+                                errors={errors}
                             />
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaLock />
@@ -124,7 +144,7 @@ export default function Signin() {
                     </div>
                     <Button
                         className="w-full bg-btn-color mb-2 py-3 rounded-default border-0 text-[#F6F5F6]"
-                        onClick={handleSubmit}
+                        onClick={handleSubmit(submitData)}
                     >
                         {loading ? (
                             <ButtonLoader></ButtonLoader>
