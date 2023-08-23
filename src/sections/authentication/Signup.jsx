@@ -17,24 +17,7 @@ import { useRouter } from 'next/navigation';
 import { ButtonLoader } from '@components/Spinner';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-
-const schema = yup
-    .object({
-        email: yup
-            .string()
-            .email('Invalid email')
-            .required('Email is required'),
-        password: yup
-            .string()
-            .min(6, 'Password must be at least 6 characters')
-            .required('Password is required'),
-        confirmPassword: yup
-            .string()
-            .min(6, 'Password must be at least 6 characters')
-            .required('Password is required'),
-    })
-    .required();
+import { signUpSchema } from '@utils/validation/validateUser';
 
 export default function Signup() {
     const { register: reg, isAuthenticated } = useAuth();
@@ -50,7 +33,7 @@ export default function Signup() {
             email: '',
             password: '',
         },
-        resolver: yupResolver(schema),
+        resolver: yupResolver(signUpSchema),
     });
 
     const submitData = async (data) => {

@@ -7,11 +7,18 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from './AuthProtect';
 import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { signInSchema } from '@utils/validation/validateUser';
 
 export default function ResetPassword() {
-    const [email, setEmail] = useState('');
     const { isAuthenticated } = useAuth();
     const router = useRouter();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({ resolver: yupResolver(signInSchema) });
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -43,15 +50,17 @@ export default function ResetPassword() {
                         We'll send a reset link to verify your identity
                     </p>
                 </div>
-                <form className="text-pry-text-color-1 px-10 max-w-md mx-auto">
+                <form
+                    className="text-pry-text-color-1 px-10 max-w-md mx-auto"
+                    onSubmit={handleSubmit((data) => console.log(data))}
+                >
                     <div>
                         <div className="relative">
                             <InputField
                                 type="email"
-                                value={email}
                                 placeholder="email"
-                                required
-                                onChange={(e) => setEmail(e.target.value)}
+                                {...register('email')}
+                                errors={errors}
                             />
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaEnvelope />

@@ -169,7 +169,7 @@ export const AuthProvider = ({ children }) => {
             const result = await loginUser({ email, password });
             if (result.status === 200) {
                 const { access_token, refresh_token } = result?.data;
-                Cookies.set('access_token', access_token, { expires: 60 });
+                Cookies.set('access_token', access_token);
                 Cookies.set('refresh_token', refresh_token);
                 const tokenData = jwtDecode(access_token);
                 const user = await fetchUserData(tokenData.id, access_token);

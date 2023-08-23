@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext, createContext } from 'react';
 import Link from 'next/link';
 import {
     MdPayments,
@@ -17,6 +17,8 @@ import Image from 'next/image';
 import { Button } from '@components/Button';
 import { useAuth } from '@sections/authentication/AuthProtect';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const NavContext = createContext({});
 
 const navigation = {
     events: [
@@ -39,6 +41,9 @@ const navigation = {
 };
 
 const NavLinks = ({ navigation }) => {
+    const setOpen = useContext(NavContext);
+    const [active, setActive] = useState('Explore');
+
     return (
         <nav>
             <div className="flex flex-col">
@@ -46,7 +51,8 @@ const NavLinks = ({ navigation }) => {
                     <Link
                         key={item.name}
                         href={item?.href}
-                        className="mb-2 px-6 py-2  flex gap-2 items-center text-[#3E384B] no-underline hover:bg-dashboard-gold"
+                        className="mb-2 px-6 py-2 flex gap-2 items-center text-[#3E384B] no-underline hover:bg-dashboard-gold"
+                        onClick={() => setOpen((prev) => !prev)}
                     >
                         <span className="md:text-sm order-2 font-general">
                             {item.name}
@@ -126,44 +132,49 @@ const WebAppNav = () => {
     };
 
     return (
-        <section ref={ref} className="fixed left-0 top-0 bottom-0 py-0 z-50">
-            <div className="hidden lg:block h-full bg-white shadow-sm">
-                <NavHeaders />
-            </div>
+        <NavContext.Provider value={setOpen}>
+            <section
+                ref={ref}
+                className="fixed left-0 top-0 bottom-0 py-0 z-50"
+            >
+                <div className="hidden lg:block h-full bg-white shadow-sm">
+                    <NavHeaders />
+                </div>
 
-            {/* Mobile Navigation */}
-            <div className="h-full">
-                <Button
-                    className="lg:hidden text-xl absolute z-10 top-7 left-6"
-                    onClick={() => setOpen((open) => !open)}
-                >
-                    <FaTh />
-                </Button>
-                <AnimatePresence>
-                    {open && (
-                        <motion.div
-                            drag="x"
-                            dragSnapToOrigin="true"
-                            dragConstraints={{ right: 0 }}
-                            dragElastic={{ left: 0, right: 0 }}
-                            dragMomentum={false}
-                            onDrag={handleDrag}
-                            initial={{ x: '-100%' }}
-                            animate={{ x: 0 }}
-                            exit={{ x: '-100%' }}
-                            transition={{
-                                type: 'spring',
-                                stiffness: 300,
-                                damping: 30,
-                            }}
-                            className="lg:hidden h-full relative z-20 bg-white shadow-sm"
-                        >
-                            <NavHeaders />
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
-        </section>
+                {/* Mobile Navigation */}
+                <div className="h-full">
+                    <Button
+                        className="lg:hidden text-xl absolute z-10 top-7 left-6"
+                        onClick={() => setOpen((open) => !open)}
+                    >
+                        <FaTh />
+                    </Button>
+                    <AnimatePresence>
+                        {open && (
+                            <motion.div
+                                drag="x"
+                                dragSnapToOrigin="true"
+                                dragConstraints={{ right: 0 }}
+                                dragElastic={{ left: 0, right: 0 }}
+                                dragMomentum={false}
+                                onDrag={handleDrag}
+                                initial={{ x: '-100%' }}
+                                animate={{ x: 0 }}
+                                exit={{ x: '-100%' }}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 300,
+                                    damping: 30,
+                                }}
+                                className="lg:hidden h-full relative z-20 bg-white shadow-sm"
+                            >
+                                <NavHeaders />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+            </section>
+        </NavContext.Provider>
     );
 };
 
