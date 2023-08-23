@@ -151,7 +151,7 @@ export default function Home() {
                     </motion.p>
                 </div>
                 <motion.div
-                    className="pointer-events-none"
+                    className="relative -z-10"
                     initial="hidden"
                     animate={switchAnimation}
                     variants={steps}
