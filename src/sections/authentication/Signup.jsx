@@ -40,12 +40,12 @@ export default function Signup() {
         setLoading(true);
         try {
             const result = await reg(data);
-            if (result) {
-                setErrorMessage(result.response.data.message);
+            if (result.status === 201) {
+                alert('check your inbox for verification link')
                 setLoading(false);
             }
         } catch (error) {
-            setErrorMessage(error.response.data.message);
+            console.log(error);
             setTimeout(setErrorMessage, 7000);
         } finally {
             setLoading(false);

@@ -9,7 +9,11 @@ import { useAuth } from './AuthProtect';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { signInSchema } from '@utils/validation/validateUser';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+    email: yup.string().email('Invalid email').required('Email is required'),
+});
 
 export default function ResetPassword() {
     const { isAuthenticated } = useAuth();
@@ -18,7 +22,7 @@ export default function ResetPassword() {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({ resolver: yupResolver(signInSchema) });
+    } = useForm({ resolver: yupResolver(schema) });
 
     useEffect(() => {
         if (isAuthenticated) {

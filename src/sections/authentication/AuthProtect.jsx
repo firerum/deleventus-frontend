@@ -194,13 +194,8 @@ export const AuthProvider = ({ children }) => {
             if (access_token) {
                 Cookies.set('access_token', access_token);
                 Cookies.set('refresh_token', refresh_token);
-                const tokenData = jwtDecode(access_token);
-                const user = await fetchUserData(tokenData.id, access_token);
-                if (user) {
-                    setUser(user);
-                    router.replace('/timeline');
-                }
             }
+            return response;
         } catch (err) {
             return err;
         }
