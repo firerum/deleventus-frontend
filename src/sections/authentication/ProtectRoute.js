@@ -13,6 +13,7 @@ export const ProtectRoute = ({ children }) => {
 
     if (!isAuthenticated) {
         router.push('/signin');
+        return;
     }
 
     return children;
