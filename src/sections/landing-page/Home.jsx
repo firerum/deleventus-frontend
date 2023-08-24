@@ -66,7 +66,7 @@ export default function Home() {
     }
 
     return (
-        <div className="px-6 md:text-center md:px-16">
+        <div className="px-6 md:text-center md:px-16 overflow-clip">
             <motion.section
                 className="banner bg-pry-purple text-center xl:h-screen pt-24 pb-0 px-6 md:px-16 -mx-6 md:-mx-16 overflow-hidden"
                 initial={{ opacity: 0 }}
