@@ -18,6 +18,7 @@ import {
     h2PAnimation,
     steps,
     faqPAnimation,
+    testimonialContent,
 } from '@utils/framer-motion/variants';
 import { VerticalCarousel } from '@components/Carousels/VerticalCarousel';
 
@@ -203,7 +204,12 @@ export default function Home() {
                         our featured events offer something for everyone.
                     </motion.p>
                 </div>
-                <div>
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    variants={testimonialContent}
+                    viewport={{ once: true }}
+                >
                     <Carousel>
                         {eventData.map((data, index) => (
                             <Link href={`explore/${data.name}`} key={index}>
@@ -216,20 +222,37 @@ export default function Home() {
                             </Link>
                         ))}
                     </Carousel>
-                </div>
+                </motion.div>
                 <div className="swiper-custom-pagination"></div>
             </section>
             <section>
                 <div className="xxl:grid grid-cols-2 xxl:text-left mb-12">
-                    <h2>What Our Clients Say</h2>
-                    <p>
+                    <motion.h2
+                        initial="hidden"
+                        whileInView="visible"
+                        variants={h2PAnimation}
+                        viewport={{ once: true }}
+                    >
+                        What Our Clients Say
+                    </motion.h2>
+                    <motion.p
+                        initial="hidden"
+                        whileInView="visible"
+                        variants={h2PAnimation}
+                        viewport={{ once: true }}
+                    >
                         We take pride in providing a seamless event planning
                         experience for our clients. Don't just take our word for
                         it—see what our clients have to say about their
                         experiences with Deleventus.
-                    </p>
+                    </motion.p>
                 </div>
-                <div>
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    variants={testimonialContent}
+                    viewport={{ once: true }}
+                >
                     <Carousel>
                         {testimonialData.map((data, index) => (
                             <Testimonial
@@ -241,7 +264,7 @@ export default function Home() {
                             />
                         ))}
                     </Carousel>
-                </div>
+                </motion.div>
             </section>
             <section className="max-w-3xl mx-auto faq">
                 <div className="mb-16">

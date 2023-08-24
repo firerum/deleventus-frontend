@@ -67,3 +67,18 @@ export const faqPAnimation = {
         transition: { duration: 0.6, delay: 0.4, ease: 'easeOut' },
     },
 };
+
+export const testimonialContent = {
+    hidden: { opacity: 0, x: 80 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        stiffness: 100,
+        velocity: -100,
+        transition: {
+            duration: 0.7,
+            delay: 0.5,
+            ease: 'easeOut',
+        },
+    },
+};
