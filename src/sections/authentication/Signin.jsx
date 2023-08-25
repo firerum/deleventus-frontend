@@ -55,7 +55,7 @@ export default function Signin() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/timeline');
+            router.replace('/timeline');
             return;
         }
     }, [isAuthenticated]);

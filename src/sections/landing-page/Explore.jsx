@@ -1,9 +1,8 @@
 'use client';
 import { useState } from 'react';
 import { WebAppSubnav } from '@layouts/WebAppSubnav';
-import { EventCard, eventData } from '@sections/events/EventCard';
-import Link from 'next/link';
 import { AnimateContent } from '@utils/framer-motion/AnimateContent';
+import { EventList } from '@sections/events/EventList';
 
 export default function Explore() {
     const tabs = [
@@ -26,22 +25,7 @@ export default function Explore() {
                 <div className="mt-6">
                     {tab === 'All' && (
                         <AnimateContent>
-                            <div className="flex flex-wrap justify-center gap-4 lg:grid grid-cols-2 xl:grid-cols-4">
-                                {eventData.map((eve, index) => (
-                                    <Link
-                                        key={index}
-                                        href={`/explore/${eve.name}`}
-                                        className="hover:no-underline"
-                                    >
-                                        <EventCard
-                                            name={eve.name}
-                                            desc={eve.desc}
-                                            date={eve.date_of_event}
-                                            avatar={eve.avatar}
-                                        />
-                                    </Link>
-                                ))}
-                            </div>
+                            <EventList />
                         </AnimateContent>
                     )}
                     {tab === 'Wedding' && <div>All Public Weddings</div>}

@@ -41,7 +41,7 @@ export default function Signup() {
         try {
             const result = await reg(data);
             if (result.status === 201) {
-                alert('check your inbox for verification link')
+                alert('check your inbox for verification link');
                 setLoading(false);
             }
         } catch (error) {
@@ -54,7 +54,7 @@ export default function Signup() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/timeline');
+            router.replace('/timeline');
             return;
         }
     }, [isAuthenticated]);
