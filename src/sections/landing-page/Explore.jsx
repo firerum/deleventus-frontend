@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { WebAppSubnav } from '@layouts/WebAppSubnav';
 import { AnimateContent } from '@utils/framer-motion/AnimateContent';
 import { EventList } from '@sections/events/EventList';
+import { useEventFetching } from '@helper/useEventFetching';
 
 export default function Explore() {
     const tabs = [
@@ -16,6 +17,15 @@ export default function Explore() {
     ];
     const [tab, setTab] = useState(tabs[0]);
 
+    const API_URL = process.env.API_URL;
+    const [page, setPage] = useState(1);
+    const pageSize = 10;
+    const { data, isLoading, isError, isPreviousData } = useEventFetching(
+        page,
+        pageSize,
+        API_URL
+    );
+
     return (
         <main className="bg-pry-purple min-h-screen text-center pt-20 pb-12 px-6 md:px-16 overflow-clip">
             <section>
@@ -25,7 +35,14 @@ export default function Explore() {
                 <div className="mt-6">
                     {tab === 'All' && (
                         <AnimateContent>
-                            <EventList />
+                            <EventList
+                                events={data?.events}
+                                isLoading={isLoading}
+                                isError={isError}
+                                isPreviousData={isPreviousData}
+                                page={page}
+                                setPage={setPage}
+                            />
                         </AnimateContent>
                     )}
                     {tab === 'Wedding' && <div>All Public Weddings</div>}

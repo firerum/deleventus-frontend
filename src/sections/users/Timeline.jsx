@@ -9,7 +9,6 @@ import { AnimateContent } from '@utils/framer-motion/AnimateContent';
 import { EventList } from '@sections/events/EventList';
 import { useEventFetching } from '@helper/useEventFetching';
 
-const API_URL = process.env.API_URL;
 export default function Timeline() {
     const [isOpen, setIsOpen] = useState(false);
     const tabs = [
@@ -21,9 +20,10 @@ export default function Timeline() {
         'Other',
     ];
     const [tab, setTab] = useState(tabs[0]);
-    // Get Events
+
+    const API_URL = process.env.API_URL;
     const [page, setPage] = useState(1);
-    const pageSize = 5;
+    const pageSize = 10;
     const { data, isLoading, isError, isPreviousData } = useEventFetching(
         page,
         pageSize,
