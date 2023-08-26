@@ -7,20 +7,18 @@ export const EventList = ({ events, isLoading, isError, page, setPage }) => {
         <div>
             {isLoading && <div>Loading...</div>}
             {isError && <div>Error loading data</div>}
-            <div className="flex flex-wrap justify-center gap-4 lg:grid grid-cols-2 xl:grid-cols-4">
+            <div className="w-full flex flex-wrap justify-center gap-4 lg:grid grid-cols-2 xl:grid-cols-4">
                 {events?.map((eve, index) => (
-                    <Link
-                        href={`events/${eve.id}`}
-                        className="w-full"
-                        key={index}
-                    >
-                        <EventCard
-                            name={eve?.name}
-                            desc={eve?.description}
-                            date={eve?.date_of_event}
-                            avatar={eve?.avatar}
-                        />
-                    </Link>
+                    <div className="w-full max-w-[330px]" key={index}>
+                        <Link href={`events/${eve.id}`}>
+                            <EventCard
+                                name={eve?.name}
+                                desc={eve?.description}
+                                date={eve?.date_of_event}
+                                avatar={eve?.avatar}
+                            />
+                        </Link>
+                    </div>
                 ))}
             </div>
             <div className="flex gap-4">
