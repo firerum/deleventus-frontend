@@ -1,8 +1,11 @@
 import { EventCard, eventData } from './EventCard';
 import Link from 'next/link';
 import { Button } from '@components/Button';
+import { usePathname } from 'next/navigation';
 
 export const EventList = ({ events, isLoading, isError, page, setPage }) => {
+    const pathname = usePathname();
+
     return (
         <div>
             {isLoading && <div>Loading...</div>}
@@ -10,7 +13,7 @@ export const EventList = ({ events, isLoading, isError, page, setPage }) => {
             <div className="w-full flex flex-wrap justify-center gap-4 lg:grid grid-cols-2 xl:grid-cols-4">
                 {events?.map((eve, index) => (
                     <div className="w-full max-w-[330px]" key={index}>
-                        <Link href={`events/${eve.id}`}>
+                        <Link href={`${pathname}/${eve.id}`}>
                             <EventCard
                                 name={eve?.name}
                                 desc={eve?.description}

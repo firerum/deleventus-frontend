@@ -22,8 +22,8 @@ const NavContext = createContext({});
 
 const navigation = {
     events: [
-        { name: 'Explore', icon: <MdDashboard />, href: '/timeline' },
-        { name: 'My Events', icon: <MdEvent />, href: '/events' },
+        { name: 'Explore', icon: <MdDashboard />, href: '/events' },
+        { name: 'My Events', icon: <MdEvent />, href: '/my-events' },
         {
             name: 'Live Events',
             icon: <MdVideoCameraBack />,
