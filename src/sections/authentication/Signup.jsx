@@ -23,6 +23,7 @@ export default function Signup() {
     const { register: reg, isAuthenticated } = useAuth();
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [providers, setProviders] = useState(null);
     const router = useRouter();
     const {
         register,
@@ -36,12 +37,20 @@ export default function Signup() {
         resolver: yupResolver(signUpSchema),
     });
 
+    useEffect(() => {
+        const getAllProviders = async () => {
+            const response = await getProviders();
+            setProviders(response);
+        };
+        getAllProviders();
+    }, []);
+
     const submitData = async (data) => {
         setLoading(true);
         try {
             const result = await reg(data);
             if (result.status === 201) {
-                alert('check your inbox for verification link')
+                alert('check your inbox for verification link');
                 setLoading(false);
             }
         } catch (error) {
@@ -54,14 +63,14 @@ export default function Signup() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/timeline');
+            router.replace('/events');
             return;
         }
     }, [isAuthenticated]);
 
     return (
         <section className="text-center lg:flex overflow-hidden">
-            <div className="hidden h-screen lg:block form w-1/2"></div>
+            <div className="h-screen hidden lg:block form w-1/2"></div>
             <div className="bg-white lg:w-1/2 text-center pb-12 pt-10 max-w-3xl mx-auto rounded-md">
                 <span className="inline-block m-auto">
                     <Link href="/">
@@ -75,7 +84,7 @@ export default function Signup() {
                         />
                     </Link>
                 </span>
-                <div className="mb-10">
+                <div className="mb-6">
                     <h1 className="mb-1 text-2xl">Create an Account</h1>
                     <p>Please enter your details to continue</p>
                 </div>
@@ -123,7 +132,7 @@ export default function Signup() {
                                 <FaLock />
                             </span>
                         </div>
-                        <div className="flex gap-4 mb-2">
+                        <div className="flex gap-4">
                             <label htmlFor="" className="order-2">
                                 I accept the{' '}
                                 <Link href="/" className="text-[#5C73DB]">
@@ -147,39 +156,37 @@ export default function Signup() {
                         )}
                     </Button>
                 </form>
-                <div className="mb-4">
+                <section className="px-10 py-0 max-w-md mx-auto">
+                    <span className="continue-with relative px-2 border-1 text-sm text-pry-text-color-1">
+                        OR
+                    </span>
+                    <div className="mt-4 text-2xl flex flex-col gap-2">
+                        {providers &&
+                            Object.values(providers).map((provider) => (
+                                <Button
+                                    className="px-4 py-1 border-1 flex justify-center items-center gap-4 border-btn-color rounded-default text-base"
+                                    key={provider.name}
+                                    onClick={() => signIn(provider?.id)}
+                                >
+                                    <span>
+                                        {provider?.name === 'Facebook' ? (
+                                            <FaFacebook />
+                                        ) : (
+                                            <FaGoogle />
+                                        )}
+                                    </span>
+                                    <span>{provider.name}</span>
+                                </Button>
+                            ))}
+                    </div>
+                </section>
+                <div className="mt-2">
                     <span>Already have an account? </span>
                     <Link href="/signin" className="text-[#5C73DB]">
                         Log In
                     </Link>
                 </div>
-                <section>
-                    <header className="continue-with block max-w-md mx-auto relative text-sm text-pry-text-color-1">
-                        OR <br />
-                        CONTINUE WITH
-                    </header>
-                    <div className="mt-4 text-2xl">
-                        <Button className="border-0 px-4">
-                            <FaFacebook />
-                        </Button>
-                        <Button className="border-0 px-4">
-                            <FaTwitter />
-                        </Button>
-                        <Button className="border-0 px-4">
-                            <FaGoogle />
-                        </Button>
-                    </div>
-                </section>
             </div>
         </section>
     );
 }
-
-// const [providers, setProviders] = useState(null);
-// useEffect(() => {
-//     const getAllProviders = async () => {
-//         const response = await getProviders();
-//         setProviders(response);
-//     };
-//     getAllProviders();
-// }, []);

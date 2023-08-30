@@ -57,6 +57,7 @@ export const steps = {
     },
 };
 
+// faq animation
 export const faqPAnimation = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -68,17 +69,23 @@ export const faqPAnimation = {
     },
 };
 
-export const testimonialContent = {
-    hidden: { opacity: 0, x: 80 },
-    visible: {
-        opacity: 1,
-        x: 0,
-        stiffness: 100,
-        velocity: -100,
-        transition: {
-            duration: 0.7,
-            delay: 0.5,
-            ease: 'easeOut',
-        },
+// featured event and testimonal animation
+const visible = {
+    opacity: 1,
+    x: 0,
+    stiffness: 100,
+    velocity: -100,
+    transition: {
+        duration: 0.7,
+        delay: 0.5,
+        ease: 'easeOut',
     },
+};
+export const featuredEvent = {
+    hidden: { opacity: 0, x: 80 },
+    visible,
+};
+export const testimonialContent = {
+    hidden: { opacity: 0, x: -80 },
+    visible,
 };

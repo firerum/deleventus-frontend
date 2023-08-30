@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { InputField } from '@components/InputField';
 import { Button } from '@components/Button';
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import { signIn, getProviders } from 'next-auth/react';
 import {
     FaTwitter,
     FaGoogle,
@@ -22,9 +22,19 @@ import { signInSchema } from '@utils/validation/validateUser';
 
 export default function Signin() {
     const { login, isAuthenticated } = useAuth();
+    const [providers, setProviders] = useState(null);
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
+
+    useEffect(() => {
+        const getAllProviders = async () => {
+            const response = await getProviders();
+            setProviders(response);
+        };
+        getAllProviders();
+    }, []);
+
     const {
         register,
         handleSubmit,
@@ -55,7 +65,7 @@ export default function Signin() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/timeline');
+            router.replace('/events');
             return;
         }
     }, [isAuthenticated]);
@@ -76,7 +86,7 @@ export default function Signin() {
                         />
                     </Link>
                 </span>
-                <div className="mb-10">
+                <div className="mb-6">
                     <h1 className="mb-1 text-2xl">Welcome Back</h1>
                     <p>Please enter your details to Log In</p>
                 </div>
@@ -111,7 +121,7 @@ export default function Signin() {
                                 <FaLock />
                             </span>
                         </div>
-                        <div className="flex gap-4 mb-2">
+                        <div className="flex gap-4">
                             <label htmlFor="" className="order-2">
                                 Remember me
                             </label>
@@ -143,29 +153,36 @@ export default function Signin() {
                         )}
                     </Button>
                 </form>
-                <div className="mb-4 px-10">
+                <section className="px-10 py-0 max-w-md mx-auto">
+                    <span className="continue-with px-2 relative border-1 text-center text-sm text-pry-text-color-1">
+                        OR
+                    </span>
+                    <div className="mt-4 text-2xl flex flex-col gap-2">
+                        {providers &&
+                            Object.values(providers).map((provider) => (
+                                <Button
+                                    className="px-4 py-1 border-1 flex justify-center items-center gap-4 border-btn-color rounded-default text-base"
+                                    key={provider.name}
+                                    onClick={() => signIn(provider?.id)}
+                                >
+                                    <span>
+                                        {provider?.name === 'Facebook' ? (
+                                            <FaFacebook />
+                                        ) : (
+                                            <FaGoogle />
+                                        )}
+                                    </span>
+                                    <span>{provider.name}</span>
+                                </Button>
+                            ))}
+                    </div>
+                </section>
+                <div className="mt-2 px-10">
                     <span>You don’t have an account? </span>
                     <Link href="/signup" className="text-[#5C73DB]">
                         Create Account
                     </Link>
                 </div>
-                <section>
-                    <header className="continue-with block max-w-md mx-auto relative text-sm text-pry-text-color-1">
-                        OR <br />
-                        CONTINUE WITH
-                    </header>
-                    <div className="mt-6 text-2xl">
-                        <Button className="border-0 px-4">
-                            <FaFacebook />
-                        </Button>
-                        <Button className="border-0 px-4">
-                            <FaTwitter />
-                        </Button>
-                        <Button className="border-0 px-4">
-                            <FaGoogle />
-                        </Button>
-                    </div>
-                </section>
             </div>
         </section>
     );

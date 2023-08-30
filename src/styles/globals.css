@@ -226,15 +226,14 @@ input.create-event::file-selector-button {
 .continue-with::after {
     content: '';
     position: absolute;
-    top: 5px;
-    width: 130px;
+    top: 50%;
+    width: 100px;
     height: 1px;
-    background-color: #786995;
+    background-color: rgba(128, 124, 137, .5);
 }
 
 .continue-with::before {
     left: 50px;
-    margin-right: 50px;
 }
 
 .continue-with::after {

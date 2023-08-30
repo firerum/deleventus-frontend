@@ -1,9 +1,9 @@
 'use client';
 import { useState } from 'react';
 import { WebAppSubnav } from '@layouts/WebAppSubnav';
-import { EventCard, eventData } from '@sections/events/EventCard';
-import Link from 'next/link';
 import { AnimateContent } from '@utils/framer-motion/AnimateContent';
+import { EventList } from '@sections/events/EventList';
+import { useEventFetching } from '@helper/useEventFetching';
 
 export default function Explore() {
     const tabs = [
@@ -17,6 +17,15 @@ export default function Explore() {
     ];
     const [tab, setTab] = useState(tabs[0]);
 
+    const API_URL = process.env.API_URL;
+    const [page, setPage] = useState(1);
+    const pageSize = 10;
+    const { data, isLoading, isError, isPreviousData } = useEventFetching(
+        page,
+        pageSize,
+        API_URL
+    );
+
     return (
         <main className="bg-pry-purple min-h-screen text-center pt-20 pb-12 px-6 md:px-16 overflow-clip">
             <section>
@@ -26,22 +35,14 @@ export default function Explore() {
                 <div className="mt-6">
                     {tab === 'All' && (
                         <AnimateContent>
-                            <div className="flex flex-wrap justify-center gap-4 lg:grid grid-cols-2 xl:grid-cols-4">
-                                {eventData.map((eve, index) => (
-                                    <Link
-                                        key={index}
-                                        href={`/explore/${eve.name}`}
-                                        className="hover:no-underline"
-                                    >
-                                        <EventCard
-                                            name={eve.name}
-                                            desc={eve.desc}
-                                            date={eve.date_of_event}
-                                            avatar={eve.avatar}
-                                        />
-                                    </Link>
-                                ))}
-                            </div>
+                            <EventList
+                                events={data?.events}
+                                isLoading={isLoading}
+                                isError={isError}
+                                isPreviousData={isPreviousData}
+                                page={page}
+                                setPage={setPage}
+                            />
                         </AnimateContent>
                     )}
                     {tab === 'Wedding' && <div>All Public Weddings</div>}

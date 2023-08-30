@@ -175,7 +175,7 @@ export const AuthProvider = ({ children }) => {
                 const user = await fetchUserData(tokenData.id, access_token);
                 if (user) {
                     setUser(user);
-                    router.replace('/timeline');
+                    router.replace('/events');
                 }
                 // Refresh tokens after successful login from a new device
                 // getRefreshToken();

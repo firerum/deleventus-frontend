@@ -26,7 +26,7 @@ export default function ResetPassword() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/timeline');
+            router.push('/events');
             return;
         }
     }, [isAuthenticated]);
@@ -47,7 +47,7 @@ export default function ResetPassword() {
                         />
                     </Link>
                 </span>
-                <div className="mb-12">
+                <div className="mb-6">
                     <h1 className="mb-1 text-2xl">Forgot Password</h1>
                     <p className="px-10 max-w-lg mx-auto">
                         Enter the email address associated with your account.
@@ -71,7 +71,7 @@ export default function ResetPassword() {
                             </span>
                         </div>
                     </div>
-                    <Button className="w-full bg-btn-color my-4 py-3 rounded-default border-0 text-[#F6F5F6]">
+                    <Button className="w-full bg-btn-color mb-2 py-3 rounded-default border-0 text-[#F6F5F6]">
                         <div className="font-semibold">Send Reset Link</div>
                     </Button>
                     <Link

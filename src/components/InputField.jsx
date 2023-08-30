@@ -2,7 +2,7 @@
 import { forwardRef } from 'react';
 
 export const InputField = forwardRef(
-    ({ type, value, name, placeholder, onChange, errors }, ref) => {
+    ({ type, id, value, name, placeholder, onChange, errors }, ref) => {
         return (
             <>
                 {errors && (
@@ -10,9 +10,10 @@ export const InputField = forwardRef(
                         {errors[name]?.message}
                     </p>
                 )}
-                <div className="mb-4">
+                <div className="mb-3">
                     <input
                         type={type}
+                        id={id}
                         value={value}
                         name={name}
                         placeholder={placeholder}

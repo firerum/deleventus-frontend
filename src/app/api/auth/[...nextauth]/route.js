@@ -1,8 +1,9 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
+import { findUser, loginUser, registerUser } from '@helper/auth';
 
-// sign-up/sign-in using OAUTH strategies
+// Signup & Signin using OAUTH strategies
 const handler = NextAuth({
     providers: [
         FacebookProvider({
@@ -16,12 +17,28 @@ const handler = NextAuth({
     ],
 
     callbacks: {
-        async signIn({ profile }) {
-            return true;
+        async session({ session }) {
+            const sessionUser = await findUser(session.user.email);
+            session.user.id = sessionUser.data?.id.toString();
+            return session;
         },
 
-        async session({ session }) {
-            return session;
+        async signIn({ profile }) {
+            try {
+                const result = await findUser(profile?.email);
+                // if (!user) {
+                //     const result = await registerUser({
+                //         email: profile.email,
+                //         last_name: profile.family_name,
+                //     });
+                //     console.log(result.data);
+                //     console.log('user does not exist');
+                // } else {
+                //     console.log('user exists');
+                // }
+            } catch (error) {
+                console.log(error);
+            }
         },
     },
 });

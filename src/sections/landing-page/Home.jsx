@@ -19,6 +19,7 @@ import {
     steps,
     faqPAnimation,
     testimonialContent,
+    featuredEvent,
 } from '@utils/framer-motion/variants';
 import { VerticalCarousel } from '@components/Carousels/VerticalCarousel';
 
@@ -120,7 +121,7 @@ export default function Home() {
                 </motion.div>
                 <motion.div
                     className="bg-white shadow-sm max-w-3xl mx-auto h-56 mt-8 rounded-t-xl"
-                    initial={{ y: 40, opacity: 0 }}
+                    initial={{ y: 100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 1, delay: 1.5 }}
                 ></motion.div>
@@ -207,7 +208,7 @@ export default function Home() {
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
-                    variants={testimonialContent}
+                    variants={featuredEvent}
                     viewport={{ once: true }}
                 >
                     <Carousel>

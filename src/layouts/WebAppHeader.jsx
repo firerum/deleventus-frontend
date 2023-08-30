@@ -36,8 +36,7 @@ const WebAppHeader = () => {
                     />
                     <figcaption className="text-sm flex items-center">
                         <span className="font-medium">
-                            {`${user?.first_name}  ${user?.last_name}` ||
-                                'John Doe'}
+                            {user?.email || user?.username || 'John Doe'}
                         </span>
                     </figcaption>
                 </figure>

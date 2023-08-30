@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaBars, FaTimes } from 'react-icons/fa';
@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { ulVariants, liVariants } from '@utils/framer-motion/variants';
 import { useAuth } from '@sections/authentication/AuthProtect';
 import { Button } from '@components/Button';
+import { signOut, useSession } from 'next-auth/react';
 
 const navigation = [
     { name: 'Home', href: '/' },
@@ -19,8 +20,10 @@ const dropDown = [{ name: 'Dashboard', href: '/dashboard' }];
 
 const Nav = () => {
     const { isAuthenticated, logout } = useAuth();
+    const { data: session } = useSession();
     const [open, setOpen] = useState(false);
     const navRef = useRef(null);
+    console.log(session);
 
     return (
         <header className="px-6 py-3 md:px-10 text-sm md:text-base bg-pry-purple shadow-sm fixed z-30 left-0 top-0 right-0 flex justify-between items-center">
@@ -43,7 +46,10 @@ const Nav = () => {
                 <ul className="grid grid-cols-4 gap-8">
                     {navigation.map((nav) => (
                         <li key={nav.name} className="text-pry-header-title">
-                            <Link href={nav.href}>
+                            <Link
+                                href={nav.href}
+                                className="hover:text-btn-color"
+                            >
                                 <span>{nav.name}</span>
                             </Link>
                         </li>
@@ -55,24 +61,24 @@ const Nav = () => {
             </select> */}
 
             <div className="ml-auto">
-                {isAuthenticated ? (
+                {isAuthenticated || session ? (
                     <div className="ml-auto flex text-base items-center gap-4 font-medium">
                         <Button
-                            className="py-2 text-base font-semibold"
+                            className="py-2 text-base"
                             onClick={() => logout()}
                         >
                             Sign out
                         </Button>
                         <Link
-                            href="/timeline"
-                            className="py-2 px-6 text-pry-purple bg-btn-color rounded-default hidden md:block"
+                            href="/events"
+                            className="py-[6px] px-6 text-pry-purple bg-btn-color rounded-default hidden md:block"
                         >
                             Dashboard
                         </Link>
                     </div>
                 ) : (
                     <div className="ml-auto flex text-base items-center gap-4 font-medium">
-                        <Link href="/signin" className="py-2 font-semibold">
+                        <Link href="/signin" className="py-2">
                             Sign In
                         </Link>
                         <Link
@@ -93,7 +99,7 @@ const Nav = () => {
                 {open ? <FaTimes /> : <FaBars />}
             </Button>
             <div
-                className={`text-lg px-6 md:px-10 bg-[#eee8fc] font-medium absolute left-0 top-full w-screen z-10 lg:hidden overflow-hidden transition-[height] duration-500 ${
+                className={`text-lg px-6 md:px-10 bg-[#fafafa] font-medium absolute left-0 top-full w-screen z-10 lg:hidden overflow-hidden transition-[height] duration-500 ${
                     open ? 'h-screen' : 'h-0 delay-300'
                 }`}
             >
@@ -106,7 +112,7 @@ const Nav = () => {
                         {navigation.map((nav) => (
                             <motion.li
                                 key={nav.name}
-                                className="text-pry-header-title border-b-1 py-4"
+                                className="text-pry-header-title border-b-1 py-4 hover:text-btn-color"
                                 variants={liVariants}
                             >
                                 <Link
@@ -119,13 +125,21 @@ const Nav = () => {
                         ))}
                     </motion.ul>
                     <div>
-                        {isAuthenticated ? (
-                            <Button
-                                className="py-3 px-6 mb-4 w-full rounded-default border-1 border-btn-color"
-                                onClick={() => logout()}
-                            >
-                                Sign Out
-                            </Button>
+                        {isAuthenticated || session ? (
+                            <div className="text-center font-medium grid gap-4 pt-6">
+                                <Link
+                                    href="/events"
+                                    className="py-3 px-6 w-full rounded-default text-pry-purple bg-btn-color"
+                                >
+                                    Dashboard
+                                </Link>
+                                <Button
+                                    className="py-3 px-6 w-full rounded-default border-1 border-btn-color"
+                                    onClick={() => logout()}
+                                >
+                                    Sign Out
+                                </Button>
+                            </div>
                         ) : (
                             <div className="text-center font-medium grid pt-6">
                                 <Link

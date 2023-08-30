@@ -6,7 +6,7 @@ const navigation = {
     product: [
         { name: 'Virtual Event', href: '/' },
         { name: 'Pricing', href: '/pricing' },
-        { name: 'Web App', href: '/timeline' },
+        { name: 'Web App', href: '/events' },
         { name: 'Receipt and Invoicing', href: '#' },
     ],
     integration: [

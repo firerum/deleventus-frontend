@@ -29,14 +29,14 @@ export default function VerifyEmail() {
             console.log(response.data);
             if (response.status === 201) {
                 alert('Email Verification Successful');
-                router.push('/timeline');
+                router.replace('/events');
             }
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 console.log('token expired');
             } else {
                 alert('email already confirmed');
-                router.push('/timeline');
+                router.replace('/events');
                 throw error;
             }
         } finally {

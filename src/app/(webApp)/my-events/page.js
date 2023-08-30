@@ -1,9 +1,9 @@
-import Timeline from '@sections/users/Timeline';
+import MyEvents from '@sections/events/MyEvents';
 
 export default function EventsPage() {
     return (
         <div>
-            <Timeline></Timeline>
+            <MyEvents></MyEvents>
         </div>
     );
 }
