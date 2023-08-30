@@ -26,7 +26,7 @@ export default function ResetPassword() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.push('/timeline');
+            router.push('/events');
             return;
         }
     }, [isAuthenticated]);

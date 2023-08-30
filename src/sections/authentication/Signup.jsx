@@ -54,7 +54,7 @@ export default function Signup() {
 
     useEffect(() => {
         if (isAuthenticated) {
-            router.replace('/timeline');
+            router.replace('/events');
             return;
         }
     }, [isAuthenticated]);
@@ -174,12 +174,3 @@ export default function Signup() {
         </section>
     );
 }
-
-// const [providers, setProviders] = useState(null);
-// useEffect(() => {
-//     const getAllProviders = async () => {
-//         const response = await getProviders();
-//         setProviders(response);
-//     };
-//     getAllProviders();
-// }, []);
