@@ -17,30 +17,28 @@ const handler = NextAuth({
     ],
 
     callbacks: {
-        async signIn({ profile }) {
-            try {
-                const user = await findUser(profile?.email);
-                console.log(user)
-                if (!user) {
-                    // const result = await registerUser({
-                    //     email: profile.email,
-                    //     last_name: profile.family_name,
-                    // });
-                    // console.log(result.data);
-                    console.log('user does not exist');
-                } else {
-                    console.log('user exists');
-                }
-            } catch (error) {
-                console.log(error.message);
-            }
-        },
-
         async session({ session }) {
             const sessionUser = await findUser(session.user.email);
-            sessionUser.data.user.id.toString();
-            console.log(sessionUser);
+            session.user.id = sessionUser.data?.id.toString();
             return session;
+        },
+
+        async signIn({ profile }) {
+            try {
+                const result = await findUser(profile?.email);
+                // if (!user) {
+                //     const result = await registerUser({
+                //         email: profile.email,
+                //         last_name: profile.family_name,
+                //     });
+                //     console.log(result.data);
+                //     console.log('user does not exist');
+                // } else {
+                //     console.log('user exists');
+                // }
+            } catch (error) {
+                console.log(error);
+            }
         },
     },
 });

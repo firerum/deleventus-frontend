@@ -10,8 +10,8 @@ export const loginUser = async (data) => {
     return await axios.post(`${API_URL}/auth/signin`, data);
 };
 
-export const findUser = async (data) => {
-    return await axios.get(`${API_URL}/users/email/${data?.email}`);
+export const findUser = async (email) => {
+    return await axios.get(`${API_URL}/users/email/${email}`);
 };
 
 export async function getAuthenticatedData(url, bearerToken, params = {}) {

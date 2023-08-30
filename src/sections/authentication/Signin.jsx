@@ -153,14 +153,8 @@ export default function Signin() {
                         )}
                     </Button>
                 </form>
-                <div className="mb-2 px-10">
-                    <span>You don’t have an account? </span>
-                    <Link href="/signup" className="text-[#5C73DB]">
-                        Create Account
-                    </Link>
-                </div>
-                <section className="px-10 max-w-md mx-auto">
-                    <span className="px-2 relative text-center text-sm text-pry-text-color-1">
+                <section className="px-10 py-0 max-w-md mx-auto">
+                    <span className="continue-with px-2 relative border-1 text-center text-sm text-pry-text-color-1">
                         OR
                     </span>
                     <div className="mt-4 text-2xl flex flex-col gap-2">
@@ -183,6 +177,12 @@ export default function Signin() {
                             ))}
                     </div>
                 </section>
+                <div className="mt-2 px-10">
+                    <span>You don’t have an account? </span>
+                    <Link href="/signup" className="text-[#5C73DB]">
+                        Create Account
+                    </Link>
+                </div>
             </div>
         </section>
     );

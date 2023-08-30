@@ -156,17 +156,11 @@ export default function Signup() {
                         )}
                     </Button>
                 </form>
-                <div className="mb-2">
-                    <span>Already have an account? </span>
-                    <Link href="/signin" className="text-[#5C73DB]">
-                        Log In
-                    </Link>
-                </div>
-                <section className="px-10 max-w-md mx-auto">
-                    <span className="relative text-sm text-pry-text-color-1">
+                <section className="px-10 py-0 max-w-md mx-auto">
+                    <span className="continue-with relative px-2 border-1 text-sm text-pry-text-color-1">
                         OR
                     </span>
-                    <div className="mt-2 text-2xl flex flex-col gap-2">
+                    <div className="mt-4 text-2xl flex flex-col gap-2">
                         {providers &&
                             Object.values(providers).map((provider) => (
                                 <Button
@@ -186,6 +180,12 @@ export default function Signup() {
                             ))}
                     </div>
                 </section>
+                <div className="mt-2">
+                    <span>Already have an account? </span>
+                    <Link href="/signin" className="text-[#5C73DB]">
+                        Log In
+                    </Link>
+                </div>
             </div>
         </section>
     );

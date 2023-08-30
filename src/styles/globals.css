@@ -227,9 +227,9 @@ input.create-event::file-selector-button {
     content: '';
     position: absolute;
     top: 50%;
-    width: 130px;
+    width: 100px;
     height: 1px;
-    background-color: #786995;
+    background-color: rgba(128, 124, 137, .5);
 }
 
 .continue-with::before {

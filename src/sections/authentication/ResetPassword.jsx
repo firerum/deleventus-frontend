@@ -47,7 +47,7 @@ export default function ResetPassword() {
                         />
                     </Link>
                 </span>
-                <div className="mb-12">
+                <div className="mb-6">
                     <h1 className="mb-1 text-2xl">Forgot Password</h1>
                     <p className="px-10 max-w-lg mx-auto">
                         Enter the email address associated with your account.
