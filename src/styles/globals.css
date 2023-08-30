@@ -226,7 +226,7 @@ input.create-event::file-selector-button {
 .continue-with::after {
     content: '';
     position: absolute;
-    top: 5px;
+    top: 50%;
     width: 130px;
     height: 1px;
     background-color: #786995;
@@ -234,7 +234,6 @@ input.create-event::file-selector-button {
 
 .continue-with::before {
     left: 50px;
-    margin-right: 50px;
 }
 
 .continue-with::after {

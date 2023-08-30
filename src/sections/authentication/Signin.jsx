@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { InputField } from '@components/InputField';
 import { Button } from '@components/Button';
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import { signIn, getProviders } from 'next-auth/react';
 import {
     FaTwitter,
     FaGoogle,
@@ -22,9 +22,19 @@ import { signInSchema } from '@utils/validation/validateUser';
 
 export default function Signin() {
     const { login, isAuthenticated } = useAuth();
+    const [providers, setProviders] = useState(null);
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
+
+    useEffect(() => {
+        const getAllProviders = async () => {
+            const response = await getProviders();
+            setProviders(response);
+        };
+        getAllProviders();
+    }, []);
+
     const {
         register,
         handleSubmit,
@@ -151,11 +161,21 @@ export default function Signin() {
                 </div>
                 <section>
                     <header className="continue-with block max-w-md mx-auto relative text-sm text-pry-text-color-1">
-                        OR <br />
-                        CONTINUE WITH
+                        OR
                     </header>
-                    <div className="mt-6 text-2xl">
-                        <Button className="border-0 px-4">
+                    <div className="mt-4 text-2xl max-w-md mx-auto px-10 flex flex-col gap-2">
+                        {providers &&
+                            Object.values(providers).map((provider) => (
+                                <Button
+                                    className="px-4 py-2 border-1 border-btn-color rounded-default text-base"
+                                    key={provider.name}
+                                    onClick={() => signIn(provider?.id)}
+                                >
+                                    {/* <FaFacebook /> */}
+                                    <span>{provider.name}</span>
+                                </Button>
+                            ))}
+                        {/* <Button className="border-0 px-4">
                             <FaFacebook />
                         </Button>
                         <Button className="border-0 px-4">
@@ -163,7 +183,7 @@ export default function Signin() {
                         </Button>
                         <Button className="border-0 px-4">
                             <FaGoogle />
-                        </Button>
+                        </Button> */}
                     </div>
                 </section>
             </div>

@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaBars, FaTimes } from 'react-icons/fa';
@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { ulVariants, liVariants } from '@utils/framer-motion/variants';
 import { useAuth } from '@sections/authentication/AuthProtect';
 import { Button } from '@components/Button';
+import { signOut, useSession } from 'next-auth/react';
 
 const navigation = [
     { name: 'Home', href: '/' },
@@ -19,8 +20,10 @@ const dropDown = [{ name: 'Dashboard', href: '/dashboard' }];
 
 const Nav = () => {
     const { isAuthenticated, logout } = useAuth();
+    const { data: session } = useSession();
     const [open, setOpen] = useState(false);
     const navRef = useRef(null);
+    console.log(session);
 
     return (
         <header className="px-6 py-3 md:px-10 text-sm md:text-base bg-pry-purple shadow-sm fixed z-30 left-0 top-0 right-0 flex justify-between items-center">
@@ -43,7 +46,10 @@ const Nav = () => {
                 <ul className="grid grid-cols-4 gap-8">
                     {navigation.map((nav) => (
                         <li key={nav.name} className="text-pry-header-title">
-                            <Link href={nav.href} className='hover:text-btn-color'>
+                            <Link
+                                href={nav.href}
+                                className="hover:text-btn-color"
+                            >
                                 <span>{nav.name}</span>
                             </Link>
                         </li>
@@ -55,7 +61,7 @@ const Nav = () => {
             </select> */}
 
             <div className="ml-auto">
-                {isAuthenticated ? (
+                {isAuthenticated || session ? (
                     <div className="ml-auto flex text-base items-center gap-4 font-medium">
                         <Button
                             className="py-2 text-base"
@@ -119,7 +125,7 @@ const Nav = () => {
                         ))}
                     </motion.ul>
                     <div>
-                        {isAuthenticated ? (
+                        {isAuthenticated || session ? (
                             <div className="text-center font-medium grid gap-4 pt-6">
                                 <Link
                                     href="/events"

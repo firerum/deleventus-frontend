@@ -17,17 +17,19 @@ export default function RootLayout({ children }) {
         <html lang="en" className={`${Satoshi.variable} ${General.variable}`}>
             <body className="bg-pry-purple">
                 <ProvideQueryClient>
-                    <AuthProvider>
-                        <ProtectRoute>
-                            <div>
-                                <WebAppNav />
-                                <div className="lg:pl-56 min-h-screen overflow-clip">
-                                    <WebAppHeader />
-                                    <div className="pt-20">{children}</div>
+                    <Provider>
+                        <AuthProvider>
+                            <ProtectRoute>
+                                <div>
+                                    <WebAppNav />
+                                    <div className="lg:pl-56 min-h-screen overflow-clip">
+                                        <WebAppHeader />
+                                        <div className="pt-20">{children}</div>
+                                    </div>
                                 </div>
-                            </div>
-                        </ProtectRoute>
-                    </AuthProvider>
+                            </ProtectRoute>
+                        </AuthProvider>
+                    </Provider>
                 </ProvideQueryClient>
             </body>
         </html>
