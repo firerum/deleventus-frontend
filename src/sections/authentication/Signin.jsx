@@ -86,7 +86,7 @@ export default function Signin() {
                         />
                     </Link>
                 </span>
-                <div className="mb-10">
+                <div className="mb-6">
                     <h1 className="mb-1 text-2xl">Welcome Back</h1>
                     <p>Please enter your details to Log In</p>
                 </div>
@@ -121,7 +121,7 @@ export default function Signin() {
                                 <FaLock />
                             </span>
                         </div>
-                        <div className="flex gap-4 mb-2">
+                        <div className="flex gap-4">
                             <label htmlFor="" className="order-2">
                                 Remember me
                             </label>
@@ -159,15 +159,15 @@ export default function Signin() {
                         Create Account
                     </Link>
                 </div>
-                <section>
-                    <header className="continue-with block max-w-md mx-auto relative text-sm text-pry-text-color-1">
+                <section className="px-10 max-w-md mx-auto">
+                    <span className="px-2 relative text-center text-sm text-pry-text-color-1">
                         OR
-                    </header>
-                    <div className="mt-4 text-2xl max-w-md mx-auto px-10 flex flex-col gap-2">
+                    </span>
+                    <div className="mt-4 text-2xl flex flex-col gap-2">
                         {providers &&
                             Object.values(providers).map((provider) => (
                                 <Button
-                                    className="px-4 py-2 border-1 flex justify-center items-center gap-4 border-btn-color rounded-default text-base"
+                                    className="px-4 py-1 border-1 flex justify-center items-center gap-4 border-btn-color rounded-default text-base"
                                     key={provider.name}
                                     onClick={() => signIn(provider?.id)}
                                 >

@@ -10,7 +10,7 @@ export const InputField = forwardRef(
                         {errors[name]?.message}
                     </p>
                 )}
-                <div className="mb-4">
+                <div className="mb-3">
                     <input
                         type={type}
                         id={id}
