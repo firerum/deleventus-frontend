@@ -153,7 +153,7 @@ export default function Signin() {
                         )}
                     </Button>
                 </form>
-                <div className="mb-4 px-10">
+                <div className="mb-2 px-10">
                     <span>You don’t have an account? </span>
                     <Link href="/signup" className="text-[#5C73DB]">
                         Create Account
@@ -167,23 +167,20 @@ export default function Signin() {
                         {providers &&
                             Object.values(providers).map((provider) => (
                                 <Button
-                                    className="px-4 py-2 border-1 border-btn-color rounded-default text-base"
+                                    className="px-4 py-2 border-1 flex justify-center items-center gap-4 border-btn-color rounded-default text-base"
                                     key={provider.name}
                                     onClick={() => signIn(provider?.id)}
                                 >
-                                    {/* <FaFacebook /> */}
+                                    <span>
+                                        {provider?.name === 'Facebook' ? (
+                                            <FaFacebook />
+                                        ) : (
+                                            <FaGoogle />
+                                        )}
+                                    </span>
                                     <span>{provider.name}</span>
                                 </Button>
                             ))}
-                        {/* <Button className="border-0 px-4">
-                            <FaFacebook />
-                        </Button>
-                        <Button className="border-0 px-4">
-                            <FaTwitter />
-                        </Button>
-                        <Button className="border-0 px-4">
-                            <FaGoogle />
-                        </Button> */}
                     </div>
                 </section>
             </div>

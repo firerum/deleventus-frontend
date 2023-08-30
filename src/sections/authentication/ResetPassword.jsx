@@ -71,7 +71,7 @@ export default function ResetPassword() {
                             </span>
                         </div>
                     </div>
-                    <Button className="w-full bg-btn-color my-4 py-3 rounded-default border-0 text-[#F6F5F6]">
+                    <Button className="w-full bg-btn-color mb-2 py-3 rounded-default border-0 text-[#F6F5F6]">
                         <div className="font-semibold">Send Reset Link</div>
                     </Button>
                     <Link

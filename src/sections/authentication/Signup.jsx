@@ -23,6 +23,7 @@ export default function Signup() {
     const { register: reg, isAuthenticated } = useAuth();
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+    const [providers, setProviders] = useState(null);
     const router = useRouter();
     const {
         register,
@@ -35,6 +36,14 @@ export default function Signup() {
         },
         resolver: yupResolver(signUpSchema),
     });
+
+    useEffect(() => {
+        const getAllProviders = async () => {
+            const response = await getProviders();
+            setProviders(response);
+        };
+        getAllProviders();
+    }, []);
 
     const submitData = async (data) => {
         setLoading(true);
@@ -61,7 +70,7 @@ export default function Signup() {
 
     return (
         <section className="text-center lg:flex overflow-hidden">
-            <div className="hidden h-screen lg:block form w-1/2"></div>
+            <div className="hidden lg:block form w-1/2"></div>
             <div className="bg-white lg:w-1/2 text-center pb-12 pt-10 max-w-3xl mx-auto rounded-md">
                 <span className="inline-block m-auto">
                     <Link href="/">
@@ -147,7 +156,7 @@ export default function Signup() {
                         )}
                     </Button>
                 </form>
-                <div className="mb-4">
+                <div className="mb-2">
                     <span>Already have an account? </span>
                     <Link href="/signin" className="text-[#5C73DB]">
                         Log In
@@ -155,19 +164,26 @@ export default function Signup() {
                 </div>
                 <section>
                     <header className="continue-with block max-w-md mx-auto relative text-sm text-pry-text-color-1">
-                        OR <br />
-                        CONTINUE WITH
+                        OR
                     </header>
-                    <div className="mt-4 text-2xl">
-                        <Button className="border-0 px-4">
-                            <FaFacebook />
-                        </Button>
-                        <Button className="border-0 px-4">
-                            <FaTwitter />
-                        </Button>
-                        <Button className="border-0 px-4">
-                            <FaGoogle />
-                        </Button>
+                    <div className="mt-4 text-2xl max-w-md mx-auto px-10 flex flex-col gap-2">
+                        {providers &&
+                            Object.values(providers).map((provider) => (
+                                <Button
+                                    className="px-4 py-2 border-1 flex justify-center items-center gap-4 border-btn-color rounded-default text-base"
+                                    key={provider.name}
+                                    onClick={() => signIn(provider?.id)}
+                                >
+                                    <span>
+                                        {provider?.name === 'Facebook' ? (
+                                            <FaFacebook />
+                                        ) : (
+                                            <FaGoogle />
+                                        )}
+                                    </span>
+                                    <span>{provider.name}</span>
+                                </Button>
+                            ))}
                     </div>
                 </section>
             </div>
