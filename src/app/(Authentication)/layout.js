@@ -1,6 +1,7 @@
 import '@styles/globals.css';
 import { Satoshi, General } from '../../../public/fonts/fonts.local';
 import { AuthProvider } from '@sections/authentication/AuthProtect';
+import Provider from '@sections/authentication/Provider';
 
 export const metadata = {
     title: 'Deliciae Eventus - Deleventus',
