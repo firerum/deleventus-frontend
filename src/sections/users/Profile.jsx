@@ -9,10 +9,13 @@ import { DeactivateAccount } from './DeactivateAccount';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
+import { updateUser } from '@helper/auth';
 import { updateUserSchema } from '@utils/validation/validateUser';
+import Cookies from 'js-cookie';
+import { ButtonLoader } from '@components/Spinner';
 
 export const Profile = () => {
+    const access_token = Cookies.get('access_token');
     const [avatar, setAvatar] = useState('');
     const { user } = useAuth();
     const {
@@ -24,9 +27,9 @@ export const Profile = () => {
             first_name: user?.first_name,
             last_name: user?.last_name,
             password: user?.password,
-            city: user?.city,
+            city: user?.city || 'los angeles',
             country: user?.country,
-            phone_no: user?.phone_no,
+            phone_no: user?.phone_no || '990645095',
             avatar: user?.avatar,
             username: user?.username,
         },
@@ -38,15 +41,22 @@ export const Profile = () => {
         setAvatar(blobURL);
     };
 
-    const mutation = useMutation({
+    const { isError, isLoading, mutate } = useMutation({
         mutationFn: (data) => {
-            return axios.post(`${process.env.url}/users/${user?.id}`, data);
+            updateUser(
+                user?.id,
+                { ...data, avatar: data?.avatar?.[0]?.name },
+                access_token
+            );
+        },
+        onSuccess: async () => {
+            alert('Update Successful');
         },
     });
 
     const onSubmitData = (data) => {
-        console.log(data);
-        axios.post(`${process.env.API_URL}/users/${user?.id}`, data);
+        // console.log(data?.avatar?.[0]?.name);
+        mutate(data);
     };
 
     return (
@@ -88,7 +98,7 @@ export const Profile = () => {
                                 {...register('first_name')}
                                 errors={errors}
                             />
-                            <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                            <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaUser />
                             </span>
                         </div>
@@ -99,7 +109,7 @@ export const Profile = () => {
                                 {...register('last_name')}
                                 errors={errors}
                             />
-                            <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                            <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaUser />
                             </span>
                         </div>
@@ -112,7 +122,7 @@ export const Profile = () => {
                                 {...register('city')}
                                 errors={errors}
                             />
-                            <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                            <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaUser />
                             </span>
                         </div>
@@ -123,7 +133,7 @@ export const Profile = () => {
                                 {...register('country')}
                                 errors={errors}
                             />
-                            <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                            <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaUser />
                             </span>
                         </div>
@@ -136,7 +146,7 @@ export const Profile = () => {
                                 {...register('phone_no')}
                                 errors={errors}
                             />
-                            <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                            <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaPhoneAlt />
                             </span>
                         </div>
@@ -147,7 +157,7 @@ export const Profile = () => {
                                 {...register('username')}
                                 errors={errors}
                             />
-                            <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                            <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaUser />
                             </span>
                         </div>
@@ -162,7 +172,7 @@ export const Profile = () => {
                             {...register('password')}
                             errors={errors}
                         />
-                        <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
+                        <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                             <FaLock />
                         </span>
                     </div>
@@ -170,7 +180,7 @@ export const Profile = () => {
                 <Button
                     className={`w-full max-w-[200px] bg-btn-color text-white py-default px-4 rounded-default`}
                 >
-                    Save
+                    {isLoading ? <ButtonLoader></ButtonLoader> : 'Save'}
                 </Button>
             </form>
             <DeactivateAccount />

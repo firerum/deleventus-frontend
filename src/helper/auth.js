@@ -14,6 +14,14 @@ export const findUser = async (email) => {
     return await axios.get(`${API_URL}/users/email/${email}`);
 };
 
+export const updateUser = async (userId, data, accessToken) => {
+    return await axios.put(`${API_URL}/users/${userId}`, data, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        },
+    });
+};
+
 export async function getAuthenticatedData(url, bearerToken, params = {}) {
     const config = {
         headers: {
