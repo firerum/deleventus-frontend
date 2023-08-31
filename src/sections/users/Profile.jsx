@@ -1,45 +1,59 @@
 'use client';
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { Button } from '@components/Button';
 import { InputField } from '@components/InputField';
-import { FaEnvelope, FaLock, FaPhoneAlt, FaUser } from 'react-icons/fa';
-import { Modal } from '@components/Modals/Modal';
+import { FaLock, FaPhoneAlt, FaUser } from 'react-icons/fa';
 import Image from 'next/image';
 import { useAuth } from '@sections/authentication/AuthProtect';
+import { DeactivateAccount } from './DeactivateAccount';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+import { updateUserSchema } from '@utils/validation/validateUser';
 
 export const Profile = () => {
-    const [firstName, setFirstName] = useState('');
     const [avatar, setAvatar] = useState('');
-    const [isOpen, setIsOpen] = useState(false);
-    const targetRef = useRef();
     const { user } = useAuth();
-
-    const DeactivateAccount = () => {
-        return (
-            <div className="bg-purple-base p-8 flex flex-col justify-center items-center text-white text-center">
-                Are you sure you want to Deactivate your Account ?
-                <div className="flex gap-4 mt-4">
-                    <Button className="py-2 px-4 bg-green-700 text-white rounded-default">
-                        Yes
-                    </Button>
-                    <Button className="py-2 px-4 bg-red-700 text-white">
-                        No
-                    </Button>
-                </div>
-            </div>
-        );
-    };
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        defaultValues: {
+            first_name: user?.first_name,
+            last_name: user?.last_name,
+            password: user?.password,
+            city: user?.city,
+            country: user?.country,
+            phone_no: user?.phone_no,
+            avatar: user?.avatar,
+            username: user?.username,
+        },
+        resolver: yupResolver(updateUserSchema),
+    });
 
     const handleImage = (e) => {
         const blobURL = URL.createObjectURL(e.target.files[0]);
         setAvatar(blobURL);
     };
 
+    const mutation = useMutation({
+        mutationFn: (data) => {
+            return axios.post(`${process.env.url}/users/${user?.id}`, data);
+        },
+    });
+
+    const onSubmitData = (data) => {
+        console.log(data);
+        axios.post(`${process.env.API_URL}/users/${user?.id}`, data);
+    };
+
     return (
         <section className="mt-4">
             <h2 className="text-base">Profile Settings</h2>
             <form
-                onSubmit={(e) => e.preventDefault()}
+                onSubmit={handleSubmit(onSubmitData)}
                 className="bg-white px-4 py-8 shadow-sm rounded-lg"
             >
                 <div className="border-b-1">
@@ -62,8 +76,7 @@ export const Profile = () => {
                             type="file"
                             name=""
                             id="avatar"
-                            ref={targetRef}
-                            onChange={(e) => handleImage(e)}
+                            {...register('avatar')}
                             className="hidden"
                         />
                     </div>
@@ -71,10 +84,9 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="text"
-                                value={user?.first_name || ''}
                                 placeholder="first name"
-                                required
-                                onChange={(e) => console.log(e.target.value)}
+                                {...register('first_name')}
+                                errors={errors}
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaUser />
@@ -83,10 +95,9 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="text"
-                                value={user?.first_name || 'John Doe'}
                                 placeholder="last name"
-                                required
-                                onChange={(e) => console.log(e.target.value)}
+                                {...register('last_name')}
+                                errors={errors}
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaUser />
@@ -96,23 +107,21 @@ export const Profile = () => {
                     <div className="md:flex justify-between gap-8">
                         <div className="relative md:w-1/2">
                             <InputField
-                                type="email"
-                                value={user?.email || 'johndoe@gmail.com'}
-                                placeholder="email"
-                                required
-                                onChange={(e) => console.log(e.target.value)}
+                                type="text"
+                                placeholder="city"
+                                {...register('city')}
+                                errors={errors}
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
-                                <FaEnvelope />
+                                <FaUser />
                             </span>
                         </div>
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="text"
-                                value={user?.username || 'mr worldwide'}
-                                placeholder="username"
-                                required
-                                onChange={(e) => console.log(e.target.value)}
+                                placeholder="country"
+                                {...register('country')}
+                                errors={errors}
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaUser />
@@ -123,10 +132,9 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="telephone"
-                                value={user?.phone_no || '(+237) 696 88 77 55"'}
                                 placeholder="(+237) 696 88 77 55"
-                                required
-                                onChange={(e) => console.log(e.target.value)}
+                                {...register('phone_no')}
+                                errors={errors}
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaPhoneAlt />
@@ -135,10 +143,9 @@ export const Profile = () => {
                         <div className="relative md:w-1/2">
                             <InputField
                                 type="text"
-                                value={user?.username || 'mr worldwide'}
                                 placeholder="username"
-                                required
-                                onChange={(e) => console.log(e.target.value)}
+                                {...register('username')}
+                                errors={errors}
                             />
                             <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                                 <FaUser />
@@ -151,45 +158,22 @@ export const Profile = () => {
                     <div className="relative md:w-1/2">
                         <InputField
                             type="password"
-                            value={user?.password || '123456'}
                             placeholder="password"
-                            required
-                            onChange={(e) => console.log(e.target.value)}
+                            {...register('password')}
+                            errors={errors}
                         />
                         <span className="absolute left-0 top-[19px] pl-6 pr-2 border-r-1 border-solid">
                             <FaLock />
                         </span>
                     </div>
                 </div>
-                <div>
-                    <h3>Deactive Account</h3>
-                    <p className="text-sm mb-4">
-                        "We're sorry to see you go. If you wish to take a break
-                        or leave Deleventus, you can deactivate your account
-                        temporarily or permanently. By deactivating your
-                        account, your event data and preferences will be
-                        temporarily hidden from others. You can reactivate your
-                        account at any time by simply logging back in. If you
-                        still wish to proceed, click the 'Deactivate Account'
-                        button below. Remember, you can always return to
-                        Deleventus and resume your event planning journey
-                        whenever you're ready. We hope to see you back soon!"
-                    </p>
-                    <Modal isOpen={isOpen} handleClose={() => setIsOpen(false)}>
-                        <DeactivateAccount />
-                    </Modal>
-                    <Button
-                        className={
-                            'bg-red-700 text-white border-1 py-2 px-4 rounded-default'
-                        }
-                        onClick={(e) => {
-                            e.preventDefault(), setIsOpen((prev) => !prev);
-                        }}
-                    >
-                        Deactive Account
-                    </Button>
-                </div>
+                <Button
+                    className={`w-full max-w-[200px] bg-btn-color text-white py-default px-4 rounded-default`}
+                >
+                    Save
+                </Button>
             </form>
+            <DeactivateAccount />
         </section>
     );
 };
