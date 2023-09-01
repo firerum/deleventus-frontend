@@ -1,9 +1,9 @@
-import ResetPassword from '@sections/authentication/ResetPassword';
+import ResetPassWrapper from "@sections/authentication/ResetPassWrapper";
 
-export default function ResetPasswordPage() {
+export default function ConfirmPasswordResetPage() {
     return (
         <div>
-            <ResetPassword></ResetPassword>
+            <ResetPassWrapper></ResetPassWrapper>
         </div>
     );
 }

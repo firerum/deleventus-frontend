@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { InputField } from '@components/InputField';
 import { Button } from '@components/Button';
-import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
+import { signIn, useSession, getProviders } from 'next-auth/react';
 import {
     FaTwitter,
     FaGoogle,
@@ -52,8 +52,8 @@ export default function Signup() {
         onError: (error) => {
             setErrorMessage(error.response.data?.message);
         },
-        onSuccess: () => {
-            alert('Signup Successful');
+        onSuccess: (data) => {
+            alert(data.data.message);
         },
     });
 

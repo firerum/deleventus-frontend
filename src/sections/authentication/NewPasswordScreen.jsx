@@ -4,13 +4,47 @@ import { FaLock, FaArrowLeft } from 'react-icons/fa';
 import { Button } from '@components/Button';
 import { InputField } from '@components/InputField';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
+import { useForm } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { ButtonLoader } from '@components/Spinner';
+import { useRouter } from 'next/navigation';
 
-export default function NewPasswordScreen() {
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const searchParams = useSearchParams();
+const schema = yup.object().shape({
+    password: yup.string().required('Password is required'),
+    confirm_password: yup.string().required('Password is required'),
+});
+
+export default function NewPasswordScreen({ token }) {
+    const router = useRouter();
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({ resolver: yupResolver(schema) });
+
+    const { isLoading, mutate } = useMutation({
+        mutationFn: (data) => {
+            return axios.post(
+                `${process.env.API_URL}/auth/reset-password?token=${token}`,
+                { password: data?.password }
+            );
+        },
+        onSuccess: (data) => {
+            router.push('/signin');
+        },
+        onError: (error) => {
+            setErrorMessage(error.response?.data?.message);
+        },
+    });
+
+    const onSubmitData = (data) => {
+        mutate(data);
+    };
 
     return (
         <section className="text-center lg:flex">
@@ -28,7 +62,7 @@ export default function NewPasswordScreen() {
                         />
                     </Link>
                 </span>
-                <div className="mb-12">
+                <div className="mb-6">
                     <h1 className="mb-1 text-2xl">Set New Password</h1>
                     <p className="px-10">
                         Create a new password for your account. Make sure it's
@@ -36,14 +70,17 @@ export default function NewPasswordScreen() {
                         password you have used.
                     </p>
                 </div>
-                <form className="text-pry-text-color-1 px-10 max-w-md mx-auto">
+                <form
+                    className="text-pry-text-color-1 px-10 max-w-md mx-auto"
+                    onSubmit={handleSubmit(onSubmitData)}
+                >
                     <div className="relative">
                         <InputField
                             type="password"
                             placeholder="password"
-                            value={password}
                             required
-                            onChange={(e) => setPassword(e.target.value)}
+                            {...register('password')}
+                            errors={errors}
                         />
                         <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                             <FaLock />
@@ -53,16 +90,20 @@ export default function NewPasswordScreen() {
                         <InputField
                             type="password"
                             placeholder="confirm password"
-                            value={confirmPassword}
                             required
-                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            {...register('confirm_password')}
+                            errors={errors}
                         />
                         <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                             <FaLock />
                         </span>
                     </div>
-                    <Button className="w-full font-semibold bg-btn-color my-4 py-3 rounded-default border-0 text-[#F6F5F6]">
-                        Reset Password
+                    <Button className="w-full font-semibold bg-btn-color my-2 py-3 rounded-default border-0 text-[#F6F5F6]">
+                        {isLoading ? (
+                            <ButtonLoader></ButtonLoader>
+                        ) : (
+                            'Reset Password'
+                        )}
                     </Button>
                     <Link
                         href="/signin"
