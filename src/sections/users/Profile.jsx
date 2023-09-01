@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { Button } from '@components/Button';
+import { SelectField } from '@components/SelectField';
 import { InputField } from '@components/InputField';
 import { FaLock, FaPhoneAlt, FaUser } from 'react-icons/fa';
 import Image from 'next/image';
@@ -11,13 +12,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useMutation } from '@tanstack/react-query';
 import { updateUser } from '@helper/auth';
 import { updateUserSchema } from '@utils/validation/validateUser';
-import Cookies from 'js-cookie';
 import { ButtonLoader } from '@components/Spinner';
 
+const gender = ['male', 'female', 'non-binary', 'transgender', 'other'];
+
 export const Profile = () => {
-    const access_token = Cookies.get('access_token');
-    const [avatar, setAvatar] = useState('');
-    const { user } = useAuth();
+    const [option, setOption] = useState('male');
+    const { user, accessToken } = useAuth();
     const {
         register,
         handleSubmit,
@@ -39,20 +40,13 @@ export const Profile = () => {
 
     const imagery = watch('avatar')?.[0];
     const blobURL = imagery && URL.createObjectURL(imagery);
-    setAvatar(blobURL);
-    // console.log(imagery?.[0]);
-
-    const handleImage = (e) => {
-        const blobURL = URL.createObjectURL(e.target.files[0]);
-        setAvatar(blobURL);
-    };
 
     const { isError, isLoading, mutate } = useMutation({
         mutationFn: (data) => {
             return updateUser(
                 user?.id,
                 { ...data, avatar: data?.avatar?.[0]?.name },
-                access_token
+                accessToken
             );
         },
         onSuccess: async () => {
@@ -61,7 +55,8 @@ export const Profile = () => {
     });
 
     const onSubmitData = (data) => {
-        mutate(data);
+        const user = { ...data, gender: option?.props?.children };
+        mutate(user);
     };
 
     return (
@@ -81,7 +76,7 @@ export const Profile = () => {
                             Upload
                         </label>
                         <Image
-                            src={avatar || '/images/universal_DP.jpeg'}
+                            src={blobURL || '/images/universal_DP.jpeg'}
                             width={80}
                             height={80}
                             alt="user image"
@@ -166,6 +161,16 @@ export const Profile = () => {
                                 <FaUser />
                             </span>
                         </div>
+                    </div>
+                    <div>
+                        <SelectField
+                            header={user?.gender || 'gender'}
+                            setOption={setOption}
+                        >
+                            {gender.map((g, index) => (
+                                <div key={index}>{g}</div>
+                            ))}
+                        </SelectField>
                     </div>
                 </div>
                 <div className="my-8 border-b-1">
