@@ -56,7 +56,15 @@ export const AuthProvider = ({ children }) => {
             });
             return response.data;
         } catch (error) {
-            if (error.response && error.response.status === 401) {
+            //TODO find a more elegant way to handle the error
+            if (
+                error.response &&
+                error.response.status === 401 &&
+                error.response.data.message ===
+                    'Pending Account. Verify Your Email'
+            ) {
+                throw error;
+            } else if (error.response && error.response.status === 401) {
                 // Access token expired, attempt to refresh token
                 getRefreshToken();
             } else {
