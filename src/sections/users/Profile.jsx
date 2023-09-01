@@ -22,12 +22,13 @@ export const Profile = () => {
         register,
         handleSubmit,
         formState: { errors },
+        watch,
     } = useForm({
         defaultValues: {
             first_name: user?.first_name,
             last_name: user?.last_name,
             password: user?.password,
-            city: user?.city || 'los angeles',
+            city: user?.city,
             country: user?.country,
             phone_no: user?.phone_no || '990645095',
             avatar: user?.avatar,
@@ -36,6 +37,11 @@ export const Profile = () => {
         resolver: yupResolver(updateUserSchema),
     });
 
+    const imagery = watch('avatar')?.[0];
+    const blobURL = imagery && URL.createObjectURL(imagery);
+    setAvatar(blobURL);
+    // console.log(imagery?.[0]);
+
     const handleImage = (e) => {
         const blobURL = URL.createObjectURL(e.target.files[0]);
         setAvatar(blobURL);
@@ -43,7 +49,7 @@ export const Profile = () => {
 
     const { isError, isLoading, mutate } = useMutation({
         mutationFn: (data) => {
-            updateUser(
+            return updateUser(
                 user?.id,
                 { ...data, avatar: data?.avatar?.[0]?.name },
                 access_token
@@ -55,7 +61,6 @@ export const Profile = () => {
     });
 
     const onSubmitData = (data) => {
-        // console.log(data?.avatar?.[0]?.name);
         mutate(data);
     };
 

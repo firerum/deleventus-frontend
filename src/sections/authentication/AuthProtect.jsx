@@ -189,15 +189,16 @@ export const AuthProvider = ({ children }) => {
     const register = async (data) => {
         try {
             const response = await registerUser(data);
-            if (response.status !== 201) return response;
-            const { access_token, refresh_token } = response.data;
-            if (access_token) {
-                Cookies.set('access_token', access_token);
-                Cookies.set('refresh_token', refresh_token);
+            if (response.status === 201) {
+                const { access_token, refresh_token } = response.data;
+                if (access_token) {
+                    Cookies.set('access_token', access_token);
+                    Cookies.set('refresh_token', refresh_token);
+                }
             }
             return response;
         } catch (err) {
-            return err;
+            throw err;
         }
     };
 
@@ -205,7 +206,6 @@ export const AuthProvider = ({ children }) => {
         Cookies.remove('access_token');
         Cookies.remove('refresh_token');
         setUser(null);
-        router.push('/signin');
     };
 
     return (
@@ -217,6 +217,7 @@ export const AuthProvider = ({ children }) => {
                 register,
                 loading,
                 logout,
+                accessToken,
             }}
         >
             {children}

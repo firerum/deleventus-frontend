@@ -19,11 +19,11 @@ import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { signInSchema } from '@utils/validation/validateUser';
+import { useMutation } from '@tanstack/react-query';
 
 export default function Signin() {
     const { login, isAuthenticated } = useAuth();
     const [providers, setProviders] = useState(null);
-    const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
 
@@ -47,20 +47,20 @@ export default function Signin() {
         resolver: yupResolver(signInSchema),
     });
 
-    const submitData = async (data) => {
-        setLoading(true);
-        try {
-            const response = await login(data);
-            if (response) {
-                setErrorMessage(response.data.message);
-                setLoading(false);
-            }
-        } catch (err) {
-            setErrorMessage(err.response.data.message);
-            setTimeout(setErrorMessage, 7000);
-        } finally {
-            setLoading(false);
-        }
+    const { isError, isLoading, mutate } = useMutation({
+        mutationFn: (data) => {
+            return login(data);
+        },
+        onError: (error) => {
+            setErrorMessage(error.response.data?.message);
+        },
+        onSuccess: () => {
+            alert('Login Successful');
+        },
+    });
+
+    const submitData = (data) => {
+        mutate(data);
     };
 
     useEffect(() => {
@@ -90,7 +90,7 @@ export default function Signin() {
                     <h1 className="mb-1 text-2xl">Welcome Back</h1>
                     <p>Please enter your details to Log In</p>
                 </div>
-                {errorMessage && (
+                {isError && (
                     <div className="text-red-500 mb-2 max-w-md mx-auto">
                         {errorMessage}
                     </div>
@@ -143,7 +143,7 @@ export default function Signin() {
                         className="w-full bg-btn-color mb-2 py-3 rounded-default border-0 text-[#F6F5F6]"
                         onClick={handleSubmit(submitData)}
                     >
-                        {loading ? (
+                        {isLoading ? (
                             <ButtonLoader></ButtonLoader>
                         ) : (
                             <div className="font-semibold flex justify-center items-center gap-2">

@@ -17,6 +17,7 @@ import Image from 'next/image';
 import { Button } from '@components/Button';
 import { useAuth } from '@sections/authentication/AuthProtect';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 const NavContext = createContext({});
 
@@ -67,6 +68,7 @@ const NavLinks = ({ navigation }) => {
 
 const NavHeaders = () => {
     const { logout } = useAuth();
+    const router = useRouter();
 
     return (
         <div className="py-6">
@@ -109,7 +111,10 @@ const NavHeaders = () => {
             <div className="px-6">
                 <Button
                     className="py-2 w-full flex justify-center items-center gap-2 bg-purple-base font-semibold text-sm text-white rounded-default hover:text-dashboard-gold"
-                    onClick={() => logout()}
+                    onClick={() => {
+                        logout();
+                        router.replace('/signin');
+                    }}
                 >
                     <MdLogout />
                     <span>Sign Out</span>

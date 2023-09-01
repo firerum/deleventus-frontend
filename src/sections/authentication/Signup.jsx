@@ -18,10 +18,10 @@ import { ButtonLoader } from '@components/Spinner';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { signUpSchema } from '@utils/validation/validateUser';
+import { useMutation } from '@tanstack/react-query';
 
 export default function Signup() {
     const { register: reg, isAuthenticated } = useAuth();
-    const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [providers, setProviders] = useState(null);
     const router = useRouter();
@@ -45,20 +45,20 @@ export default function Signup() {
         getAllProviders();
     }, []);
 
-    const submitData = async (data) => {
-        setLoading(true);
-        try {
-            const result = await reg(data);
-            if (result.status === 201) {
-                alert('check your inbox for verification link');
-                setLoading(false);
-            }
-        } catch (error) {
-            console.log(error);
-            setTimeout(setErrorMessage, 7000);
-        } finally {
-            setLoading(false);
-        }
+    const { isError, isLoading, mutate } = useMutation({
+        mutationFn: (data) => {
+            return reg(data);
+        },
+        onError: (error) => {
+            setErrorMessage(error.response.data?.message);
+        },
+        onSuccess: () => {
+            alert('Signup Successful');
+        },
+    });
+
+    const submitData = (data) => {
+        mutate(data);
     };
 
     useEffect(() => {
@@ -149,7 +149,7 @@ export default function Signup() {
                         </div>
                     </div>
                     <Button className="w-full bg-btn-color mb-2 py-3 rounded-default border-0 text-[#F6F5F6]">
-                        {loading ? (
+                        {isLoading ? (
                             <ButtonLoader></ButtonLoader>
                         ) : (
                             <div className="font-semibold">Create Account</div>
