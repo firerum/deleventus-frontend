@@ -7,12 +7,14 @@ import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { ButtonLoader } from '@components/Spinner';
+import { useAuth } from './AuthProtect';
 
 export default function VerifyEmail() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
     const token = searchParams.get('token');
+    const { accessToken } = useAuth();
 
     const handleEmailVerification = async () => {
         setLoading(true);
@@ -23,6 +25,7 @@ export default function VerifyEmail() {
                 {
                     headers: {
                         'Content-Type': 'application/json',
+                        Authorization: `Bearer ${accessToken}`,
                     },
                 }
             );
