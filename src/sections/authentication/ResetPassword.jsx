@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { InputField } from '@components/InputField';
 import { Button } from '@components/Button';
+import { ButtonLoader } from '@components/Spinner';
 import { FaEnvelope, FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -10,12 +11,15 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 
 const schema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Email is required'),
 });
 
 export default function ResetPassword() {
+    const [errorMessage, setErrorMessage] = useState('');
     const { isAuthenticated } = useAuth();
     const router = useRouter();
     const {
@@ -23,6 +27,25 @@ export default function ResetPassword() {
         handleSubmit,
         formState: { errors },
     } = useForm({ resolver: yupResolver(schema) });
+
+    const { isLoading, mutate } = useMutation({
+        mutationFn: (data) => {
+            return axios.post(
+                `${process.env.API_URL}/auth/reset-password-link`,
+                data
+            );
+        },
+        onSuccess: (data) => {
+            console.log(data);
+        },
+        onError: (error) => {
+            setErrorMessage(error.response?.data?.message);
+        },
+    });
+
+    const onSubmitData = (data) => {
+        mutate(data);
+    };
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -54,9 +77,12 @@ export default function ResetPassword() {
                         We'll send a reset link to verify your identity
                     </p>
                 </div>
+                <div className="text-red-500 mb-2 mt-0 max-w-md mx-auto">
+                    {errorMessage && errorMessage}
+                </div>
                 <form
                     className="text-pry-text-color-1 px-10 max-w-md mx-auto"
-                    onSubmit={handleSubmit((data) => console.log(data))}
+                    onSubmit={handleSubmit(onSubmitData)}
                 >
                     <div>
                         <div className="relative">
@@ -72,7 +98,13 @@ export default function ResetPassword() {
                         </div>
                     </div>
                     <Button className="w-full bg-btn-color mb-2 py-3 rounded-default border-0 text-[#F6F5F6]">
-                        <div className="font-semibold">Send Reset Link</div>
+                        <div className="font-semibold">
+                            {isLoading ? (
+                                <ButtonLoader></ButtonLoader>
+                            ) : (
+                                'Send Reset Link'
+                            )}
+                        </div>
                     </Button>
                     <Link
                         href="/signin"
