@@ -82,7 +82,7 @@ const Nav = () => {
                             Sign In
                         </Link>
                         <Link
-                            href="signup"
+                            href="/signup"
                             className="py-2 px-6 text-pry-purple bg-btn-color rounded-default hidden md:block"
                         >
                             Get Started
@@ -143,7 +143,7 @@ const Nav = () => {
                         ) : (
                             <div className="text-center font-medium grid pt-6">
                                 <Link
-                                    href="signin"
+                                    href="/signin"
                                     className="py-3 px-6 mb-4 w-full rounded-default border-1 border-btn-color"
                                 >
                                     Sign In
