@@ -31,11 +31,11 @@ export const signUpSchema = yup
     .required();
 
 export const updateUserSchema = yup.object({
-    first_name: yup.string(),
-    last_name: yup.string(),
-    password: yup.string(),
-    username: yup.string(),
-    phone_no: yup.string(),
-    city: yup.string(),
-    country: yup.string(),
+    first_name: yup.string().required(),
+    last_name: yup.string().required(),
+    password: yup.string().required(),
+    username: yup.string().required(),
+    phone_no: yup.string().required(),
+    city: yup.string().required(),
+    country: yup.string().required(),
 });

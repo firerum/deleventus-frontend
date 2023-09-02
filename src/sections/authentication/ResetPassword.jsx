@@ -84,19 +84,17 @@ export default function ResetPassword() {
                     className="text-pry-text-color-1 px-10 max-w-md mx-auto"
                     onSubmit={handleSubmit(onSubmitData)}
                 >
-                    <div>
-                        <div className="relative">
-                            <InputField
-                                type="email"
-                                placeholder="email"
-                                {...register('email')}
-                                errors={errors}
-                            />
-                            <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
-                                <FaEnvelope />
-                            </span>
-                        </div>
-                    </div>
+                    <InputField
+                        type="email"
+                        placeholder="email"
+                        {...register('email')}
+                        errors={errors}
+                    >
+                        <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
+                            <FaEnvelope />
+                        </span>
+                    </InputField>
+
                     <Button className="w-full bg-btn-color mb-2 py-3 rounded-default border-0 text-[#F6F5F6]">
                         <div className="font-semibold">
                             {isLoading ? (

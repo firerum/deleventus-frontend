@@ -91,75 +91,81 @@ export const Profile = () => {
                         />
                     </div>
                     <div className="md:flex justify-between gap-8">
-                        <div className="relative md:w-1/2">
+                        <div className="md:w-1/2">
                             <InputField
                                 type="text"
                                 placeholder="first name"
                                 {...register('first_name')}
                                 errors={errors}
-                            />
-                            <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
-                                <FaUser />
-                            </span>
+                            >
+                                <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
+                                    <FaUser />
+                                </span>
+                            </InputField>
                         </div>
-                        <div className="relative md:w-1/2">
+                        <div className="md:w-1/2">
                             <InputField
                                 type="text"
                                 placeholder="last name"
                                 {...register('last_name')}
                                 errors={errors}
-                            />
-                            <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
-                                <FaUser />
-                            </span>
+                            >
+                                <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
+                                    <FaUser />
+                                </span>
+                            </InputField>
                         </div>
                     </div>
                     <div className="md:flex justify-between gap-8">
-                        <div className="relative md:w-1/2">
+                        <div className="md:w-1/2">
                             <InputField
                                 type="text"
                                 placeholder="city"
                                 {...register('city')}
                                 errors={errors}
-                            />
-                            <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
-                                <FaUser />
-                            </span>
+                            >
+                                <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
+                                    <FaUser />
+                                </span>
+                            </InputField>
                         </div>
-                        <div className="relative md:w-1/2">
+                        <div className="md:w-1/2">
                             <InputField
                                 type="text"
                                 placeholder="country"
                                 {...register('country')}
                                 errors={errors}
-                            />
-                            <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
-                                <FaUser />
-                            </span>
+                            >
+                                <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
+                                    <FaUser />
+                                </span>
+                            </InputField>
                         </div>
                     </div>
                     <div className="md:flex justify-between gap-8">
-                        <div className="relative md:w-1/2">
+                        <div className="md:w-1/2">
                             <InputField
                                 type="telephone"
                                 placeholder="(+237) 696 88 77 55"
                                 {...register('phone_no')}
                                 errors={errors}
-                            />
-                            <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
-                                <FaPhoneAlt />
-                            </span>
+                            >
+                                <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
+                                    <FaPhoneAlt />
+                                </span>
+                            </InputField>
                         </div>
-                        <div className="relative md:w-1/2">
+                        <div className="md:w-1/2">
                             <InputField
                                 type="text"
                                 placeholder="username"
                                 {...register('username')}
                                 errors={errors}
-                            />
-                            <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
-                                <FaUser />
-                            </span>
+                            >
+                                <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
+                                    <FaUser />
+                                </span>
+                            </InputField>
                         </div>
                     </div>
                     <div>
@@ -175,16 +181,17 @@ export const Profile = () => {
                 </div>
                 <div className="my-8 border-b-1">
                     <header className="mb-4 font-medium">Password</header>
-                    <div className="relative md:w-1/2">
+                    <div className="md:w-1/2">
                         <InputField
                             type="password"
                             placeholder="password"
                             {...register('password')}
                             errors={errors}
-                        />
-                        <span className="absolute top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
-                            <FaLock />
-                        </span>
+                        >
+                            <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
+                                <FaLock />
+                            </span>
+                        </InputField>
                     </div>
                 </div>
                 <Button

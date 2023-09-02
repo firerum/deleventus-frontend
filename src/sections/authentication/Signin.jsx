@@ -97,30 +97,30 @@ export default function Signin() {
                 )}
                 <form className="text-pry-text-color-1 px-10 max-w-md mx-auto">
                     <div>
-                        <div className="relative">
-                            <InputField
-                                type="email"
-                                placeholder="email"
-                                required
-                                {...register('email')}
-                                errors={errors}
-                            />
+                        <InputField
+                            type="email"
+                            placeholder="email"
+                            required
+                            {...register('email')}
+                            errors={errors}
+                        >
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaEnvelope />
                             </span>
-                        </div>
-                        <div className="relative">
-                            <InputField
-                                type="password"
-                                placeholder="password"
-                                required
-                                {...register('password')}
-                                errors={errors}
-                            />
+                        </InputField>
+
+                        <InputField
+                            type="password"
+                            placeholder="password"
+                            required
+                            {...register('password')}
+                            errors={errors}
+                        >
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaLock />
                             </span>
-                        </div>
+                        </InputField>
+
                         <div className="flex gap-4">
                             <label htmlFor="" className="order-2">
                                 Remember me

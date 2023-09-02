@@ -58,6 +58,10 @@ export default function Signup() {
     });
 
     const submitData = (data) => {
+        if (data.password !== data.confirmPassword) {
+            setErrorMessage("Passwords don't match");
+            return;
+        }
         mutate(data);
     };
 
@@ -96,42 +100,42 @@ export default function Signup() {
                     className="text-pry-text-color-1 px-10 max-w-md mx-auto"
                 >
                     <div>
-                        <div className="relative">
-                            <InputField
-                                type="email"
-                                placeholder="email"
-                                required
-                                {...register('email')}
-                                errors={errors}
-                            />
+                        <InputField
+                            type="email"
+                            placeholder="email"
+                            required
+                            {...register('email')}
+                            errors={errors}
+                        >
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaEnvelope />
                             </span>
-                        </div>
-                        <div className="relative">
-                            <InputField
-                                type="password"
-                                placeholder="password"
-                                required
-                                {...register('password')}
-                                errors={errors}
-                            />
+                        </InputField>
+
+                        <InputField
+                            type="password"
+                            placeholder="password"
+                            required
+                            {...register('password')}
+                            errors={errors}
+                        >
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaLock />
                             </span>
-                        </div>
-                        <div className="relative">
-                            <InputField
-                                type="password"
-                                placeholder="confirm password"
-                                required
-                                {...register('confirmPassword')}
-                                errors={errors}
-                            />
+                        </InputField>
+
+                        <InputField
+                            type="password"
+                            placeholder="confirm password"
+                            required
+                            {...register('confirmPassword')}
+                            errors={errors}
+                        >
                             <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                                 <FaLock />
                             </span>
-                        </div>
+                        </InputField>
+
                         <div className="flex gap-4">
                             <label htmlFor="" className="order-2">
                                 I accept the{' '}

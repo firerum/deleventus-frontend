@@ -19,6 +19,7 @@ const schema = yup.object().shape({
 });
 
 export default function NewPasswordScreen({ token }) {
+    const [errorMessage, setErrorMessage] = useState('');
     const router = useRouter();
 
     const {
@@ -43,6 +44,10 @@ export default function NewPasswordScreen({ token }) {
     });
 
     const onSubmitData = (data) => {
+        if (data.password !== data.confirm_password) {
+            setErrorMessage("Passwords don't match");
+            return;
+        }
         mutate(data);
     };
 
@@ -70,34 +75,36 @@ export default function NewPasswordScreen({ token }) {
                         password you have used.
                     </p>
                 </div>
+                <div className="text-red-500 mb-2 mt-0 max-w-md mx-auto">
+                    {errorMessage && errorMessage}
+                </div>
                 <form
                     className="text-pry-text-color-1 px-10 max-w-md mx-auto"
                     onSubmit={handleSubmit(onSubmitData)}
                 >
-                    <div className="relative">
-                        <InputField
-                            type="password"
-                            placeholder="password"
-                            required
-                            {...register('password')}
-                            errors={errors}
-                        />
+                    <InputField
+                        type="password"
+                        placeholder="password"
+                        required
+                        {...register('password')}
+                        errors={errors}
+                    >
                         <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                             <FaLock />
                         </span>
-                    </div>
-                    <div className="relative">
-                        <InputField
-                            type="password"
-                            placeholder="confirm password"
-                            required
-                            {...register('confirm_password')}
-                            errors={errors}
-                        />
+                    </InputField>
+                    <InputField
+                        type="password"
+                        placeholder="confirm password"
+                        required
+                        {...register('confirm_password')}
+                        errors={errors}
+                    >
                         <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                             <FaLock />
                         </span>
-                    </div>
+                    </InputField>
+
                     <Button className="w-full font-semibold bg-btn-color my-2 py-3 rounded-default border-0 text-[#F6F5F6]">
                         {isLoading ? (
                             <ButtonLoader></ButtonLoader>
