@@ -74,7 +74,6 @@ export default function Signup() {
             return;
         }
     }, [isAuthenticated]);
-    const success = true;
 
     return (
         <section className="text-center lg:flex overflow-hidden">

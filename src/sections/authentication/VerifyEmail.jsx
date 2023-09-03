@@ -48,7 +48,7 @@ export default function VerifyEmail() {
     };
     return (
         <section className="pt-24 mx-auto text-center">
-            <span className="inline-block m-auto">
+            <span className="inline-block m-auto mb-6">
                 <Link href="/">
                     <Image
                         src="/images/logo-full-color.svg"
@@ -61,8 +61,8 @@ export default function VerifyEmail() {
                 </Link>
             </span>
             <div>
-                <h1>Verify your email</h1>
-                <p>
+                <h1 className="text-3xl">Verify your email</h1>
+                <p className="max-w-sm mx-auto">
                     Welcome to Deleventus! click the link below to verify your
                     email and start creating amazing memories
                 </p>
