@@ -4,13 +4,7 @@ import { useRouter } from 'next/navigation';
 import { InputField } from '@components/InputField';
 import { Button } from '@components/Button';
 import { signIn, getProviders } from 'next-auth/react';
-import {
-    FaTwitter,
-    FaGoogle,
-    FaFacebook,
-    FaLock,
-    FaEnvelope,
-} from 'react-icons/fa';
+import { FaGoogle, FaFacebook, FaLock, FaEnvelope } from 'react-icons/fa';
 import { MdLogin } from 'react-icons/md';
 import Link from 'next/link';
 import { useAuth } from './AuthProtect';
