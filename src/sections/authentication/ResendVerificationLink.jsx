@@ -4,6 +4,7 @@ import { ButtonLoader } from '@components/Spinner';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import { Notification } from '@components/Notification';
 
 export default function ResendVerificationLink({ email }) {
     const accessToken = Cookies.get('access_token');
@@ -22,13 +23,20 @@ export default function ResendVerificationLink({ email }) {
 
     return (
         <section className="flex flex-col items-center px-10 pt-10 max-w-3xl mx-auto">
-            <p
-                className={`absolute top-1 right-1 px-4 h-0 flex items-center overflow-hidden bg-green-500 text-white transition-all ${
-                    isSuccess && 'h-10'
-                }`}
-            >
-                {data?.data.message || error?.response?.data.message}
-            </p>
+            {isSuccess && (
+                <Notification
+                    type="success"
+                    message="Check your inbox for verification email"
+                    duration="5000"
+                />
+            )}
+            {isError && (
+                <Notification
+                    type="error"
+                    message="Oops! Looks like something is off. Try again"
+                    duration="5000"
+                />
+            )}
             <div className="order-2 mb-6 max-w-[300px] mx-auto">
                 <h1 className="text-2xl">Verification email sent</h1>
                 <p className="">

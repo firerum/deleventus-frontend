@@ -15,11 +15,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { signInSchema } from '@utils/validation/validateUser';
 import { useMutation } from '@tanstack/react-query';
 import ResendVerificationLink from './ResendVerificationLink';
+import { Notification } from '@components/Notification';
 
 export default function Signin() {
     const { login, isAuthenticated } = useAuth();
     const [providers, setProviders] = useState(null);
-    const [errorMessage, setErrorMessage] = useState('');
     const [email, setEmail] = useState('');
     const router = useRouter();
 
@@ -43,15 +43,9 @@ export default function Signin() {
         resolver: yupResolver(signInSchema),
     });
 
-    const { isError, isLoading, mutate, error } = useMutation({
+    const { isError, isLoading, mutate, error, isSuccess } = useMutation({
         mutationFn: (data) => {
             return login(data);
-        },
-        onError: (error) => {
-            setErrorMessage(error.response.data?.message);
-        },
-        onSuccess: () => {
-            alert('Login Successful');
         },
     });
 
@@ -72,7 +66,14 @@ export default function Signin() {
             <div className="hidden h-screen lg:flex form w-1/2"></div>
             {error?.response?.data.message ===
             'Pending Account. Verify Your Email' ? (
-                <ResendVerificationLink email={email}></ResendVerificationLink>
+                <>
+                    <Notification
+                        message={error?.response?.data?.message}
+                        type="error"
+                        duration={5000}
+                    />
+                    <ResendVerificationLink email={email} />
+                </>
             ) : (
                 <div className="bg-white lg:w-1/2 text-center py-12 max-w-3xl mx-auto rounded-md">
                     <span className="inline-block m-auto">
@@ -92,9 +93,18 @@ export default function Signin() {
                         <p>Please enter your details to Log In</p>
                     </div>
                     {isError && (
-                        <div className="text-red-500 mb-2 max-w-md mx-auto">
-                            {errorMessage}
-                        </div>
+                        <Notification
+                            message={error?.response?.data?.message}
+                            type="error"
+                            duration={5000}
+                        />
+                    )}
+                    {isSuccess && (
+                        <Notification
+                            message="Login successful!"
+                            type="success"
+                            duration={5000}
+                        />
                     )}
                     <form className="text-pry-text-color-1 px-10 max-w-md mx-auto">
                         <div>

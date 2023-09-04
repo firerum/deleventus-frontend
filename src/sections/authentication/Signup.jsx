@@ -20,6 +20,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { signUpSchema } from '@utils/validation/validateUser';
 import { useMutation } from '@tanstack/react-query';
 import ResendVerificationLink from './ResendVerificationLink';
+import { Notification } from '@components/Notification';
 
 export default function Signup() {
     const { register: reg, isAuthenticated } = useAuth();
@@ -47,7 +48,7 @@ export default function Signup() {
         getAllProviders();
     }, []);
 
-    const { isError, isLoading, mutate, isSuccess } = useMutation({
+    const { isError, isLoading, mutate, isSuccess, error } = useMutation({
         mutationFn: (data) => {
             return reg(data);
         },
@@ -78,8 +79,22 @@ export default function Signup() {
     return (
         <section className="text-center lg:flex overflow-hidden">
             <div className="h-screen hidden lg:block form w-1/2"></div>
+            {isError && (
+                <Notification
+                    message={error?.response?.data?.message}
+                    type="error"
+                    duration={5000}
+                />
+            )}
             {isSuccess ? (
-                <ResendVerificationLink email={userEmail} />
+                <>
+                    <Notification
+                        message="Signup Successful!"
+                        type="success"
+                        duration={5000}
+                    />
+                    <ResendVerificationLink email={userEmail} />
+                </>
             ) : (
                 <div className="bg-white lg:w-1/2 text-center pb-12 pt-10 max-w-3xl mx-auto rounded-md">
                     <span className="inline-block m-auto">
