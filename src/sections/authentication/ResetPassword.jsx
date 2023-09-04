@@ -13,13 +13,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import { Notification } from '@components/Notification';
 
 const schema = yup.object().shape({
     email: yup.string().email('Invalid email').required('Email is required'),
 });
 
 export default function ResetPassword() {
-    const [errorMessage, setErrorMessage] = useState('');
     const { isAuthenticated } = useAuth();
     const router = useRouter();
     const {
@@ -28,18 +28,12 @@ export default function ResetPassword() {
         formState: { errors },
     } = useForm({ resolver: yupResolver(schema) });
 
-    const { isLoading, mutate } = useMutation({
+    const { isLoading, isError, isSuccess, mutate, error } = useMutation({
         mutationFn: (data) => {
             return axios.post(
                 `${process.env.API_URL}/auth/reset-password-link`,
                 data
             );
-        },
-        onSuccess: (data) => {
-            console.log(data);
-        },
-        onError: (error) => {
-            setErrorMessage(error.response?.data?.message);
         },
     });
 
@@ -77,9 +71,20 @@ export default function ResetPassword() {
                         We'll send a reset link to verify your identity
                     </p>
                 </div>
-                <div className="text-red-500 mb-2 mt-0 max-w-md mx-auto">
-                    {errorMessage && errorMessage}
-                </div>
+                {isError && (
+                    <Notification
+                        message={error?.response?.data?.message}
+                        type="error"
+                        duration={5000}
+                    />
+                )}
+                {isSuccess && (
+                    <Notification
+                        message="Password reset link sent!"
+                        type="success"
+                        duration={5000}
+                    />
+                )}
                 <form
                     className="text-pry-text-color-1 px-10 max-w-md mx-auto"
                     onSubmit={handleSubmit(onSubmitData)}

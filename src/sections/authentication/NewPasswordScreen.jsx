@@ -12,6 +12,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ButtonLoader } from '@components/Spinner';
 import { useRouter } from 'next/navigation';
+import { Notification } from '@components/Notification';
 
 const schema = yup.object().shape({
     password: yup.string().required('Password is required'),
@@ -28,7 +29,7 @@ export default function NewPasswordScreen({ token }) {
         formState: { errors },
     } = useForm({ resolver: yupResolver(schema) });
 
-    const { isLoading, mutate } = useMutation({
+    const { isError, isLoading, isSuccess, mutate, error } = useMutation({
         mutationFn: (data) => {
             return axios.post(
                 `${process.env.API_URL}/auth/reset-password?token=${token}`,
@@ -36,10 +37,7 @@ export default function NewPasswordScreen({ token }) {
             );
         },
         onSuccess: (data) => {
-            router.push('/signin');
-        },
-        onError: (error) => {
-            setErrorMessage(error.response?.data?.message);
+            router.replace('/signin');
         },
     });
 
@@ -78,6 +76,20 @@ export default function NewPasswordScreen({ token }) {
                 <div className="text-red-500 mb-2 mt-0 max-w-md mx-auto">
                     {errorMessage && errorMessage}
                 </div>
+                {isError && (
+                    <Notification
+                        type="error"
+                        message={error?.response?.data?.message}
+                        duration={5000}
+                    />
+                )}
+                {isSuccess && (
+                    <Notification
+                        type="success"
+                        message="Password reset successful!"
+                        duration={5000}
+                    />
+                )}
                 <form
                     className="text-pry-text-color-1 px-10 max-w-md mx-auto"
                     onSubmit={handleSubmit(onSubmitData)}
