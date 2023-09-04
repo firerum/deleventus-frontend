@@ -1,5 +1,4 @@
 'use client';
-import { useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Button } from '@components/Button';
 import Image from 'next/image';
@@ -8,18 +7,18 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { ButtonLoader } from '@components/Spinner';
 import { useAuth } from './AuthProtect';
+import { Notification } from '@components/Notification';
+import { useMutation } from '@tanstack/react-query';
 
 export default function VerifyEmail() {
-    const [loading, setLoading] = useState(false);
     const router = useRouter();
     const searchParams = useSearchParams();
     const token = searchParams.get('token');
     const { accessToken } = useAuth();
 
-    const handleEmailVerification = async () => {
-        setLoading(true);
-        try {
-            const response = await axios.post(
+    const { isError, isLoading, isSuccess, mutate, error } = useMutation({
+        mutationFn: () => {
+            return axios.post(
                 `${process.env.API_URL}/auth/confirm-email`,
                 { token },
                 {
@@ -29,25 +28,28 @@ export default function VerifyEmail() {
                     },
                 }
             );
-            console.log(response.data);
-            if (response.status === 201) {
-                alert('Email Verification Successful');
-                router.replace('/events');
-            }
-        } catch (error) {
-            if (error.response && error.response.status === 401) {
-                console.log('token expired');
-            } else {
-                alert('email already confirmed');
-                router.replace('/events');
-                throw error;
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
+        },
+        onSuccess: () => {
+            router.replace('/events');
+        },
+    });
+
     return (
         <section className="pt-24 mx-auto text-center">
+            {isError && (
+                <Notification
+                    type="error"
+                    message={error?.response?.data?.message}
+                    duration="5000"
+                />
+            )}
+            {isSuccess && (
+                <Notification
+                    type="success"
+                    message="Email Verification successful!"
+                    duration={5000}
+                />
+            )}
             <span className="inline-block m-auto mb-6">
                 <Link href="/">
                     <Image
@@ -69,9 +71,9 @@ export default function VerifyEmail() {
             </div>
             <Button
                 className="font-semibold bg-btn-color my-4 py-3 px-12 rounded-default border-0 text-[#F6F5F6]"
-                onClick={handleEmailVerification}
+                onClick={mutate}
             >
-                {loading ? (
+                {isLoading ? (
                     <ButtonLoader></ButtonLoader>
                 ) : (
                     <span>Verify Email</span>

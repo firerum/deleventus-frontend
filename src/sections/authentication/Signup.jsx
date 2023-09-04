@@ -55,9 +55,6 @@ export default function Signup() {
         onError: (error) => {
             setErrorMessage(error.response.data?.message);
         },
-        onSuccess: (data) => {
-            alert(data.data.message);
-        },
     });
 
     const submitData = (data) => {
