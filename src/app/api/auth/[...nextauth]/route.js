@@ -25,7 +25,7 @@ const handler = NextAuth({
 
         async signIn({ profile }) {
             try {
-                const result = await findUser(profile?.email);
+                // const result = await findUser(profile?.email);
                 // if (!user) {
                 //     const result = await registerUser({
                 //         email: profile.email,
@@ -36,11 +36,13 @@ const handler = NextAuth({
                 // } else {
                 //     console.log('user exists');
                 // }
+                return true
             } catch (error) {
-                console.log(error);
+                // console.log(error);
             }
         },
     },
+    debug: true,
 });
 
 export { handler as GET, handler as POST };

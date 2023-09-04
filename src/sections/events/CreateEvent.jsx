@@ -13,6 +13,10 @@ import Image from 'next/image';
 import { CreateEventCarousel } from '@components/Carousels/CreateEventCarousel';
 import { SelectField } from '@components/SelectField';
 import { InputDateTimeField } from '@components/InputField';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { createEventSchema } from '@utils/validation/validateEvent';
+import { useMutation } from '@tanstack/react-query';
 
 const eventSteps = [
     {
@@ -106,18 +110,17 @@ export const EventInformation = () => {
                     onChange={(e) => handleImage(e)}
                 />
             </div>
-            <div className="relative">
-                <InputField
-                    type="text"
-                    value={eventName}
-                    placeholder="event name"
-                    required
-                    onChange={(e) => setEventName(e.target.value)}
-                />
+            <InputField
+                type="text"
+                value={eventName}
+                placeholder="event name"
+                required
+                onChange={(e) => setEventName(e.target.value)}
+            >
                 <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                     <FaIdBadge />
                 </span>
-            </div>
+            </InputField>
             <div className="lg:flex gap-4">
                 <InputDateTimeField
                     type={'date'}
