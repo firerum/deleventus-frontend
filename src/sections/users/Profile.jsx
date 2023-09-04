@@ -13,6 +13,7 @@ import { useMutation } from '@tanstack/react-query';
 import { updateUser } from '@helper/auth';
 import { updateUserSchema } from '@utils/validation/validateUser';
 import { ButtonLoader } from '@components/Spinner';
+import { Notification } from '@components/Notification';
 
 const gender = ['male', 'female', 'non-binary', 'transgender', 'other'];
 
@@ -41,16 +42,13 @@ export const Profile = () => {
     const imagery = watch('avatar')?.[0];
     const blobURL = imagery && URL.createObjectURL(imagery);
 
-    const { isError, isLoading, mutate } = useMutation({
+    const { isError, isLoading, mutate, isSuccess } = useMutation({
         mutationFn: (data) => {
             return updateUser(
                 user?.id,
                 { ...data, avatar: data?.avatar?.[0]?.name },
                 accessToken
             );
-        },
-        onSuccess: async () => {
-            alert('Update Successful');
         },
     });
 
@@ -62,6 +60,20 @@ export const Profile = () => {
     return (
         <section className="mt-4">
             <h2 className="text-base">Profile Settings</h2>
+            {isError && (
+                <Notification
+                    message="Oops! Try again"
+                    type="error"
+                    duration={5000}
+                />
+            )}
+            {isSuccess && (
+                <Notification
+                    message="Account update successful!"
+                    type="success"
+                    duration={5000}
+                />
+            )}
             <form
                 onSubmit={handleSubmit(onSubmitData)}
                 className="bg-white px-4 py-8 shadow-sm rounded-lg"
