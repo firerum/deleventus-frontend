@@ -70,14 +70,11 @@ const countries = [
 ];
 const privacyStatus = ['public', 'private', 'personal'];
 
-export const EventInformation = () => {
-    const [eventName, setEventName] = useState('');
+export const EventInformation = ({ register, errors }) => {
     const [eventAvatar, setEventAvatar] = useState('');
     const [cat, setCat] = useState('wedding');
     const [country, setCountry] = useState('Nigeria');
     const [status, setStatus] = useState('public');
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
 
     const handleImage = (e) => {
         const blobURL = URL.createObjectURL(e.target.files[0]);
@@ -112,16 +109,15 @@ export const EventInformation = () => {
             </div>
             <InputField
                 type="text"
-                value={eventName}
                 placeholder="event name"
-                required
-                onChange={(e) => setEventName(e.target.value)}
+                {...register('name')}
+                errors={errors}
             >
                 <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                     <FaIdBadge />
                 </span>
             </InputField>
-            <div className="lg:flex gap-4">
+            {/* <div className="lg:flex gap-4">
                 <InputDateTimeField
                     type={'date'}
                     placeholder={'date'}
@@ -136,7 +132,7 @@ export const EventInformation = () => {
                     required={true}
                     label={'time'}
                 />
-            </div>
+            </div> */}
             <SelectField header={'event category'} setOption={setCat}>
                 {category.map((cat, index) => (
                     <div key={index}>{cat}</div>
@@ -155,9 +151,14 @@ export const EventInformation = () => {
         </div>
     );
 };
-export const EventDescription = () => {
+export const EventDescription = ({ register, errors }) => {
     return (
         <div>
+            {errors && (
+                <p className="text-xs text-left text-red-500 mb-1 mt-0">
+                    {errors[name]?.message}
+                </p>
+            )}
             <textarea
                 name=""
                 id=""
@@ -165,74 +166,44 @@ export const EventDescription = () => {
                 rows="10"
                 placeholder="enter event description"
                 className="border-1 w-full p-4"
+                {...register('description')}
             ></textarea>
         </div>
     );
 };
-export const EventTicket = () => {
-    const [ticketName, setTicketName] = useState('');
-    const [desc, setDesc] = useState('');
-    const [quantity, setQuantity] = useState(0);
-    const [ticketType, setTicketType] = useState('PAID');
-    const [date, setDate] = useState('');
-
+export const EventTicket = ({ register, errors, setTicketType }) => {
     return (
         <div>
-            <div className="relative">
-                <InputField
-                    type="text"
-                    value={ticketName}
-                    placeholder="ticket name"
-                    required
-                    onChange={(e) => setTicketName(e.target.value)}
-                />
-                <span className="absolute left-0 top-[16px] pl-6 pr-2 border-r-1 border-solid">
-                    <FaIdBadge />
-                </span>
-            </div>
-            <div className="relative">
-                <InputField
-                    type="text"
-                    value={desc}
-                    placeholder="description"
-                    required
-                    onChange={(e) => setDesc(e.target.value)}
-                />
-                <span className="absolute left-0 top-[16px] pl-6 pr-2 border-r-1 border-solid">
-                    <FaComments />
-                </span>
-            </div>
             <div className="bg-white">
                 <SelectField header={'TICKET TYPE'} setOption={setTicketType}>
                     <div>Free</div>
                     <div>Paid</div>
                 </SelectField>
             </div>
-            <div className="relative">
-                <InputField
-                    type="number"
-                    value={quantity}
-                    placeholder="available quantity"
-                    required
-                    onChange={(e) => setQuantity(e.target.value)}
-                />
-                <span className="absolute left-0 top-[16px] pl-6 pr-2 border-r-1 border-solid">
+            <InputField
+                type="number"
+                placeholder="available quantity"
+                required
+                {...register('ticket_quantity')}
+                errors={errors}
+            >
+                <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                     <FaTicketAlt />
                 </span>
-            </div>
-            <div className="relative">
-                <InputField
-                    type="number"
-                    value="price"
-                    placeholder="price"
-                    required
-                    onChange={(e) => setTicketName(e.target.value)}
-                />
-                <span className="absolute left-0 top-[16px] pl-6 pr-2 border-r-1 border-solid">
+            </InputField>
+            <InputField
+                type="number"
+                placeholder="price"
+                required
+                {...register('ticket_price')}
+                errors={errors}
+            >
+                <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                     <FaMoneyBill />
                 </span>
-            </div>
-            <div className="lg:flex gap-4 justify-between">
+            </InputField>
+
+            {/* <div className="lg:flex gap-4 justify-between">
                 <InputDateTimeField
                     type="date"
                     placeholder="sales start"
@@ -245,8 +216,8 @@ export const EventTicket = () => {
                     required={true}
                     onChange={(e) => console.log(e.target.value)}
                 />
-            </div>
-            <div className="lg:flex gap-4 justify-between">
+            </div> */}
+            {/* <div className="lg:flex gap-4 justify-between">
                 <InputDateTimeField
                     type="date"
                     placeholder="sales end"
@@ -259,13 +230,26 @@ export const EventTicket = () => {
                     required={true}
                     onChange={(e) => console.log(e.target.value)}
                 />
-            </div>
+            </div> */}
         </div>
     );
 };
 
 export const CreateEvent = () => {
     const [carouselCount, setCarouselCount] = useState(0);
+    const [ticketType, setTicketType] = useState('PAID');
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(createEventSchema),
+    });
+    console.log(errors);
+
+    const onSubmitData = (data) => {
+        console.log({ ...data, ticketType: ticketType?.props?.children });
+    };
 
     return (
         <div className="w-full h-full md:flex text-sm max-w-4xl">
@@ -283,12 +267,24 @@ export const CreateEvent = () => {
             </section>
             <section className="bg-[#f8fafc] px-8 pt-8 mb-0 md:w-1/2 overflow-y-scroll">
                 <h1 className="text-xl">Create Event</h1>
-                <form className="text-pry-text-color-1 w-full pb-12">
-                    <CreateEventCarousel count={carouselCount}>
-                        <EventInformation />
-                        <EventDescription />
-                        <EventTicket />
-                    </CreateEventCarousel>
+                <form
+                    className="text-pry-text-color-1 w-full pb-12"
+                    onSubmit={handleSubmit(onSubmitData)}
+                >
+                    {/* <CreateEventCarousel count={carouselCount}> */}
+                    <EventInformation register={register} errors={errors} />
+                    <EventDescription register={register} errors={errors} />
+                    <EventTicket
+                        register={register}
+                        errors={errors}
+                        setTicketType={setTicketType}
+                    />
+                    {/* </CreateEventCarousel> */}
+                    <Button
+                        className={'bg-btn-color text-white py-default px-4 '}
+                    >
+                        Finish
+                    </Button>
                 </form>
                 <div className="flex py-4 -mx-8 px-8 justify-end gap-4">
                     <Button

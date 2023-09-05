@@ -10,7 +10,7 @@ import { EventList } from '@sections/events/EventList';
 import { useEventFetching } from '@helper/useEventFetching';
 
 export default function Timeline() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(true);
     const tabs = [
         'All',
         'Wedding',
