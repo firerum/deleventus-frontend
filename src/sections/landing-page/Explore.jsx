@@ -4,6 +4,7 @@ import { WebAppSubnav } from '@layouts/WebAppSubnav';
 import { AnimateContent } from '@utils/framer-motion/AnimateContent';
 import { EventList } from '@sections/events/EventList';
 import { useEventFetching } from '@helper/useEventFetching';
+import { SearchBox } from '@sections/events/SearchBox';
 
 export default function Explore() {
     const tabs = [
@@ -31,6 +32,12 @@ export default function Explore() {
             <section>
                 <div className="sticky top-[63px] z-20 bg-pry-purple">
                     <WebAppSubnav tabs={tabs} setTab={setTab} tab={tab} />
+                    <div className="w-full md:w-1/2 pt-6 pb-2">
+                        <SearchBox
+                            className="bg-white w-full px-14 py-2 rounded-default shadow-default"
+                            placeholder="search event"
+                        />
+                    </div>
                 </div>
                 <div className="mt-6">
                     {tab === 'All' && (
