@@ -2,9 +2,19 @@
 import { useState } from 'react';
 import { EventInformation, EventDescription, EventTicket } from './CreateEvent';
 import { Button } from '@components/Button';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { createEventSchema } from '@utils/validation/validateEvent';
 
 export const EditEvent = () => {
     const [eventName, setEventName] = useState();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        resolver: yupResolver(createEventSchema),
+    });
 
     return (
         <section className="bg-white p-8 h-full w-full max-w-4xl overflow-auto">
@@ -18,15 +28,15 @@ export const EditEvent = () => {
                 </div>
                 <div className="mb-4">
                     <h2 className="text-xl">Event Details</h2>
-                    <EventInformation />
+                    <EventInformation register={register} errors={errors} />
                 </div>
                 <div className="mb-4">
                     <h2 className="text-xl">Event Description</h2>
-                    <EventDescription />
+                    <EventDescription register={register} errors={errors} />
                 </div>
                 <div className="mb-4">
                     <h2 className="text-xl">Event Ticket</h2>
-                    <EventTicket />
+                    <EventTicket register={register} errors={errors} />
                 </div>
                 <Button
                     className="w-full bg-btn-color text-white py-3 px-4 rounded-default"

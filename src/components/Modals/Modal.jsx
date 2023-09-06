@@ -22,35 +22,34 @@ export const Modal = ({ children, isOpen, handleClose }) => {
         };
     }, [handleClose]);
 
-    // remove modal from DOM if it is not open
-    if (!isOpen) return null;
-
     return (
-        <ReactPortal wrapperId="modal-container">
-            <div className="modal" role="aria-modal" aria-modal="true">
-                <AnimatePresence>
-                    <motion.div
-                        className="modal-content"
-                        ref={ref}
-                        initial={{ y: '-100%' }}
-                        animate={{ y: 0 }}
-                        exit={{ y: '-100%' }}
-                        transition={{
-                            type: 'spring',
-                            stiffness: 300,
-                            damping: 24,
-                        }}
-                    >
-                        <Button
-                            onClick={handleClose}
-                            className="bg-white shadow-lg p-1 absolute top-0 right-0"
+        <AnimatePresence>
+            {isOpen ? (
+                <ReactPortal wrapperId="modal-container">
+                    <div className="modal" role="aria-modal" aria-modal="true">
+                        <motion.div
+                            className="modal-content"
+                            ref={ref}
+                            initial={{ y: '-100%', opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: '-100%', opacity: 0 }}
+                            transition={{
+                                type: 'spring',
+                                stiffness: 300,
+                                damping: 24,
+                            }}
                         >
-                            <FaTimes />
-                        </Button>
-                        {children}
-                    </motion.div>
-                </AnimatePresence>
-            </div>
-        </ReactPortal>
+                            <Button
+                                onClick={handleClose}
+                                className="bg-white shadow-lg p-1 absolute top-0 right-0"
+                            >
+                                <FaTimes />
+                            </Button>
+                            {children}
+                        </motion.div>
+                    </div>
+                </ReactPortal>
+            ) : null}
+        </AnimatePresence>
     );
 };

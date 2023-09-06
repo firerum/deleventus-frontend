@@ -51,7 +51,7 @@ export const SelectField = ({ children, header, setOption }) => {
 
     const onOptionClicked = (value) => () => {
         setSelectedOption(value);
-        setOption(value)
+        setOption(value);
         setIsOpen(false);
     };
 
@@ -64,7 +64,7 @@ export const SelectField = ({ children, header, setOption }) => {
     const handleOptionKeyDown = (event, value) => {
         if (event.key === 'Enter' || event.key === ' ') {
             setSelectedOption(value); // Selects the option on Enter or Space key press
-            setOption(value)
+            setOption(value);
             setIsOpen(false); // Closes the dropdown after selection
         }
     };

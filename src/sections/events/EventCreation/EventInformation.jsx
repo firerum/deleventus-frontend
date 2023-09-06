@@ -1,25 +1,38 @@
-import { Button } from '@components/Button';
+import { useState } from 'react';
 import { InputField, InputDateTimeField } from '@components/InputField';
 import { SelectField } from '@components/SelectField';
 import Image from 'next/image';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import {
-    FaPencilAlt,
-    FaMoneyBill,
-    FaTicketAlt,
-    FaIdBadge,
-    FaComments,
-} from 'react-icons/fa';
+import { FaPencilAlt, FaIdBadge } from 'react-icons/fa';
 
-export const EventInformation = () => {
-    const [eventName, setEventName] = useState('');
+const category = [
+    'wedding',
+    'birthday',
+    'convocation',
+    'anniversary',
+    'concert',
+    'festival',
+    'other',
+];
+
+const countries = [
+    'Nigeria',
+    'Ghana',
+    'Canada',
+    'Cameroon',
+    'Senegal',
+    'United States',
+    'United Kingdom',
+];
+const privacyStatus = ['public', 'private', 'personal'];
+
+export const EventInformation = ({
+    register,
+    errors,
+    setEventCategory,
+    setPrivacyStatus,
+    setEventLocation,
+}) => {
     const [eventAvatar, setEventAvatar] = useState('');
-    const [cat, setCat] = useState('wedding');
-    const [country, setCountry] = useState('Nigeria');
-    const [status, setStatus] = useState('public');
-    const [date, setDate] = useState('');
-    const [time, setTime] = useState('');
 
     const handleImage = (e) => {
         const blobURL = URL.createObjectURL(e.target.files[0]);
@@ -54,10 +67,9 @@ export const EventInformation = () => {
             </div>
             <InputField
                 type="text"
-                value={eventName}
                 placeholder="event name"
-                required
-                onChange={(e) => setEventName(e.target.value)}
+                {...register('name')}
+                errors={errors}
             >
                 <span className="absolute left-0 top-1/2 transform -translate-y-1/2 pl-6 pr-2 border-r-1 border-solid">
                     <FaIdBadge />
@@ -79,19 +91,26 @@ export const EventInformation = () => {
                     label={'time'}
                 />
             </div>
-            <SelectField header={'event category'} setOption={setCat}>
+            <SelectField header={'event category'} setOption={setEventCategory}>
                 {category.map((cat, index) => (
-                    <div key={index}>{cat}</div>
+                    <option key={index} value={cat}>
+                        {cat}
+                    </option>
                 ))}
             </SelectField>
-            <SelectField header={'event location'} setOption={setCountry}>
+
+            <SelectField header={'event location'} setOption={setEventLocation}>
                 {countries.map((country, index) => (
-                    <div key={index}>{country}</div>
+                    <option key={index} value={country}>
+                        {country}
+                    </option>
                 ))}
             </SelectField>
-            <SelectField header={'privacy status'} setOption={setStatus}>
-                {privacyStatus.map((country, index) => (
-                    <div key={index}>{country}</div>
+            <SelectField header={'privacy status'} setOption={setPrivacyStatus}>
+                {privacyStatus.map((status, index) => (
+                    <option key={index} value={status}>
+                        {status}
+                    </option>
                 ))}
             </SelectField>
         </div>
