@@ -8,9 +8,10 @@ import { MdCreate } from 'react-icons/md';
 import { AnimateContent } from '@utils/framer-motion/AnimateContent';
 import { EventList } from '@sections/events/EventList';
 import { useEventFetching } from '@helper/useEventFetching';
+import Link from 'next/link';
 
 export default function Timeline() {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const tabs = [
         'All',
         'Wedding',
@@ -65,15 +66,22 @@ export default function Timeline() {
                         <AnimateContent>All Other Events</AnimateContent>
                     )}
                 </div>
-                <Modal isOpen={isOpen} handleClose={() => setIsOpen(false)}>
-                    <CreateEvent />
-                </Modal>
-                <Button
+                {/* <Modal isOpen={isOpen} handleClose={() => setIsOpen(false)}>
+                    <CreateEvent closeModal={setIsOpen} />
+                </Modal> */}
+                {/* <Button
                     className="bg-white fixed right-4 bottom-4 flex items-center border-1 px-4 py-4 mb-4 rounded-full shadow-sm"
                     onClick={() => setIsOpen((prev) => !prev)}
                 >
                     <MdCreate />
-                </Button>
+                </Button> */}
+
+                <Link
+                    href="/create"
+                    className="bg-white fixed right-4 bottom-4 flex items-center border-1 px-4 py-4 mb-4 rounded-full shadow-sm"
+                >
+                    <MdCreate />
+                </Link>
             </section>
         </main>
     );

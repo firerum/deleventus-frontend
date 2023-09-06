@@ -26,7 +26,7 @@ export const Notification = ({ message, type, duration }) => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -50 }}
                         transition={{ duration: 0.3 }}
-                        className={`fixed top-2 right-2 p-4 py-default text-white rounded-md shadow-premium ${
+                        className={`fixed top-2 right-2 z-50 p-4 py-default text-white rounded-md shadow-premium ${
                             type === 'success' ? 'bg-green-500' : 'bg-red-500'
                         }`}
                     >

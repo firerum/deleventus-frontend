@@ -4,7 +4,8 @@ import { FaMoneyBill, FaTicketAlt } from 'react-icons/fa';
 
 export const EventTicket = ({ register, errors, setTicketType }) => {
     return (
-        <div>
+        <div className="mt-12">
+            <h2 className='text-base'>Event Ticket</h2>
             <div className="bg-white">
                 <SelectField header={'TICKET TYPE'} setOption={setTicketType}>
                     <div>Free</div>
@@ -12,7 +13,7 @@ export const EventTicket = ({ register, errors, setTicketType }) => {
                 </SelectField>
             </div>
             <InputField
-                type="number"
+                type="text"
                 placeholder="available quantity"
                 required
                 {...register('ticket_quantity')}
@@ -23,7 +24,7 @@ export const EventTicket = ({ register, errors, setTicketType }) => {
                 </span>
             </InputField>
             <InputField
-                type="number"
+                type="text"
                 placeholder="price"
                 required
                 {...register('ticket_price')}
@@ -34,7 +35,7 @@ export const EventTicket = ({ register, errors, setTicketType }) => {
                 </span>
             </InputField>
 
-            <div className="lg:flex gap-4 justify-between">
+            {/* <div className="lg:flex gap-4 justify-between">
                 <InputDateTimeField
                     type="date"
                     placeholder="sales start"
@@ -61,7 +62,7 @@ export const EventTicket = ({ register, errors, setTicketType }) => {
                     required={true}
                     onChange={(e) => console.log(e.target.value)}
                 />
-            </div>
+            </div> */}
         </div>
     );
 };

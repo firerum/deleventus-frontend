@@ -41,6 +41,7 @@ export const EventInformation = ({
 
     return (
         <div>
+            <h2 className="mt-12 text-base">Event Information</h2>
             <div className="relative mb-4 border-1 rounded-md overflow-hidden">
                 <label
                     className="font-bold cursor-pointer text-xl text-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 z-10 text-white bg-btn-color p-4 shadow-default rounded-full"
@@ -49,7 +50,7 @@ export const EventInformation = ({
                     <FaPencilAlt />
                 </label>
                 <Image
-                    src={eventAvatar || '/images/universal_DP.jpeg'}
+                    src={eventAvatar}
                     width={80}
                     height={80}
                     alt="event image"
@@ -75,7 +76,7 @@ export const EventInformation = ({
                     <FaIdBadge />
                 </span>
             </InputField>
-            <div className="lg:flex gap-4">
+            {/* <div className="lg:flex gap-4">
                 <InputDateTimeField
                     type={'date'}
                     placeholder={'date'}
@@ -90,7 +91,7 @@ export const EventInformation = ({
                     required={true}
                     label={'time'}
                 />
-            </div>
+            </div> */}
             <SelectField header={'event category'} setOption={setEventCategory}>
                 {category.map((cat, index) => (
                     <option key={index} value={cat}>

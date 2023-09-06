@@ -9,6 +9,9 @@ import { useMutation } from '@tanstack/react-query';
 import { EventInformation } from './EventCreation/EventInformation';
 import { EventTicket } from './EventCreation/EventTicket';
 import { EventDescription } from './EventCreation/EventDescription';
+import axios from 'axios';
+import { Notification } from '@components/Notification';
+import { ButtonLoader } from '@components/Spinner';
 
 const eventSteps = [
     {
@@ -56,6 +59,12 @@ export const CreateEvent = () => {
         resolver: yupResolver(createEventSchema),
     });
 
+    const { isError, isLoading, isSuccess, mutate, error } = useMutation({
+        mutationFn: (data) => {
+            return axios.post(`${process.env.API_URL}/events`, data);
+        },
+    });
+
     const onSubmitData = (data) => {
         console.log({
             ...data,
@@ -64,11 +73,33 @@ export const CreateEvent = () => {
             venue: eventLocation?.props?.value,
             status: privacyStatus?.props?.value,
         });
+        const fullData = {
+            ...data,
+            ticketType: ticketType?.props?.children,
+            category: eventCategory?.props?.value,
+            venue: eventLocation?.props?.value,
+            status: privacyStatus?.props?.value,
+        };
+        // mutate(fullData);
     };
 
     return (
         <div className="w-full h-full md:flex text-sm max-w-4xl">
-            <section className="hidden px-8 md:w-1/2 md:block bg-purple-base">
+            {isError && (
+                <Notification
+                    message={error?.response?.data?.message}
+                    type="error"
+                    duration={5000}
+                />
+            )}
+            {isSuccess && (
+                <Notification
+                    message="Event created successfully!"
+                    type="success"
+                    duration={5000}
+                />
+            )}
+            {/* <section className="hidden px-8 md:w-1/3 md:block bg-purple-base">
                 <ol className="text-[#E0DFE3] gap-8 list-decimal" type="i">
                     {eventSteps.map((step, index) => (
                         <li key={index} className="flex flex-col mb-8">
@@ -79,29 +110,28 @@ export const CreateEvent = () => {
                         </li>
                     ))}
                 </ol>
-            </section>
-            <section className="bg-[#f8fafc] px-8 pt-8 mb-0 md:w-1/2 overflow-y-scroll">
-                <h1 className="text-xl">Create Event</h1>
+            </section> */}
+            <section className="px-8 pt-8 mb-0 md:w-2/3 overflow-y-scroll">
+                <h1 className="text-2xl">Create Event</h1>
                 <form
                     className="text-pry-text-color-1 w-full pb-12"
                     onSubmit={handleSubmit(onSubmitData)}
                 >
-                    <CreateEventCarousel count={carouselCount}>
-                        <EventInformation
-                            register={register}
-                            errors={errors}
-                            setEventCategory={setEventCategory}
-                            setEventLocation={setEventLocation}
-                            setPrivacyStatus={setPrivacyStatus}
-                        />
-                        <EventDescription register={register} errors={errors} />
-                        <EventTicket
-                            register={register}
-                            errors={errors}
-                            setTicketType={setTicketType}
-                        />
-                    </CreateEventCarousel>
-                    <div className="flex py-4 -mx-8 px-8 justify-end gap-4">
+                    <EventInformation
+                        register={register}
+                        errors={errors}
+                        setEventCategory={setEventCategory}
+                        setEventLocation={setEventLocation}
+                        setPrivacyStatus={setPrivacyStatus}
+                    />
+                    <EventDescription register={register} errors={errors} />
+                    <EventTicket
+                        register={register}
+                        errors={errors}
+                        setTicketType={setTicketType}
+                    />
+
+                    {/* <div className="flex py-4 -mx-8 px-8 justify-end gap-4">
                         <Button
                             disabled={carouselCount === 0 && true}
                             className="border-1 text-pry-header-title py-2 px-4 rounded-default disabled:bg-gray-300 disabled:text-white"
@@ -126,16 +156,15 @@ export const CreateEvent = () => {
                         >
                             Next
                         </Button>
-                    </div>
-                    {carouselCount === 2 && (
-                        <Button
-                            className={
-                                'bg-btn-color w-full text-white font-semibold py-default px-4 mt-2 rounded-default'
-                            }
-                        >
-                            Finish
-                        </Button>
-                    )}
+                    </div> */}
+
+                    <Button
+                        className={
+                            'bg-btn-color w-full text-white font-semibold py-default px-4 mt-2 rounded-default'
+                        }
+                    >
+                        {isLoading ? <ButtonLoader /> : 'Finish'}
+                    </Button>
                 </form>
             </section>
         </div>
