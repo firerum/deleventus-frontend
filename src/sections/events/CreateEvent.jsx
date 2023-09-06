@@ -105,22 +105,24 @@ export const CreateEvent = () => {
                         <Button
                             disabled={carouselCount === 0 && true}
                             className="border-1 text-pry-header-title py-2 px-4 rounded-default disabled:bg-gray-300 disabled:text-white"
-                            onClick={() =>
+                            onClick={(e) => {
+                                e.preventDefault();
                                 setCarouselCount((prev) =>
                                     prev <= 0 ? 0 : prev - 1
-                                )
-                            }
+                                );
+                            }}
                         >
                             Back
                         </Button>
                         <Button
                             disabled={carouselCount === 2 && true}
                             className="bg-btn-color py-2 px-4 rounded-default text-white disabled:bg-gray-300"
-                            onClick={() =>
+                            onClick={(e) => {
+                                e.preventDefault();
                                 setCarouselCount((prev) =>
                                     prev >= 2 ? 2 : prev + 1
-                                )
-                            }
+                                );
+                            }}
                         >
                             Next
                         </Button>
