@@ -46,11 +46,11 @@ const eventSteps = [
 ];
 
 export const CreateEvent = () => {
-    const [carouselCount, setCarouselCount] = useState(0);
-    const [ticketType, setTicketType] = useState('PAID');
+    const [ticketType, setTicketType] = useState('free');
+    const [ticketQuantity, setTicketQuantity] = useState();
     const [eventCategory, setEventCategory] = useState('wedding'); // State for event category
     const [eventLocation, setEventLocation] = useState('nigeria'); // State for event location
-    const [privacyStatus, setPrivacyStatus] = useState('public');
+    const [visibility, setVisibility] = useState('public');
     const {
         register,
         handleSubmit,
@@ -68,17 +68,17 @@ export const CreateEvent = () => {
     const onSubmitData = (data) => {
         console.log({
             ...data,
-            ticketType: ticketType?.props?.children,
+            ticket_type: ticketType?.props?.children,
             category: eventCategory?.props?.value,
             venue: eventLocation?.props?.value,
-            status: privacyStatus?.props?.value,
+            visibility: visibility?.props?.value,
         });
         const fullData = {
             ...data,
             ticketType: ticketType?.props?.children,
             category: eventCategory?.props?.value,
             venue: eventLocation?.props?.value,
-            status: privacyStatus?.props?.value,
+            visibility: visibility?.props?.value,
         };
         // mutate(fullData);
     };
@@ -122,7 +122,7 @@ export const CreateEvent = () => {
                         errors={errors}
                         setEventCategory={setEventCategory}
                         setEventLocation={setEventLocation}
-                        setPrivacyStatus={setPrivacyStatus}
+                        setVisibility={setVisibility}
                     />
                     <EventDescription register={register} errors={errors} />
                     <EventTicket

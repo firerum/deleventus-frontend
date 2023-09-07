@@ -5,13 +5,17 @@ import { FaMoneyBill, FaTicketAlt } from 'react-icons/fa';
 export const EventTicket = ({ register, errors, setTicketType }) => {
     return (
         <div className="mt-12">
-            <h2 className='text-base'>Event Ticket</h2>
-            <div className="bg-white">
-                <SelectField header={'TICKET TYPE'} setOption={setTicketType}>
-                    <div>Free</div>
-                    <div>Paid</div>
-                </SelectField>
-            </div>
+            <h2 className="text-base">Event Ticket</h2>
+
+            <SelectField
+                header={'TICKET TYPE'}
+                setOption={setTicketType}
+                required
+            >
+                <div>Free</div>
+                <div>Paid</div>
+            </SelectField>
+
             <InputField
                 type="text"
                 placeholder="available quantity"

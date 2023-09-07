@@ -29,7 +29,7 @@ export const EventInformation = ({
     register,
     errors,
     setEventCategory,
-    setPrivacyStatus,
+    setVisibility,
     setEventLocation,
 }) => {
     const [eventAvatar, setEventAvatar] = useState('');
@@ -50,7 +50,7 @@ export const EventInformation = ({
                     <FaPencilAlt />
                 </label>
                 <Image
-                    src={eventAvatar}
+                    src={eventAvatar || '/images/universal_DP.jpeg'}
                     width={80}
                     height={80}
                     alt="event image"
@@ -92,22 +92,33 @@ export const EventInformation = ({
                     label={'time'}
                 />
             </div> */}
-            <SelectField header={'event category'} setOption={setEventCategory}>
+            <SelectField
+                header={'event category'}
+                setOption={setEventCategory}
+                required
+            >
                 {category.map((cat, index) => (
                     <option key={index} value={cat}>
                         {cat}
                     </option>
                 ))}
             </SelectField>
-
-            <SelectField header={'event location'} setOption={setEventLocation}>
+            <SelectField
+                header={'event location'}
+                setOption={setEventLocation}
+                required
+            >
                 {countries.map((country, index) => (
                     <option key={index} value={country}>
                         {country}
                     </option>
                 ))}
             </SelectField>
-            <SelectField header={'privacy status'} setOption={setPrivacyStatus}>
+            <SelectField
+                header={'privacy status'}
+                setOption={setVisibility}
+                required
+            >
                 {privacyStatus.map((status, index) => (
                     <option key={index} value={status}>
                         {status}

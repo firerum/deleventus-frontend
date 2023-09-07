@@ -3,7 +3,7 @@ export const EventDescription = ({ register, errors }) => {
         <div>
             <h2 className="mt-12 text-base">Event Description</h2>
             {errors && (
-                <p className="text-xs text-left text-red-500 mb-1 mt-0">
+                <p className="text-left text-red-500 first-letter:uppercase mt-0">
                     {errors['description']?.message}
                 </p>
             )}

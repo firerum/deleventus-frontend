@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { FaAngleDown } from 'react-icons/fa';
 import { useCloseElementOnClick } from '@utils/useCloseElementOnClick';
@@ -40,9 +40,10 @@ const ListItem = styled.li`
     }
 `;
 
-export const SelectField = ({ children, header, setOption }) => {
+export const SelectField = ({ children, header, setOption, required }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState(null);
+    const [isFilled, setIsFilled] = useState(false);
     const ref = useRef();
     const listBox = useRef();
 
@@ -52,6 +53,7 @@ export const SelectField = ({ children, header, setOption }) => {
     const onOptionClicked = (value) => () => {
         setSelectedOption(value);
         setOption(value);
+        setIsFilled(true);
         setIsOpen(false);
     };
 
@@ -65,64 +67,89 @@ export const SelectField = ({ children, header, setOption }) => {
         if (event.key === 'Enter' || event.key === ' ') {
             setSelectedOption(value); // Selects the option on Enter or Space key press
             setOption(value);
+            setIsFilled(true);
             setIsOpen(false); // Closes the dropdown after selection
         }
     };
 
-    return (
-        <DropDownContainer ref={ref}>
-            <button
-                className="w-full py-default px-4 font-light flex justify-between items-center gap-4"
-                tabIndex={0}
-                aria-haspopup="listbox"
-                aria-expanded={isOpen}
-                onClick={(event) => {
-                    event.preventDefault();
-                    setIsOpen((prev) => !prev);
-                }}
-                onKeyDown={(event) => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        handleDropdownToggle();
-                    }
-                }}
-            >
-                <span className="uppercase">
-                    {selectedOption ? (
-                        <span className="font-normal">{selectedOption}</span>
-                    ) : (
-                        <span className="title">{header}</span>
-                    )}
-                </span>
-                <FaAngleDown
-                    className={`transition-all duration-500 linear ${
-                        isOpen ? '-rotate-180' : 'rotate-0'
-                    }`}
-                />
-            </button>
+    // Validation function to check if the field is filled
+    const validateField = () => {
+        if (required && !selectedOption) {
+            setIsFilled(false); // Field is not filled, show validation error
+        } else {
+            setIsFilled(true); // Field is filled, clear validation error
+        }
+    };
 
-            {isOpen && (
-                <DropDownList
-                    role="listbox"
-                    ref={listBox}
-                    aria-activedescendant={selectedOption}
-                >
-                    {children.map((child, index) => (
-                        <ListItem
-                            key={index}
-                            role="option"
-                            tabIndex={0}
-                            onClick={onOptionClicked(child)}
-                            aria-selected={child === selectedOption}
-                            onKeyDown={(event) =>
-                                handleOptionKeyDown(event, child)
-                            }
-                        >
-                            {child}
-                        </ListItem>
-                    ))}
-                </DropDownList>
+    // Run the validation function when the dropdown is closed or the component is unmounted
+    useEffect(() => {
+        return () => {
+            validateField();
+        };
+    }, []);
+
+    return (
+        <>
+            {/* Validation error message */}
+            {!isFilled && required && (
+                <p className="text-red-500">This field is required.</p>
             )}
-        </DropDownContainer>
+            <DropDownContainer ref={ref}>
+                <button
+                    className="w-full py-default px-4 font-light flex justify-between items-center gap-4"
+                    tabIndex={0}
+                    aria-haspopup="listbox"
+                    aria-expanded={isOpen}
+                    onClick={(event) => {
+                        event.preventDefault();
+                        setIsOpen((prev) => !prev);
+                    }}
+                    onKeyDown={(event) => {
+                        if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            handleDropdownToggle();
+                        }
+                    }}
+                >
+                    <span className="uppercase">
+                        {selectedOption ? (
+                            <span className="font-normal">
+                                {selectedOption}
+                            </span>
+                        ) : (
+                            <span className="title">{header}</span>
+                        )}
+                    </span>
+                    <FaAngleDown
+                        className={`transition-all duration-500 linear ${
+                            isOpen ? '-rotate-180' : 'rotate-0'
+                        }`}
+                    />
+                </button>
+
+                {isOpen && (
+                    <DropDownList
+                        role="listbox"
+                        ref={listBox}
+                        aria-activedescendant={selectedOption}
+                    >
+                        {children.map((child, index) => (
+                            <ListItem
+                                key={index}
+                                role="option"
+                                tabIndex={0}
+                                onClick={onOptionClicked(child)}
+                                aria-selected={child === selectedOption}
+                                onKeyDown={(event) =>
+                                    handleOptionKeyDown(event, child)
+                                }
+                            >
+                                {child}
+                            </ListItem>
+                        ))}
+                    </DropDownList>
+                )}
+            </DropDownContainer>
+        </>
     );
 };

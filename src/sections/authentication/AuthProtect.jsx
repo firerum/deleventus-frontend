@@ -225,7 +225,6 @@ export const AuthProvider = ({ children }) => {
                 register,
                 loading,
                 logout,
-                accessToken,
             }}
         >
             {children}

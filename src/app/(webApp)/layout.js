@@ -17,9 +17,9 @@ export default function RootLayout({ children }) {
         <html lang="en" className={`${Satoshi.variable} ${General.variable}`}>
             <body className="bg-pry-purple">
                 <ProvideQueryClient>
-                    {/* <Provider> */}
+                    <Provider>
                         <AuthProvider>
-                            {/* <ProtectRoute> */}
+                            <ProtectRoute>
                                 <div>
                                     <WebAppNav />
                                     <div className="lg:pl-56 min-h-screen overflow-clip">
@@ -27,9 +27,9 @@ export default function RootLayout({ children }) {
                                         <div className="pt-20">{children}</div>
                                     </div>
                                 </div>
-                            {/* </ProtectRoute> */}
+                            </ProtectRoute>
                         </AuthProvider>
-                    {/* </Provider> */}
+                    </Provider>
                 </ProvideQueryClient>
             </body>
         </html>
