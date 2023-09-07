@@ -1,19 +1,50 @@
 import { useState } from 'react';
 import { Button } from '@components/Button';
 import { Modal } from '@components/Modals/Modal';
+import { useAuth } from '@sections/authentication/AuthProtect';
+import { ButtonLoader } from '@components/Spinner';
+import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 export const DeactivateAccount = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const { user, accessToken, logout } = useAuth();
+    const router = useRouter();
+    const { isLoading, mutate } = useMutation({
+        mutationFn: () => {
+            return axios.delete(`${process.env.API_URL}/users/${user.id}`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            });
+        },
+        onSuccess: () => {
+            logout();
+            router.replace('/');
+        },
+    });
+
+    const handleDeleteAccount = () => {
+        mutate();
+    };
 
     const Deactivate = () => {
         return (
             <div className="bg-purple-base p-8 flex flex-col justify-center items-center text-white text-center">
                 Are you sure you want to Deactivate your Account ?
                 <div className="flex gap-4 mt-4">
-                    <Button className="py-2 px-4 bg-green-700 text-white rounded-default">
-                        Yes
+                    <Button
+                        className="py-2 px-4 bg-green-700 text-white rounded-default"
+                        onClick={handleDeleteAccount}
+                    >
+                        {isLoading ? <ButtonLoader /> : 'Yes'}
                     </Button>
-                    <Button className="py-2 px-4 bg-red-700 text-white">
+                    <Button
+                        className="py-2 px-4 bg-red-700 text-white"
+                        onClick={() => setIsOpen((prev) => !prev)}
+                    >
                         No
                     </Button>
                 </div>

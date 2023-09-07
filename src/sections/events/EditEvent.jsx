@@ -1,6 +1,8 @@
 'use client';
 import { useState } from 'react';
-import { EventInformation, EventDescription, EventTicket } from './CreateEvent';
+import { EventDescription } from './EventCreation/EventDescription';
+import { EventInformation } from './EventCreation/EventInformation';
+import { EventTicket } from './EventCreation/EventTicket';
 import { Button } from '@components/Button';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
