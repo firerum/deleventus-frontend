@@ -13,7 +13,6 @@ import {
 import Link from 'next/link';
 import { useAuth } from './AuthProtect';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { ButtonLoader } from '@components/Spinner';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -23,11 +22,10 @@ import ResendVerificationLink from './ResendVerificationLink';
 import { Notification } from '@components/Notification';
 
 export default function Signup() {
-    const { register: reg, isAuthenticated } = useAuth();
+    const { register: reg } = useAuth();
     const [errorMessage, setErrorMessage] = useState('');
     const [userEmail, setUserEmail] = useState('');
     const [providers, setProviders] = useState(null);
-    const router = useRouter();
     const {
         register,
         handleSubmit,
@@ -65,13 +63,6 @@ export default function Signup() {
         setUserEmail(data?.email);
         mutate(data);
     };
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            router.replace('/events');
-            return;
-        }
-    }, [isAuthenticated]);
 
     return (
         <section className="text-center lg:flex overflow-hidden">

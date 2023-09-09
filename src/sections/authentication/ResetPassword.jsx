@@ -1,13 +1,10 @@
 'use client';
-import { useState, useEffect } from 'react';
 import { InputField } from '@components/InputField';
 import { Button } from '@components/Button';
 import { ButtonLoader } from '@components/Spinner';
 import { FaEnvelope, FaArrowLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useAuth } from './AuthProtect';
-import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -20,8 +17,6 @@ const schema = yup.object().shape({
 });
 
 export default function ResetPassword() {
-    const { isAuthenticated } = useAuth();
-    const router = useRouter();
     const {
         register,
         handleSubmit,
@@ -40,13 +35,6 @@ export default function ResetPassword() {
     const onSubmitData = (data) => {
         mutate(data);
     };
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            router.push('/events');
-            return;
-        }
-    }, [isAuthenticated]);
 
     return (
         <section className="text-center lg:flex">

@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { InputField } from '@components/InputField';
 import { Button } from '@components/Button';
 import { signIn, getProviders } from 'next-auth/react';
@@ -18,10 +17,9 @@ import ResendVerificationLink from './ResendVerificationLink';
 import { Notification } from '@components/Notification';
 
 export default function Signin() {
-    const { login, isAuthenticated } = useAuth();
+    const { login } = useAuth();
     const [providers, setProviders] = useState(null);
     const [email, setEmail] = useState('');
-    const router = useRouter();
 
     useEffect(() => {
         const getAllProviders = async () => {
@@ -53,13 +51,6 @@ export default function Signin() {
         setEmail(data?.email);
         mutate(data);
     };
-
-    useEffect(() => {
-        if (isAuthenticated) {
-            router.replace('/events');
-            return;
-        }
-    }, [isAuthenticated]);
 
     return (
         <section className="text-center lg:flex">
