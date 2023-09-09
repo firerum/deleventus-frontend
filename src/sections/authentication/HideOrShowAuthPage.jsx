@@ -1,4 +1,5 @@
 'use client';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@sections/authentication/AuthProtect';
 import { PageLoader } from '@components/Spinner';
@@ -7,13 +8,15 @@ export default function HideOrShowAuthPage({ children }) {
     const { isAuthenticated, loading } = useAuth();
     const router = useRouter();
 
-    if (loading) {
-        return <PageLoader />;
-    }
+    useEffect(() => {
+        if (!loading && isAuthenticated) {
+            router.push('/events');
+            return;
+        }
+    }, [isAuthenticated, loading]);
 
-    if (isAuthenticated) {
-        router.push('/events');
-        return;
+    if (loading || isAuthenticated) {
+        return <PageLoader />;
     }
 
     return children;

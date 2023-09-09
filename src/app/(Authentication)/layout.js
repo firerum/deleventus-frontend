@@ -2,7 +2,7 @@ import '@styles/globals.css';
 import { Satoshi, General } from '../../../public/fonts/fonts.local';
 import { AuthProvider } from '@sections/authentication/AuthProtect';
 import { ProvideQueryClient } from '@helper/ProvideQueryClient';
-import HideOrShowAuthPage from '@helper/HideOrShowAuthPage';
+import HideOrShowAuthPage from '@sections/authentication/HideOrShowAuthPage';
 
 export const metadata = {
     title: 'Deliciae Eventus - Deleventus',
