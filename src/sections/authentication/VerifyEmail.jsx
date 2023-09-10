@@ -30,7 +30,7 @@ export default function VerifyEmail() {
             );
         },
         onSuccess: () => {
-            router.replace('/events');
+            router.replace('/signin');
         },
     });
 

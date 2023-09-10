@@ -1,11 +1,14 @@
 'use client';
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
+import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
 
 export const InputField = forwardRef(
     (
         { type, id, value, name, placeholder, onChange, errors, children },
         ref
     ) => {
+        const [showPassword, setShowPassword] = useState(false);
+
         return (
             <>
                 {errors && (
@@ -15,7 +18,13 @@ export const InputField = forwardRef(
                 )}
                 <div className="mb-3 relative">
                     <input
-                        type={type}
+                        type={
+                            type === 'password'
+                                ? showPassword
+                                    ? 'text'
+                                    : 'password'
+                                : type
+                        }
                         id={id}
                         value={value}
                         name={name}
@@ -25,6 +34,14 @@ export const InputField = forwardRef(
                         ref={ref}
                     />
                     {children && children}
+                    {type === 'password' && (
+                        <span
+                            className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
+                            {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+                        </span>
+                    )}
                 </div>
             </>
         );
