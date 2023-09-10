@@ -12,6 +12,7 @@ import { EventDescription } from './EventCreation/EventDescription';
 import axios from 'axios';
 import { Notification } from '@components/Notification';
 import { ButtonLoader } from '@components/Spinner';
+import { useAuth } from '@sections/authentication/AuthProtect';
 
 const eventSteps = [
     {
@@ -46,6 +47,7 @@ const eventSteps = [
 ];
 
 export const CreateEvent = () => {
+    const { accessToken } = useAuth();
     const [ticketType, setTicketType] = useState('free');
     const [ticketQuantity, setTicketQuantity] = useState();
     const [eventCategory, setEventCategory] = useState('wedding'); // State for event category
@@ -61,7 +63,12 @@ export const CreateEvent = () => {
 
     const { isError, isLoading, isSuccess, mutate, error } = useMutation({
         mutationFn: (data) => {
-            return axios.post(`${process.env.API_URL}/events`, data);
+            return axios.post(`${process.env.API_URL}/events`, data, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            });
         },
     });
 
@@ -80,7 +87,7 @@ export const CreateEvent = () => {
             venue: eventLocation?.props?.value,
             visibility: visibility?.props?.value,
         };
-        // mutate(fullData);
+        mutate(fullData);
     };
 
     return (

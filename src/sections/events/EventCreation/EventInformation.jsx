@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { InputField, InputDateTimeField } from '@components/InputField';
+import { InputField } from '@components/InputField';
 import { SelectField } from '@components/SelectField';
 import Image from 'next/image';
 import { FaPencilAlt, FaIdBadge } from 'react-icons/fa';
@@ -76,22 +76,19 @@ export const EventInformation = ({
                     <FaIdBadge />
                 </span>
             </InputField>
-            {/* <div className="lg:flex gap-4">
-                <InputDateTimeField
-                    type={'date'}
+            <div className="lg:flex">
+                <InputField
+                    type="date"
                     placeholder={'date'}
-                    onChange={(e) => console.log(e)}
-                    required={true}
-                    label={'date'}
+                    {...register('date_of_event')}
+                    errors={errors}
                 />
-                <InputDateTimeField
+                <InputField
                     type={'time'}
                     placeholder={'Time'}
                     onChange={(e) => console.log(e)}
-                    required={true}
-                    label={'time'}
                 />
-            </div> */}
+            </div>
             <SelectField
                 header={'event category'}
                 setOption={setEventCategory}

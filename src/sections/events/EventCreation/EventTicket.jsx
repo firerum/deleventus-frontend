@@ -1,4 +1,4 @@
-import { InputField, InputDateTimeField } from '@components/InputField';
+import { InputField } from '@components/InputField';
 import { SelectField } from '@components/SelectField';
 import { FaMoneyBill, FaTicketAlt } from 'react-icons/fa';
 
@@ -40,13 +40,13 @@ export const EventTicket = ({ register, errors, setTicketType }) => {
             </InputField>
 
             {/* <div className="lg:flex gap-4 justify-between">
-                <InputDateTimeField
+                <InputField
                     type="date"
                     placeholder="sales start"
                     required={true}
                     onChange={(e) => console.log(e.target.value)}
                 />
-                <InputDateTimeField
+                <InputField
                     type="time"
                     placeholder="time"
                     required={true}
@@ -54,13 +54,13 @@ export const EventTicket = ({ register, errors, setTicketType }) => {
                 />
             </div>
             <div className="lg:flex gap-4 justify-between">
-                <InputDateTimeField
+                <InputField
                     type="date"
                     placeholder="sales end"
                     required={true}
                     onChange={(e) => console.log(e.target.value)}
                 />
-                <InputDateTimeField
+                <InputField
                     type="time"
                     placeholder="time"
                     required={true}
