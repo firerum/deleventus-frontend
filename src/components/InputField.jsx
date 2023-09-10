@@ -35,12 +35,15 @@ export const InputField = forwardRef(
                     />
                     {children && children}
                     {type === 'password' && (
-                        <span
+                        <button
                             className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                            onClick={() => setShowPassword(!showPassword)}
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setShowPassword(!showPassword);
+                            }}
                         >
                             {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
-                        </span>
+                        </button>
                     )}
                 </div>
             </>
