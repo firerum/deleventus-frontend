@@ -12,7 +12,7 @@ const WebAppHeader = () => {
             <div className="hidden md:block">
                 {/* <span>{new Date().toLocaleDateString()}</span> */}
                 <span className="text-pry-header-title text-sm font-medium">
-                    Good Morning, {user?.first_name || 'John Doe'}
+                    Welcome, {user?.first_name || 'John Doe'}
                 </span>
             </div>
             <div className="w-full md:w-2/3 flex gap-4 justify-end items-center">
@@ -36,7 +36,7 @@ const WebAppHeader = () => {
                     />
                     <figcaption className="text-sm flex items-center">
                         <span className="font-medium">
-                            {user?.email || user?.username || 'John Doe'}
+                            {user?.email || user?.username}
                         </span>
                     </figcaption>
                 </figure>

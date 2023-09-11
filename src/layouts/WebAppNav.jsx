@@ -43,7 +43,6 @@ const navigation = {
 
 const NavLinks = ({ navigation }) => {
     const setOpen = useContext(NavContext);
-    const [active, setActive] = useState('Explore');
 
     return (
         <nav>

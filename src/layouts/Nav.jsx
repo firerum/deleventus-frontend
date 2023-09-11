@@ -16,14 +16,11 @@ const navigation = [
     { name: 'Pricing', href: '/pricing' },
 ];
 
-const dropDown = [{ name: 'Dashboard', href: '/dashboard' }];
-
 const Nav = () => {
     const { isAuthenticated, logout } = useAuth();
     const { data: session } = useSession();
     const [open, setOpen] = useState(false);
     const navRef = useRef(null);
-    console.log(session);
 
     return (
         <header className="px-6 py-3 md:px-10 text-sm md:text-base bg-pry-purple shadow-sm fixed z-30 left-0 top-0 right-0 flex justify-between items-center">
