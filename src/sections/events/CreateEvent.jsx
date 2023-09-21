@@ -137,34 +137,6 @@ export const CreateEvent = () => {
                         errors={errors}
                         setTicketType={setTicketType}
                     />
-
-                    {/* <div className="flex py-4 -mx-8 px-8 justify-end gap-4">
-                        <Button
-                            disabled={carouselCount === 0 && true}
-                            className="border-1 text-pry-header-title py-2 px-4 rounded-default disabled:bg-gray-300 disabled:text-white"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setCarouselCount((prev) =>
-                                    prev <= 0 ? 0 : prev - 1
-                                );
-                            }}
-                        >
-                            Back
-                        </Button>
-                        <Button
-                            disabled={carouselCount === 2 && true}
-                            className="bg-btn-color py-2 px-4 rounded-default text-white disabled:bg-gray-300"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setCarouselCount((prev) =>
-                                    prev >= 2 ? 2 : prev + 1
-                                );
-                            }}
-                        >
-                            Next
-                        </Button>
-                    </div> */}
-
                     <Button
                         className={
                             'bg-btn-color w-full text-white font-semibold py-default px-4 mt-2 rounded-default'
