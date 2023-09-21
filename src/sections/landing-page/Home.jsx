@@ -22,6 +22,7 @@ import {
     featuredEvent,
 } from '@utils/framer-motion/variants';
 import { VerticalCarousel } from '@components/Carousels/VerticalCarousel';
+import { ScrollToTopButton } from '@components/ScrollToTopButton';
 
 const processCard = [
     {
@@ -341,6 +342,7 @@ export default function Home() {
                     </motion.div>
                 </div>
             </section>
+            <ScrollToTopButton />
         </div>
     );
 }
