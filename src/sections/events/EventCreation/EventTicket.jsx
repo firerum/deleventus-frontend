@@ -12,8 +12,8 @@ export const EventTicket = ({ register, errors, setTicketType }) => {
                 setOption={setTicketType}
                 required
             >
-                <div>Free</div>
-                <div>Paid</div>
+                <div>free</div>
+                <div>paid</div>
             </SelectField>
 
             <InputField

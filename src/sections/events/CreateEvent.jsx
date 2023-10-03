@@ -82,7 +82,7 @@ export const CreateEvent = () => {
         });
         const fullData = {
             ...data,
-            ticketType: ticketType?.props?.children,
+            ticket_type: ticketType?.props?.children,
             category: eventCategory?.props?.value,
             venue: eventLocation?.props?.value,
             visibility: visibility?.props?.value,
